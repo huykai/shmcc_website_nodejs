@@ -9,6 +9,7 @@ import cgi
 import MySQLdb as mysql
 
 import os
+import json
 
 
 reload(sys)
@@ -34,8 +35,13 @@ def writexmlhead():
 	#print 'Content-type: text/xml charset=GB2312;\n'
  
 
-	print "<?xml version=\"1.0\" encoding=\"GB2312\"?>"
-	print "<response>"
+    print "<?xml version=\"1.0\" encoding=\"GB2312\"?>"
+    print "<response>"
+
+def writexmltablebegin(tablename):
+    print "<"+tablename+">"
+def writexmltableend(tablename):
+    print "</"+tablename+">"
 
 def writexmltail():
 	print "</response>"
@@ -66,7 +72,17 @@ if __name__ == '__main__':
 
     # Create instance of FieldStorage 
     form = cgi.FieldStorage()
-    #print form
+    
+    #logfile = open('logfile.txt','a')
+
+    #logtext = str(form.
+    #logfile.write('\n')
+    #logfile.write(str(len(sys.argv)))
+    #logfile.write(str(sys.argv[1]))
+    #logfile.close()
+    #config_params = json.loads(str(sys.argv[1]))
+    #logfile.write('\n')
+    #logfile.write(json.dumps(config_params))
 
     #define sql param
     param = PmSqlParam()
@@ -104,6 +120,7 @@ if __name__ == '__main__':
         con = mysql.connect(host=mmedburl, port=int(mmedburlport), user=mmedbuser, passwd=mmedbpasswd, db=mmedb_dbname)
         mmecursor=con.cursor()
         writexmlhead()
+        writexmltablebegin('mme_2g_attach')
 
 	    #2g attach
         title,row=mme_2g_attach(mmecursor,param)
@@ -112,7 +129,18 @@ if __name__ == '__main__':
             writetabname('mme_2g_attach')
             writetitle(title)
             writedata(row)
-
+        writexmltableend('mme_2g_attach')
+        
+        #2g pdp
+        writexmltablebegin('mme_2g_pdp')
+        mmecursor=con.cursor()
+        title,row=mme_2g_pdp(mmecursor,param)
+        if title[0]!='error' and len(row)>0:
+            #title[0]='tt'+form.getvalue('starttime')
+            writetabname('mme_2g_pdp')
+            writetitle(title)
+            writedata(row)
+        writexmltableend('mme_2g_pdp')
         writexmltail()
 	
         
@@ -124,5 +152,8 @@ if __name__ == '__main__':
     finally:
         if con:
             con.close()
+
+    #if (logfile):
+    #    logfile.close()
 	
 	

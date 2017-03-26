@@ -33,7 +33,7 @@ def mme_2g_attach(cursor,param):
 select  
 twog.fins_id,
 objects.CO_NAME MMESGSN, 
-date_format(twog.period_start_time,'%Y/%m/%d') Sdate,
+date_format(twog.period_start_time,'%Y-%m-%d') Sdate,
 date_format(twog.period_start_time,'%H') Stime, 
 sum(SUCC_GPRS_ATTACH+SUCC_COMBINED_ATTACH) attachsucccount, 
 sum(FAIL_GPRS_ATTACH_GEN+FAIL_COMB_ATTACH_GEN-FAIL_GPRS_ATTACH_DUE_MS_ERR-FAIL_GPRS_ATTACH_COLLISIONS) attachfailcount, 
@@ -60,7 +60,7 @@ twog.FINS_ID=objects.CO_GID
 select  
 twog.fins_id,
 objects.CO_NAME MMESGSN, 
-date_format(twog.period_start_time,'%Y/%m/%d') Sdate,
+date_format(twog.period_start_time,'%Y-%m-%d') Sdate,
 date_format(twog.period_start_time,'%H%i') Stime, 
 sum(SUCC_GPRS_ATTACH+SUCC_COMBINED_ATTACH) attachsucccount, 
 sum(FAIL_GPRS_ATTACH_GEN+FAIL_COMB_ATTACH_GEN-FAIL_GPRS_ATTACH_DUE_MS_ERR-FAIL_GPRS_ATTACH_COLLISIONS) attachfailcount, 
@@ -133,13 +133,23 @@ def mme_2g_pdp(cursor,param):
 select
 twog.fins_id,
 objects.co_name MMESGSN,
-to_char(twog.period_start_time,'yyyy/mm/dd') Sdate,
-to_char(twog.period_start_time,'hh24') Stime,
+date_format(twog.period_start_time,'%Y-%m-%d') Sdate,
+date_format(twog.period_start_time,'%H') Stime,
 sum(SUCC_MO_PDP_CONTEXT_ACT) PdpSucc2g,
 sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN) PdpAtt2g,
 sum(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS) PdpFailUser2g,
-decode(nvl((sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN)),0),0,0,(round((sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN))),4)*100)) PdpSR2g,
-decode(nvl((sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN)),0),0,0,(round((sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN-(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS)))),4)*100)) PdpSR2g
+if(ifnull(
+sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN)
+,0),round(
+(sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN))),4
+)*100
+,0) PdpSR2g,
+if(ifnull(
+sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN-(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS))
+,0),round(
+(sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN-(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS)))),4
+)*100
+,0) PdpSR2gU
 from 	PCOFNS_PS_SMTM2_CI3_RAW twog, 
 			UTP_COMMON_OBJECTS objects
 where 
@@ -150,13 +160,23 @@ twog.fins_id=objects.co_gid
 select
 twog.fins_id,
 objects.co_name MMESGSN,
-to_char(twog.period_start_time,'yyyy/mm/dd') Sdate,
-to_char(twog.period_start_time,'hh24:mi') Stime,
+date_format(twog.period_start_time,'%Y-%m-%d') Sdate,
+date_format(twog.period_start_time,'%H%i') Stime, 
 sum(SUCC_MO_PDP_CONTEXT_ACT) PdpSucc2g,
 sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN) PdpAtt2g,
 sum(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS) PdpFailUser2g,
-decode(nvl((sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN)),0),0,0,(round((sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN))),4)*100)) PdpSR2g,
-decode(nvl((sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN)),0),0,0,(round((sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN-(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS)))),4)*100)) PdpSR2g
+if(ifnull(
+sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN)
+,0),round(
+(sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN))),4
+)*100
+,0) PdpSR2g,
+if(ifnull(
+sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN-(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS))
+,0),round(
+(sum(SUCC_MO_PDP_CONTEXT_ACT)/(sum(SUCC_MO_PDP_CONTEXT_ACT+FAIL_MO_PDP_CONT_ACT_GEN-(FAIL_MO_PDP_ACT_MIS_UNK_APN+FAIL_MO_PDP_ACT_UNK_ADDR_TYPE+FAIL_MO_PDP_ACT_WRONG_PASSWORD+FAIL_MO_PDP_ACT_SERV_OPT_NS+FAIL_MO_PDP_ACT_REQ_SE_OP_NS)))),4
+)*100
+,0) PdpSR2gU
 from 	PCOFNS_PS_SMTM2_CI3_RAW twog, 
 			UTP_COMMON_OBJECTS objects
 where 
@@ -167,25 +187,26 @@ twog.fins_id=objects.co_gid
 		sqlstring=sqlstring+" and objects.co_name= \'"+param.selectmmesgsn+"\' " 
 	
 	if (param.selectperiodtype=='continue'):
-		sqlstringtime=" and to_char(twog.period_start_time,\'yyyy/mm/dd/hh24:mi\')>=\'"+param.startdate+"/"+param.starttime+\
-		"\' and to_char(twog.period_start_time,\'yyyy/mm/dd/hh24:mi\')<=\'"+param.stopdate+"/"+param.stoptime + "\' "
+		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')>=\'"+param.startdate+"/"+param.starttime+\
+		"\' and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')<=\'"+param.stopdate+"/"+param.stoptime + "\' "
 	else:
-		sqlstringtime=" and to_char(twog.period_start_time,\'yyyy/mm/dd')>=\'"+param.startdate+\
-		"\' and to_char(twog.period_start_time,\'hh24\')>=\'"+param.starttime+\
-		" and to_char(twog.period_start_time,\'yyyy/mm/dd')<=\'"+param.stopdate+\
-		"\' and to_char(twog.period_start_time,\'hh24\')<=\'"+param.stoptime + "\' "
+		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d\')>=\'"+param.startdate+\
+		"\' and date_format(twog.period_start_time,\'%H\')>=\'"+param.starttime+\
+		" and date_format(twog.period_start_time,\'%Y/%m/%d\')<=\'"+param.stopdate+\
+		"\' and date_format(twog.period_start_time,\'%H\')<=\'"+param.stoptime + "\' "
 		
 	if (param.selectperiod=='60'):
 		sqlstring1=""" 
-	group by to_char(twog.period_start_time,'yyyy/mm/dd'), to_char(twog.period_start_time,'hh24'), twog.fins_id, objects.co_name 
-	order by objects.co_name,to_char(twog.period_start_time,'yyyy/mm/dd'),to_char(twog.period_start_time,'hh24')
+	group by date_format(twog.period_start_time,\'%Y/%m/%d\'), date_format(twog.period_start_time,\'%H\'), twog.fins_id, objects.co_name 
+	order by objects.co_name,date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H\')
 	"""
 	else:
 		sqlstring1="""
-	group by to_char(twog.period_start_time,'yyyy/mm/dd'),to_char(twog.period_start_time,'hh24:mi'), twog.fins_ID, objects.co_name 
-	order by objects.CO_name,to_char(twog.period_start_time,'yyyy/mm/dd'),to_char(twog.period_start_time,'hh24:mi')
+	group by date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i'), twog.fins_ID, objects.co_name 
+	order by objects.CO_name,date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i\')
 	"""
 	sqlstring=sqlstring+sqlstringtime+sqlstring1
+	#print sqlstring
 	try:
 		cursor.execute(sqlstring)
 		row=cursor.fetchall()

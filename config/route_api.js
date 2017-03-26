@@ -54,6 +54,9 @@ for (var api in api_config) {
         get_api_exec_returntype[api_string]=return_type
         router.get(api_string , function(req, res, next) {
             console.log('exec in router : get');
+            console.log('params :');
+            var queryparam = JSON.stringify(req.query);
+            console.log(queryparam);
             //console.log(req.path)
             var api_string = req.path
             var exec_program = get_api_exec_program[api_string]
@@ -64,7 +67,7 @@ for (var api in api_config) {
             //console.log(exec_script)
             //console.log(return_type)
 
-            cp.execFile(exec_program, [exec_script, ""], CP_Parameters, function (err, stdout, stderr){
+            cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
                 if (err) console.error(err);
                 else {
                     //console.log(stdout);
