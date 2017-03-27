@@ -34,12 +34,17 @@ for (var api in api_config) {
         post_api_exec_returntype[api_string]=return_type
         router.post(api_string , function(req, res, next) {
             console.log('exec in router : post');
+            //console.log(req)
             //console.log(req.path)
+            var queryparam = JSON.stringify(req.body);
+            console.log(queryparam)
+            
             var api_string = req.path
             var exec_program = post_api_exec_program[api_string]
             var exec_script = post_api_exec_script[api_string]
             var return_type = post_api_exec_returntype[api_string]
-            cp.execFile(exec_program, [exec_script, ""], CP_Parameters, function (err, stdout, stderr){
+            
+            cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
                 if (err) console.error(err);
                 else {
                     //console.log(stdout);
@@ -53,18 +58,19 @@ for (var api in api_config) {
         get_api_exec_script[api_string]=exec_script
         get_api_exec_returntype[api_string]=return_type
         router.get(api_string , function(req, res, next) {
+            //console.log(req);
             console.log('exec in router : get');
             console.log('params :');
             var queryparam = JSON.stringify(req.query);
             console.log(queryparam);
             //console.log(req.path)
-            var api_string = req.path
-            var exec_program = get_api_exec_program[api_string]
-            var exec_script = get_api_exec_script[api_string]
-            var return_type = get_api_exec_returntype[api_string]
+           var api_string = req.path
+           var exec_program = get_api_exec_program[api_string]
+           var exec_script = get_api_exec_script[api_string]
+           var return_type = get_api_exec_returntype[api_string]
             
-            //console.log(exec_program)
             //console.log(exec_script)
+            //console.log(exec_program)
             //console.log(return_type)
 
             cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){

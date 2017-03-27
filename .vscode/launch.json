@@ -1,6 +1,21 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Node.JS Launch Program",
+            "program": "${file}",
+            "cwd": "${workspaceRoot}"
+            
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Node.JS Attach to Process",
+            "port": 5858
+        },
         {
             "name": "Python",
             "type": "python",

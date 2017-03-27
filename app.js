@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path')
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var csurf = require('csurf');
+//var csurf = require('csurf');
 var session = require('express-session');
 var methodOverride = require('method-override');
 //var routes = require('./routes');
@@ -20,11 +20,16 @@ app.set('view engine', 'html');
 
 //app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(site_config.static_dir));
-app.use(bodyParser());
+//app.use(bodyParser());
+
 app.use(cookieParser('secret'));
 app.use(session({ secret: 'secret' }));
 app.use(methodOverride());
-app.use(csurf());
+//app.use(csurf());
+// create application/json parser
+var jsonParser = bodyParser.json()
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/', function (req, res, next) {
   var fileName = site_config.static_dir + site_config.home_page;
@@ -38,7 +43,8 @@ app.get('/', function (req, res, next) {
   });
 });
 
-app.all('/api/*', routers);
+app.all('/api/*', urlencodedParser, routers);
+//app.all('/api/*', routers);
 //app.all('/api/*', function (req, res, next) {
 //    routers.
 //    if (err) {
