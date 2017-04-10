@@ -8,8 +8,19 @@ var methodOverride = require('method-override');
 //var routes = require('./routes');
 var site_config = require('./config/site_config');
 var routers = require('./config/route_api');
+
+var jwt = require('express-jwt');
+var morgan  = require('morgan'); // logger
+var tokenManager = require('./config/token_manager');
+var secret = require('./config/secret');
+
 var fs = require('fs');
 var ejs = require('ejs');
+
+var routes = {};
+routes.posts = require('./route/posts.js');
+routes.users = require('./route/users.js');
+routes.rss = require('./route/rss.js');
 
 module.exports = app = express();
 
@@ -20,6 +31,7 @@ app.set('view engine', 'html');
 
 //app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(site_config.static_dir));
+//console.log(site_config.static_dir);
 //app.use(bodyParser());
 
 app.use(cookieParser('secret'));
@@ -31,9 +43,18 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+app.all('*', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
+  res.set('Access-Control-Allow-Credentials', true);
+  res.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
+  res.set('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
+  if ('OPTIONS' == req.method) return res.send(200);
+  next();
+});
+
 app.get('/', function (req, res, next) {
   var fileName = site_config.static_dir + site_config.home_page;
-  //console.log(fileName);
+  console.log(fileName);
   res.sendFile(fileName, function (err) {
     if (err) {
       next(err);
@@ -42,6 +63,30 @@ app.get('/', function (req, res, next) {
     }
   });
 });
+
+app.get('/orig', function (req, res, next) {
+  var fileName = site_config.static_dir + site_config.orig_home_page;
+  console.log(fileName);
+  res.sendFile(fileName, function (err) {
+    if (err) {
+      next(err);
+    } else {
+      console.log('Sent:', fileName);
+    }
+  });
+});
+
+//app.use(bodyParser());
+
+//Create a new user
+app.post('/user/register', urlencodedParser, routes.users.register); 
+
+//Login
+app.post('/user/signin', urlencodedParser, routes.users.signin); 
+
+//Logout
+app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout); 
+
 
 app.all('/api/*', urlencodedParser, routers);
 //app.all('/api/*', routers);
