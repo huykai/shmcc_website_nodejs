@@ -14,6 +14,9 @@
 .project
 .strong-pm
 .vscode
+heapdump-*
+daemon
 coverage
 node_modules
+bower_modules
 npm-debug.log

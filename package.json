@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "jshint app.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +27,9 @@
     "morgan": "^1.8.1",
     "redis": "^2.7.1",
     "serve-favicon": "^2.0.0"
+  },
+  "devDependencies": {
+    "heapdump": "^0.3.9",
+    "jshint": "^2.9.4"
   }
 }

@@ -5,12 +5,15 @@ var redisClient = require('../config/redis_database').redisClient;
 var tokenManager = require('../config/token_manager');
 
 var TOKEN_EXPIRATION = 60;
-var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 10;
+var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 100;
 
 exports.signin = function(req, res) {
 	var username = req.body.username || '';
 	var password = req.body.password || '';
 	
+	console.log('signin User Cookies: ', req.cookies);
+    console.log('signin Signed Cookies: ', req.signedCookies);
+
 	if (username == '' || password == '') { 
 		return res.send(401); 
 	}
@@ -28,14 +31,14 @@ exports.signin = function(req, res) {
 		user.comparePassword(password, function(isMatch) {
 			if (!isMatch) {
 				console.log("Attempt failed to login with " + user.username);
-				return res.send(401);
+				return res.sendStatus(401);
             }
 
 			//var token = jwt.sign({id: user._id}, secret.secretToken, { expiresInMinutes: tokenManager.TOKEN_EXPIRATION });
-			var token = jwt.sign({id: user._id}, secret.secretToken, { expiresIn: 20 });
+			var token = jwt.sign({id: user._id}, secret.secretToken, { expiresIn: tokenManager.TOKEN_EXPIRATION_SEC });
 			
-			tokenManager.setTokenExpire(token, TOKEN_EXPIRATION_SEC);
-
+			tokenManager.setTokenExpire(token, tokenManager.TOKEN_EXPIRATION_SEC);
+			res.set
 			return res.json({token:token});
 		});
 

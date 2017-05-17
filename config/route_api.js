@@ -56,6 +56,7 @@ for (var api in api_config) {
                     else {
                         //console.log(stdout);
                         res.set('Content-Type', return_type);
+                        //res.cookie('XSRF-TOKEN', req.csrfToken());
                         res.status(200).send(stdout);
                     }
                 });
