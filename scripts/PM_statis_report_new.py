@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-#import cx_Oracle
+import cx_Oracle
 import time
 #import smtplib 
 import cgi
@@ -160,16 +160,25 @@ if __name__ == '__main__':
     #sys.exit()
     
     # for test
-    paramsdate_fix()
+    #paramsdate_fix()
 
     # connect to mysql
-    (mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb_mysql")
-    
+    #(mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb_mysql")
+    # connect to oracle
+    (mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb")
+	#print mmedbuser,mmedbpasswd,mmedburl
+	#mmedb = cx_Oracle.connect('omc', 'omc', '127.0.0.1:51063/oss')
     con = None
 
     try:
-        con = mysql.connect(host=mmedburl, port=int(mmedburlport), user=mmedbuser, passwd=mmedbpasswd, db=mmedb_dbname)
-        mmecursor=con.cursor()
+        # mysql
+        #con = mysql.connect(host=mmedburl, port=int(mmedburlport), user=mmedbuser, passwd=mmedbpasswd, db=mmedb_dbname)
+        #mmecursor=con.cursor()
+        # oracle
+        #print mmedbuser, mmedbpasswd, mmedburl
+        mmedb = cx_Oracle.connect(mmedbuser, mmedbpasswd, mmedburl)
+        mmecursor=mmedb.cursor()
+    
         writexmlhead()
 
         for kpi in param.kpilist.split(','):

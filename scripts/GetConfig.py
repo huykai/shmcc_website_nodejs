@@ -22,9 +22,16 @@ class PmSqlParam(object):
         self.selectmmesgsn = "all"
         self.selectmmeelement = "MMESGSN"
         self.selectsaegwelement = "SAEGWGGSN"
-        self.selectggsn = "all"
+        self.selectsaegwggsn = "all"
         self.selectsession = "0"
         self.localsave = "0"
+        self.kpilist = ""
+        self.isMME = 1
+
+
+
+def prn_obj():
+    print ('\n'.join(['%s:%s' % item for item in this.__dict__.items()]))
 
 def getdbconfig(dbmodelname):
     """
@@ -35,9 +42,9 @@ def getdbconfig(dbmodelname):
         dom = xml.dom.minidom.parse(path + ".\\config\\db.xml")
         #print path + "\\config\\db.xml"
         dbs = dom.getElementsByTagName('dbmodelname')
-		#print dbs
+        #print 'dbs',dbs
         for db in dbs:
-			#print db.getAttribute('id')
+            #print db.getAttribute('id')
             if db.getAttribute('id') == dbmodelname:
                 dbuser = db.getElementsByTagName('userid')[0].firstChild.data
                 dbpasswd = db.getElementsByTagName('password')[0].firstChild.data

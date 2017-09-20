@@ -4,8 +4,13 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test_coverage": "nyc mocha src/ --timeout=3000",
     "lint": "jshint app.js"
+  },
+  "config": {
+    "travis-cov": {
+      "threshold": 100
+    }
   },
   "author": "",
   "license": "ISC",
@@ -25,11 +30,48 @@
     "method-override": "^1.0.2",
     "mongoose": "^4.9.3",
     "morgan": "^1.8.1",
+    "mysql": "^2.14.1",
+    "mysql2": "^1.4.0",
+    "orm": "^3.2.4",
+    "orm-mysql-fts": "0.0.1",
     "redis": "^2.7.1",
-    "serve-favicon": "^2.0.0"
+    "sequelize": "^4.4.2",
+    "serve-favicon": "^2.0.0",
+    "socket.io": "^2.0.3",
+    "websocket": "^1.0.24"
   },
   "devDependencies": {
+    "blanket": "^1.2.3",
+    "chai": "^4.0.2",
+    "del": "^3.0.0",
+    "grunt": "^1.0.1",
+    "grunt-blanket": "0.0.10",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-mocha": "^1.0.4",
+    "grunt-mocha-test": "^0.13.2",
+    "gulp-changed": "^3.1.0",
+    "gulp-jscs": "^4.0.0",
+    "gulp-mocha": "^4.3.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
     "heapdump": "^0.3.9",
-    "jshint": "^2.9.4"
+    "html-file-cov": "^1.0.0",
+    "jshint": "^2.9.4",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.3",
+    "karma-requirejs": "^1.1.0",
+    "mocha": "^3.4.2",
+    "mocha-cov-reporter": "^1.1.3",
+    "mocha-coveralls-reporter": "0.0.5",
+    "qunitjs": "^2.4.0",
+    "requirejs": "^2.3.3",
+    "sinon": "^2.3.6",
+    "travis-cov": "^0.2.5",
+    "vinyl-paths": "^2.1.0"
   }
 }

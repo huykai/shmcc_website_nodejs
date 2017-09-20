@@ -1,0 +1,103 @@
+{
+	"dbaddress":
+	[
+		{
+			"name" : "SHMME03BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52000','52001','52002','52003','52004']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME04BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52100','52101','52102','52103','52104']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME05BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52200','52201','52202','52203','52204']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME06BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52300','52301','52302','52303','52304']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME07BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52400','52401','52402','52403','52404']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME08BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52500','52501','52502','52503','52504']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME09BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52600','52601','52602','52603','52604']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		},
+		{
+			"name" : "SHMME10BNK",
+			"origip" : "127.0.0.1",
+			"proxyip" : "127.0.0.1",
+			"port" : {
+					"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['52700','52701','52702','52703','52704']
+				   },
+			"username" : "unsupported",
+			"password" : "trafficadb"
+		}
+	],
+	"dbtables" : [
+		{
+			"table_desc" : "MME_TRAFFICA",
+			"table_name" : "FNS21_MME_RTT"
+		},
+		{
+			"table_desc" : "SGSN_TRAFFICA",
+			"table_name" : "SG7_RTT"
+		}
+	]	
+}

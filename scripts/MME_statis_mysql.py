@@ -12,6 +12,36 @@
 #		self.selectmmesgsn="all"
 
 from GetConfig import *
+
+def getSQL_other(sqlstring, param):
+	if (not param.selectmmesgsn == 'all'):
+		elementlist = []
+		for item in param.selectmmesgsn.split(','):
+			elementlist.append('\"'+item+'\"')
+		sqlstring=sqlstring+" and objects.co_name in ( "+','.join(elementlist)+" ) " 
+	
+	if (param.selectperiodtype=='continue'):
+		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')>=\'"+param.startdate+"/"+param.starttime+\
+		"\' and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')<=\'"+param.stopdate+"/"+param.stoptime + "\' "
+	else:
+		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d\')>=\'"+param.startdate+\
+		"\' and date_format(twog.period_start_time,\'%H\')>=\'"+param.starttime+\
+		" and date_format(twog.period_start_time,\'%Y/%m/%d\')<=\'"+param.stopdate+\
+		"\' and date_format(twog.period_start_time,\'%H\')<=\'"+param.stoptime + "\' "
+		
+	if (param.selectperiod=='60'):
+		sqlstring1=""" 
+	group by date_format(twog.period_start_time,\'%Y/%m/%d\'), date_format(twog.period_start_time,\'%H\'), twog.fins_id, objects.co_name 
+	order by objects.co_name,date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H\')
+	"""
+	else:
+		sqlstring1="""
+	group by date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i'), twog.fins_ID, objects.co_name 
+	order by date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i\')
+	"""
+	sqlstring=sqlstring+sqlstringtime+sqlstring1
+	return sqlstring
+
 # Attach 2G
 #
 def mme_2g_attach(cursor,param):
@@ -82,33 +112,10 @@ where
 twog.FINS_ID=objects.CO_GID 
 """
  
-	if (param.selectmmesgsn<>'all'):
-		sqlstring=sqlstring+" and objects.co_name= \'"+param.selectmmesgsn+"\' " 
-	
-	if (param.selectperiodtype=='continue'):
-		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')>=\'"+param.startdate+"/"+param.starttime+\
-		"\' and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')<=\'"+param.stopdate+"/"+param.stoptime + "\' "
-	else:
-		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d\')>=\'"+param.startdate+\
-		"\' and date_format(twog.period_start_time,\'%H\')>=\'"+param.starttime+\
-		" and date_format(twog.period_start_time,\'%Y/%m/%d\')<=\'"+param.stopdate+\
-		"\' and date_format(twog.period_start_time,\'%H\')<=\'"+param.stoptime + "\' "
-		
-	if (param.selectperiod=='60'):
-		sqlstring1=""" 
-	group by date_format(twog.period_start_time,\'%Y/%m/%d\'), date_format(twog.period_start_time,\'%H\'), twog.fins_id, objects.co_name 
-	order by objects.co_name,date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H\')
-	"""
-	else:
-		sqlstring1="""
-	group by date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i'), twog.fins_ID, objects.co_name 
-	order by date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i\')
-	"""
-	sqlstring=sqlstring+sqlstringtime+sqlstring1
-	#print sqlstring
+
 	
 	try:
-		cursor.execute(sqlstring)
+		cursor.execute(getSQL_other(sqlstring,param))
 		row=cursor.fetchall()
 		return (title,row)
 	except :
@@ -183,32 +190,9 @@ where
 twog.fins_id=objects.co_gid 
 """
 
-	if (param.selectmmesgsn<>'all'):
-		sqlstring=sqlstring+" and objects.co_name= \'"+param.selectmmesgsn+"\' " 
-	
-	if (param.selectperiodtype=='continue'):
-		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')>=\'"+param.startdate+"/"+param.starttime+\
-		"\' and date_format(twog.period_start_time,\'%Y/%m/%d/%H/%i\')<=\'"+param.stopdate+"/"+param.stoptime + "\' "
-	else:
-		sqlstringtime=" and date_format(twog.period_start_time,\'%Y/%m/%d\')>=\'"+param.startdate+\
-		"\' and date_format(twog.period_start_time,\'%H\')>=\'"+param.starttime+\
-		" and date_format(twog.period_start_time,\'%Y/%m/%d\')<=\'"+param.stopdate+\
-		"\' and date_format(twog.period_start_time,\'%H\')<=\'"+param.stoptime + "\' "
-		
-	if (param.selectperiod=='60'):
-		sqlstring1=""" 
-	group by date_format(twog.period_start_time,\'%Y/%m/%d\'), date_format(twog.period_start_time,\'%H\'), twog.fins_id, objects.co_name 
-	order by objects.co_name,date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H\')
-	"""
-	else:
-		sqlstring1="""
-	group by date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i'), twog.fins_ID, objects.co_name 
-	order by objects.CO_name,date_format(twog.period_start_time,\'%Y/%m/%d\'),date_format(twog.period_start_time,\'%H/%i\')
-	"""
-	sqlstring=sqlstring+sqlstringtime+sqlstring1
 	#print sqlstring
 	try:
-		cursor.execute(sqlstring)
+		cursor.execute(getSQL_other(sqlstring,param))
 		row=cursor.fetchall()
 		return (title,row)
 	except :
@@ -1988,3 +1972,23 @@ fourg.fins_ID=objects.co_gid
 	except :
 		#print 'something error!'
 		return (['error'],None)
+
+api_sql_function = {
+    'GSM-ATTACH'     : mme_2g_attach,
+	'GSM-PDP'        : mme_2g_pdp,
+	'GSM-RAU'        : mme_2g_rau,
+	'GSM-PAGING'     : mme_2g_paging,
+
+	'TD-ATTACH'      : mme_3g_attach,
+	'TD-PDP'         : mme_3g_pdp,
+	'TD-RAU'         : mme_3g_rau,
+	'TD-PAGING'      : mme_3g_paging,
+
+	'LTE-ATTACH'     : mme_4g_attach,
+	'LTE-PDP'        : mme_4g_pdp,
+	'LTE-TAUPAGING'  : mme_4g_taupaging,
+	'LTE-VOLTE'      : mme_4g_volte,
+	'LTE-ESRVCC'     : mme_4g_esrvcc,
+	'LTE-CSFB'       : mme_4g_csfb,
+	'LTE-AUTH'       : mme_4g_auth
+}

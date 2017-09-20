@@ -1,7 +1,26 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "Run server.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/src/server.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}/src",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null
+        },
         {
             "type": "node",
             "request": "launch",
