@@ -1,0 +1,13 @@
+{
+	"QueryTypeAPI":
+	[
+		{
+			"APIString" : "QueryDetail",
+			"QueryStringMakerClassName" : "trafficadb_db.QueryStringDetailMaker"
+		},
+		{
+			"APIString" : "QuerySummary",
+			"QueryStringMakerClassName" : "trafficadb_db.QueryStringSummaryMaker"
+		}
+	]	
+}

@@ -4,7 +4,7 @@ var apiconfig = [
     {
         api_string: '/api/mme_query', 
         mode: 'execFile',
-        program: 'python.exe ',
+        program: 'e:\\Develop_Language\\Python27\\python.exe ',
         script: 'scripts/PM_statis_report_new.py',
         method_type: 'POST',
         return_type: 'text/xml'
