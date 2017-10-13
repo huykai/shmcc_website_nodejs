@@ -1,0 +1,12 @@
+2017-09-29 00:50:56  [ main:39 ] - [ ERROR ]  readjsonfile: config\QueryTypeAPI.json (系统找不到指定的文件。)
+2017-09-29 00:50:56  [ main:45 ] - [ ERROR ]  run_Query return error: null
+2017-09-29 00:52:52  [ main:40 ] - [ ERROR ]  readjsonfile: config\QueryTypeAPI.json (系统找不到指定的文件。)
+2017-09-29 00:52:52  [ main:43 ] - [ ERROR ]  run_Query return error: null
+2017-09-29 01:16:37  [ main:22 ] - [ ERROR ]  readjsonfile: config\QueryTypeAPI.json (系统找不到指定的文件。)
+2017-09-29 01:16:37  [ main:23 ] - [ ERROR ]  run_Query return error: null
+2017-09-29 01:27:07  [ main:24 ] - [ ERROR ]  readjsonfile: config\QueryTypeAPI.json (系统找不到指定的文件。)
+2017-09-29 01:27:07  [ main:26 ] - [ ERROR ]  run_Query return error: null
+2017-09-29 01:43:24  [ main:27 ] - [ ERROR ]  readjsonfile: config\QueryTypeAPI.json (系统找不到指定的文件。)
+2017-09-29 01:43:24  [ main:29 ] - [ ERROR ]  QueryStringAPI Config Json filter failed.
+2017-09-29 01:44:37  [ main:25 ] - [ ERROR ]  readjsonfile: config\QueryTypeAPI.json (系统找不到指定的文件。)
+2017-09-29 01:44:37  [ main:27 ] - [ ERROR ]  QueryStringAPI Config Json filter failed.
