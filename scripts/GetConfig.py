@@ -39,8 +39,9 @@ def getdbconfig(dbmodelname):
     """
     try:
         path = os.path.split(os.path.realpath(__file__))[0]
-        dom = xml.dom.minidom.parse(path + ".\\config\\db.xml")
-        #print path + "\\config\\db.xml"
+        #print 'db.xml path: ' + path + "/config/db.xml"
+        dom = xml.dom.minidom.parse(path + "/config/db.xml")
+        #print 'db.xml : ' + path + "/config/db.xml"
         dbs = dom.getElementsByTagName('dbmodelname')
         #print 'dbs',dbs
         for db in dbs:
@@ -58,6 +59,7 @@ def getdbconfig(dbmodelname):
 
 
 if __name__ == "__main__":
+    print 'begin getconfig'
     if len(sys.argv) > 1:
         print sys.argv[1]
     else:

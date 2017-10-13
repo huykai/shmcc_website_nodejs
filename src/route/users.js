@@ -8,25 +8,28 @@ var TOKEN_EXPIRATION = 60;
 var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 100;
 
 exports.signin = function(req, res) {
-	var username = req.body.username || '';
-	var password = req.body.password || '';
+	var username = req.body.username || '';
+	var password = req.body.password || '';
 	
 	//console.log('signin User Cookies: ', req.cookies);
     //console.log('signin Signed Cookies: ', req.signedCookies);
 	//console.log('req:',req);
-	//console.log('pwd:',password);
+	console.log('user:',username);
+	console.log('pwd:',password);
 	//console.log('url:',req.url);
-	if (username == '' || password == '') { 
+	if (username == '' || password == '') {
+                console.log("User loging user: null.");
 		return res.send(401); 
 	}
 
 	db.userModel.findOne({username: username}, function (err, user) {
 		if (err) {
-			console.log(err);
+                        console.log("User loging err: ", err);
 			return res.send(401);
 		}
 
 		if (user == undefined) {
+                        console.log("User loging user: undefined.");
 			return res.send(401);
 		}
 		
@@ -35,7 +38,7 @@ exports.signin = function(req, res) {
 				console.log("Attempt failed to login with " + user.username);
 				return res.sendStatus(401);
             }
-			//console.log("user password matched.")
+			console.log("user password matched.")
 			//var token = jwt.sign({id: user._id}, secret.secretToken, { expiresInMinutes: tokenManager.TOKEN_EXPIRATION });
 			var token = jwt.sign({id: user._id}, secret.secretToken, { expiresIn: tokenManager.TOKEN_EXPIRATION_SEC });
 			

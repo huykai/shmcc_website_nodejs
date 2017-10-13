@@ -141,6 +141,7 @@ if __name__ == '__main__':
     formparams = None  
     if ( len(sys.argv) ) > 1 :
         logging.info("\t params : " + str(sys.argv[1])) 
+        #print("\t params : " + str(sys.argv[1])) 
         formparams = sys.argv[1]
        
     # Create instance of FieldStorage
@@ -154,7 +155,7 @@ if __name__ == '__main__':
             getforminfo(param, formparams)
             logging.info('\tparams info : ' + prn_obj(param))
         except Exception, e:
-            logging.error('error in param get.' + e.message )
+            logging.error('error in param get.' )
     else:
         logging.info('form params is None.')
     #sys.exit()
@@ -166,7 +167,7 @@ if __name__ == '__main__':
     #(mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb_mysql")
     # connect to oracle
     (mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb")
-	#print mmedbuser,mmedbpasswd,mmedburl
+    #print 'mmeuser:', mmedbuser, mmedbpasswd, mmedburl
 	#mmedb = cx_Oracle.connect('omc', 'omc', '127.0.0.1:51063/oss')
     con = None
 
@@ -176,13 +177,15 @@ if __name__ == '__main__':
         #mmecursor=con.cursor()
         # oracle
         #print mmedbuser, mmedbpasswd, mmedburl
-        mmedb = cx_Oracle.connect(mmedbuser, mmedbpasswd, mmedburl)
+	mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
+        #mmedb = cx_Oracle.connect(mmedbuser, mmedbpasswd, mmedburl)
         mmecursor=mmedb.cursor()
     
         writexmlhead()
-
+        print "kpilist: ", param.kpilist;
         for kpi in param.kpilist.split(','):
             logging.info('kpi : ' + kpi)
+            #print 'kpi : ' + kpi
             kpi_function = api_sql_function[kpi]['func']
             run_kpi(kpi, kpi_function, mmecursor, param)
         
