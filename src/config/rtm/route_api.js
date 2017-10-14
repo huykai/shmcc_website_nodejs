@@ -19,7 +19,8 @@ var get_api_exec_returntype = []
 var CP_Parameters = {
     encoding: 'utf8', 
     timeout: 0,
-    maxBuffer: 50000 * 1024,
+    //maxBuffer: 50000 * 1024,
+    maxBuffer: Infinity,
     killSignal: 'SIGTERM'
 }
 
@@ -76,8 +77,8 @@ for (var api in api_config) {
                 } else if (exec_mode === "exec") {
                     //queryparam = queryparam.replace(/"/g,'\\"');
                     queryparam = "'" + queryparam + "'";
-                    console.log('exec:',exec_program,queryparam);
-                    cp.exec(exec_program + queryparam, function (err, stdout, stderr){
+                    console.log('exec:',exec_program, CP_Parameters, queryparam);
+                    cp.exec(exec_program + queryparam, CP_Parameters, function (err, stdout, stderr){
                         if (err) console.error(err);
                         else {
                             //console.log(stdout);
