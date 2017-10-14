@@ -19,7 +19,7 @@ var get_api_exec_returntype = []
 var CP_Parameters = {
     encoding: 'utf8', 
     timeout: 0,
-    maxBuffer: 5000 * 1024,
+    maxBuffer: 50000 * 1024,
     killSignal: 'SIGTERM'
 }
 
