@@ -177,7 +177,7 @@ if __name__ == '__main__':
         #mmecursor=con.cursor()
         # oracle
         #print mmedbuser, mmedbpasswd, mmedburl
-	mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
+	    mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
         #mmedb = cx_Oracle.connect(mmedbuser, mmedbpasswd, mmedburl)
         mmecursor=mmedb.cursor()
     

@@ -3,87 +3,88 @@
 	[
 		{
 			"name" : "SHMME03BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "172.20.13.116",
+			"proxyip" : "172.20.13.116",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52000','52001','52002','52003','52004']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME04BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "10.10.31.15",
+			"proxyip" : "10.10.31.15",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52100','52101','52102','52103','52104']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME05BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "10.10.31.22",
+			"proxyip" : "10.10.31.22",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52200','52201','52202','52203','52204']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME06BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "10.10.31.19",
+			"proxyip" : "10.10.31.19",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52300','52301','52302','52303','52304']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME07BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "10.10.31.20",
+			"proxyip" : "10.10.31.20",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52400','52401','52402','52403','52404']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME08BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "172.20.13.117",
+			"proxyip" : "172.20.13.117",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52500','52501','52502','52503','52504']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME09BNK",
-			"origip" : "127.0.0.1",
-			"proxyip" : "127.0.0.1",
+			"origip" : "172.20.24.250",
+			"proxyip" : "172.20.24.250",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['52600','52601','52602','52603','52604']
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"
 		},
 		{
 			"name" : "SHMME10BNK",
-			"origip" : "127.0.0.1",
+			"origip" : "172.20.24.252",
 			"proxyip" : "172.20.24.252",
 			"port" : {
-					"proxyport" : ['1300','1301','1302','1303','1304'],
+				"origport" : ['1300','1301','1302','1303','1304'],
+					"proxyport" : ['1300','1301','1302','1303','1304']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"

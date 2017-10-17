@@ -9,15 +9,14 @@
 	<dbmodelname id="mmedb">
 		<userid>omc</userid>
 		<password>omc</password>
-		<dburl>127.0.0.1:51063/oss</dburl>
+		<dburl>10.221.255.4:1521/oss</dburl>
 		<dburlport>1521</dburlport>
 		<dbname>oss</dbname>
 	</dbmodelname>
 	<dbmodelname id="saegwdb">
 		<userid>kiu</userid>
 		<password>antkiu123</password>
-		<dburl2>10.221.213.28:1521/OSS</dburl2>
-		<dburl>127.0.0.1:51064/OSS</dburl>
+		<dburl>10.221.213.28:1521/OSS</dburl>
 		<dburlport>51064</dburlport>
 		<dbname>OSS</dbname>
 	</dbmodelname>

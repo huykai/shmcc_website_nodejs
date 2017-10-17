@@ -81,10 +81,10 @@
 		{
 			"name" : "SHMME10BNK",
 			"origip" : "127.0.0.1",
-			"proxyip" : "172.20.24.252",
+			"proxyip" : "127.0.0.1",
 			"port" : {
 					"origport" : ['1300','1301','1302','1303','1304'],
-					"proxyport" : ['1300','1301','1302','1303','1304']
+					"proxyport" : ['52700','52701','52702','52703','52704']
 				   },
 			"username" : "unsupported",
 			"password" : "trafficadb"

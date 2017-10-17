@@ -1,0 +1,1482 @@
+2017-10-02 21:08:23  [ main:58 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:08:23  [ main:61 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:08:23  [ SHMME10BNK:67 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:08:23  [ SHMME10BNK:67 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:08:23  [ SHMME10BNK:67 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:08:25  [ SHMME10BNK:1452 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:08:25  [ SHMME10BNK:1453 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:08:25  [ SHMME10BNK:1453 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:15:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:10:02  [ SHMME10BNK:98580 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:15:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:10:23  [ main:61 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:10:23  [ main:66 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:10:23  [ SHMME10BNK:72 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:10:23  [ SHMME10BNK:73 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:10:23  [ SHMME10BNK:74 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:10:24  [ SHMME10BNK:1316 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:10:24  [ SHMME10BNK:1316 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:10:24  [ SHMME10BNK:1316 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:15:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:12:04  [ SHMME10BNK:220693 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:12:04
+2017-10-02 21:12:06  [ SHMME10BNK:222400 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 241
+2017-10-02 21:12:06  [ SHMME10BNK:222400 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:12:06
+2017-10-02 21:12:06  [ SHMME10BNK:222940 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:12:08  [ SHMME10BNK:224428 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:12:08  [ SHMME10BNK:224428 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:12:08  [ SHMME10BNK:224976 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:12:16  [ SHMME10BNK:113762 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:15:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:12:23  [ main:45 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:12:23  [ main:45 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:12:23  [ SHMME10BNK:46 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:12:23  [ SHMME10BNK:46 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:12:23  [ SHMME10BNK:47 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:12:25  [ SHMME10BNK:1468 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:12:25  [ SHMME10BNK:1468 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:12:25  [ SHMME10BNK:1468 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:15:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:12:30  [ SHMME10BNK:246547 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:12:30  [ SHMME10BNK:246548 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:12:30  [ SHMME10BNK:246548 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:12:31  [ SHMME10BNK:247766 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:12:31  [ SHMME10BNK:247767 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:12:32  [ SHMME10BNK:248322 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:12:33  [ SHMME10BNK:249783 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:12:33  [ SHMME10BNK:249783 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:12:34  [ SHMME10BNK:250352 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:12:34  [ SHMME10BNK:250353 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:08:23
+2017-10-02 21:12:34  [ SHMME10BNK:250353 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:12:34
+2017-10-02 21:12:34  [ SHMME10BNK:250353 ] - [ INFO ]  Thread SHMME10BNK result row count: 241
+2017-10-02 21:14:20  [ SHMME10BNK:237223 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:14:20
+2017-10-02 21:14:22  [ SHMME10BNK:238910 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 241
+2017-10-02 21:14:22  [ SHMME10BNK:238910 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:14:22
+2017-10-02 21:14:22  [ SHMME10BNK:239505 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:14:23  [ SHMME10BNK:120320 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:15:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:14:24  [ SHMME10BNK:241546 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:14:24  [ SHMME10BNK:241546 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:14:25  [ SHMME10BNK:242125 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:14:46  [ SHMME10BNK:263722 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:14:46  [ SHMME10BNK:263723 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:14:46  [ SHMME10BNK:263723 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:14:48  [ SHMME10BNK:264811 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:14:48  [ SHMME10BNK:264812 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:14:48  [ SHMME10BNK:265596 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:14:50  [ SHMME10BNK:267039 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:14:50  [ SHMME10BNK:267039 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:14:51  [ SHMME10BNK:268166 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:14:51  [ SHMME10BNK:268167 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:10:23
+2017-10-02 21:14:51  [ SHMME10BNK:268167 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:14:51
+2017-10-02 21:14:51  [ SHMME10BNK:268167 ] - [ INFO ]  Thread SHMME10BNK result row count: 241
+2017-10-02 21:16:02  [ SHMME10BNK:218473 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:16:02
+2017-10-02 21:16:04  [ SHMME10BNK:220743 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 241
+2017-10-02 21:16:04  [ SHMME10BNK:220743 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:16:04
+2017-10-02 21:16:04  [ SHMME10BNK:221344 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:16:06  [ SHMME10BNK:222936 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:16:06  [ SHMME10BNK:222937 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:16:07  [ SHMME10BNK:223538 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:16:28  [ SHMME10BNK:245377 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:16:28  [ SHMME10BNK:245377 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:16:28  [ SHMME10BNK:245377 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:16:30  [ SHMME10BNK:246563 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:16:30  [ SHMME10BNK:246563 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:16:30  [ SHMME10BNK:247126 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:16:32  [ SHMME10BNK:248746 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:15:00;
+2017-10-02 21:16:32  [ SHMME10BNK:248746 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:16:32  [ SHMME10BNK:249291 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:16:32  [ SHMME10BNK:249292 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:12:23
+2017-10-02 21:16:32  [ SHMME10BNK:249292 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:16:32
+2017-10-02 21:16:32  [ SHMME10BNK:249292 ] - [ INFO ]  Thread SHMME10BNK result row count: 241
+2017-10-02 21:28:27  [ main:34 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:28:27  [ main:35 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:28:27  [ SHMME10BNK:36 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:28:27  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:28:27  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:28:28  [ SHMME10BNK:1244 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:28:28  [ SHMME10BNK:1244 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:28:28  [ SHMME10BNK:1244 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:29:32  [ SHMME10BNK:65206 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:30:35  [ SHMME10BNK:127816 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:30:35
+2017-10-02 21:30:36  [ SHMME10BNK:129372 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 21:30:36  [ SHMME10BNK:129372 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:30:36
+2017-10-02 21:30:37  [ SHMME10BNK:129912 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:30:38  [ SHMME10BNK:131360 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:30:38  [ SHMME10BNK:131360 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:30:39  [ SHMME10BNK:131926 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:31:00  [ SHMME10BNK:153472 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:31:00  [ SHMME10BNK:153472 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:31:00  [ SHMME10BNK:153472 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:31:02  [ SHMME10BNK:154571 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:31:02  [ SHMME10BNK:154571 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:31:02  [ SHMME10BNK:155141 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:31:04  [ SHMME10BNK:156569 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:31:04  [ SHMME10BNK:156569 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:31:04  [ SHMME10BNK:157114 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:31:04  [ SHMME10BNK:157114 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:28:27
+2017-10-02 21:31:04  [ SHMME10BNK:157114 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:31:04
+2017-10-02 21:31:04  [ SHMME10BNK:157114 ] - [ INFO ]  Thread SHMME10BNK result row count: 226
+2017-10-02 21:47:02  [ main:80 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:47:02  [ main:81 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:47:02  [ SHMME10BNK:103 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:47:02  [ SHMME10BNK:105 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:47:02  [ SHMME10BNK:106 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:47:03  [ SHMME10BNK:1841 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:47:03  [ SHMME10BNK:1842 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:47:03  [ SHMME10BNK:1842 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:47:53  [ main:43 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:47:53  [ main:44 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:47:53  [ SHMME10BNK:58 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:47:53  [ SHMME10BNK:59 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:47:53  [ SHMME10BNK:59 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:47:55  [ SHMME10BNK:1617 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:47:55  [ SHMME10BNK:1617 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:47:55  [ SHMME10BNK:1617 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:48:15  [ SHMME10BNK:73775 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:49:27  [ SHMME10BNK:94025 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:49:44  [ SHMME10BNK:162521 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:49:44
+2017-10-02 21:49:46  [ SHMME10BNK:164753 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 21:49:46  [ SHMME10BNK:164753 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:49:46
+2017-10-02 21:49:47  [ SHMME10BNK:165432 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:49:49  [ SHMME10BNK:167850 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:49:49  [ SHMME10BNK:167850 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:49:50  [ SHMME10BNK:168529 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:49:53  [ main:38 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:49:53  [ main:38 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:49:53  [ SHMME10BNK:39 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:49:53  [ SHMME10BNK:40 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:49:53  [ SHMME10BNK:40 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:49:54  [ SHMME10BNK:1504 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:49:54  [ SHMME10BNK:1504 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:49:54  [ SHMME10BNK:1504 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:50:12  [ SHMME10BNK:190221 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:50:12  [ SHMME10BNK:190221 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:50:12  [ SHMME10BNK:190222 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:50:14  [ SHMME10BNK:192015 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:50:14  [ SHMME10BNK:192015 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:50:14  [ SHMME10BNK:192806 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:50:16  [ SHMME10BNK:194582 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:50:16  [ SHMME10BNK:194583 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:50:17  [ SHMME10BNK:195261 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:50:17  [ SHMME10BNK:195261 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:47:02
+2017-10-02 21:50:17  [ SHMME10BNK:195261 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:50:17
+2017-10-02 21:50:17  [ SHMME10BNK:195262 ] - [ INFO ]  Thread SHMME10BNK result row count: 226
+2017-10-02 21:51:01  [ SHMME10BNK:188181 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:51:01
+2017-10-02 21:51:05  [ SHMME10BNK:191990 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 21:51:05  [ SHMME10BNK:191990 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:51:05
+2017-10-02 21:51:06  [ SHMME10BNK:192671 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:51:08  [ SHMME10BNK:194887 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:51:08  [ SHMME10BNK:194887 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:51:09  [ SHMME10BNK:195871 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:51:15  [ SHMME10BNK:82491 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:51:31  [ SHMME10BNK:217608 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:51:31  [ SHMME10BNK:217608 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:51:31  [ SHMME10BNK:217608 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:51:32  [ SHMME10BNK:219302 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:51:32  [ SHMME10BNK:219302 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:51:33  [ SHMME10BNK:219969 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:51:35  [ SHMME10BNK:221702 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:51:35  [ SHMME10BNK:221702 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:51:36  [ SHMME10BNK:222542 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:51:36  [ SHMME10BNK:222543 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:47:53
+2017-10-02 21:51:36  [ SHMME10BNK:222543 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:51:36
+2017-10-02 21:51:36  [ SHMME10BNK:222543 ] - [ INFO ]  Thread SHMME10BNK result row count: 226
+2017-10-02 21:52:24  [ SHMME10BNK:150844 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:52:24
+2017-10-02 21:52:27  [ SHMME10BNK:153929 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 21:52:27  [ SHMME10BNK:153929 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:52:27
+2017-10-02 21:52:28  [ SHMME10BNK:154770 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:52:30  [ SHMME10BNK:156702 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:52:30  [ SHMME10BNK:156702 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:52:30  [ SHMME10BNK:157380 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:52:32  [ main:48 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:52:32  [ main:48 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:52:32  [ SHMME10BNK:67 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:52:32  [ SHMME10BNK:68 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:52:32  [ SHMME10BNK:68 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:52:33  [ SHMME10BNK:1585 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:52:33  [ SHMME10BNK:1585 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:52:33  [ SHMME10BNK:1585 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:52:52  [ SHMME10BNK:179046 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:52:52  [ SHMME10BNK:179046 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:52:52  [ SHMME10BNK:179046 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:52:53  [ SHMME10BNK:180400 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:52:53  [ SHMME10BNK:180401 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:52:54  [ SHMME10BNK:181466 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:52:56  [ SHMME10BNK:183481 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:52:56  [ SHMME10BNK:183482 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:52:58  [ SHMME10BNK:185075 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:52:58  [ SHMME10BNK:185076 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:49:53
+2017-10-02 21:52:58  [ SHMME10BNK:185076 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:52:58
+2017-10-02 21:52:58  [ SHMME10BNK:185076 ] - [ INFO ]  Thread SHMME10BNK result row count: 226
+2017-10-02 21:53:39  [ SHMME10BNK:67119 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:54:32  [ main:42 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:54:32  [ main:43 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:54:32  [ SHMME10BNK:43 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:54:32  [ SHMME10BNK:43 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:54:32  [ SHMME10BNK:44 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:54:33  [ SHMME10BNK:1620 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:54:33  [ SHMME10BNK:1621 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:54:33  [ SHMME10BNK:1621 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:54:52  [ SHMME10BNK:140721 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:54:52
+2017-10-02 21:54:54  [ SHMME10BNK:142703 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 21:54:54  [ SHMME10BNK:142704 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:54:54
+2017-10-02 21:54:55  [ SHMME10BNK:143401 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:54:57  [ SHMME10BNK:145272 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:54:57  [ SHMME10BNK:145272 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:54:58  [ SHMME10BNK:145955 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:55:19  [ SHMME10BNK:167639 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:55:19  [ SHMME10BNK:167640 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:55:19  [ SHMME10BNK:167640 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:55:21  [ SHMME10BNK:169042 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:55:21  [ SHMME10BNK:169043 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:55:22  [ SHMME10BNK:169767 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:55:23  [ SHMME10BNK:171567 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:55:23  [ SHMME10BNK:171567 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:55:24  [ SHMME10BNK:172249 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:55:24  [ SHMME10BNK:172249 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:52:32
+2017-10-02 21:55:24  [ SHMME10BNK:172250 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:55:24
+2017-10-02 21:55:24  [ SHMME10BNK:172250 ] - [ INFO ]  Thread SHMME10BNK result row count: 226
+2017-10-02 21:55:47  [ SHMME10BNK:75234 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 21:56:56  [ SHMME10BNK:144026 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 21:56:56
+2017-10-02 21:56:58  [ SHMME10BNK:146327 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 21:56:58  [ SHMME10BNK:146327 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 21:56:58
+2017-10-02 21:56:59  [ SHMME10BNK:147012 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 21:57:01  [ SHMME10BNK:149155 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:57:01  [ SHMME10BNK:149155 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 21:57:01  [ SHMME10BNK:149827 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 21:57:23  [ SHMME10BNK:171910 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 21:57:23  [ SHMME10BNK:171911 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 21:57:23  [ SHMME10BNK:171911 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 21:57:25  [ SHMME10BNK:173384 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:57:25  [ SHMME10BNK:173384 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 21:57:26  [ SHMME10BNK:174076 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 21:57:27  [ SHMME10BNK:175866 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 21:57:27  [ SHMME10BNK:175866 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 21:57:29  [ SHMME10BNK:177455 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 21:57:29  [ SHMME10BNK:177456 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:54:32
+2017-10-02 21:57:29  [ SHMME10BNK:177456 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 21:57:29
+2017-10-02 21:57:29  [ SHMME10BNK:177456 ] - [ INFO ]  Thread SHMME10BNK result row count: 226
+2017-10-02 21:58:54  [ main:44 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 21:58:54  [ main:44 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 21:58:54  [ SHMME10BNK:48 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 21:58:54  [ SHMME10BNK:48 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 21:58:54  [ SHMME10BNK:49 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 21:58:56  [ SHMME10BNK:2073 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 21:58:56  [ SHMME10BNK:2073 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 21:58:56  [ SHMME10BNK:2074 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:00:04  [ SHMME10BNK:70758 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:00:54  [ main:32 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:00:54  [ main:34 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:00:54  [ SHMME10BNK:38 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:00:54  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:00:54  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:00:56  [ SHMME10BNK:2445 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:00:56  [ SHMME10BNK:2446 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:00:56  [ SHMME10BNK:2446 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:01:24  [ SHMME10BNK:150342 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:01:24
+2017-10-02 22:01:26  [ SHMME10BNK:152770 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 225
+2017-10-02 22:01:26  [ SHMME10BNK:152770 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:01:26
+2017-10-02 22:01:27  [ SHMME10BNK:153648 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:01:29  [ SHMME10BNK:155672 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:01:29  [ SHMME10BNK:155672 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:01:30  [ SHMME10BNK:156407 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:01:52  [ SHMME10BNK:178091 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:01:52  [ SHMME10BNK:178091 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:01:52  [ SHMME10BNK:178091 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:01:53  [ SHMME10BNK:179449 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:01:53  [ SHMME10BNK:179450 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:01:54  [ SHMME10BNK:180120 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:01:56  [ SHMME10BNK:181825 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:01:56  [ SHMME10BNK:181825 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:01:56  [ SHMME10BNK:182774 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:01:56  [ SHMME10BNK:182774 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 21:58:54
+2017-10-02 22:01:56  [ SHMME10BNK:182774 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:01:56
+2017-10-02 22:01:56  [ SHMME10BNK:182774 ] - [ INFO ]  Thread SHMME10BNK result row count: 225
+2017-10-02 22:02:15  [ SHMME10BNK:81671 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:03:31  [ SHMME10BNK:157790 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:03:31
+2017-10-02 22:03:36  [ SHMME10BNK:161931 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 225
+2017-10-02 22:03:36  [ SHMME10BNK:161931 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:03:36
+2017-10-02 22:03:37  [ SHMME10BNK:162973 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:03:39  [ SHMME10BNK:165425 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:03:39  [ SHMME10BNK:165426 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:03:40  [ SHMME10BNK:166452 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:04:02  [ SHMME10BNK:188372 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:04:02  [ SHMME10BNK:188373 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:04:02  [ SHMME10BNK:188373 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:04:04  [ SHMME10BNK:190386 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:04:04  [ SHMME10BNK:190386 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:04:05  [ SHMME10BNK:191364 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:04:07  [ SHMME10BNK:193776 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:04:07  [ SHMME10BNK:193776 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:04:08  [ SHMME10BNK:194556 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:04:08  [ SHMME10BNK:194556 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:00:54
+2017-10-02 22:04:08  [ SHMME10BNK:194557 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:04:08
+2017-10-02 22:04:08  [ SHMME10BNK:194557 ] - [ INFO ]  Thread SHMME10BNK result row count: 225
+2017-10-02 22:18:48  [ main:50 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:18:48  [ main:51 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:18:48  [ SHMME10BNK:54 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:18:48  [ SHMME10BNK:55 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:18:48  [ SHMME10BNK:56 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:18:49  [ SHMME10BNK:1987 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:18:49  [ SHMME10BNK:1987 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:18:49  [ SHMME10BNK:1987 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:20:05  [ SHMME10BNK:77683 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:21:25  [ SHMME10BNK:157774 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:21:25
+2017-10-02 22:21:28  [ SHMME10BNK:160683 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 225
+2017-10-02 22:21:28  [ SHMME10BNK:160683 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:21:28
+2017-10-02 22:21:29  [ SHMME10BNK:161371 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:21:29  [ SHMME10BNK:161371 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:21:29  [ SHMME10BNK:161371 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:22:05  [ SHMME10BNK:197046 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:22:22  [ main:29 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:22:22  [ main:29 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:22:22  [ SHMME10BNK:30 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:22:22  [ SHMME10BNK:31 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:22:22  [ SHMME10BNK:31 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:22:25  [ SHMME10BNK:2339 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:22:25  [ SHMME10BNK:2339 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:22:25  [ SHMME10BNK:2340 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30' 
+2017-10-02 22:22:25  [ SHMME10BNK:3037 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME, REPORT_TIME,IMSI,ATTACH_TIME,TAI_TAC,GLOBAL_ENODEB_ID,CPPU_LOGICAL_ADDRESS,MMDU_LOGICAL_ADDRESS,IPDU_LOGICAL_ADDRESS,MME_S1AP_ID,ENODEB_S1AP_ID,CAUSE_PROC,INTERNAL_CAUSE,S1AP_CAUSE,S11_CAUSE_CODE,SGW_CONTROL_PLANE_TEID_IP_ADDRESS,CHARGING_CHARACTERISTICS,MSISDN,IMEI_IMEISV,LAST_VISITED_TAI_TAC,ECGI,EMM_CAUSE,ECM_IN_STATE,ECM_OUT_STATE,EMM_IN_STATE,EMM_OUT_STATE,INTEGRITY_PROTECTION_ALG,CONFIDENTIALITY_PROTECTION_ALG,ESM_CAUSE,BEARER_CREATION_TIME,APN,SGW_USER_PLANE_TEID_IP_ADDRESS,PDN_GATEWAY_CONTROL_PLANE_TEID_IP_ADDRESS,PDN_GATEWAY_USER_PLANE_TEID_IP_ADDRESS,ENODEB_USER_PLANE_TEID_IP_ADDRESS
+from FNS21_MME_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30' 
+2017-10-02 22:22:26  [ SHMME10BNK:3817 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:22:26
+2017-10-02 22:22:27  [ SHMME10BNK:4759 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 12
+2017-10-02 22:22:27  [ SHMME10BNK:4759 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:22:27
+2017-10-02 22:22:28  [ SHMME10BNK:5584 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:22:28  [ SHMME10BNK:5585 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:22:28  [ SHMME10BNK:5585 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30' 
+2017-10-02 22:22:29  [ SHMME10BNK:6353 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME, REPORT_TIME,IMSI,APN,GGSN_ADDRESS,CGI_LAC,CGI_RAC,CGI_CI,CAUSE_PROC,CAUSE_INI,CAUSE_FAMILY,CAUSE_CAUSE,CAUSE_INT_CAUSE,PAPU_ID,MSISDN_NUMBERS,PS_EXTERNAL_CAUSE,CS_EXTERNAL_CAUSE,EXT_DATA_AMOUNT_UP,EXT_DATA_AMOUNT_DOWN,PDP_CONTEXT_TYPE,CHARGING_INDEX,RA_ACCESS_TYPE,RNC_ID,SAI_LAC,SAI_SAC,MS_PDP_ADDRESS,OLD_SAI_LAC,OLD_SAI_SAC,OLD_CGI_LAC,OLD_CGI_RAC,OLD_CGI_CI,EVENT_START_TIME,EVENT_STOP_TIME,OLD_RNC_ID
+from SG7_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30' 
+2017-10-02 22:22:30  [ SHMME10BNK:7218 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:22:30
+2017-10-02 22:22:31  [ SHMME10BNK:8224 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 30
+2017-10-02 22:22:31  [ SHMME10BNK:8224 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:22:31
+2017-10-02 22:22:31  [ SHMME10BNK:8907 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:22:33  [ SHMME10BNK:11059 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:22:33  [ SHMME10BNK:11059 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:22:34  [ SHMME10BNK:12057 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:22:42  [ SHMME10BNK:234120 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:22:42
+2017-10-02 22:22:43  [ SHMME10BNK:235856 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 432
+2017-10-02 22:22:43  [ SHMME10BNK:235857 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:22:43
+2017-10-02 22:22:44  [ SHMME10BNK:236548 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:22:47  [ SHMME10BNK:239525 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:22:47  [ SHMME10BNK:239525 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:22:48  [ SHMME10BNK:240235 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:22:56  [ SHMME10BNK:33880 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:22:56  [ SHMME10BNK:33881 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:22:56  [ SHMME10BNK:33881 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:22:58  [ SHMME10BNK:35507 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:22:58  [ SHMME10BNK:35508 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:22:59  [ SHMME10BNK:36436 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:23:01  [ SHMME10BNK:38980 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:23:01  [ SHMME10BNK:38981 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:23:02  [ SHMME10BNK:39973 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:23:02  [ SHMME10BNK:39973 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:22:22
+2017-10-02 22:23:02  [ SHMME10BNK:39973 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:23:02
+2017-10-02 22:23:02  [ SHMME10BNK:39973 ] - [ INFO ]  Thread SHMME10BNK result row count: 30
+2017-10-02 22:23:10  [ SHMME10BNK:262718 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:23:10  [ SHMME10BNK:262718 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:23:10  [ SHMME10BNK:262718 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:23:13  [ SHMME10BNK:265287 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:23:13  [ SHMME10BNK:265287 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:23:14  [ SHMME10BNK:266024 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:23:16  [ SHMME10BNK:268178 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:23:16  [ SHMME10BNK:268178 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:23:16  [ SHMME10BNK:268916 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:23:16  [ SHMME10BNK:268916 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:18:48
+2017-10-02 22:23:16  [ SHMME10BNK:268916 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:23:16
+2017-10-02 22:23:16  [ SHMME10BNK:268916 ] - [ INFO ]  Thread SHMME10BNK result row count: 432
+2017-10-02 22:25:22  [ main:39 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:25:22  [ main:40 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:25:22  [ SHMME10BNK:40 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:25:22  [ SHMME10BNK:41 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:25:22  [ SHMME10BNK:41 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:25:24  [ SHMME10BNK:1935 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:25:24  [ SHMME10BNK:1935 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:25:24  [ SHMME10BNK:1935 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:25:25  [ SHMME10BNK:2926 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:25:26  [ SHMME10BNK:3676 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:25:26
+2017-10-02 22:25:27  [ SHMME10BNK:4762 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 4
+2017-10-02 22:25:27  [ SHMME10BNK:4763 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:25:27
+2017-10-02 22:25:29  [ SHMME10BNK:6341 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:25:29  [ SHMME10BNK:6341 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:25:29  [ SHMME10BNK:6341 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:25:30  [ SHMME10BNK:7767 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  imsi = 460008343145489  and  report_time <= '2017-10-02 15:10:38'  and report_time >= '2017-10-02 15:00:30'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:25:31  [ SHMME10BNK:8667 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:25:31
+2017-10-02 22:25:31  [ SHMME10BNK:9162 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 9
+2017-10-02 22:25:31  [ SHMME10BNK:9162 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:25:31
+2017-10-02 22:25:32  [ SHMME10BNK:9989 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:25:36  [ SHMME10BNK:13413 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:25:36  [ SHMME10BNK:13413 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:25:37  [ SHMME10BNK:14557 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:25:59  [ SHMME10BNK:36481 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:25:59  [ SHMME10BNK:36481 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:25:59  [ SHMME10BNK:36481 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:26:02  [ SHMME10BNK:39184 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:26:02  [ SHMME10BNK:39184 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:26:02  [ SHMME10BNK:40075 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:26:07  [ SHMME10BNK:44458 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:30 stopdatetime: 2017-10-02 15:10:38;
+2017-10-02 22:26:07  [ SHMME10BNK:44458 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:26:08  [ SHMME10BNK:45275 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:26:08  [ SHMME10BNK:45276 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:25:22
+2017-10-02 22:26:08  [ SHMME10BNK:45276 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:26:08
+2017-10-02 22:26:08  [ SHMME10BNK:45276 ] - [ INFO ]  Thread SHMME10BNK result row count: 9
+2017-10-02 22:37:51  [ main:35 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:37:51  [ main:36 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:37:51  [ SHMME10BNK:36 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:37:51  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:37:51  [ SHMME10BNK:38 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:37:53  [ SHMME10BNK:1606 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:10:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:37:53  [ SHMME10BNK:1606 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:37:53  [ SHMME10BNK:1606 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:10:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:37:53  [ SHMME10BNK:2328 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:10:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:37:54  [ SHMME10BNK:3191 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:37:54
+2017-10-02 22:37:55  [ SHMME10BNK:3697 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 4
+2017-10-02 22:37:55  [ SHMME10BNK:3697 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:37:55
+2017-10-02 22:37:56  [ SHMME10BNK:4601 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:10:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:37:56  [ SHMME10BNK:4601 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:37:56  [ SHMME10BNK:4602 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:10:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:37:56  [ SHMME10BNK:5422 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:10:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:37:57  [ SHMME10BNK:6235 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:37:57
+2017-10-02 22:37:58  [ SHMME10BNK:6639 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 6
+2017-10-02 22:37:58  [ SHMME10BNK:6639 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:37:58
+2017-10-02 22:37:59  [ SHMME10BNK:7448 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:38:00  [ SHMME10BNK:9298 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:10:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:38:00  [ SHMME10BNK:9298 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:38:01  [ SHMME10BNK:9975 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:38:23  [ SHMME10BNK:31656 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:38:23  [ SHMME10BNK:31656 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:38:23  [ SHMME10BNK:31656 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:38:24  [ SHMME10BNK:33045 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:10:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:38:24  [ SHMME10BNK:33045 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:38:25  [ SHMME10BNK:33732 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:38:27  [ SHMME10BNK:35529 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:10:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:38:27  [ SHMME10BNK:35529 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:38:27  [ SHMME10BNK:36197 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:38:27  [ SHMME10BNK:36197 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:37:51
+2017-10-02 22:38:27  [ SHMME10BNK:36197 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:38:27
+2017-10-02 22:38:27  [ SHMME10BNK:36198 ] - [ INFO ]  Thread SHMME10BNK result row count: 6
+2017-10-02 22:39:11  [ main:40 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:39:11  [ main:40 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:39:11  [ SHMME10BNK:44 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:39:11  [ SHMME10BNK:45 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:39:11  [ SHMME10BNK:46 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:39:13  [ SHMME10BNK:1708 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:39:13  [ SHMME10BNK:1708 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:39:13  [ SHMME10BNK:1708 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:40:32  [ SHMME10BNK:80717 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:41:11  [ main:28 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:41:11  [ main:29 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:41:11  [ SHMME10BNK:30 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:41:11  [ SHMME10BNK:30 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:41:11  [ SHMME10BNK:30 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:41:13  [ SHMME10BNK:1648 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:41:13  [ SHMME10BNK:1648 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:41:13  [ SHMME10BNK:1648 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:42:10  [ SHMME10BNK:178697 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:42:10
+2017-10-02 22:42:12  [ SHMME10BNK:180497 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 22:42:12  [ SHMME10BNK:180498 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:42:12
+2017-10-02 22:42:12  [ SHMME10BNK:181191 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:42:12  [ SHMME10BNK:181191 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:42:12  [ SHMME10BNK:181191 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:42:56  [ SHMME10BNK:104562 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:43:01  [ SHMME10BNK:229817 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:43:55  [ SHMME10BNK:283498 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:43:55
+2017-10-02 22:43:57  [ SHMME10BNK:286177 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 433
+2017-10-02 22:43:57  [ SHMME10BNK:286178 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:43:57
+2017-10-02 22:43:58  [ SHMME10BNK:286908 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:44:00  [ SHMME10BNK:288921 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:44:00  [ SHMME10BNK:288921 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:44:01  [ SHMME10BNK:289681 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:44:23  [ SHMME10BNK:311495 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:44:23  [ SHMME10BNK:311496 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:44:23  [ SHMME10BNK:311497 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:44:24  [ SHMME10BNK:312857 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:44:24  [ SHMME10BNK:312857 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:44:25  [ SHMME10BNK:313537 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:44:26  [ SHMME10BNK:195026 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:44:26
+2017-10-02 22:44:28  [ SHMME10BNK:316652 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:44:28  [ SHMME10BNK:316652 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:44:28  [ SHMME10BNK:197190 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 22:44:28  [ SHMME10BNK:197190 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:44:28
+2017-10-02 22:44:29  [ SHMME10BNK:317471 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:44:29  [ SHMME10BNK:317471 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:39:11
+2017-10-02 22:44:29  [ SHMME10BNK:317471 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:44:29
+2017-10-02 22:44:29  [ SHMME10BNK:317471 ] - [ INFO ]  Thread SHMME10BNK result row count: 433
+2017-10-02 22:44:29  [ SHMME10BNK:198193 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:44:29  [ SHMME10BNK:198193 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:44:29  [ SHMME10BNK:198193 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:45:05  [ SHMME10BNK:233618 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:45:42  [ SHMME10BNK:270290 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:45:42
+2017-10-02 22:45:43  [ SHMME10BNK:271972 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 433
+2017-10-02 22:45:43  [ SHMME10BNK:271972 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:45:43
+2017-10-02 22:45:44  [ SHMME10BNK:272639 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:45:46  [ SHMME10BNK:274326 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:45:46  [ SHMME10BNK:274327 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:45:46  [ SHMME10BNK:275018 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:46:08  [ SHMME10BNK:296739 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:46:08  [ SHMME10BNK:296740 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:46:08  [ SHMME10BNK:296741 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:46:09  [ SHMME10BNK:298112 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:46:09  [ SHMME10BNK:298112 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:46:10  [ SHMME10BNK:298855 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:46:12  [ SHMME10BNK:300740 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:46:12  [ SHMME10BNK:300740 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:46:13  [ SHMME10BNK:301407 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:46:13  [ SHMME10BNK:301407 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:41:11
+2017-10-02 22:46:13  [ SHMME10BNK:301407 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:46:13
+2017-10-02 22:46:13  [ SHMME10BNK:301407 ] - [ INFO ]  Thread SHMME10BNK result row count: 433
+2017-10-02 22:47:47  [ main:29 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:47:47  [ main:29 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:47:47  [ SHMME10BNK:30 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:47:47  [ SHMME10BNK:30 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:47:47  [ SHMME10BNK:30 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:47:49  [ SHMME10BNK:1542 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:47:49  [ SHMME10BNK:1542 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:47:49  [ SHMME10BNK:1542 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:49:08  [ SHMME10BNK:80688 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:49:47  [ main:29 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:49:47  [ main:29 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:49:47  [ SHMME10BNK:32 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:49:47  [ SHMME10BNK:32 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:49:47  [ SHMME10BNK:32 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:49:49  [ SHMME10BNK:1932 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:49:49  [ SHMME10BNK:1932 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:49:49  [ SHMME10BNK:1933 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:50:47  [ SHMME10BNK:179709 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:50:47
+2017-10-02 22:50:49  [ SHMME10BNK:182175 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 22:50:49  [ SHMME10BNK:182175 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:50:49
+2017-10-02 22:50:50  [ SHMME10BNK:182853 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:50:50  [ SHMME10BNK:182853 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:50:50  [ SHMME10BNK:182853 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:51:35  [ SHMME10BNK:107651 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:51:39  [ SHMME10BNK:231795 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:52:33  [ SHMME10BNK:285740 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:52:33
+2017-10-02 22:52:35  [ SHMME10BNK:287515 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 433
+2017-10-02 22:52:35  [ SHMME10BNK:287515 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:52:35
+2017-10-02 22:52:35  [ SHMME10BNK:288296 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:52:38  [ SHMME10BNK:290787 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:52:38  [ SHMME10BNK:290788 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:52:39  [ SHMME10BNK:291651 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:53:00  [ SHMME10BNK:313361 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:53:00  [ SHMME10BNK:313361 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:53:00  [ SHMME10BNK:313361 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:53:02  [ SHMME10BNK:314727 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:53:02  [ SHMME10BNK:314727 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:53:02  [ SHMME10BNK:315396 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:53:04  [ SHMME10BNK:317136 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:53:04  [ SHMME10BNK:317136 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:53:05  [ SHMME10BNK:317816 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:53:05  [ SHMME10BNK:317816 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:47:47
+2017-10-02 22:53:05  [ SHMME10BNK:317816 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:53:05
+2017-10-02 22:53:05  [ SHMME10BNK:317816 ] - [ INFO ]  Thread SHMME10BNK result row count: 433
+2017-10-02 22:53:09  [ SHMME10BNK:202342 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:53:09
+2017-10-02 22:53:12  [ SHMME10BNK:205020 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 22:53:12  [ SHMME10BNK:205020 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:53:12
+2017-10-02 22:53:14  [ SHMME10BNK:206535 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:53:14  [ SHMME10BNK:206535 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:53:14  [ SHMME10BNK:206535 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:53:49  [ SHMME10BNK:241995 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:54:27  [ SHMME10BNK:279804 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:54:27
+2017-10-02 22:54:29  [ SHMME10BNK:281991 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 433
+2017-10-02 22:54:29  [ SHMME10BNK:281992 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:54:29
+2017-10-02 22:54:30  [ SHMME10BNK:282694 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:54:32  [ SHMME10BNK:284634 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:54:32  [ SHMME10BNK:284634 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:54:32  [ SHMME10BNK:285412 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:54:38  [ main:34 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:54:38  [ main:35 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:54:38  [ SHMME10BNK:37 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:54:38  [ SHMME10BNK:38 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:54:38  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:54:40  [ SHMME10BNK:1580 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:54:40  [ SHMME10BNK:1580 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:54:40  [ SHMME10BNK:1580 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:54:54  [ SHMME10BNK:307250 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:54:54  [ SHMME10BNK:307250 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:54:54  [ SHMME10BNK:307250 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:54:56  [ SHMME10BNK:309127 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:54:56  [ SHMME10BNK:309127 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:54:57  [ SHMME10BNK:309806 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:54:59  [ SHMME10BNK:311504 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:54:59  [ SHMME10BNK:311504 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:54:59  [ SHMME10BNK:312382 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:54:59  [ SHMME10BNK:312382 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:49:47
+2017-10-02 22:54:59  [ SHMME10BNK:312382 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:54:59
+2017-10-02 22:54:59  [ SHMME10BNK:312382 ] - [ INFO ]  Thread SHMME10BNK result row count: 433
+2017-10-02 22:55:58  [ SHMME10BNK:79962 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:56:38  [ main:31 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 22:56:38  [ main:31 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 22:56:38  [ SHMME10BNK:32 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 22:56:38  [ SHMME10BNK:32 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 22:56:38  [ SHMME10BNK:32 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 22:56:40  [ SHMME10BNK:1743 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:56:40  [ SHMME10BNK:1743 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:56:40  [ SHMME10BNK:1743 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:57:36  [ SHMME10BNK:178351 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:57:36
+2017-10-02 22:57:40  [ SHMME10BNK:181486 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 22:57:40  [ SHMME10BNK:181486 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:57:40
+2017-10-02 22:57:40  [ SHMME10BNK:182188 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:57:40  [ SHMME10BNK:182189 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 22:57:40  [ SHMME10BNK:182189 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:58:30  [ SHMME10BNK:111650 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 22:58:31  [ SHMME10BNK:232604 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 22:59:25  [ SHMME10BNK:287292 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 22:59:25
+2017-10-02 22:59:29  [ SHMME10BNK:291106 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 433
+2017-10-02 22:59:29  [ SHMME10BNK:291106 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 22:59:29
+2017-10-02 22:59:30  [ SHMME10BNK:291819 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 22:59:32  [ SHMME10BNK:293698 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:59:32  [ SHMME10BNK:293698 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 22:59:32  [ SHMME10BNK:294371 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 22:59:54  [ SHMME10BNK:316044 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 22:59:54  [ SHMME10BNK:316044 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 22:59:54  [ SHMME10BNK:316044 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 22:59:56  [ SHMME10BNK:317485 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:59:56  [ SHMME10BNK:317485 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 22:59:56  [ SHMME10BNK:318199 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 22:59:58  [ SHMME10BNK:319993 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 22:59:58  [ SHMME10BNK:319993 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 22:59:59  [ SHMME10BNK:320832 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 22:59:59  [ SHMME10BNK:320832 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:54:38
+2017-10-02 22:59:59  [ SHMME10BNK:320832 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 22:59:59
+2017-10-02 22:59:59  [ SHMME10BNK:320832 ] - [ INFO ]  Thread SHMME10BNK result row count: 433
+2017-10-02 23:00:04  [ SHMME10BNK:205728 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:00:04
+2017-10-02 23:00:07  [ SHMME10BNK:208999 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 226
+2017-10-02 23:00:07  [ SHMME10BNK:209000 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:00:07
+2017-10-02 23:00:08  [ SHMME10BNK:209687 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:00:08  [ SHMME10BNK:209687 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:00:08  [ SHMME10BNK:209687 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:00:46  [ SHMME10BNK:247644 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:01:24  [ SHMME10BNK:286265 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:01:24
+2017-10-02 23:01:28  [ SHMME10BNK:289695 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 433
+2017-10-02 23:01:28  [ SHMME10BNK:289695 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:01:28
+2017-10-02 23:01:28  [ SHMME10BNK:290466 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:01:31  [ SHMME10BNK:292951 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:01:31  [ SHMME10BNK:292951 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:01:32  [ SHMME10BNK:293642 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:01:53  [ SHMME10BNK:315545 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:01:53  [ SHMME10BNK:315546 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:01:53  [ SHMME10BNK:315546 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:01:55  [ SHMME10BNK:316958 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:01:55  [ SHMME10BNK:316958 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:01:56  [ SHMME10BNK:317650 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:01:58  [ SHMME10BNK:320192 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:01:58  [ SHMME10BNK:320192 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:01:59  [ SHMME10BNK:320964 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:01:59  [ SHMME10BNK:320965 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 22:56:38
+2017-10-02 23:01:59  [ SHMME10BNK:320965 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:01:59
+2017-10-02 23:01:59  [ SHMME10BNK:320965 ] - [ INFO ]  Thread SHMME10BNK result row count: 433
+2017-10-02 23:12:14  [ main:36 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:12:14  [ main:36 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:12:14  [ SHMME10BNK:36 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:12:14  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:12:14  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:12:16  [ SHMME10BNK:1586 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:12:16  [ SHMME10BNK:1586 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:12:16  [ SHMME10BNK:1587 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:12:53  [ SHMME10BNK:38922 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:13:36  [ SHMME10BNK:81499 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:13:36
+2017-10-02 23:13:38  [ SHMME10BNK:83636 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 196
+2017-10-02 23:13:38  [ SHMME10BNK:83636 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:13:38
+2017-10-02 23:13:39  [ SHMME10BNK:84500 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:13:39  [ SHMME10BNK:84500 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:13:39  [ SHMME10BNK:84501 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:13:59  [ SHMME10BNK:104242 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:14:20  [ SHMME10BNK:125433 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:14:20
+2017-10-02 23:14:22  [ SHMME10BNK:127232 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 377
+2017-10-02 23:14:22  [ SHMME10BNK:127233 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:14:22
+2017-10-02 23:14:22  [ SHMME10BNK:127910 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:14:24  [ SHMME10BNK:130127 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:14:24  [ SHMME10BNK:130127 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:14:26  [ SHMME10BNK:131892 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:14:48  [ SHMME10BNK:153676 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:14:48  [ SHMME10BNK:153676 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:14:48  [ SHMME10BNK:153676 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:14:49  [ SHMME10BNK:155035 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:14:49  [ SHMME10BNK:155036 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:14:51  [ SHMME10BNK:156381 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:14:52  [ SHMME10BNK:158083 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:14:52  [ SHMME10BNK:158084 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:14:53  [ SHMME10BNK:158889 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:14:53  [ SHMME10BNK:158889 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:12:14
+2017-10-02 23:14:53  [ SHMME10BNK:158889 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:14:53
+2017-10-02 23:14:53  [ SHMME10BNK:158890 ] - [ INFO ]  Thread SHMME10BNK result row count: 377
+2017-10-02 23:14:58  [ main:40 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:14:58  [ main:41 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:14:58  [ SHMME10BNK:54 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:14:58  [ SHMME10BNK:54 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:14:58  [ SHMME10BNK:55 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:15:00  [ SHMME10BNK:1687 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:01:00;
+2017-10-02 23:15:00  [ SHMME10BNK:1687 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:15:00  [ SHMME10BNK:1688 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:01:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:15:08  [ SHMME10BNK:9480 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:01:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:15:19  [ SHMME10BNK:20169 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:15:19
+2017-10-02 23:15:21  [ SHMME10BNK:22670 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 141
+2017-10-02 23:15:21  [ SHMME10BNK:22671 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:15:21
+2017-10-02 23:15:22  [ SHMME10BNK:23357 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:01:00;
+2017-10-02 23:15:22  [ SHMME10BNK:23357 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:15:22  [ SHMME10BNK:23358 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:01:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:15:26  [ SHMME10BNK:27477 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:01:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:15:31  [ SHMME10BNK:32213 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:15:31
+2017-10-02 23:15:32  [ SHMME10BNK:33478 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 248
+2017-10-02 23:15:32  [ SHMME10BNK:33478 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:15:32
+2017-10-02 23:15:33  [ SHMME10BNK:34249 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:15:34  [ SHMME10BNK:36116 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:01:00;
+2017-10-02 23:15:34  [ SHMME10BNK:36117 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:15:35  [ SHMME10BNK:36799 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:15:57  [ SHMME10BNK:58487 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:15:57  [ SHMME10BNK:58487 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:15:57  [ SHMME10BNK:58487 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:15:58  [ SHMME10BNK:59937 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:01:00;
+2017-10-02 23:15:58  [ SHMME10BNK:59938 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:15:59  [ SHMME10BNK:60615 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:16:01  [ SHMME10BNK:62945 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:01:00;
+2017-10-02 23:16:01  [ SHMME10BNK:62945 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:16:02  [ SHMME10BNK:63681 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:16:02  [ SHMME10BNK:63681 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:14:58
+2017-10-02 23:16:02  [ SHMME10BNK:63682 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:16:02
+2017-10-02 23:16:02  [ SHMME10BNK:63682 ] - [ INFO ]  Thread SHMME10BNK result row count: 248
+2017-10-02 23:16:50  [ main:36 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:16:50  [ main:36 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:16:50  [ SHMME10BNK:36 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:16:50  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:16:50  [ SHMME10BNK:37 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:16:51  [ SHMME10BNK:1689 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:02:00;
+2017-10-02 23:16:51  [ SHMME10BNK:1690 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:16:51  [ SHMME10BNK:1690 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:02:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:17:11  [ SHMME10BNK:21725 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:02:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:17:33  [ SHMME10BNK:43176 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:17:33
+2017-10-02 23:17:35  [ SHMME10BNK:45311 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 166
+2017-10-02 23:17:35  [ SHMME10BNK:45311 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:17:35
+2017-10-02 23:17:36  [ SHMME10BNK:45980 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:02:00;
+2017-10-02 23:17:36  [ SHMME10BNK:45981 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:17:36  [ SHMME10BNK:45981 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:02:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:17:43  [ SHMME10BNK:53723 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:02:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:17:52  [ SHMME10BNK:62040 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:17:52
+2017-10-02 23:17:53  [ SHMME10BNK:63301 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 304
+2017-10-02 23:17:53  [ SHMME10BNK:63301 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:17:53
+2017-10-02 23:17:54  [ SHMME10BNK:63974 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:17:55  [ SHMME10BNK:65677 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:02:00;
+2017-10-02 23:17:55  [ SHMME10BNK:65678 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:17:56  [ SHMME10BNK:66351 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:18:18  [ SHMME10BNK:88052 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:18:18  [ SHMME10BNK:88052 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:18:18  [ SHMME10BNK:88052 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:18:19  [ SHMME10BNK:89418 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:02:00;
+2017-10-02 23:18:19  [ SHMME10BNK:89418 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:18:20  [ SHMME10BNK:90511 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:18:22  [ SHMME10BNK:92827 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:02:00;
+2017-10-02 23:18:22  [ SHMME10BNK:92827 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:18:23  [ SHMME10BNK:93690 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:18:23  [ SHMME10BNK:93690 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:16:50
+2017-10-02 23:18:23  [ SHMME10BNK:93690 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:18:23
+2017-10-02 23:18:23  [ SHMME10BNK:93690 ] - [ INFO ]  Thread SHMME10BNK result row count: 304
+2017-10-02 23:19:04  [ main:35 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:19:04  [ main:36 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:19:04  [ SHMME10BNK:38 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:19:04  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:19:04  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:19:05  [ SHMME10BNK:1497 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:19:05  [ SHMME10BNK:1498 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:19:05  [ SHMME10BNK:1498 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:19:38  [ SHMME10BNK:34113 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:20:13  [ SHMME10BNK:68749 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:20:13
+2017-10-02 23:20:15  [ SHMME10BNK:70928 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 189
+2017-10-02 23:20:15  [ SHMME10BNK:70928 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:20:15
+2017-10-02 23:20:16  [ SHMME10BNK:71603 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:20:16  [ SHMME10BNK:71604 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:20:16  [ SHMME10BNK:71604 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:20:29  [ SHMME10BNK:84969 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:20:44  [ SHMME10BNK:100554 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:20:44
+2017-10-02 23:20:47  [ SHMME10BNK:103040 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 358
+2017-10-02 23:20:47  [ SHMME10BNK:103040 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:20:47
+2017-10-02 23:20:48  [ SHMME10BNK:103717 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:20:49  [ SHMME10BNK:105425 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:20:49  [ SHMME10BNK:105425 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:20:50  [ SHMME10BNK:106118 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:21:04  [ main:41 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:21:04  [ main:41 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:21:04  [ SHMME10BNK:43 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:21:04  [ SHMME10BNK:44 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:21:04  [ SHMME10BNK:46 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:21:05  [ SHMME10BNK:1513 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:21:05  [ SHMME10BNK:1513 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:21:05  [ SHMME10BNK:1514 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:21:12  [ SHMME10BNK:127799 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:21:12  [ SHMME10BNK:127800 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:21:12  [ SHMME10BNK:127800 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:21:13  [ SHMME10BNK:129180 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:21:13  [ SHMME10BNK:129180 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:21:14  [ SHMME10BNK:129861 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:21:15  [ SHMME10BNK:131550 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:21:15  [ SHMME10BNK:131551 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:21:16  [ SHMME10BNK:132223 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:21:16  [ SHMME10BNK:132224 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:19:04
+2017-10-02 23:21:16  [ SHMME10BNK:132224 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:21:16
+2017-10-02 23:21:16  [ SHMME10BNK:132224 ] - [ INFO ]  Thread SHMME10BNK result row count: 358
+2017-10-02 23:21:38  [ SHMME10BNK:34593 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:22:15  [ SHMME10BNK:70679 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:22:15
+2017-10-02 23:22:18  [ SHMME10BNK:73756 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 189
+2017-10-02 23:22:18  [ SHMME10BNK:73756 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:22:18
+2017-10-02 23:22:18  [ SHMME10BNK:74501 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:22:18  [ SHMME10BNK:74501 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:22:18  [ SHMME10BNK:74502 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:22:34  [ SHMME10BNK:90079 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, Cause_Cause, PS_External_Cause, count(*) as count 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:22:51  [ SHMME10BNK:106724 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:22:51
+2017-10-02 23:22:55  [ SHMME10BNK:110817 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 row count: 358
+2017-10-02 23:22:55  [ SHMME10BNK:110818 ] - [ INFO ]  SHMME10BNK SGSN_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:22:55
+2017-10-02 23:22:56  [ SHMME10BNK:111929 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:22:58  [ SHMME10BNK:114070 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:22:58  [ SHMME10BNK:114070 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:22:59  [ SHMME10BNK:114860 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:23:21  [ SHMME10BNK:136684 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:23:21  [ SHMME10BNK:136685 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:23:21  [ SHMME10BNK:136685 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:23:23  [ SHMME10BNK:138694 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:23:23  [ SHMME10BNK:138694 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:23:23  [ SHMME10BNK:139483 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:23:25  [ SHMME10BNK:141403 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:23:25  [ SHMME10BNK:141403 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:23:26  [ SHMME10BNK:142161 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:23:26  [ SHMME10BNK:142161 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:21:04
+2017-10-02 23:23:26  [ SHMME10BNK:142162 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:23:26
+2017-10-02 23:23:26  [ SHMME10BNK:142162 ] - [ INFO ]  Thread SHMME10BNK result row count: 358
+2017-10-02 23:26:42  [ main:37 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:26:42  [ main:37 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:26:42  [ SHMME10BNK:41 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:26:42  [ SHMME10BNK:42 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:26:42  [ SHMME10BNK:42 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:26:44  [ SHMME10BNK:2045 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:26:44  [ SHMME10BNK:2045 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:26:44  [ SHMME10BNK:2046 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:27:17  [ SHMME10BNK:35677 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:27:55  [ SHMME10BNK:72759 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:27:55
+2017-10-02 23:27:55  [ SHMME10BNK:73574 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 25
+2017-10-02 23:27:55  [ SHMME10BNK:73574 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:27:55
+2017-10-02 23:27:56  [ SHMME10BNK:74258 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:27:56  [ SHMME10BNK:74258 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:27:56  [ SHMME10BNK:74258 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:28:14  [ SHMME10BNK:91717 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:28:14  [ SHMME10BNK:92407 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:28:17  [ SHMME10BNK:94856 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:28:17  [ SHMME10BNK:94857 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:28:17  [ SHMME10BNK:95544 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:28:39  [ SHMME10BNK:117255 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:28:39  [ SHMME10BNK:117255 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:28:39  [ SHMME10BNK:117255 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:28:41  [ SHMME10BNK:119064 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:28:41  [ SHMME10BNK:119064 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:28:42  [ SHMME10BNK:120210 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:28:44  [ SHMME10BNK:121934 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:28:44  [ SHMME10BNK:121934 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:28:45  [ SHMME10BNK:122718 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:28:45  [ SHMME10BNK:122719 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:26:42
+2017-10-02 23:28:45  [ SHMME10BNK:122719 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:28:45
+2017-10-02 23:28:45  [ SHMME10BNK:122719 ] - [ INFO ]  Thread SHMME10BNK result row count: 25
+2017-10-02 23:29:28  [ main:32 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:29:28  [ main:32 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:29:28  [ SHMME10BNK:33 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:29:28  [ SHMME10BNK:33 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:29:28  [ SHMME10BNK:33 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:29:30  [ SHMME10BNK:1968 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:03:00;
+2017-10-02 23:29:30  [ SHMME10BNK:1968 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:29:30  [ SHMME10BNK:1968 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:03:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:29:54  [ SHMME10BNK:26103 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:03:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:30:22  [ SHMME10BNK:53765 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:30:22
+2017-10-02 23:30:22  [ SHMME10BNK:54592 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 23
+2017-10-02 23:30:22  [ SHMME10BNK:54592 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:30:22
+2017-10-02 23:30:23  [ SHMME10BNK:55272 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:03:00;
+2017-10-02 23:30:23  [ SHMME10BNK:55272 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:30:23  [ SHMME10BNK:55272 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:03:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:30:35  [ SHMME10BNK:66711 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:30:36  [ SHMME10BNK:67996 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:30:38  [ SHMME10BNK:70284 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:03:00;
+2017-10-02 23:30:38  [ SHMME10BNK:70284 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:30:39  [ SHMME10BNK:70983 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:31:01  [ SHMME10BNK:92714 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:31:01  [ SHMME10BNK:92714 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:31:01  [ SHMME10BNK:92714 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:31:02  [ SHMME10BNK:94081 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:03:00;
+2017-10-02 23:31:02  [ SHMME10BNK:94081 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:31:03  [ SHMME10BNK:94761 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:31:04  [ SHMME10BNK:96473 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:03:00;
+2017-10-02 23:31:04  [ SHMME10BNK:96473 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:31:05  [ SHMME10BNK:97158 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:31:05  [ SHMME10BNK:97158 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:29:28
+2017-10-02 23:31:05  [ SHMME10BNK:97159 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:31:05
+2017-10-02 23:31:05  [ SHMME10BNK:97159 ] - [ INFO ]  Thread SHMME10BNK result row count: 23
+2017-10-02 23:32:01  [ main:39 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:32:01  [ main:42 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:32:01  [ SHMME10BNK:50 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:32:01  [ SHMME10BNK:50 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:32:01  [ SHMME10BNK:51 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:32:03  [ SHMME10BNK:2517 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:32:03  [ SHMME10BNK:2517 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:32:03  [ SHMME10BNK:2518 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:32:36  [ SHMME10BNK:34835 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:33:13  [ SHMME10BNK:72443 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:33:13
+2017-10-02 23:33:14  [ SHMME10BNK:73279 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 25
+2017-10-02 23:33:14  [ SHMME10BNK:73280 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:33:14
+2017-10-02 23:33:15  [ SHMME10BNK:73975 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:33:15  [ SHMME10BNK:73975 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:33:15  [ SHMME10BNK:73975 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:33:31  [ SHMME10BNK:90127 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:33:32  [ SHMME10BNK:91385 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:33:35  [ SHMME10BNK:93909 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:33:35  [ SHMME10BNK:93910 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:33:35  [ SHMME10BNK:94794 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:33:57  [ SHMME10BNK:116548 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:33:57  [ SHMME10BNK:116549 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:33:57  [ SHMME10BNK:116549 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:33:59  [ SHMME10BNK:118365 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:33:59  [ SHMME10BNK:118365 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:34:00  [ SHMME10BNK:119236 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:34:01  [ main:41 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:34:01  [ main:42 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:34:01  [ SHMME10BNK:65 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:34:01  [ SHMME10BNK:65 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:34:01  [ SHMME10BNK:66 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:34:01  [ main:40 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:34:01  [ main:41 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:34:01  [ SHMME10BNK:44 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:34:01  [ SHMME10BNK:45 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:34:01  [ SHMME10BNK:45 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:34:04  [ SHMME10BNK:122950 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:34:04  [ SHMME10BNK:122950 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:34:04  [ SHMME10BNK:3591 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:34:04  [ SHMME10BNK:3591 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:34:04  [ SHMME10BNK:3591 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:34:05  [ SHMME10BNK:4140 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:34:05  [ SHMME10BNK:4140 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:34:05  [ SHMME10BNK:4140 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:34:06  [ SHMME10BNK:125041 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:34:06  [ SHMME10BNK:125042 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:32:01
+2017-10-02 23:34:06  [ SHMME10BNK:125042 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:34:06
+2017-10-02 23:34:06  [ SHMME10BNK:125042 ] - [ INFO ]  Thread SHMME10BNK result row count: 25
+2017-10-02 23:34:38  [ SHMME10BNK:37307 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:34:48  [ SHMME10BNK:46550 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:35:30  [ SHMME10BNK:89229 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:35:30
+2017-10-02 23:35:31  [ SHMME10BNK:90626 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 25
+2017-10-02 23:35:31  [ SHMME10BNK:90626 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:35:31
+2017-10-02 23:35:32  [ SHMME10BNK:91620 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:35:32  [ SHMME10BNK:91620 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:35:32  [ SHMME10BNK:91620 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:04:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:35:46  [ SHMME10BNK:104808 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:35:46
+2017-10-02 23:35:47  [ SHMME10BNK:105657 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 26
+2017-10-02 23:35:47  [ SHMME10BNK:105657 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:35:47
+2017-10-02 23:35:48  [ SHMME10BNK:106439 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:35:48  [ SHMME10BNK:106439 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:35:48  [ SHMME10BNK:106439 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:05:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:35:51  [ main:38 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:35:51  [ main:38 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:35:51  [ SHMME10BNK:39 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:35:51  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:35:51  [ SHMME10BNK:39 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:35:53  [ SHMME10BNK:2645 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:35:53  [ SHMME10BNK:2645 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:35:53  [ SHMME10BNK:2645 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:35:57  [ SHMME10BNK:116299 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:35:58  [ SHMME10BNK:116976 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:35:59  [ SHMME10BNK:118833 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:35:59  [ SHMME10BNK:118833 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:36:00  [ SHMME10BNK:119526 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:36:20  [ SHMME10BNK:138295 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:36:20  [ SHMME10BNK:138988 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:36:22  [ SHMME10BNK:141596 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:36:22  [ SHMME10BNK:141596 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:36:22  [ SHMME10BNK:141596 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:36:24  [ SHMME10BNK:143105 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:36:24  [ SHMME10BNK:143106 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:36:26  [ SHMME10BNK:144955 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:36:26  [ SHMME10BNK:144955 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:36:26  [ SHMME10BNK:144707 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:36:27  [ SHMME10BNK:146349 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:36:29  [ SHMME10BNK:148299 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:04:00;
+2017-10-02 23:36:29  [ SHMME10BNK:148299 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:36:30  [ SHMME10BNK:149091 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:36:30  [ SHMME10BNK:149091 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:34:01
+2017-10-02 23:36:30  [ SHMME10BNK:149091 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:36:30
+2017-10-02 23:36:30  [ SHMME10BNK:149091 ] - [ INFO ]  Thread SHMME10BNK result row count: 25
+2017-10-02 23:36:48  [ SHMME10BNK:166412 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:36:48  [ SHMME10BNK:166412 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:36:48  [ SHMME10BNK:166412 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:36:49  [ SHMME10BNK:167863 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:36:49  [ SHMME10BNK:167863 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:36:50  [ SHMME10BNK:168586 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:36:52  [ SHMME10BNK:170489 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:05:00;
+2017-10-02 23:36:52  [ SHMME10BNK:170490 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:36:52  [ SHMME10BNK:171157 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:36:52  [ SHMME10BNK:171158 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:34:01
+2017-10-02 23:36:52  [ SHMME10BNK:171158 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:36:52
+2017-10-02 23:36:52  [ SHMME10BNK:171158 ] - [ INFO ]  Thread SHMME10BNK result row count: 26
+2017-10-02 23:37:30  [ SHMME10BNK:99536 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:39:04  [ SHMME10BNK:193565 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:39:04
+2017-10-02 23:39:05  [ SHMME10BNK:194523 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 29
+2017-10-02 23:39:05  [ SHMME10BNK:194523 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:39:05
+2017-10-02 23:39:06  [ SHMME10BNK:195290 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:39:06  [ SHMME10BNK:195290 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:39:06  [ SHMME10BNK:195290 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:39:50  [ SHMME10BNK:239279 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:39:51  [ SHMME10BNK:240222 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:39:52  [ SHMME10BNK:241908 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:39:52  [ SHMME10BNK:241908 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:39:53  [ SHMME10BNK:242574 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:40:15  [ SHMME10BNK:264236 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:40:15  [ SHMME10BNK:264236 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:40:15  [ SHMME10BNK:264236 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:40:16  [ SHMME10BNK:265709 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:40:16  [ SHMME10BNK:265709 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:40:18  [ main:32 ] - [ INFO ]  Creating SHMME10BNK
+2017-10-02 23:40:18  [ main:32 ] - [ INFO ]  Starting SHMME10BNK
+2017-10-02 23:40:18  [ SHMME10BNK:32 ] - [ INFO ]  Running SHMME10BNK
+2017-10-02 23:40:18  [ SHMME10BNK:33 ] - [ INFO ]  SHMME10BNK : begin try traffica: SHMME10BNK
+2017-10-02 23:40:18  [ SHMME10BNK:34 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52700
+2017-10-02 23:40:18  [ SHMME10BNK:267695 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:40:21  [ SHMME10BNK:3179 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:40:21  [ SHMME10BNK:3179 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:40:21  [ SHMME10BNK:3179 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:40:22  [ SHMME10BNK:271712 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:40:22  [ SHMME10BNK:271712 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:40:23  [ SHMME10BNK:272673 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:40:23  [ SHMME10BNK:272673 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:35:51
+2017-10-02 23:40:23  [ SHMME10BNK:272674 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:40:23
+2017-10-02 23:40:23  [ SHMME10BNK:272674 ] - [ INFO ]  Thread SHMME10BNK result row count: 29
+2017-10-02 23:41:49  [ SHMME10BNK:90821 ] - [ INFO ]  SHMME10BNK : query string: select 'SHMME10BNK' AS MME,  cause_proc, internal_cause, EMM_cause, count(*) as count 
+from FNS21_MME_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (1)   
+ group by cause_proc, internal_cause, EMM_cause, ESM_Cause  
+ order by cause_proc asc, internal_cause asc, EMM_cause asc, ESM_Cause asc, count(*) desc 
+2017-10-02 23:43:21  [ SHMME10BNK:183512 ] - [ INFO ]  SHMME10BNK Port: 52700 starttime: 2017-10-02 23:43:21
+2017-10-02 23:43:22  [ SHMME10BNK:184489 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 row count: 29
+2017-10-02 23:43:22  [ SHMME10BNK:184490 ] - [ INFO ]  SHMME10BNK MME_TRAFFICA Port: 52700 stoptime: 2017-10-02 23:43:22
+2017-10-02 23:43:23  [ SHMME10BNK:185172 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:43:23  [ SHMME10BNK:185173 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 13:11:11 db_stopdatetime: 2017-10-02 18:05:06;
+2017-10-02 23:43:23  [ SHMME10BNK:185173 ] - [ INFO ]  SHMME10BNK : query string for count: select  count(*) 
+from SG7_RTT  
+where  report_time <= '2017-10-02 15:10:00'  and report_time >= '2017-10-02 15:00:00'  
+and  CAUSE_PROC  in (0)   
+ group by cause_proc, Cause_Cause, PS_External_Cause  
+ order by cause_proc asc, Cause_Cause asc, PS_External_Cause asc, count(*) desc 
+2017-10-02 23:44:07  [ SHMME10BNK:228817 ] - [ INFO ]  SHMME10BNK Port : 52700 get query result count failed! 
+2017-10-02 23:44:08  [ SHMME10BNK:229545 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52701
+2017-10-02 23:44:10  [ SHMME10BNK:231841 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:44:10  [ SHMME10BNK:231842 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 00:00:00 db_stopdatetime: 2017-10-03 08:41:50;
+2017-10-02 23:44:11  [ SHMME10BNK:232555 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52702
+2017-10-02 23:44:32  [ SHMME10BNK:254247 ] - [ ERROR ]  SHMME10BNK : [Solid JDBC 6.5.0.0 Build 0010] Data source rejected establishment of connection
+2017-10-02 23:44:32  [ SHMME10BNK:254248 ] - [ ERROR ]  SHMME10BNK : SolidDriver failed to connected.
+2017-10-02 23:44:32  [ SHMME10BNK:254248 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52703
+2017-10-02 23:44:34  [ SHMME10BNK:255614 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:44:34  [ SHMME10BNK:255615 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-03 08:41:50 db_stopdatetime: 2038-01-01 00:00:00;
+2017-10-02 23:44:34  [ SHMME10BNK:256298 ] - [ INFO ]  SHMME10BNK : Get query result Port: 52704
+2017-10-02 23:44:36  [ SHMME10BNK:258131 ] - [ INFO ]  SHMME10BNK : startdatetime: 2017-10-02 15:00:00 stopdatetime: 2017-10-02 15:10:00;
+2017-10-02 23:44:36  [ SHMME10BNK:258131 ] - [ INFO ]  SHMME10BNK : db_startdatetime: 2017-10-02 18:05:06 db_stopdatetime: 2017-10-03 00:00:00;
+2017-10-02 23:44:37  [ SHMME10BNK:258805 ] - [ INFO ]  Thread SHMME10BNK exiting.
+2017-10-02 23:44:37  [ SHMME10BNK:258805 ] - [ INFO ]  Thread SHMME10BNK start time :2017-10-02 23:40:18
+2017-10-02 23:44:37  [ SHMME10BNK:258805 ] - [ INFO ]  Thread SHMME10BNK stop time :2017-10-02 23:44:37
+2017-10-02 23:44:37  [ SHMME10BNK:258806 ] - [ INFO ]  Thread SHMME10BNK result row count: 29
