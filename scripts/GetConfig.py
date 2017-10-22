@@ -28,19 +28,39 @@ class PmSqlParam(object):
         self.kpilist = ""
         self.isMME = 1
 
-
+class AlarmSqlParam(object):
+    """
+    class pm_sql_param
+    """
+    def __init__(self):
+        self.startdate = ""
+        self.stopdate = ""
+        self.starttime = ""
+        self.stoptime = ""
+        self.selectmmesgsn = "all"
+        self.selectmmeelement = "MMESGSN"
+        self.selectsaegwelement = "SAEGWGGSN"
+        self.selectsaegwggsn = "all"
+        self.alarm_level = "all"
+        self.alarm_number = "All"
+        self.isAlarmDetail = "true"
+        self.localsave = "0"
+        self.isMME = 1
 
 def prn_obj():
     print ('\n'.join(['%s:%s' % item for item in this.__dict__.items()]))
 
-def getdbconfig(dbmodelname):
+def getdbconfig(runmode, dbmodelname):
     """
     from db.xml get the db's params
     """
     try:
         path = os.path.split(os.path.realpath(__file__))[0]
         #print 'db.xml path: ' + path + "/config/db.xml"
-        dom = xml.dom.minidom.parse(path + "/config/db.xml")
+        if (runmode != "test"):
+            dom = xml.dom.minidom.parse(path + "./config/' + runmode + '/db.xml")
+        else:
+            dom = xml.dom.minidom.parse(path + "./config/db.xml")
         #print 'db.xml : ' + path + "/config/db.xml"
         dbs = dom.getElementsByTagName('dbmodelname')
         #print 'dbs',dbs
@@ -60,12 +80,13 @@ def getdbconfig(dbmodelname):
 
 if __name__ == "__main__":
     print 'begin getconfig'
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         print sys.argv[1]
+        print sys.argv[2]
     else:
-        print 'please input your command parameter for database model name.'
+        print 'please input your command parameter for runmode and database model name.'
         sys.exit()
-    (username, passwd, url, urlport, db_name) = getdbconfig(sys.argv[1])
+    (username, passwd, url, urlport, db_name) = getdbconfig(sys.argv[1], sys.argv[2])
     print username
     print passwd
     print url

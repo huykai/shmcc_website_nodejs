@@ -20,10 +20,8 @@ sys.setdefaultencoding("utf-8")
 
 #from MME_statis_mysql import *
 from MME_statis_new import *
-#from SAEGW_statis import *
+from SAEGW_statis_new import *
 
-#to_list=["13802500663@139.com"]
-#to_list=[]
 
 
 def sort(A, num):
@@ -138,16 +136,15 @@ if __name__ == '__main__':
 
     logging.info('query time : ' + time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time())))
 
-    formparams = None  
-    if ( len(sys.argv) ) > 1 :
-        logging.info("\t params : " + str(sys.argv[1])) 
+    formparams = None
+    runmode = 'test'
+    if ( len(sys.argv) ) > 2 :
+        logging.info("\t run mode : " + str(sys.argv[1])) 
+        logging.info("\t params : " + str(sys.argv[2])) 
         #print("\t params : " + str(sys.argv[1])) 
-        formparams = sys.argv[1]
+        runmode = sys.argv[1]
+        formparams = sys.argv[2]
        
-    # Create instance of FieldStorage
-    # But now we use JSON as cgi parameter 
-    #form = cgi.FieldStorage()
-    
     param = PmSqlParam()
 
     if (not formparams is None):
@@ -166,7 +163,10 @@ if __name__ == '__main__':
     # connect to mysql
     #(mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb_mysql")
     # connect to oracle
-    (mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb")
+    if (param.isMME == "true"):
+        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "mmedb")
+    else:
+        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "saegwdb")
     #print 'mmeuser:', mmedbuser, mmedbpasswd, mmedburl
 	#mmedb = cx_Oracle.connect('omc', 'omc', '127.0.0.1:51063/oss')
     con = None
@@ -176,18 +176,26 @@ if __name__ == '__main__':
         #con = mysql.connect(host=mmedburl, port=int(mmedburlport), user=mmedbuser, passwd=mmedbpasswd, db=mmedb_dbname)
         #mmecursor=con.cursor()
         # oracle
-        #print mmedbuser, mmedbpasswd, mmedburl
-	    mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
-        #mmedb = cx_Oracle.connect(mmedbuser, mmedbpasswd, mmedburl)
-        mmecursor=mmedb.cursor()
+        #print dbuser, dbpasswd, dburl
+	    #mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
+
+        db = cx_Oracle.connect(dbuser, dbpasswd, dburl)
+        dbcursor=db.cursor()
     
         writexmlhead()
-        print "kpilist: ", param.kpilist;
+        #print "kpilist: ", param.kpilist
+        if (param.isMME == "true"):
+            #print("param.isMME : " + param.isMME)
+            api_sql_function = mme_api_sql_function
+        else:
+            api_sql_function = saegw_api_sql_function
+
         for kpi in param.kpilist.split(','):
             logging.info('kpi : ' + kpi)
             #print 'kpi : ' + kpi
+            
             kpi_function = api_sql_function[kpi]['func']
-            run_kpi(kpi, kpi_function, mmecursor, param)
+            run_kpi(kpi, kpi_function, dbcursor, param)
         
         writexmltail()
         

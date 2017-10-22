@@ -1,7 +1,7 @@
 {
     "MME_OSS_table_view": [
         {
-            tables: {
+            "tables": {
                 "name": "PCOFNS_PS_GMMLR_CI3_RAW",
                 "columns": [
                         "FAIL_INTER_SGSN_RA_LA_RADIO",

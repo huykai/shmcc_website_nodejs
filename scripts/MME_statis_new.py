@@ -13,7 +13,7 @@
 
 from GetConfig import *
 
-def getSQL_other_oracle(sqlstring, param):
+def getMMESQL_other_oracle(sqlstring, param):
     if (not param.selectmmesgsn == 'all'):
         elementlist = []
         for item in param.selectmmesgsn.split(','):
@@ -55,7 +55,7 @@ def getSQL_other_oracle(sqlstring, param):
     sqlstring=sqlstring+sqlstringtime+sqlstring1
     return sqlstring
 
-def getSQL_other_mysql(sqlstring, param):
+def getMMESQL_other_mysql(sqlstring, param):
 	if (not param.selectmmesgsn == 'all'):
 		elementlist = []
 		for item in param.selectmmesgsn.split(','):
@@ -85,7 +85,7 @@ def getSQL_other_mysql(sqlstring, param):
 	return sqlstring
 
 # make sql scripts for parts of 'select', 'from', 'where'
-def getSQL_main(api_sql_info, param):
+def getMMESQL_main(api_sql_info, param):
     
     sql_item_type = 'sql_items_' + param.selectperiod + '_' + param.selectmmeelement
     #print('sql_item_type : ',sql_item_type)
@@ -101,13 +101,13 @@ def mme_2g_attach(kpi_title, cursor, param):
 	
     sqlstring = ""
     
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
 #try:
-    #sqlstring = getSQL_other_mysql(sqlstring,param)
-    sqlstring = getSQL_other_oracle(sqlstring,param)
+    #sqlstring = getMMESQL_other_mysql(sqlstring,param)
+    sqlstring = getMMESQL_other_oracle(sqlstring,param)
     #print(sqlstring)
     cursor.execute(sqlstring)
     row=cursor.fetchall()
@@ -119,12 +119,12 @@ def mme_2g_attach(kpi_title, cursor, param):
 def mme_2g_pdp(kpi_title, cursor, param):
 # PDP activation 2G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -136,12 +136,12 @@ def mme_2g_pdp(kpi_title, cursor, param):
 def mme_2g_rau(kpi_title,cursor,param):
 # GSM RAU 2G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -153,12 +153,12 @@ def mme_2g_rau(kpi_title,cursor,param):
 def mme_2g_paging(kpi_title,cursor,param):
 # GSM PAGING 2G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -170,12 +170,12 @@ def mme_2g_paging(kpi_title,cursor,param):
 def mme_3g_attach(kpi_title,cursor,param):
     # GSM ATTACH 3G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -187,12 +187,12 @@ def mme_3g_attach(kpi_title,cursor,param):
 def mme_3g_pdp(kpi_title,cursor,param):
     # GSM PDP 3G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -204,12 +204,12 @@ def mme_3g_pdp(kpi_title,cursor,param):
 def mme_3g_rau(kpi_title,cursor,param):
 	# GSM PDP 3G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -221,12 +221,12 @@ def mme_3g_rau(kpi_title,cursor,param):
 def mme_3g_paging(kpi_title,cursor,param):
 	# GSM PAGING 3G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -238,12 +238,12 @@ def mme_3g_paging(kpi_title,cursor,param):
 def mme_users(kpi_title,cursor,param):
     # GSM users 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -254,12 +254,12 @@ def mme_users(kpi_title,cursor,param):
 def mme_4g_attach(kpi_title,cursor,param):
 	# GSM ATTACH 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -271,12 +271,12 @@ def mme_4g_attach(kpi_title,cursor,param):
 def mme_4g_pdp(kpi_title,cursor,param):
 	# GSM PDP 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -288,12 +288,12 @@ def mme_4g_pdp(kpi_title,cursor,param):
 def mme_4g_taupaging(kpi_title,cursor,param):
 	# GSM TAUPAGING 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -305,12 +305,12 @@ def mme_4g_taupaging(kpi_title,cursor,param):
 def mme_cpu(kpi_title,cursor,param):
     # GSM MME CPU
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        #sqlstring = getSQL_other_oracle(sqlstring,param)
+        #sqlstring = getMMESQL_other_oracle(sqlstring,param)
         if (param.selectmmesgsn<>'all'):
 		    sqlstring=sqlstring+" and objects.co_name= \'"+param.selectmmesgsn+"\' " 
 	
@@ -344,12 +344,12 @@ def mme_cpu(kpi_title,cursor,param):
 def mme_4g_auth(kpi_title,cursor,param):
     # GSM AUTH 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -361,12 +361,12 @@ def mme_4g_auth(kpi_title,cursor,param):
 def mme_4g_csfb(kpi_title,cursor,param):
     # GSM CSFB 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -377,12 +377,12 @@ def mme_4g_csfb(kpi_title,cursor,param):
 def mme_4g_volte(kpi_title,cursor,param):
     # GSM VOLTE 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -394,12 +394,12 @@ def mme_4g_volte(kpi_title,cursor,param):
 def mme_4g_esrvcc(kpi_title,cursor,param):
 # GSM ESRVCC 4G
     sqlstring = ""
-    api_sql_info = api_sql_function[kpi_title]
+    api_sql_info = mme_api_sql_function[kpi_title]
     #print('api_sql_info : ' , api_sql_info)
-    sqlstring = getSQL_main(api_sql_info, param)
+    sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
     try:
-        sqlstring = getSQL_other_oracle(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
         #print(sqlstring)
         cursor.execute(sqlstring)
         row=cursor.fetchall()
@@ -408,7 +408,7 @@ def mme_4g_esrvcc(kpi_title,cursor,param):
         print 'something error!'
         return (['error'], None)	
 
-api_sql_function = {
+mme_api_sql_function = {
     'GSM-ATTACH'     : {
         'func'         : mme_2g_attach,
         'title'        : [
@@ -1674,7 +1674,7 @@ api_sql_function = {
             ]
         },
         'sql_tables'  : [
-            'PCOFNS_PS_LOAD_INDEX_RAW ttfg,'  
+            'PCOFNS_PS_LOAD_INDEX_RAW ttfg',  
 	        'UTP_COMMON_OBJECTS objects'
         ],
         'sql_where'   : [

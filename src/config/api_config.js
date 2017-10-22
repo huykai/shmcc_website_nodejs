@@ -3,18 +3,35 @@
 var apiconfig = [
     {
         api_string: '/api/mme_query', 
-        mode: 'execFile',
+        mode: 'exec',
         program: 'e:\\Develop_Language\\Python27\\python.exe ',
-        script: ' test scripts/PM_statis_report_new.py',
+        script: 'scripts/PM_statis_report_new.py test ',
         method_type: 'POST',
         return_type: 'text/xml'
     },
     {
         api_string: '/api/saegw_query',
-        mode: 'execFile',
+        mode: 'exec',
         program: 'e:\\Develop_Language\\Python27\\python.exe ',
         //script: 'scripts/SAEGW_statis_mysql.py',
-        script: ' test scripts/SAEGW_statis_new.py',
+        script: ' scripts/PM_statis_report_new.py test ',
+        method_type: 'POST',
+        return_type: 'text/xml'
+    },
+    {
+        api_string: '/api/mme_query_alarm', 
+        mode: 'exec',
+        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        script: 'scripts/HistoryAlarmList.py test ',
+        method_type: 'POST',
+        return_type: 'text/xml'
+    },
+    {
+        api_string: '/api/saegw_query_alarm',
+        mode: 'exec',
+        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        //script: 'scripts/SAEGW_statis_mysql.py',
+        script: ' scripts/HistoryAlarmList.py test ',
         method_type: 'POST',
         return_type: 'text/xml'
     },
