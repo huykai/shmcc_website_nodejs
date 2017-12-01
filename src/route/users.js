@@ -4,8 +4,8 @@ var secret = require('../config/secret');
 var redisClient = require('../config/redis_database').redisClient;
 var tokenManager = require('../config/token_manager');
 
-var TOKEN_EXPIRATION = 60;
-var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 100;
+var TOKEN_EXPIRATION = 480;
+var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 60;
 
 exports.signin = function(req, res) {
 	var username = req.body.username || '';

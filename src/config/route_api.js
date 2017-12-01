@@ -54,7 +54,7 @@ for (var api in api_config) {
                 //var queryparam = "'" + '{\"IMSI\":\"\",\"MSISDN\":\"\",\"LTECAUSEPROC\":\"all\"}' + "'"; 
                 //var queryparam = '\'{\'IMSI\':\'\',\'MSISDN\':\'\',\'LTECAUSEPROC\':\'all\'}\'';
                 
-                //console.log(queryparam);
+                console.log('POST parameters: ', queryparam);
                 
                 var api_string = req.path;
                 var exec_mode = post_api_exec_mode[api_string];
@@ -117,33 +117,46 @@ for (var api in api_config) {
             
         })
     } else if (method_type == 'GET') {
+        
         get_api_exec_program[api_string]=exec_program
         get_api_exec_script[api_string]=exec_script
         get_api_exec_returntype[api_string]=return_type
         router.get(api_string , function(req, res, next) {
             //console.log(req);
-            console.log('exec in router : get');
-            console.log('params :');
             var queryparam = JSON.stringify(req.query);
-            console.log(queryparam);
-            //console.log(req.path)
-           var api_string = req.path
-           var exec_program = get_api_exec_program[api_string]
-           var exec_script = get_api_exec_script[api_string]
-           var return_type = get_api_exec_returntype[api_string]
+            console.log('exec in router : get');
+            console.log('Get params : ', queryparam);
             
+            var api_string = req.path
+            var exec_program = get_api_exec_program[api_string]
+            var exec_script = get_api_exec_script[api_string]
+            var return_type = get_api_exec_returntype[api_string]
+                
             //console.log(exec_script)
             //console.log(exec_program)
             //console.log(return_type)
-
-            cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
-                if (err) console.error(err);
-                else {
-                    //console.log(stdout);
-                    res.set('Content-Type', return_type);
-                    res.status(200).send(stdout);
-                }
-            })
+            if (exec_mode === "exec") {
+                queryparam = queryparam.replace(/"/g,'\\"');
+                console.log('exec:',exec_program, exec_script, queryparam);
+                cp.exec(exec_program + exec_script + queryparam, CP_Parameters, function (err, stdout, stderr){
+                    if (err) console.error(err);
+                    else {
+                        console.log(stdout);
+                        res.set('Content-Type', return_type);
+                        //res.cookie('XSRF-TOKEN', req.csrfToken());
+                        res.status(200).send(stdout);
+                    }
+                });
+            } else if (exec_mode === "execFile") {
+                cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
+                    if (err) console.error(err);
+                    else {
+                        //console.log(stdout);
+                        res.set('Content-Type', return_type);
+                        res.status(200).send(stdout);
+                    }
+                })
+            }
         })
     }
     

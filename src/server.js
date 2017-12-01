@@ -23,9 +23,21 @@ d.run( function(){
     console.log('a user connected.');
     socket.on('disconnected', function(){
       console.log('user disconnected.');
-    })
-    let count = 0;
-    setInterval(()=>{count++; socket.emit('message',count)},1000);
+    });
+    socket.on('add-message', (message) => {
+      setTimeout(function(){
+        let data = [
+          ['Evolution', 'Imports', 'Exports'],
+          ['A ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
+          ['B ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
+          ['C ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)]
+        ];
+        io.emit(message, {type:'new-message', text: data});    
+      },10000);
+      
+    });
+    //let count = 0;
+    //setInterval(()=>{count++; socket.emit('message',count)},1000);
   })
 })
 
