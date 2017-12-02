@@ -64,6 +64,7 @@ def getdbconfig(runmode, dbmodelname):
             dom = xml.dom.minidom.parse(path + "/config/db.xml")
         #print 'db.xml : ' + path + "/config/db.xml"
         dbs = dom.getElementsByTagName('dbmodelname')
+        
         #print 'dbs',dbs
         for db in dbs:
             #print db.getAttribute('id')
