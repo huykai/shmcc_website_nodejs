@@ -167,6 +167,7 @@ if __name__ == '__main__':
         (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "mmedb")
     else:
         (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "saegwdb")
+    
     #print 'mmeuser:', mmedbuser, mmedbpasswd, mmedburl
 	#mmedb = cx_Oracle.connect('omc', 'omc', '127.0.0.1:51063/oss')
     con = None
