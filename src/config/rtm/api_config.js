@@ -29,7 +29,7 @@ var apiconfig = [
     {
         api_string: '/api/saegw_query_alarm',
         mode: 'exec',
-        program: 'python scripts/PHistoryAlarmList.py rtm ',
+        program: 'python scripts/HistoryAlarmList.py rtm ',
         //script: '/root/huykai/python27/bin/python scripts/SAEGW_statis_mysql.py',
         script: ' ',
         method_type: 'POST',
