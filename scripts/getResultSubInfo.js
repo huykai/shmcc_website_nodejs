@@ -1,14 +1,14 @@
 var fs = require("fs");
 
-var resultdir = "E:/PersonalProject/Code_Projects/Javascripts/AngularJS_Demo/shmcc/app/"
+//var resultdir = "E:/PersonalProject/Code_Projects/Javascripts/AngularJS_Demo/shmcc/app/"
 
 
 
-if (process.argv.length < 3) {
+if (process.argv.length < 4) {
     console.log(JSON.stringify({"errorinfo":"getResultSubInfo need parameter! getResultSubInfo rtm/test {} "}));
     process.exit(1);
 } else {
-    runmode = process.argv[1];
+    runmode = process.argv[2];
     if (runmode == "test") {
         configfile = "./config/api_options.json"
     } else {
@@ -16,7 +16,7 @@ if (process.argv.length < 3) {
     }
 }
 
-params = process.argv[2];
+params = process.argv[3];
 var params_json ;
 var resultFileName = '';
 var page_str = "1";
