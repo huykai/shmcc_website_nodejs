@@ -4,7 +4,7 @@ var apiconfig = [
     {
         api_string: '/api/mme_query', 
         mode: 'exec',
-        program: '/root/huykai/python27/bin/python scripts/PM_statis_report_new.py rtm ',
+        program: 'python scripts/PM_statis_report_new.py rtm ',
         script: ' ',
         method_type: 'POST',
         return_type: 'text/xml'
@@ -12,7 +12,7 @@ var apiconfig = [
     {
         api_string: '/api/saegw_query',
         mode: 'exec',
-        program: '/root/huykai/python27/bin/python scripts/PM_statis_report_new.py rtm ',
+        program: 'python scripts/PM_statis_report_new.py rtm ',
         //script: '/root/huykai/python27/bin/python scripts/SAEGW_statis_mysql.py',
         script: ' ',
         method_type: 'POST',
@@ -21,7 +21,7 @@ var apiconfig = [
     {
         api_string: '/api/mme_query_alarm', 
         mode: 'exec',
-        program: '/root/huykai/python27/bin/python scripts/HistoryAlarmList.py.py rtm ',
+        program: 'python scripts/HistoryAlarmList.py.py rtm ',
         script: ' ',
         method_type: 'POST',
         return_type: 'text/xml'
@@ -29,7 +29,7 @@ var apiconfig = [
     {
         api_string: '/api/saegw_query_alarm',
         mode: 'exec',
-        program: '/root/huykai/python27/bin/python scripts/PHistoryAlarmList.py.py rtm ',
+        program: 'python scripts/PHistoryAlarmList.py.py rtm ',
         //script: '/root/huykai/python27/bin/python scripts/SAEGW_statis_mysql.py',
         script: ' ',
         method_type: 'POST',

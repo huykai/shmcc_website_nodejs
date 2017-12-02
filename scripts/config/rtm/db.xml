@@ -1,11 +1,4 @@
 <root>
-	<dbmodelname id="mmedb_mysql">
-		<userid>root</userid>
-		<password>Huykai123</password>
-		<dburl>127.0.0.1</dburl>
-		<dburlport>3306</dburlport>
-		<dbname>oss</dbname>
-	</dbmodelname>
 	<dbmodelname id="mmedb">
 		<userid>omc</userid>
 		<password>omc</password>
