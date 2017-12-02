@@ -21,7 +21,7 @@ var apiconfig = [
     {
         api_string: '/api/mme_query_alarm', 
         mode: 'exec',
-        program: 'python scripts/HistoryAlarmList.py.py rtm ',
+        program: 'python scripts/HistoryAlarmList.py rtm ',
         script: ' ',
         method_type: 'POST',
         return_type: 'text/xml'
@@ -29,7 +29,7 @@ var apiconfig = [
     {
         api_string: '/api/saegw_query_alarm',
         mode: 'exec',
-        program: 'python scripts/PHistoryAlarmList.py.py rtm ',
+        program: 'python scripts/PHistoryAlarmList.py rtm ',
         //script: '/root/huykai/python27/bin/python scripts/SAEGW_statis_mysql.py',
         script: ' ',
         method_type: 'POST',
