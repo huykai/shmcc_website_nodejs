@@ -140,7 +140,10 @@ for (var api in api_config) {
             //console.log(return_type)
 
             if (exec_mode === "exec") {
-                cp.exec(exec_program + exec_script + " '" + queryparam + "'", CP_Parameters, function (err, stdout, stderr){
+                queryparam = "'" + queryparam + "'";
+                console.log('exec:',exec_program, exec_script, queryparam);
+                
+                cp.exec(exec_program + exec_script + queryparam , CP_Parameters, function (err, stdout, stderr){
                     if (err) console.error(err);
                     else {
                         //console.log(stdout);
