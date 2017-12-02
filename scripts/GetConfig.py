@@ -58,10 +58,10 @@ def getdbconfig(runmode, dbmodelname):
         path = os.path.split(os.path.realpath(__file__))[0]
         #print 'db.xml path: ' + path + "/config/db.xml"
         if (runmode != "test"):
-            dom = xml.dom.minidom.parse(path + "./config/' + runmode + '/db.xml")
-            console.log('config file path',path + "./config/' + runmode + '/db.xml")
+            dom = xml.dom.minidom.parse(path + "/config/' + runmode + '/db.xml")
+            #console.log('config file path',path + "./config/' + runmode + '/db.xml")
         else:
-            dom = xml.dom.minidom.parse(path + "./config/db.xml")
+            dom = xml.dom.minidom.parse(path + "/config/db.xml")
         #print 'db.xml : ' + path + "/config/db.xml"
         dbs = dom.getElementsByTagName('dbmodelname')
         #print 'dbs',dbs

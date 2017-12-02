@@ -58,6 +58,14 @@ var apiconfig = [
         script: "",
         method_type: 'POST',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getResultSubInfo',
+        mode: 'execFile',
+        program: 'node ', 
+        script: 'scripts/getResultSubInfo.js ',
+        method_type: 'GET',
+        return_type: 'text/json'
     }
 ]
 
