@@ -63,7 +63,7 @@ var apiconfig = [
         api_string: '/api/getResultSubInfo',
         mode: 'execFile',
         program: 'node ', 
-        script: 'scripts/getResultSubInfo.js ',
+        script: 'scripts/getResultSubInfo.js rtm ',
         method_type: 'GET',
         return_type: 'text/json'
     }

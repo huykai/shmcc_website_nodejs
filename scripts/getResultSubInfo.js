@@ -2,9 +2,18 @@ var fs = require("fs");
 
 var resultdir = "E:/PersonalProject/Code_Projects/Javascripts/AngularJS_Demo/shmcc/app/"
 
-if (process.argv.length < 2) {
-    console.log(JSON.stringify({"errorinfo":"getResultSubInfo need parameter!"}));
+
+
+if (process.argv.length < 3) {
+    console.log(JSON.stringify({"errorinfo":"getResultSubInfo need parameter! getResultSubInfo rtm/test {} "}));
     process.exit(1);
+} else {
+    runmode = process.argv[1];
+    if (runmode == "test") {
+        configfile = "./config/api_options.json"
+    } else {
+        configfile = "./config/" + runmode + "/api_options.json"
+    }
 }
 
 params = process.argv[2];
@@ -15,6 +24,10 @@ var rows_str = "50";
 var page = 1;
 var rows = 50;
 try {
+    configfilecontent = fs.readFileSync(configfile)
+    result = JSON.parse(configfilecontent)
+    resultdir = result.resultfile_dir
+
     params_json = JSON.parse(params);
     resultFileName = resultdir + params_json.resultFile || '';
     page = parseInt(params_json.page || page_str);

@@ -65,7 +65,7 @@ var apiconfig = [
         api_string: '/api/getResultSubInfo',
         mode: 'exec',
         program: 'node.exe ', 
-        script: 'scripts/getResultSubInfo.js ',
+        script: 'scripts/getResultSubInfo.js test ',
         method_type: 'GET',
         return_type: 'text/json'
     }
