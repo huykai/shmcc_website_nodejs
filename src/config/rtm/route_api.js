@@ -139,14 +139,28 @@ for (var api in api_config) {
             //console.log(exec_program)
             //console.log(return_type)
 
-            cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
-                if (err) console.error(err);
-                else {
-                    //console.log(stdout);
-                    res.set('Content-Type', return_type);
-                    res.status(200).send(stdout);
-                }
-            })
+            if (exec_mode === "exec") {
+                queryparam = queryparam.replace(/"/g,'\\"');
+                console.log('exec:',exec_program, exec_script, queryparam);
+                cp.exec(exec_program + exec_script + queryparam, CP_Parameters, function (err, stdout, stderr){
+                    if (err) console.error(err);
+                    else {
+                        console.log(stdout);
+                        res.set('Content-Type', return_type);
+                        //res.cookie('XSRF-TOKEN', req.csrfToken());
+                        res.status(200).send(stdout);
+                    }
+                });
+            } else if (exec_mode === "execFile") {
+                cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
+                    if (err) console.error(err);
+                    else {
+                        //console.log(stdout);
+                        res.set('Content-Type', return_type);
+                        res.status(200).send(stdout);
+                    }
+                })
+            }
         })
     }
     
