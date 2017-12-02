@@ -28,6 +28,7 @@ try {
     result = JSON.parse(configfilecontent)
     resultdir = result.resultfile_dir
 
+    
     params_json = JSON.parse(params);
     resultFileName = resultdir + params_json.resultFile || '';
     page = parseInt(params_json.page || page_str);
