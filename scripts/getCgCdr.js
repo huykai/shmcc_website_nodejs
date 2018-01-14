@@ -42,9 +42,7 @@ try {
                 console.log('resultFile: ', resultFile);
                 let resultDataRecord = {};
                 resultDataRecord.hostname = resultFileStr[1];
-                if (getResultDataInfo(resultFile, resultDataRecord)) {
-                    resultData.push(resultFileRecord);
-                }
+                getResultDataInfo(resultData, resultFile, resultDataRecord)
             }
         }
     }
@@ -54,17 +52,17 @@ try {
     process.exit(1);
 }
 
-getResultDataInfo(resultFile, resultDataRecord){
+getResultDataInfo = function(resultData, resultFile, resultDataRecord) {
     try {
-        fs.readFile(resultFile, (err, data) => {
-            if (err) return false;
-            let result = JSON.parse(data)
-            resultDataRecord.columns = result[0].keys();
-            resultDataRecord.datas = result;
-            return true;
-        })
+        let data = fs.readFileSync(resultFile, data)
+        let result = JSON.parse(data)
+        resultDataRecord.columns = result[0].keys();
+        resultDataRecord.datas = result;
+        resultData.push(resultDataRecord);
+        return;
     } catch (err) {
-       return false;
+        console.log(JSON.stringify({"errorinfo":"getCgCdr parse " + resultFile + " have error! \n" + err}));
+        return;
     }
 }
 
