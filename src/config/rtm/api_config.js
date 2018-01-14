@@ -66,6 +66,14 @@ var apiconfig = [
         script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/getResultSubInfo.js rtm ',
         method_type: 'GET',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getCgCdr',
+        mode: 'exec',
+        program: 'node ', 
+        script: 'scripts/getCgCdr.js rtm ',
+        method_type: 'POST',
+        return_type: 'text/json'
     }
 ]
 

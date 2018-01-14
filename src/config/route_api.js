@@ -141,7 +141,7 @@ for (var api in api_config) {
                 cp.exec(exec_program + exec_script + queryparam, CP_Parameters, function (err, stdout, stderr){
                     if (err) console.error(err);
                     else {
-                        console.log(stdout);
+                        //console.log(stdout);
                         res.set('Content-Type', return_type);
                         //res.cookie('XSRF-TOKEN', req.csrfToken());
                         res.status(200).send(stdout);
