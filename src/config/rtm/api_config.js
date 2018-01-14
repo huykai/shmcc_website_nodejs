@@ -66,6 +66,14 @@ var apiconfig = [
         script: 'scripts/getResultSubInfo.js rtm ',
         method_type: 'GET',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getCgCdr',
+        mode: 'exec',
+        program: 'node ', 
+        script: 'scripts/getCgCdr.js rtm ',
+        method_type: 'POST',
+        return_type: 'text/json'
     }
 ]
 

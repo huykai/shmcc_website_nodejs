@@ -68,6 +68,14 @@ var apiconfig = [
         script: 'scripts/getResultSubInfo.js test ',
         method_type: 'GET',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getCgCdr',
+        mode: 'exec',
+        program: 'node.exe ', 
+        script: 'scripts/getCgCdr.js test ',
+        method_type: 'POST',
+        return_type: 'text/json'
     }
 ]
 

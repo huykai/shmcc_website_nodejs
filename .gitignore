@@ -21,3 +21,4 @@ coverage
 node_modules
 bower_modules
 npm-debug.log
+logs/

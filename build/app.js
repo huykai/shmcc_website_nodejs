@@ -169,6 +169,7 @@ app.all('/api/*', urlencodedParser, routers);
 // error handler
 app.use(function (err, req, res, next) {
   console.log("error code:",err.code);
+  console.log("app req:",req);
   if (err.code !== 'EBADCSRFTOKEN') return next(err);
   //res.cookie('XSRF-TOKEN', req.csrfToken());
   // handle CSRF token errors here
