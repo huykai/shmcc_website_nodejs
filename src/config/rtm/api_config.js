@@ -71,7 +71,7 @@ var apiconfig = [
         api_string: '/api/getCgCdr',
         mode: 'exec',
         program: 'node ', 
-        script: 'scripts/getCgCdr.js rtm ',
+        script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/getCgCdrInfo.js rtm ',
         method_type: 'POST',
         return_type: 'text/json'
     }
