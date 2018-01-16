@@ -24,7 +24,7 @@ stop(){
 restart(){
         stop
         # give stuff some time to stop before we restart
-        sleep 10
+        sleep 2
         start
 }
 

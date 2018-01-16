@@ -77,8 +77,8 @@ for (var api in api_config) {
                 } else if (exec_mode === "exec") {
                     //queryparam = queryparam.replace(/"/g,'\\"');
                     queryparam = "'" + queryparam + "'";
-                    console.log('exec:',exec_program, queryparam, ' \nOptions : ', CP_Parameters);
-                    cp.exec(exec_program + queryparam, CP_Parameters, function (err, stdout, stderr){
+                    console.log('exec:',exec_program, exec_script, queryparam, ' \nOptions : ', CP_Parameters);
+                    cp.exec(exec_program + exec_script + queryparam, CP_Parameters, function (err, stdout, stderr){
                         if (err) console.error(err);
                         else {
                             //console.log(stdout);
