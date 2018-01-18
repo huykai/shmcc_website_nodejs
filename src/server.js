@@ -5,7 +5,7 @@ const domain = require('domain');
 const hostname = '127.0.0.1';
 const port = 3000;
 
-
+const ServerTimeout = 600000;
 
 const d = domain.create();
 
@@ -18,6 +18,7 @@ d.run( function(){
   var server = http.createServer(app).listen(app.get('port'),function() {
     console.log('Express server listening on port ' + app.get('port'));
   });
+  server.timeout = ServerTimout;
   var io = require('socket.io')(server);
   io.on('connection', function(socket){
     console.log('a user connected.');
