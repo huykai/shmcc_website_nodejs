@@ -5,7 +5,7 @@ const domain = require('domain');
 const hostname = '10.222.5.38';
 const port = 3000;
 
-const ServerTimeout = 600000;
+const ServerTimeout = 3600000;
 
 const d = domain.create();
 
