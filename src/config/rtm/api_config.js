@@ -71,7 +71,7 @@ var apiconfig = [
         api_string: '/api/getCgCdr',
         mode: 'exec',
         program: 'cd /root/huykai/javascript_projects/taskrunner; /root/huykai/node-v6.10.2-linux-x64/bin/node ', 
-        script: '/root/huykai/javascript_projects/taskrunner/getCgCdrInfo.js rtm ',
+        script: '/root/huykai/javascript_projects/taskrunner/getCgCdrInfo.js rtm tasks_cdr_tmp1.yml ',
         method_type: 'POST',
         return_type: 'text/json'
     }
