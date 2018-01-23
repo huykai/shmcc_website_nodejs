@@ -71,7 +71,23 @@ var apiconfig = [
         api_string: '/api/getCgCdr',
         mode: 'exec',
         program: 'cd /root/huykai/javascript_projects/taskrunner; /root/huykai/node-v6.10.2-linux-x64/bin/node ', 
-        script: '/root/huykai/javascript_projects/taskrunner/getCgCdrInfo.js rtm tasks_cdr_tmp1.yml ',
+        script: '/root/huykai/javascript_projects/taskrunner/scripts/getCgCdrInfo.js rtm tasks_cdr_tmp1.yml ',
+        method_type: 'POST',
+        return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getCgCdrStatistics',
+        mode: 'exec',
+        program: 'cd /root/huykai/javascript_projects/taskrunner; /root/huykai/node-v6.10.2-linux-x64/bin/node ',
+        script: '/root/huykai/javascript_projects/taskrunner/scripts/getCgCdrInfo.js rtm tasks_cdr_statistics.yml ',
+        method_type: 'POST',
+        return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getCgCdrAnalysis',
+        mode: 'exec',
+        program: 'cd /root/huykai/javascript_projects/taskrunner; /root/huykai/node-v6.10.2-linux-x64/bin/node ',
+        script: '/root/huykai/javascript_projects/taskrunner/scripts/getCgCdrAnalysis.js rtm tasks_cdr_analysis.yml ',
         method_type: 'POST',
         return_type: 'text/json'
     }
