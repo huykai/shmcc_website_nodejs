@@ -15,12 +15,12 @@ var tokenManager = require('./config/rtm/token_manager');
 var secret = require('./config/rtm/secret');
 
 const http = require('http');
-const hostname = '127.0.0.1';
+const hostname = '10.222.5.38';
 const port = 3000;
 
 const ServerTimeout = 3600000;
 
-var process = {
+var processOption = {
   env: {
     PORT : 3000
   }
@@ -45,7 +45,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var app = express();
 module.exports = app; 
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', processOption.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
