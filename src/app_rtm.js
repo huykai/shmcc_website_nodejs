@@ -14,7 +14,11 @@ var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/rtm/token_manager');
 var secret = require('./config/rtm/secret');
 
+const http = require('http');
+const hostname = '127.0.0.1';
+const port = 3000;
 
+const ServerTimeout = 3600000;
 
 var process = {
   env: {
@@ -23,6 +27,8 @@ var process = {
 }
 var fs = require('fs');
 var ejs = require('ejs');
+var ioserver = require('socket.io');
+var pty = require('node-pty');
 
 var routes = {};
 routes.posts = require('./route/posts.js');
@@ -177,3 +183,120 @@ app.use(function (err, req, res, next) {
   //console.log('res is: ',res.headers);
   res.send('form tampered with');
 });
+
+var server = http.createServer(app).listen(app.get('port'),function() {
+  console.log('Express server listening on port ' + app.get('port'));
+});
+server.timeout = ServerTimeout;
+var io = require('socket.io')(server);
+io.on('connection', function(socket){
+  console.log('a user connected.');
+  socket.on('disconnected', function(){
+    console.log('user disconnected.');
+  });
+  socket.on('add-message', (message) => {
+    setTimeout(function(){
+      let data = [
+        ['Evolution', 'Imports', 'Exports'],
+        ['A ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
+        ['B ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
+        ['C ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)]
+      ];
+      io.emit(message, {type:'new-message', text: data});    
+    },10000);
+    
+  });
+  //let count = 0;
+  //setInterval(()=>{count++; socket.emit('message',count)},1000);
+})
+
+process.on('uncaughtException', function (err) {
+  console.log('uncaughtException: ');
+  console.error(err);
+  server.close(); 
+  setTimeout(process.exit, 5000, 1);
+});
+
+var io = ioserver(server,{path: '/hyktty/socket.io'});
+io.on('connection', function(socket){
+  console.log('io connected');
+  socket.on('login', function(loginparam){
+    console.log('io login param:', JSON.stringify(loginparam));
+    var logintype = loginparam.type || 'ssh';
+    var loginuser = loginparam.user || 'root' + '@';
+    var loginhost = loginparam.host || 'localhost';
+    var loginport = loginparam.port || '22';
+    var loginauth = loginparam.auth || 'password,keyboard-interactive';
+    // var request = socket.request;
+    // console.log((new Date()) + ' Connection accepted.');
+    // if (match = request.headers.referer.match('/wetty/ssh/.+$')) {
+    //    sshuser = match[0].replace('/wetty/ssh/', '') + '@';
+    // } else if (globalsshuser) {
+    //    sshuser = globalsshuser + '@';
+    // }
+    //console.log('login : ', JSON.stringify(loginparam));
+    var term;
+    if (loginhost === 'localhost') {
+      console.log('host : localhost');
+      term = pty.spawn('/usr/bin/env', ['login'], {
+          name: 'xterm-256color',
+          cols: 80,
+          rows: 30
+      });
+    } else {
+      console.log('host : ', loginhost);
+      if (logintype === 'ssh') {
+        term = pty.spawn('D:\\cmder\\vendor\\git-for-windows\\usr\\bin\\ssh.exe ', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
+          name: 'xterm-256color',
+          cols: 80,
+          rows: 30
+        });
+      } else if (logintype === 'telnet'){
+        term = pty.spawn('telnet.exe ', [loginhost, loginport], {
+          name: 'xterm-256color',
+          cols: 80,
+          rows: 30
+        });
+      }
+      
+    }
+    console.log((new Date()) + " PID=" + term.pid + " STARTED on behalf of user=" + loginuser)
+    term.on('data', function(data) {
+      // console.log('term.on data: ', data);
+      socket.emit('output', data);
+    });
+    term.on('exit', function(code) {
+      console.log('term.on exit: ', code);
+      console.log((new Date()) + " PID=" + term.pid + " ENDED")
+    });
+    socket.on('resize', function(data) {
+      console.log('socket.on resize resize: ', data);
+      term.resize(data.col, data.row);
+    });
+    socket.on('input', function(data) {
+      console.log('socket.on input: ', data);
+      term.write(data);
+    });
+    socket.on('disconnect', function() {
+      console.log('socket.on disconnect: ');
+      term._close();
+      term.kill();
+    });
+    socket.on('connect_error', function() {
+      console.log('socket.on connect_error: ');
+      term._close();
+      term.end();
+    });
+    socket.on('error', function() {
+      console.log('socket.on error: ');
+      term._close();
+      term.end();
+    });
+  });
+});
+
+module.exports = {
+  app: app,
+  host: hostname,
+  port: port
+}
