@@ -246,13 +246,13 @@ io.on('connection', function(socket){
     } else {
       console.log('host : ', loginhost);
       if (logintype === 'ssh') {
-        term = pty.spawn('ssh ', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
+        term = pty.spawn('ssh', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
           name: 'xterm-256color',
           cols: 80,
           rows: 30
         });
       } else if (logintype === 'telnet'){
-        term = pty.spawn('telnet ', [loginhost, loginport], {
+        term = pty.spawn('telnet', [loginhost, loginport], {
           name: 'xterm-256color',
           cols: 80,
           rows: 30
