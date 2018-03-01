@@ -13,6 +13,7 @@ var jwt = require('express-jwt');
 var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/rtm/token_manager');
 var secret = require('./config/rtm/secret');
+var netelements = require('./config/rtm/netelementconfig');
 
 const http = require('http');
 const hostname = '10.222.5.38';
@@ -222,11 +223,18 @@ io.on('connection', function(socket){
   console.log('io connected');
   socket.on('login', function(loginparam){
     console.log('io login param:', JSON.stringify(loginparam));
-    var logintype = loginparam.type || 'ssh';
-    var loginuser = loginparam.user || 'root' + '@';
-    var loginhost = loginparam.host || 'localhost';
-    var loginport = loginparam.port || '22';
-    var loginauth = loginparam.auth || 'password,keyboard-interactive';
+    let netelement = find(loginparam['name'], netelements);
+    if (netelement == null) {
+      console.log('netelement ', loginparam['name'], ' not found!');
+      return;
+    }
+
+    var logintype = netelement.type || 'ssh';
+    var loginuser = netelement.user || 'root' + '@';
+    var loginhost = netelement.host || 'localhost';
+    var loginport = netelement.port || '22';
+    var loginauth = netelement.auth || 'password,keyboard-interactive';
+    var loginauto = netelement.login || [];
     // var request = socket.request;
     // console.log((new Date()) + ' Connection accepted.');
     // if (match = request.headers.referer.match('/wetty/ssh/.+$')) {
@@ -264,6 +272,15 @@ io.on('connection', function(socket){
     term.on('data', function(data) {
       // console.log('term.on data: ', data);
       socket.emit('output', data);
+      if (loginauto && loginauto.length > 0){
+        let loginautoitem = loginauto[0];
+        if (data.indexOf(loginautoitem['prompt']) >= 0) {
+          console.log('login prompt: ',loginautoitem['prompt']);
+          loginauto.splice(0,1);
+          term.write(loginautoitem['answer']);
+          
+        }
+      }
     });
     term.on('exit', function(code) {
       console.log('term.on exit: ', code);
@@ -274,7 +291,7 @@ io.on('connection', function(socket){
       term.resize(data.col, data.row);
     });
     socket.on('input', function(data) {
-      console.log('socket.on input: ', data);
+      //console.log('socket.on input: ', data);
       term.write(data);
     });
     socket.on('disconnect', function() {
@@ -294,6 +311,15 @@ io.on('connection', function(socket){
     });
   });
 });
+
+var findNetElement = function(name, netelements){
+  for (let netelement of netelements) {
+    if (netelement['name'] === name) {
+      return netelement;
+    }
+  }
+  return null;
+}
 
 module.exports = {
   app: app,
