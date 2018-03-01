@@ -223,7 +223,7 @@ io.on('connection', function(socket){
   console.log('io connected');
   socket.on('login', function(loginparam){
     console.log('io login param:', JSON.stringify(loginparam));
-    let netelement = find(loginparam['name'], netelements);
+    let netelement = findNetElement(loginparam['name'], netelements);
     if (netelement == null) {
       console.log('netelement ', loginparam['name'], ' not found!');
       return;
