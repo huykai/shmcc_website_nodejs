@@ -13,7 +13,7 @@ var jwt = require('express-jwt');
 var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/rtm/token_manager');
 var secret = require('./config/rtm/secret');
-var netelements = require('./config/rtm/netelementconfig');
+var netelements = require('./config/rtm/netelementconfig.js');
 
 const http = require('http');
 const hostname = '10.222.5.38';
