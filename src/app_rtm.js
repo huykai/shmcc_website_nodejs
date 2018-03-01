@@ -234,7 +234,7 @@ io.on('connection', function(socket){
     var loginhost = netelement.host || 'localhost';
     var loginport = netelement.port || '22';
     var loginauth = netelement.auth || 'password,keyboard-interactive';
-    var loginauto = netelement.login || [];
+    var loginauto = netelement.login? Object.assign([],netelement.login) || [];
     // var request = socket.request;
     // console.log((new Date()) + ' Connection accepted.');
     // if (match = request.headers.referer.match('/wetty/ssh/.+$')) {

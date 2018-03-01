@@ -72,7 +72,7 @@ var netelements = [
     },
     {
         'type': 'telnet',
-        'name': 'SHMME04BNK',
+        'name': 'SHMME10BNK',
         'host': '172.20.26.180',
         'port': '23',
         'login': [
