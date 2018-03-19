@@ -94,7 +94,7 @@ var apiconfig = [
     {
         api_string: '/api/getDocumentList',
         mode: 'exec',
-        program: 'python /root/huykai/node_webserver/nodejs_shmcc_website/scripts/GetDocumentList.py rtm ',
+        program: 'python /root/huykai/node_webserver/nodejs_shmcc_website/scripts/getDocumentList.py rtm ',
         script: ' ',
         method_type: 'POST',
         return_type: 'text/json'
