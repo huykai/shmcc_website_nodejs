@@ -1,4 +1,6 @@
 {
 	"resultfile_dir" : "e:\\PersonalProject\\Code_Projects\\Javascripts\\AngularJS_Demo\\shmcc\\app\\",
-	"resultfile_title" : "result\\traffica_result_"
+	"resultfile_title" : "result\\traffica_result_",
+	"document_dir" : "e:\\PersonalProject\\Code_Projects\\Javascripts\\AngularJS_Demo\\shmcc\\app\\Documents\\",
+	"document_type" : ".pdf;.doc;.xlsx;.ppt"
 }

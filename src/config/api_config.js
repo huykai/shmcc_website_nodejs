@@ -76,6 +76,14 @@ var apiconfig = [
         script: 'scripts/getCgCdr.js test ',
         method_type: 'POST',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getDocumentList',
+        mode: 'exec',
+        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        script: 'scripts/getDocumentList.py test ',
+        method_type: 'GET',
+        return_type: 'text/json'
     }
 ]
 

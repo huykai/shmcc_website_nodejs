@@ -90,6 +90,14 @@ var apiconfig = [
         script: '/root/huykai/javascript_projects/taskrunner/scripts/getCgCdrAnalysis.js rtm tasks_cdr_analysis.yml ',
         method_type: 'POST',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getDocumentList',
+        mode: 'exec',
+        program: 'python /root/huykai/node_webserver/nodejs_shmcc_website/scripts/GetPdfDocumentList.py rtm ',
+        script: ' ',
+        method_type: 'POST',
+        return_type: 'text/json'
     }
 ]
 
