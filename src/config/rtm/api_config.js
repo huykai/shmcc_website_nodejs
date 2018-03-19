@@ -96,7 +96,7 @@ var apiconfig = [
         mode: 'exec',
         program: 'python /root/huykai/node_webserver/nodejs_shmcc_website/scripts/getDocumentList.py rtm ',
         script: ' ',
-        method_type: 'POST',
+        method_type: 'GET',
         return_type: 'text/json'
     }
 ]
