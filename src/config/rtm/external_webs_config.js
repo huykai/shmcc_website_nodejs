@@ -36,7 +36,7 @@ var external_webs_config = [
         }
     },
     {
-        url_string: '/webs/fma', 
+        url_string: '/webs/fma/login.xhtml', 
         options: {
             target: 'http://10.10.31.19:8080',
             changeOrigin: true,               // needed for virtual hosted sites
