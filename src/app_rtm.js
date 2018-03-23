@@ -153,7 +153,7 @@ app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout);
 //app.all('/api/*', urlencodedParser, csrfProtection, routers);
 app.all('/api/*', urlencodedParser, routers);
 // other domain webs , e.g /informationbrowser/index.jsp
-app.all('/webs/*', urlencodedParser, external_webs_rtm);
+app.all('/webs/*', urlencodedParser, external_webs);
 
 // error handler
 app.use(function (err, req, res, next) {
