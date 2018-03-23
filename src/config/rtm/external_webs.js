@@ -3,6 +3,7 @@ var external_webs = express.Router();
 var proxy = require('http-proxy-middleware');
 var external_webs_config = require('./external_webs_config');
 
+console.log('external_webs_config: ', external_webs_config);
 for (var external_web_config of external_webs_config) {
     let url_string = external_web_config.url_string;
     let options = external_web_config.options;
