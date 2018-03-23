@@ -4,7 +4,7 @@ var external_webs_config = [
     {
         url_string: '/webs/ned/index.jsp', 
         options: {
-            target: 'http://172.20.24.252:9090',
+            target: 'http://172.20.24.250:9090',
             changeOrigin: true,               // needed for virtual hosted sites
             ws: true,                         // proxy websockets
             pathRewrite: {
@@ -21,7 +21,7 @@ var external_webs_config = [
     {
         url_string: '/webs/ned/*', 
         options: {
-            target: 'http://172.20.24.252:9090',
+            target: 'http://172.20.24.250:9090',
             // changeOrigin: true,               // needed for virtual hosted sites
             // ws: true,                         // proxy websockets
             pathRewrite: {
