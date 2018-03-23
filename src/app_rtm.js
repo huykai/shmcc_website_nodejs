@@ -47,7 +47,6 @@ var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 var app = express();
-module.exports = app; 
 
 app.set('port', processOption.env.PORT || 3000);
 app.set('views', __dirname + '/views');
