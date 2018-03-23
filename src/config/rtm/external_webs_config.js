@@ -2,7 +2,7 @@
 
 var external_webs_config = [
     {
-        url_string: '/webs/ned', 
+        url_string: '/webs/ned/index.jsp', 
         options: {
             target: 'http://172.20.24.252:9090',
             changeOrigin: true,               // needed for virtual hosted sites
