@@ -14,6 +14,9 @@ var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/rtm/token_manager');
 var secret = require('./config/rtm/secret');
 var netelements = require('./config/rtm/netelementconfig.js');
+var external_webs = require('./config/rtm/external_webs');
+var external_webs_config = require('./config/rtm/external_webs_config');
+var proxy = require('http-proxy-middleware');
 
 const http = require('http');
 const hostname = '10.222.5.38';
@@ -149,29 +152,8 @@ app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout);
 
 //app.all('/api/*', urlencodedParser, csrfProtection, routers);
 app.all('/api/*', urlencodedParser, routers);
-//app.all('/api/*', routers);
-//app.all('/api/*', function (req, res, next) {
-//    routers.
-//    if (err) {
-//      next(err);
-//    } else {
-//      console.log('app.all is running');
-//    }
-//  });
-
-//app.listen(3000, () => {
-//  console.log(`App listening at port 3000`)
-//})
-
-//app.use(express.json()); 
-//app.use(express.methodOverride()); 
-
-//app.get('/pages', routes.pages.index); //<co id="callout-web-rest-1-3" />
-//app.get('/pages/:id', routes.pages.show);
-//app.post('/pages', routes.pages.create);
-//app.patch('/pages/:id', routes.pages.patch);
-//app.put('/pages/:id', routes.pages.update);
-//app.del('/pages/:id', routes.pages.remove);
+// other domain webs , e.g /informationbrowser/index.jsp
+app.all('/webs/*', urlencodedParser, external_webs_rtm);
 
 // error handler
 app.use(function (err, req, res, next) {
