@@ -2,13 +2,13 @@
 
 var external_webs_config = [
     {
-        url_string: '/angular/webs/ned/index.jsp', 
+        url_string: '/webs/ned/index.jsp', 
         options: {
             target: 'http://172.20.24.252:9090',
             changeOrigin: true,               // needed for virtual hosted sites
             ws: true,                         // proxy websockets
             pathRewrite: {
-                '^/angular/webs/ned/index.jsp' : '/informationbrowser/index.jsp',     // rewrite path
+                '^/webs/ned/index.jsp' : '/informationbrowser/index.jsp',     // rewrite path
                 // '^/api/remove/path' : '/path'           // remove base path
             },
             router: {
@@ -19,13 +19,13 @@ var external_webs_config = [
         }
     },
     {
-        url_string: '/angular/webs/ned/*', 
+        url_string: '/webs/ned/*', 
         options: {
             target: 'http://172.20.24.252:9090',
             // changeOrigin: true,               // needed for virtual hosted sites
             // ws: true,                         // proxy websockets
             pathRewrite: {
-                '^/angular/webs/ned/' : '/informationbrowser/',
+                '^/webs/ned/' : '/informationbrowser/',
                 // '^/api/remove/path' : '/path'           // remove base path
             }
             // router: {
@@ -36,13 +36,13 @@ var external_webs_config = [
         }
     },
     {
-        url_string: '/angular/webs/fma', 
+        url_string: '/webs/fma', 
         options: {
             target: 'http://10.10.31.19:8080',
             changeOrigin: true,               // needed for virtual hosted sites
             ws: true,                         // proxy websockets
             pathRewrite: {
-                '^/angular/webs/fma/login.xhtml' : '/FMANS17/login.xhtml',     // rewrite path
+                '^/webs/fma/login.xhtml' : '/FMANS17/login.xhtml',     // rewrite path
                 // '^/api/remove/path' : '/path'           // remove base path
             },
             router: {
@@ -53,7 +53,7 @@ var external_webs_config = [
         }
     },
     {
-        url_string: '/angular/FMANS17/*', 
+        url_string: '/FMANS17/*', 
         options: {
             target: 'http://10.10.31.19:8080',
             // changeOrigin: true,               // needed for virtual hosted sites
