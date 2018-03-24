@@ -4,7 +4,7 @@ var external_webs_config = [
     {
         url_string: '/webs/ned/index.jsp', 
         options: {
-            target: 'http://localhost:9090',
+            target: 'http://172.20.24.250:9090',
             // target: 'http://172.20.24.250:9090',
             changeOrigin: true,               // needed for virtual hosted sites
             ws: true,                         // proxy websockets
@@ -22,7 +22,7 @@ var external_webs_config = [
     {
         url_string: '/webs/ned/*', 
         options: {
-            target: 'http://localhost:9090',
+            target: 'http://172.20.24.250:9090',
             // target: 'http://172.20.24.250:9090',
             // changeOrigin: true,               // needed for virtual hosted sites
             // ws: true,                         // proxy websockets
@@ -40,8 +40,8 @@ var external_webs_config = [
     {
         url_string: '/webs/fma/login.xhtml', 
         options: {
-            target: 'http://localhost:51018',
-            // target: 'http://10.10.31.19:8080',
+            // target: 'http://localhost:51018',
+            target: 'http://10.10.31.19:8080',
             changeOrigin: true,               // needed for virtual hosted sites
             ws: true,                         // proxy websockets
             pathRewrite: {
@@ -58,8 +58,8 @@ var external_webs_config = [
     {
         url_string: '/FMANS17/*', 
         options: {
-            target: 'http://localhost:51018',
-            // target: 'http://10.10.31.19:8080',
+            // target: 'http://localhost:51018',
+            target: 'http://10.10.31.19:8080',
             // changeOrigin: true,               // needed for virtual hosted sites
             // ws: true,                         // proxy websockets
             pathRewrite: {
