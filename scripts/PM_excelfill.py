@@ -212,7 +212,7 @@ if __name__ == '__main__':
 
     logging.info('query time : ' + time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time())))
 
-    KPI_Excel_Cutover_filename = './scripts/config/KPI_Excel_Cutover.json'
+    KPI_Excel_Cutover_filename = os.path.realpath(__file__) + '/scripts/config/KPI_Excel_Cutover.json'
     KPI_Excel_Cutover_Result = {}
     #print('{"result":"Ok", "data":"Whatever"}')
     #exit(0)
