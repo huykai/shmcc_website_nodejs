@@ -288,6 +288,7 @@ if __name__ == '__main__':
         with open(KPI_Excel_Cutover_filename, 'r') as load_f:
             KPI_Excel_Cutover = json.load(load_f)
             #print(load_dict)
+        logging.info('KPI_Excel_Cutover json parse finished')
         wb = openpyxl.load_workbook(KPI_Excel_Cutover['EXCEL_MODEL'])
         
         filename = KPI_Excel_Cutover['EXCEL_FILENAME']
