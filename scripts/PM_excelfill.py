@@ -212,8 +212,6 @@ if __name__ == '__main__':
 
     logging.info('query time : ' + time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time())))
 
-    KPI_Excel_Cutover_filename = os.path.split(os.path.realpath(__file__))[0] + '/config/KPI_Excel_Cutover.json'
-    KPI_Excel_Cutover_Result = {}
     #print('{"result":"Ok", "data":"Whatever"}')
     #exit(0)
     formparams = None
@@ -270,6 +268,14 @@ if __name__ == '__main__':
         'resultcode': '0',
         'resultdetail': ''
     }
+
+    if (runmode == 'test'):
+        KPI_Excel_Cutover_filename = os.path.split(os.path.realpath(__file__))[0] + '/config/KPI_Excel_Cutover.json'
+    else:
+        KPI_Excel_Cutover_filename = os.path.split(os.path.realpath(__file__))[0] + '/config/' + runmode + '/KPI_Excel_Cutover.json'
+    KPI_Excel_Cutover_Result = {}
+    
+
     try:
         # mysql
         #con = mysql.connect(host=mmedburl, port=int(mmedburlport), user=mmedbuser, passwd=mmedbpasswd, db=mmedb_dbname)

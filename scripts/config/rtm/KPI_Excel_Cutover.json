@@ -1,0 +1,826 @@
+{
+    "EXCEL_MODEL": "/root/huykai/node_webserver/nodejs_shmcc_website/scripts/EPC设备关键性能指标检查表格-Template.xlsx",
+    "EXCEL_FILENAME": "EPC设备关键性能指标检查表格",
+    "MME_SHEET": "MME指标统计",
+    "SAEGW_SHEET": "SAEGW指标统计",
+    "MME_KPI": [
+        { 
+            "item": "mmename",
+            "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "ne"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "B2"
+        },
+        {
+            "item": "date",
+            "value": "startdate",
+            "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "startdate"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "string",
+                    "value": "日期："
+                },
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "D2"
+        },
+        {
+            "item": "time",
+            "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "starttime"
+                },
+                {
+                    "datasource": "params",    
+                    "datavalue": "stoptime"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "string",
+                    "value": "时间："
+                },
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": " - "
+                },
+                {
+                    "type": "data",
+                    "value": "2"
+                }
+            ],
+            "outputlocation": "F2"
+        },
+        {
+            "item": "2g_attach_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "GSM-ATTACH",
+                    "sql_selectitem_index": "8"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C4"
+        },
+        {
+            "item": "2g_pdp_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "GSM-PDP",
+                    "sql_selectitem_index": "8"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C5"
+        },
+        {
+            "item": "2g_rau_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "GSM-RAU",
+                    "sql_selectitem_index": "12"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C6"
+        },
+        {
+            "item": "2g_paging_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "GSM-PAGING",
+                    "sql_selectitem_index": "6"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C8"
+        },
+        {
+            "item": "3g_attach_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "TDS-ATTACH",
+                    "sql_selectitem_index": "14"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "F4"
+        },
+        {
+            "item": "3g_pdp_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "TDS-PDP",
+                    "sql_selectitem_index": "7"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "F5"
+        },
+        {
+            "item": "3g_rau_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "TDS-RAU",
+                    "sql_selectitem_index": "9"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "F6"
+        },
+        {
+            "item": "3g_srns_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "TDS-ATTACH",
+                    "sql_selectitem_index": "13"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "F7"
+        },
+        {
+            "item": "3g_srns_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "TDS-PAGING",
+                    "sql_selectitem_index": "6"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "F8"
+        },
+        {
+            "item": "4g_attach_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-ATTACH",
+                    "sql_selectitem_index": "12"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C10"
+        },
+        {
+            "item": "4g_sr_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-ATTACH",
+                    "sql_selectitem_index": "16"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C11"
+        },
+        {
+            "item": "4g_dedact_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-PDP",
+                    "sql_selectitem_index": "11"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C12"
+        },
+        {
+            "item": "4g_paging_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-TAUPAGING",
+                    "sql_selectitem_index": "25"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C13"
+        },
+        {
+            "item": "4g_intratau_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-TAUPAGING",
+                    "sql_selectitem_index": "14"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C14"
+        },
+        {
+            "item": "4g_interHOIN_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-ATTACH",
+                    "sql_selectitem_index": "26"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C15"
+        },
+        {
+            "item": "4g_voltedefact_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-VOLTE",
+                    "sql_selectitem_index": "7"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C16"
+        },
+        {
+            "item": "4g_voltepaging_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-TAUPAGING",
+                    "sql_selectitem_index": "29"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C17"
+        },
+        {
+            "item": "4g_4guser",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-USER",
+                    "sql_selectitem_index": "10"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C18"
+        },
+        {
+            "item": "4g_mmdu_cpu",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-CPU",
+                    "sql_selectitem_index": "6",
+                    "sql_extra": {
+                        "valuefilter": {
+                            "filter_index": "4",
+                            "filter_regex": "MMDU"
+                        },
+                        "valuealgo": {
+                            "algo_index": "6",
+                            "algo": "avg"
+                        }
+                    }
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C19"
+        },
+        {
+            "item": "4g_cppu_cpu",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-CPU",
+                    "sql_selectitem_index": "6",
+                    "sql_extra": {
+                        "valuefilter": {
+                            "filter_index": "4",
+                            "filter_regex": "CPPU"
+                        },
+                        "valuealgo": {
+                            "algo_index": "6",
+                            "algo": "avg"
+                        }
+                        
+                    }
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C20"
+        }
+    ],
+    "SAEGW_KPI": [
+        { 
+            "item": "mmename",
+            "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "ne"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "B2"
+        },
+        {
+            "item": "date",
+            "value": "startdate",
+            "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "startdate"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "string",
+                    "value": "日期："
+                },
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "D2"
+        },
+        {
+            "item": "time",
+            "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "starttime"
+                },
+                {
+                    "datasource": "params",    
+                    "datavalue": "stoptime"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "string",
+                    "value": "时间："
+                },
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": " - "
+                },
+                {
+                    "type": "data",
+                    "value": "2"
+                }
+            ],
+            "outputlocation": "F2"
+        },
+        {
+            "item": "2g_pdpact_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-PGW",
+                    "sql_selectitem_index": "17"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C4"
+        },
+        {
+            "item": "2g_pdp_count",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-PGW",
+                    "sql_selectitem_index": "23"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C5"
+        },
+        {
+            "item": "3g_pdpact_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-PGW",
+                    "sql_selectitem_index": "20"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "F4"
+        },
+        {
+            "item": "3g_pdp_count",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-PGW",
+                    "sql_selectitem_index": "24"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "F5"
+        },
+        {
+            "item": "4g_pdnact_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-S11CREATESESSION",
+                    "sql_selectitem_index": "12"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C7"
+        },
+        {
+            "item": "4g_dedact_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-CREATEBEARER",
+                    "sql_selectitem_index": "12"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C8"
+        },
+        {
+            "item": "4g_downnotice_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-DOWNDATA-NOTICE",
+                    "sql_selectitem_index": "9"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C9"
+        },
+        {
+            "item": "4g_packforward_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-DATAFORWARD-SUCC",
+                    "sql_selectitem_index": "19"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C10"
+        },
+        {
+            "item": "4g_gtpuecho_succrate",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-GTPU-THROUGH",
+                    "sql_selectitem_index": "27"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": "%"
+                }
+            ],
+            "outputlocation": "C11"
+        },
+        {
+            "item": "4g_pdncount",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-PDN",
+                    "sql_selectitem_index": "7"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C12"
+        },
+        {
+            "item": "4g_throughput",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-GTPU-THROUGH",
+                    "sql_selectitem_index": "24"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C13"
+        },
+        {
+            "item": "4g_sb_cpu",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-SBCPU",
+                    "sql_selectitem_index": "5"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C14"
+        },
+        {
+            "item": "4g_sab_cpu",
+            "values": [
+                {
+                    "datasource": "sql",    
+                    "sql_function": "LTE-SABCPU",
+                    "sql_selectitem_index": "5"
+                }
+            ],
+            "outputformats":[
+                {
+                    "type": "data",
+                    "value": "1"
+                }
+            ],
+            "outputlocation": "C15"
+        }       
+    ]
+}
