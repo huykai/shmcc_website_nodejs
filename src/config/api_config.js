@@ -84,6 +84,22 @@ var apiconfig = [
         script: 'scripts/getDocumentList.py test ',
         method_type: 'GET',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/invokeInspectTask',
+        mode: 'exec',
+        program: 'node.exe ',
+        script: 'scripts/invokeInspectTask.js test ',
+        method_type: 'POST',
+        return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getExcel',
+        mode: 'exec',
+        program: 'python ',
+        script: 'scripts/PM_excelfill.py test ',
+        method_type: 'POST',
+        return_type: 'text/json'
     }
 ]
 

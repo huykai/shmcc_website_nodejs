@@ -87,6 +87,7 @@ def getMMESQL_other_mysql(sqlstring, param):
 # make sql scripts for parts of 'select', 'from', 'where'
 def getMMESQL_main(api_sql_info, param):
     
+    #print('getMMESQL_main param : %s, %s' % (param.selectperiod, param.selectmmeelement))
     sql_item_type = 'sql_items_' + param.selectperiod + '_' + param.selectmmeelement
     #print('sql_item_type : ',sql_item_type)
     sql_item = api_sql_info['sql_items'][sql_item_type]
@@ -105,16 +106,17 @@ def mme_2g_attach(kpi_title, cursor, param):
     #print('api_sql_info : ' , api_sql_info)
     sqlstring = getMMESQL_main(api_sql_info, param)
     #print sqlstring
-#try:
-    #sqlstring = getMMESQL_other_mysql(sqlstring,param)
-    sqlstring = getMMESQL_other_oracle(sqlstring,param)
-    #print(sqlstring)
-    cursor.execute(sqlstring)
-    row=cursor.fetchall()
-    return (api_sql_info['title'],row)
-#except:
-#    print 'something error!'
-#    return (['error'], None)
+    try:
+        #sqlstring = getMMESQL_other_mysql(sqlstring,param)
+        sqlstring = getMMESQL_other_oracle(sqlstring,param)
+        #print(sqlstring)
+        cursor.execute(sqlstring)
+        row=cursor.fetchall()
+        return (api_sql_info['title'],row)
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_2g_attach: " + str(e)
+        return (['error', errorMessage], None)
 
 def mme_2g_pdp(kpi_title, cursor, param):
 # PDP activation 2G
@@ -129,9 +131,10 @@ def mme_2g_pdp(kpi_title, cursor, param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_2g_pdp: " + str(e)
+        return (['error', errorMessage], None)
 	
 def mme_2g_rau(kpi_title,cursor,param):
 # GSM RAU 2G
@@ -146,9 +149,10 @@ def mme_2g_rau(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_2g_rau: " + str(e)
+        return (['error', errorMessage], None)
 
 def mme_2g_paging(kpi_title,cursor,param):
 # GSM PAGING 2G
@@ -163,9 +167,10 @@ def mme_2g_paging(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_2g_paging: " + str(e)
+        return (['error', errorMessage], None)	
 		
 def mme_3g_attach(kpi_title,cursor,param):
     # GSM ATTACH 3G
@@ -180,9 +185,10 @@ def mme_3g_attach(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_3g_attach: " + str(e)
+        return (['error', errorMessage], None)	
 
 def mme_3g_pdp(kpi_title,cursor,param):
     # GSM PDP 3G
@@ -197,9 +203,10 @@ def mme_3g_pdp(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-            print 'something error!'
-            return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_3g_pdp: " + str(e)
+        return (['error', errorMessage], None)	
 
 def mme_3g_rau(kpi_title,cursor,param):
 	# GSM PDP 3G
@@ -214,9 +221,10 @@ def mme_3g_rau(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_3g_rau: " + str(e)
+        return (['error', errorMessage], None)	
 		
 def mme_3g_paging(kpi_title,cursor,param):
 	# GSM PAGING 3G
@@ -231,9 +239,10 @@ def mme_3g_paging(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_3g_paging: " + str(e)
+        return (['error', errorMessage], None)	
 		
 def mme_users(kpi_title,cursor,param):
     # GSM users 4G
@@ -248,9 +257,10 @@ def mme_users(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)				
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_users: " + str(e)
+        return (['error', errorMessage], None)				
 def mme_4g_attach(kpi_title,cursor,param):
 	# GSM ATTACH 4G
     sqlstring = ""
@@ -264,9 +274,10 @@ def mme_4g_attach(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_attach: " + str(e)
+        return (['error', errorMessage], None)	
 		
 def mme_4g_pdp(kpi_title,cursor,param):
 	# GSM PDP 4G
@@ -281,9 +292,10 @@ def mme_4g_pdp(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_pdp: " + str(e)
+        return (['error', errorMessage], None)	
 		
 def mme_4g_taupaging(kpi_title,cursor,param):
 	# GSM TAUPAGING 4G
@@ -298,9 +310,10 @@ def mme_4g_taupaging(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_taupaging: " + str(e)
+        return (['error', errorMessage], None)	
 		
 def mme_cpu(kpi_title,cursor,param):
     # GSM MME CPU
@@ -338,9 +351,10 @@ def mme_cpu(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)		
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_cpu: " + str(e)
+        return (['error', errorMessage], None)		
 def mme_4g_auth(kpi_title,cursor,param):
     # GSM AUTH 4G
     sqlstring = ""
@@ -354,9 +368,10 @@ def mme_4g_auth(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)		
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_auth: " + str(e)
+        return (['error', errorMessage], None)		
 
 def mme_4g_csfb(kpi_title,cursor,param):
     # GSM CSFB 4G
@@ -371,9 +386,10 @@ def mme_4g_csfb(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)				
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_csfb: " + str(e)
+        return (['error', errorMessage], None)				
 def mme_4g_volte(kpi_title,cursor,param):
     # GSM VOLTE 4G
     sqlstring = ""
@@ -387,9 +403,10 @@ def mme_4g_volte(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)			
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_volte: " + str(e)
+        return (['error', errorMessage], None)			
 
 def mme_4g_esrvcc(kpi_title,cursor,param):
 # GSM ESRVCC 4G
@@ -404,9 +421,10 @@ def mme_4g_esrvcc(kpi_title,cursor,param):
         cursor.execute(sqlstring)
         row=cursor.fetchall()
         return (api_sql_info['title'],row)
-    except:
-        print 'something error!'
-        return (['error'], None)	
+    except Exception as e:
+    #    print 'something error!'
+        errorMessage = "Error mme_4g_esrvcc: " + str(e)
+        return (['error', errorMessage], None)	
 
 mme_api_sql_function = {
     'GSM-ATTACH'     : {
@@ -579,6 +597,7 @@ mme_api_sql_function = {
             ],
             'sql_items_60_MME'  : [
                 #"objects.co_name MMESGSN",
+                "objects.co_name MMESGSN",
                 "to_char(ttfg.period_start_time,'yyyy-mm-dd') Sdate",
                 "to_char(ttfg.period_start_time,'hh24') Stime",
                 "sum(SGSN_LEVEL_PS_PAGINGS) pagingatt2g",
@@ -1161,7 +1180,8 @@ mme_api_sql_function = {
                         u'PAGING成功率',
                         u'EPS PAGING VOLTE次数',
                         u'EPS PAGING VOLTE成功次数',
-                        u'EPS PAGING VOLTE失败次数'
+                        u'EPS PAGING VOLTE失败次数',
+                        u'EPS PAGING VOLTE成功率'
         ],
         'sql_items'    : {
             'sql_items_15_MME' : [
@@ -1193,7 +1213,8 @@ mme_api_sql_function = {
                 "decode(nvl((sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL)),0),0,0,(round((sum(EPS_PAGING_SUCC)/(sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL))),4)*100)) PAGING_SR",
                 "sum(EPS_PAGING_VOLTE_ATTEMPT) EPS_PAGING_VOLTE_ATTEMPT",
                 "sum(EPS_PAGING_VOLTE_SUCC) EPS_PAGING_VOLTE_SUCC",
-                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL"
+                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL",
+                "decode(nvl((sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL)),0),0,0,(round((sum(EPS_PAGING_VOLTE_SUCC)/(sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL))),4)*100)) VOLTE_PAGING_SR"
             ],
             'sql_items_15_TAC' : [
                 #"ttfg.fins_id id",
@@ -1224,7 +1245,8 @@ mme_api_sql_function = {
                 "decode(nvl((sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL)),0),0,0,(round((sum(EPS_PAGING_SUCC)/(sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL))),4)*100)) PAGING_SR",
                 "sum(EPS_PAGING_VOLTE_ATTEMPT) EPS_PAGING_VOLTE_ATTEMPT",
                 "sum(EPS_PAGING_VOLTE_SUCC) EPS_PAGING_VOLTE_SUCC",
-                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL"
+                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL",
+                "decode(nvl((sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL)),0),0,0,(round((sum(EPS_PAGING_VOLTE_SUCC)/(sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL))),4)*100)) VOLTE_PAGING_SR"
             ],
             'sql_items_60_MME' : [
                 #"ttfg.fins_id id",
@@ -1255,7 +1277,9 @@ mme_api_sql_function = {
                 "decode(nvl((sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL)),0),0,0,(round((sum(EPS_PAGING_SUCC)/(sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL))),4)*100)) PAGING_SR",
                 "sum(EPS_PAGING_VOLTE_ATTEMPT) EPS_PAGING_VOLTE_ATTEMPT",
                 "sum(EPS_PAGING_VOLTE_SUCC) EPS_PAGING_VOLTE_SUCC",
-                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL"
+                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL",
+                "decode(nvl((sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL)),0),0,0,(round((sum(EPS_PAGING_VOLTE_SUCC)/(sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL))),4)*100)) VOLTE_PAGING_SR"
+            
             ],
             'sql_items_60_TAC'  : [
                 #"ttfg.fins_id id",
@@ -1286,7 +1310,8 @@ mme_api_sql_function = {
                 "decode(nvl((sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL)),0),0,0,(round((sum(EPS_PAGING_SUCC)/(sum(EPS_PAGING_SUCC+EPS_PAGING_FAIL))),4)*100)) PAGING_SR",
                 "sum(EPS_PAGING_VOLTE_ATTEMPT) EPS_PAGING_VOLTE_ATTEMPT",
                 "sum(EPS_PAGING_VOLTE_SUCC) EPS_PAGING_VOLTE_SUCC",
-                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL"
+                "sum(EPS_PAGING_VOLTE_FAIL) EPS_PAGING_VOLTE_FAIL",
+                "decode(nvl((sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL)),0),0,0,(round((sum(EPS_PAGING_VOLTE_SUCC)/(sum(EPS_PAGING_VOLTE_SUCC)+sum(EPS_PAGING_VOLTE_FAIL))),4)*100)) VOLTE_PAGING_SR"
             ]
         },
         'sql_tables'  : [

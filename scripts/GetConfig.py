@@ -17,16 +17,19 @@ class PmSqlParam(object):
         self.stopdate = ""
         self.starttime = ""
         self.stoptime = ""
-        self.selectperiod = 15
+        self.selectperiod = "15"
         self.selectperiodtype = 'continue'
         self.selectmmesgsn = "all"
-        self.selectmmeelement = "MMESGSN"
-        self.selectsaegwelement = "SAEGWGGSN"
+        self.selectmmeelement = "MME"
+        self.selectsaegwelement = "SAEGW"
         self.selectsaegwggsn = "all"
         self.selectsession = "0"
         self.localsave = "0"
         self.kpilist = ""
         self.isMME = 1
+
+    def __getitem__(self, item):
+        return getattr(self, item)
 
 class AlarmSqlParam(object):
     """
@@ -46,6 +49,9 @@ class AlarmSqlParam(object):
         self.isAlarmDetail = "true"
         self.localsave = "0"
         self.isMME = 1
+
+def __getitem__(self, item):
+        return getattr(self, item)
 
 def prn_obj():
     print ('\n'.join(['%s:%s' % item for item in this.__dict__.items()]))

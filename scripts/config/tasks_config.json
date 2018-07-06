@@ -1,0 +1,19 @@
+{
+    "tasks_item": [
+        {
+            "taskname": "MME_regular_check",
+            "collectTask": {
+                "config_type": "file",
+                "config_content": "tasks_collection.yml"
+            },
+            "analysisTask": {
+                "config_type": "file",
+                "config_content": "tasks_analysis.yml"
+            },
+            "reportTask": {
+                "config_type": "file",
+                "config_content": "tasks_report.yml"
+            }
+        }
+    ]
+}

@@ -12,26 +12,37 @@ var jwt = require('express-jwt');
 var morgan  = require('morgan'); // logger
 var tokenManager = require('./config/token_manager');
 var secret = require('./config/secret');
-var netelements = require('./config/netelementconfig');
+
 var external_webs = require('./config/external_webs');
 var external_webs_config = require('./config/external_webs_config');
 var proxy = require('http-proxy-middleware');
+var socketServer = require('./ioserver');
 
 const http = require('http');
+const https = require('https');
 const hostname = '127.0.0.1';
-const port = 3000;
+const http_port = 3000;
+const https_port = 3010;
 
 const ServerTimeout = 3600000;
 
 var processOption = {
   env: {
-    PORT : 3000
+    HTTP_PORT : 3000,
+    HTTPS_PORT : 3010
   }
 }
 var fs = require('fs');
 var ejs = require('ejs');
 var ioserver = require('socket.io');
-var pty = require('node-pty');
+
+
+var privateKey  = fs.readFileSync(__dirname + '/sslcert/privatekey.pem', 'utf8');
+var certificate = fs.readFileSync(__dirname + '/sslcert/certificate.pem', 'utf8');
+var ssloptions = {
+  key: privateKey,
+  cert: certificate
+}
 
 var routes = {};
 routes.posts = require('./route/posts.js');
@@ -48,7 +59,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var app = express();
 
 
-app.set('port', processOption.env.PORT || 3000);
+app.set('http_port', processOption.env.HTTP_PORT || 3000);
+app.set('https_port', processOption.env.HTTPS_PORT || 3010);
 app.set('views', __dirname + '/views');
 app.engine('.html', ejs.__express);
 app.set('view engine', 'html');
@@ -88,21 +100,6 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-//app.post('/index_traffica.html', csrfProtection, function (req, res, next) {
-//  console.log('/ Cookies: ', req.cookies);
-//  var fileName = site_config.static_dir + req.url;
-//  console.log(fileName);
-//  //res.cookie.csrfToken = req.cookies.csrfToken;
-// //res.locals._csrf = req.csrfToken();
-//  //res.cookie('XSRF-TOKEN', req.csrfToken());
-//  res.sendFile(fileName, function (err) {
-//    if (err) {
-//      next(err);
-//    } else {
-//      console.log('Sent:', fileName);
-//    }
-//  });
-//});
 
 app.get('/', csrfProtection, function (req, res, next) {
   console.log('/ Cookies: ', req.cookies);
@@ -139,7 +136,6 @@ app.get('/orig', function (req, res, next) {
 //app.use(bodyParser());
 
 //Create a new user
-//app.post('/user/register', urlencodedParser, routes.users.register); 
 app.post('/user/register', urlencodedParser, routes.users.register); 
 
 //Login
@@ -171,144 +167,54 @@ app.use(function (err, req, res, next) {
   res.send('form tampered with');
 });
 
-var server = http.createServer(app).listen(app.get('port'),function() {
-  console.log('Express server listening on port ' + app.get('port'));
+var http_server = http.createServer(app).listen(app.get('http_port'),function() {
+  console.log('Express http server listening on port ' + app.get('http_port'));
 });
-server.timeout = ServerTimeout;
-var io = require('socket.io')(server);
+
+http_server.timeout = ServerTimeout;
+
+var https_server = https.createServer(ssloptions, app).listen(app.get('https_port'),function() {
+  console.log('Express https server listening on port ' + app.get('https_port'));
+});
+
+https_server.timeout = ServerTimeout;
+
+process.on('uncaughtException', function (err) {
+  console.log('uncaughtException: ');
+  console.error(err);
+  http_server.close(); 
+  https_server.close(); 
+  setTimeout(process.exit, 5000, 1);
+});
+
+const socket_httpServer = socketServer(http_server);
+const socket_httpsServer = socketServer(https_server);
+
+var io = require('socket.io')(http_server);
 io.on('connection', function(socket){
   console.log('a user connected.');
   socket.on('disconnected', function(){
     console.log('user disconnected.');
   });
-  socket.on('add-message', (message) => {
-    setTimeout(function(){
-      let data = [
-        ['Evolution', 'Imports', 'Exports'],
-        ['A ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
-        ['B ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
-        ['C ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)]
-      ];
-      io.emit(message, {type:'new-message', text: data});    
-    },10000);
+  //socket.on('add-message', (message) => {
+    //setTimeout(function(){
+    //  let data = [
+    //    ['Evolution', 'Imports', 'Exports'],
+    //    ['A ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
+    //    ['B ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)],
+    //    ['C ' + message, Math.round(Math.random()*10000), Math.round(Math.random()*10000)]
+    //  ];
+    //  io.emit(message, {type:'new-message', text: data});    
+  //  },10000);
     
-  });
+  //});
   //let count = 0;
   //setInterval(()=>{count++; socket.emit('message',count)},1000);
 })
 
-process.on('uncaughtException', function (err) {
-  console.log('uncaughtException: ');
-  console.error(err);
-  server.close(); 
-  setTimeout(process.exit, 5000, 1);
-});
-
-var io = ioserver(server,{path: '/hyktty/socket.io'});
-io.on('connection', function(socket){
-  console.log('io connected');
-  socket.on('login', function(loginparam){
-    console.log('io login param:', JSON.stringify(loginparam));
-    let netelement = findNetElement(loginparam['name'], netelements);
-    if (netelement == null) {
-      console.log('netelement ', loginparam['name'], ' not found!');
-      return;
-    }
-
-    var logintype = netelement.type || 'ssh';
-    var loginuser = netelement.user || 'root' + '@';
-    var loginhost = netelement.host || 'localhost';
-    var loginport = netelement.port || '22';
-    var loginauth = netelement.auth || 'password,keyboard-interactive';
-    var loginauto = netelement.login ? Object.assign([],netelement.login) : [];
-    // var request = socket.request;
-    // console.log((new Date()) + ' Connection accepted.');
-    // if (match = request.headers.referer.match('/wetty/ssh/.+$')) {
-    //    sshuser = match[0].replace('/wetty/ssh/', '') + '@';
-    // } else if (globalsshuser) {
-    //    sshuser = globalsshuser + '@';
-    // }
-    //console.log('login : ', JSON.stringify(loginparam));
-    var term;
-    if (loginhost === 'localhost') {
-      console.log('host : localhost');
-      term = pty.spawn('/usr/bin/env', ['login'], {
-          name: 'xterm-256color',
-          cols: 80,
-          rows: 30
-      });
-    } else {
-      console.log('host : ', loginhost);
-      if (logintype === 'ssh') {
-        term = pty.spawn('D:\\cmder\\vendor\\git-for-windows\\usr\\bin\\ssh.exe ', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
-          name: 'xterm-256color',
-          cols: 80,
-          rows: 30
-        });
-      } else if (logintype === 'telnet'){
-        term = pty.spawn('telnet.exe ', [loginhost, loginport], {
-          name: 'xterm-256color',
-          cols: 80,
-          rows: 30
-        });
-      }
-    }
-    
-    console.log((new Date()) + " PID=" + term.pid + " STARTED on behalf of user=" + loginuser)
-    term.on('data', function(data) {
-      // console.log('term.on data: ', data);
-      socket.emit('output', data);
-      if (loginauto && loginauto.length > 0){
-        let loginautoitem = loginauto[0];
-        if (data.indexOf(loginautoitem['prompt']) >= 0) {
-          console.log('login prompt: ',loginautoitem['prompt']);
-          loginauto.splice(0,1);
-          term.write(loginautoitem['answer']);
-          
-        }
-      }
-    });
-    term.on('exit', function(code) {
-      console.log('term.on exit: ', code);
-      console.log((new Date()) + " PID=" + term.pid + " ENDED")
-    });
-    socket.on('resize', function(data) {
-      console.log('socket.on resize resize: ', data);
-      term.resize(data.col, data.row);
-    });
-    socket.on('input', function(data) {
-      //console.log('socket.on input: ', data);
-      term.write(data);
-    });
-    socket.on('disconnect', function() {
-      console.log('socket.on disconnect: ');
-      term._close();
-      term.kill();
-    });
-    socket.on('connect_error', function() {
-      console.log('socket.on connect_error: ');
-      term._close();
-      term.end();
-    });
-    socket.on('error', function() {
-      console.log('socket.on error: ');
-      term._close();
-      term.end();
-    });
-  });
-});
-
-var findNetElement = function(name, netelements){
-  for (let netelement of netelements) {
-    if (netelement['name'] === name) {
-      return netelement;
-    }
-  }
-  return null;
-}
-
 module.exports = {
   app: app,
   host: hostname,
-  port: port
+  http_port: http_port,
+  https_port: https_port
 }
