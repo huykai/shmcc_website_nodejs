@@ -289,8 +289,8 @@ if __name__ == '__main__':
             KPI_Excel_Cutover = json.load(load_f)
             #print(load_dict)
         logging.info('KPI_Excel_Cutover json parse finished')
-        wb = openpyxl.load_workbook(KPI_Excel_Cutover['EXCEL_MODEL'])
         logging.info('KPI_Excel_Cutover EXCEL MODEL NAME: ' + KPI_Excel_Cutover['EXCEL_MODEL'])
+        wb = openpyxl.load_workbook(KPI_Excel_Cutover['EXCEL_MODEL'])
         filename = KPI_Excel_Cutover['EXCEL_FILENAME']
         logging.info(' EXCEL_FILENAME : ' + filename)
         db = cx_Oracle.connect(dbuser, dbpasswd, dburl)
