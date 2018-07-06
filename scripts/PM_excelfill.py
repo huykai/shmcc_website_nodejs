@@ -275,7 +275,7 @@ if __name__ == '__main__':
     else:
         KPI_Excel_Cutover_filename = filepath + '/config/' + runmode + '/KPI_Excel_Cutover.json'
     KPI_Excel_Cutover_Result = {}
-    
+    logging.info('KPI_Excel_Cutover_filename : ' + KPI_Excel_Cutover_filename)
 
     try:
         # mysql
@@ -291,6 +291,7 @@ if __name__ == '__main__':
         wb = openpyxl.load_workbook(KPI_Excel_Cutover['EXCEL_MODEL'])
         
         filename = KPI_Excel_Cutover['EXCEL_FILENAME']
+        logging.info(' EXCEL_FILENAME : ' + filename)
         db = cx_Oracle.connect(dbuser, dbpasswd, dburl)
         dbcursor=db.cursor()
     
