@@ -269,10 +269,11 @@ if __name__ == '__main__':
         'resultdetail': ''
     }
 
+    filepath = os.path.split(os.path.realpath(__file__))[0]
     if (runmode == 'test'):
-        KPI_Excel_Cutover_filename = os.path.split(os.path.realpath(__file__))[0] + '/config/KPI_Excel_Cutover.json'
+        KPI_Excel_Cutover_filename = filepath + '/config/KPI_Excel_Cutover.json'
     else:
-        KPI_Excel_Cutover_filename = os.path.split(os.path.realpath(__file__))[0] + '/config/' + runmode + '/KPI_Excel_Cutover.json'
+        KPI_Excel_Cutover_filename = filepath + '/config/' + runmode + '/KPI_Excel_Cutover.json'
     KPI_Excel_Cutover_Result = {}
     
 
@@ -324,9 +325,9 @@ if __name__ == '__main__':
             #run_kpi(kpi, kpi_function, dbcursor, param)
 
         if (runmode == 'test'):
-            site_config_filename = './scripts/config/api_options.json'
+            site_config_filename = filepath + '/config/api_options.json'
         else:
-            site_config_filename = './scripts/config/' + runmode + '/api_options.json' 
+            site_config_filename = filepath + '/config/' + runmode + '/api_options.json' 
         site_config = json.load(open(site_config_filename, 'r'))
 
         nowtime = datetime.datetime.now() 
