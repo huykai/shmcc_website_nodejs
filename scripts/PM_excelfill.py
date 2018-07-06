@@ -329,6 +329,7 @@ if __name__ == '__main__':
             site_config_filename = filepath + '/config/api_options.json'
         else:
             site_config_filename = filepath + '/config/' + runmode + '/api_options.json' 
+        logging.info('site_config_filename  : ' + site_config_filename)
         site_config = json.load(open(site_config_filename, 'r'))
 
         nowtime = datetime.datetime.now() 
