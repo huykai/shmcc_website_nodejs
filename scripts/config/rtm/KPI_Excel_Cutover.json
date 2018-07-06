@@ -1,5 +1,5 @@
 {
-    "EXCEL_MODEL": "/root/huykai/node_webserver/nodejs_shmcc_website/scripts/EPC设备关键性能指标检查表格-Template.xlsx",
+    "EXCEL_MODEL": "/root/huykai/node_webserver/nodejs_shmcc_website/scripts/EPCTemplate.xlsx",
     "EXCEL_FILENAME": "EPC设备关键性能指标检查表格",
     "MME_SHEET": "MME指标统计",
     "SAEGW_SHEET": "SAEGW指标统计",
