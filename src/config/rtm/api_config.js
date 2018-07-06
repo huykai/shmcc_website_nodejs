@@ -98,6 +98,14 @@ var apiconfig = [
         script: ' ',
         method_type: 'GET',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getExcel',
+        mode: 'exec',
+        program: 'python ',
+        script: 'scripts/PM_excelfill.py rtm ',
+        method_type: 'POST',
+        return_type: 'text/json'
     }
 ]
 
