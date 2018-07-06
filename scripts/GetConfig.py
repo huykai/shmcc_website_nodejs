@@ -72,7 +72,7 @@ def getdbconfigxml(runmode, dbmodelname):
             #print('db.xml : ' + path + "/config/db.xml")
         dbs = dom.getElementsByTagName('dbmodelname')
         
-        print('from dbconfig file get : dbs' + str(dbs))
+        #print('from dbconfig file get : dbs' + str(dbs))
         for db in dbs:
             #print db.getAttribute('id')
             if db.getAttribute('id') == dbmodelname:
@@ -103,7 +103,7 @@ def getdbconfig(runmode, dbmodelname):
             #print('config file path : ' + path + "/config/db.json")
         
         
-        print('from dbconfig file get : dbjson' + str(dbjson))
+        #print('from dbconfig file get : dbjson' + str(dbjson))
         for db in dbjson:
             #print db.getAttribute('id')
             if db['dbmodelname'] == dbmodelname:
