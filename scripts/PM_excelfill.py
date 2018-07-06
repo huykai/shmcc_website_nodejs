@@ -331,7 +331,7 @@ if __name__ == '__main__':
         result['resultcode'] = 1
         result['resultdetail'] = 'downloads/' + filename
 
-    except Exception, e:
+    except Exception as e:
         logging.error("Error PM_Excelfill: %s" % str(e))
         result['resultcode'] = 0
         result['resultdetail'] = "Error PM_Excelfill: %s" % str(e)

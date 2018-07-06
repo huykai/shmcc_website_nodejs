@@ -66,10 +66,10 @@ def getdbconfigxml(runmode, dbmodelname):
         #print 'db.xml path: ' + path + "/config/db.xml"
         if (runmode != "test"):
             dom = xml.dom.minidom.parse(path + '/config/' + runmode + '/db.xml')
-            print('config file path : ' + path + "/config/" + runmode + "/db.xml")
+            #print('config file path : ' + path + "/config/" + runmode + "/db.xml")
         else:
             dom = xml.dom.minidom.parse(path + "/config/db.xml")
-            print('db.xml : ' + path + "/config/db.xml")
+            #print('db.xml : ' + path + "/config/db.xml")
         dbs = dom.getElementsByTagName('dbmodelname')
         
         print('from dbconfig file get : dbs' + str(dbs))
@@ -96,11 +96,11 @@ def getdbconfig(runmode, dbmodelname):
         if (runmode != "test"):
             dbjsonfile = open(path + '/config/' + runmode + '/db.json', 'r')
             dbjson = json.load(dbjsonfile)
-            print('config file path : ' + path + "/config/" + runmode + "/db.json")
+            #print('config file path : ' + path + "/config/" + runmode + "/db.json")
         else:
             dbjsonfile = open(path + '/config/db.json', 'r')
             dbjson = json.load(dbjsonfile)
-            print('config file path : ' + path + "/config/db.json")
+            #print('config file path : ' + path + "/config/db.json")
         
         
         print('from dbconfig file get : dbjson' + str(dbjson))
