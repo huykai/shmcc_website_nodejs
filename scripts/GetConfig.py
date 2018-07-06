@@ -65,13 +65,13 @@ def getdbconfig(runmode, dbmodelname):
         #print 'db.xml path: ' + path + "/config/db.xml"
         if (runmode != "test"):
             dom = xml.dom.minidom.parse(path + '/config/' + runmode + '/db.xml')
-            #console.log('config file path',path + "./config/' + runmode + '/db.xml")
+            print('config file path : ' + path + "./config/" + runmode + "/db.xml")
         else:
             dom = xml.dom.minidom.parse(path + "/config/db.xml")
-        #print 'db.xml : ' + path + "/config/db.xml"
+        print('db.xml : ' + path + "/config/db.xml")
         dbs = dom.getElementsByTagName('dbmodelname')
         
-        #print 'dbs',dbs
+        print('from dbconfig file get : dbs' + str(dbs))
         for db in dbs:
             #print db.getAttribute('id')
             if db.getAttribute('id') == dbmodelname:
