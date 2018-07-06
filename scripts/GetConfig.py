@@ -7,6 +7,7 @@ for database parameter get from config/db.xml
 import xml.dom.minidom
 import sys
 import os
+import json
 
 class PmSqlParam(object):
     """
@@ -56,7 +57,7 @@ def __getitem__(self, item):
 def prn_obj():
     print ('\n'.join(['%s:%s' % item for item in this.__dict__.items()]))
 
-def getdbconfig(runmode, dbmodelname):
+def getdbconfigxml(runmode, dbmodelname):
     """
     from db.xml get the db's params
     """
@@ -80,6 +81,37 @@ def getdbconfig(runmode, dbmodelname):
                 dburl = db.getElementsByTagName('dburl')[0].firstChild.data
                 dburlport = db.getElementsByTagName('dburlport')[0].firstChild.data
                 dbname = db.getElementsByTagName('dbname')[0].firstChild.data
+                break
+        return (dbuser, dbpasswd, dburl, dburlport, dbname)
+    except Exception as e:
+        return ('except', str(e), '', '', '')
+
+def getdbconfig(runmode, dbmodelname):
+    """
+    from db.xml get the db's params
+    """
+    try:
+        path = os.path.split(os.path.realpath(__file__))[0]
+        #print 'db.xml path: ' + path + "/config/db.xml"
+        if (runmode != "test"):
+            dbjsonfile = open(path + '/config/' + runmode + '/db.json', 'r')
+            dbjson = json.load(dbjsonfile)
+            print('config file path : ' + path + "/config/" + runmode + "/db.json")
+        else:
+            dbjsonfile = open(path + '/config/db.json', 'r')
+            dbjson = json.load(dbjsonfile)
+            print('config file path : ' + path + "/config/db.json")
+        
+        
+        print('from dbconfig file get : dbjson' + str(dbjson))
+        for db in dbjson:
+            #print db.getAttribute('id')
+            if db['dbmodelname'] == dbmodelname:
+                dbuser = db['userid']
+                dbpasswd = db['password']
+                dburl = db['dburl']
+                dburlport = db['dburlport']
+                dbname = db['dbname']
                 break
         return (dbuser, dbpasswd, dburl, dburlport, dbname)
     except Exception as e:

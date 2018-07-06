@@ -1,0 +1,26 @@
+[
+	{
+		"dbmodelname": "mmedb_mysql",
+		"userid": "root",
+		"password": "Huykai123",
+		"dburl": "127.0.0.1",
+		"dburlport": "3306",
+		"dbname": "oss"
+    },
+    {
+		"dbmodelname": "mmedb",
+		"userid": "omc",
+		"password": "omc",
+		"dburl": "127.0.0.1:51063/oss",
+		"dburlport": "1521",
+		"dbname": "oss"
+	},
+    {
+		"dbmodelname": "saegwdb",
+		"userid": "omc",
+		"password": "omc",
+		"dburl": "127.0.0.1:51063/oss",
+		"dburlport": "1521",
+		"dbname": "oss"
+	}
+]

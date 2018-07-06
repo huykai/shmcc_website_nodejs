@@ -1,0 +1,18 @@
+[
+    {
+		"dbmodelname": "mmedb",
+		"userid": "omc",
+		"password": "omc",
+		"dburl": "10.221.255.4:1521/oss",
+		"dburlport": "1521",
+		"dbname": "oss"
+	},
+    {
+		"dbmodelname": "saegwdb",
+		"userid": "omc",
+		"password": "omc",
+		"dburl": "10.221.255.4:1521/oss",
+		"dburlport": "1521",
+		"dbname": "oss"
+	}
+]
