@@ -1452,7 +1452,7 @@ mme_api_sql_function = {
         ]
     },
 	'LTE-CSFB'        : {
-        'func'         : mme_2g_rau,
+        'func'         : mme_4g_csfb,
         'title'        : [
                         #u'设备ID',
                         u'设备名称',
@@ -1605,7 +1605,7 @@ mme_api_sql_function = {
         ]
     },
     'LTE-USER'        : {
-        'func'         : mme_4g_auth,
+        'func'         : mme_users,
         'title'        : [
                         #u'设备ID',
                         u'设备名称',
@@ -1624,7 +1624,6 @@ mme_api_sql_function = {
         'sql_items'    : {
             'sql_items_15_MME' : [
                 #"ttfg.fins_ID",
-                "ttfg.fins_ID",
                 "objects.co_Name MMESGSN",
                 "to_char(ttfg.period_start_time,'yyyy-mm-dd') Sdate",
                 "to_char(ttfg.period_start_time,'hh24:mi') Stime",

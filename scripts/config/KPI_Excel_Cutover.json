@@ -436,7 +436,7 @@
                 {
                     "datasource": "sql",    
                     "sql_function": "LTE-USER",
-                    "sql_selectitem_index": "11"
+                    "sql_selectitem_index": "10"
                 }
             ],
             "outputformats":[
