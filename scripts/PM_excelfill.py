@@ -286,7 +286,7 @@ if __name__ == '__main__':
 	    #mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
 
         with io.open(KPI_Excel_Cutover_filename, 'r', encoding='utf-8') as load_f:
-            KPI_Excel_Cutover = json.load(load_f)
+            KPI_Excel_Cutover = json.load(load_f, encoding='utf-8')
             #print(load_dict)
         wb = openpyxl.load_workbook(KPI_Excel_Cutover['EXCEL_MODEL'])
         
