@@ -239,7 +239,10 @@ if __name__ == '__main__':
     # for excel , in these param
     # we need netype(mme or saegw), ne(SHMME03BNK), time(2018-06-30T13:03:51.155Z)
 
-    currtime = datetime.datetime.strptime(param.time, "%Y-%m-%dT%H:%M:%S.%fZ")
+    #currtime = datetime.datetime.strptime(param.time, "%Y-%m-%dT%H:%M:%S.%fZ")
+    timeArray = time.localtime(float(param.time))
+    param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+    currtime = datetime.datetime.strptime(param_time, "%Y-%m-%d %H:%M:%S")
     currtime = datetime.datetime(currtime.year, currtime.month, currtime.day, currtime.hour, 0)
     currtime = currtime + datetime.timedelta(minutes=-1)
     pretime = currtime + datetime.timedelta(minutes=-1*59)
@@ -340,7 +343,7 @@ if __name__ == '__main__':
         wb.save(realfilename)
         
         result['resultcode'] = 1
-        result['resultdetail'] = 'downloads/' + filename
+        result['resultdetail'] = KPI_Excel_Cutover['EXCEL_DOWNLOAD_URL'] + filename
 
     except Exception as e:
         logging.error("Error PM_Excelfill: %s" % str(e))

@@ -1,6 +1,7 @@
 {
     "EXCEL_MODEL": "/root/huykai/node_webserver/nodejs_shmcc_website/scripts/EPCTemplate.xlsx",
     "EXCEL_FILENAME": "EPC_Cutover_KPI",
+    "EXCEL_DOWNLOAD_URL": "../downloads/",
     "MME_SHEET": "MME指标统计",
     "SAEGW_SHEET": "SAEGW指标统计",
     "MME_KPI": [

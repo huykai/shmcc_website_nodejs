@@ -1,6 +1,7 @@
 {
     "EXCEL_MODEL": "./scripts/EPC设备关键性能指标检查表格-Template.xlsx",
     "EXCEL_FILENAME": "EPC设备关键性能指标检查表格",
+    "EXCEL_DOWNLOAD_URL": "../downloads/",
     "MME_SHEET": "MME指标统计",
     "SAEGW_SHEET": "SAEGW指标统计",
     "MME_KPI": [
