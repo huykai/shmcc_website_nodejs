@@ -10,7 +10,8 @@
 *.swp
 *.tgz
 *.pyc
-result/*
+scripts/*.pyc
+result/
 .DS_Store
 .idea
 .project
