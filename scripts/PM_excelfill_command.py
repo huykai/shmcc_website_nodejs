@@ -342,7 +342,7 @@ if __name__ == '__main__':
 
         nowtime = datetime.datetime.now() 
         filename = filename + param.ne + nowtime.strftime("%Y%m%d") + nowtime.strftime("%H%M%S") + '.xlsx'
-        realfilename = site_config['download_dir'] + filename 
+        realfilename = filename 
         wb.save(realfilename)
         
         result['resultcode'] = 1
