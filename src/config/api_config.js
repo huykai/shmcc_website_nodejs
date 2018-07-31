@@ -54,7 +54,7 @@ var apiconfig = [
     {
         api_string: '/api/getTrafficaRecord',
         mode: 'exec',
-        program: 'java.exe -jar e:\\eclipse_projects\\TrafficaDBAPI\\target\\TrafficaDBAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar test ',
+        program: 'java.exe -jar e:\\eclipse_projects\\eclipse_projects\\TrafficaDBAPI\\target\\TrafficaDBAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar test ',
         //mode: 'file',
         //program: './reactjs/data/data_tmp.json',
         script: "",
