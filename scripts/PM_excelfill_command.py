@@ -346,7 +346,7 @@ if __name__ == '__main__':
         wb.save(realfilename)
         
         result['resultcode'] = 1
-        result['resultdetail'] = KPI_Excel_Cutover['EXCEL_DOWNLOAD_URL'] + filename
+        result['resultdetail'] = filename
 
     except Exception as e:
         logging.error("Error PM_Excelfill: %s" % str(e))
