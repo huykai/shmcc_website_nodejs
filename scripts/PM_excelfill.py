@@ -93,7 +93,7 @@ class PM_ExcelFill:
             if (self.runmode == 'test'):
                 site_config_filename = self.filepath + '/config/api_options.json'
             else:
-                site_config_filename = self.filepath + '/config/' + runmode + '/api_options.json' 
+                site_config_filename = self.filepath + '/config/' + self.runmode + '/api_options.json' 
             logging.info('site_config_filename  : ' + site_config_filename)
             site_config = json.load(open(site_config_filename, 'r'))
             
