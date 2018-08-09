@@ -19,12 +19,28 @@ class RTM_Statis(object):
     def __init__(self):
         self.zapi = None
 
-    def rtm_conn(self, url, user, password):
+    def rtm_conn_win(self, url, user, password):
         try:
             self.url = url
             self.user = user
             self.password = password
             self.zapi = ZabbixAPI(url=url, user=user, password=password)
+            #print('rtm_conn: ', url, user, password)
+            #self.zapi = ZabbixAPI(url)
+            #self.zapi.login(user, password)
+            return self.make_result(1, "zabbix initialize successfully")
+        except Exception as e:
+            return self.make_result(0, e)
+    
+    def rtm_conn_linux(self, url, user, password):
+        try:
+            self.url = url
+            self.user = user
+            self.password = password
+            #self.zapi = ZabbixAPI(url=url, user=user, password=password)
+            #print('rtm_conn: ', url, user, password)
+            self.zapi = ZabbixAPI(url)
+            self.zapi.login(user, password)
             return self.make_result(1, "zabbix initialize successfully")
         except Exception as e:
             return self.make_result(0, e)

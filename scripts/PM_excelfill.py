@@ -58,7 +58,10 @@ class PM_ExcelFill:
             if hasattr(self.param, 'selectrtm') and self.param.selectrtm:
                 (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "rtmdb")
                 self.rtm_statis = RTM_Statis()
-                result = self.rtm_statis.rtm_conn(dburl, dbuser, dbpasswd)
+                if (self.runmode == 'test'):
+                    result = self.rtm_statis.rtm_conn_win(dburl, dbuser, dbpasswd)
+                else:
+                    result = self.rtm_statis.rtm_conn_linux(dburl, dbuser, dbpasswd)
                 if (result['resultcode'] == 0):
                     print('self.rtm_statis init failed ', result['result'])
                     raise Exception('initiate zabbix failed: %s' % result['result'])
