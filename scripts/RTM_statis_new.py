@@ -1,7 +1,8 @@
 #coding=utf-8
 import datetime
 import time
-from zabbix.api import ZabbixAPI
+#from zabbix.api import ZabbixAPI
+from pyzabbix import ZabbixAPI
 
 from GetConfig import *
 
