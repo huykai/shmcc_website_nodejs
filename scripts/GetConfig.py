@@ -28,10 +28,18 @@ class PmSqlParam(object):
         self.localsave = "0"
         self.kpilist = ""
         self.isMME = 1
+        self.extraparams = {}
 
     def __getitem__(self, item):
         return getattr(self, item)
-
+    
+    def __setitem__(self, item, value):
+        return setattr(self, item, value)
+    
+    def __repr__(self):
+        return prn_obj(self)
+        
+    
 class AlarmSqlParam(object):
     """
     class pm_sql_param
@@ -50,12 +58,13 @@ class AlarmSqlParam(object):
         self.isAlarmDetail = "true"
         self.localsave = "0"
         self.isMME = 1
+        self.extraparams = {}
 
-def __getitem__(self, item):
+    def __getitem__(self, item):
         return getattr(self, item)
 
-def prn_obj():
-    print ('\n'.join(['%s:%s' % item for item in this.__dict__.items()]))
+def prn_obj(this):
+    return ('\n'.join([u'%s : %s' % item for item in this.__dict__.items()]))
 
 def getdbconfigxml(runmode, dbmodelname):
     """

@@ -386,6 +386,15 @@ def saegw_s11createsession(kpi_title,cursor,param):
         errorMessage = "Error saegw_s11createsession: " + str(e)
         return (['error', errorMessage], None)
 
+def saegwdb_conn(runmode):
+    try:
+        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "saegwdb")
+        db = cx_Oracle.connect(dbuser, dbpasswd, dburl)
+        dbcursor=db.cursor()
+        return dbcursor
+    except Exception as e:
+        return None
+
 saegw_api_sql_function = {
     'LTE-PGW'     : {
         'func'         : saegw_4g_pgw,
@@ -757,6 +766,7 @@ saegw_api_sql_function = {
                         u'GTPU上行吞吐率(Mbit/s)',
                         u'GTPU下行吞吐率(Mbit/s)',
                         u'GTPU 4G 总吞吐率(Mbit/s)',
+                        u'GTPU 总吞吐率(Mbit/s)',
                         u'GTPU_ECHO_RESPONSE_SENT',
                         u'GTPU_ECHO_REQUEST_RECEIVED',
                         u'GTP-U ECHO响应率'
@@ -787,6 +797,7 @@ saegw_api_sql_function = {
             "sum(GTPU_UPLINK_THROUGHPUT) GTPU_UPLINK_THROUGHPUT",
             "sum(GTPU_DOWNLINK_THROUGHPUT) GTPU_DOWNLINK_THROUGHPUT",
             "round((sum(GTPU_GPDU_BYTES_RECV_LTE)+sum(GTPU_GPDU_BYTES_SENT_LTE))*8/943718400,2)  GTPU_THROUGHPUT_LTE",
+            "round(((8*(sum(gtpu_gpdu_bytes_recv_rat_2g) + sum(gtpu_gpdu_bytes_recv_rat_3g) + sum(gtpu_gpdu_bytes_recv_lte) + sum(gtpu_gpdu_bytes_recv_rat_unkn) + nvl(sum(gtpu_gpdu_bytes_recv_rat_wlan),0) + nvl(sum(gtpu_gpdu_bytes_recv_rat_virt),0) + sum(gtpu_gpdu_bytes_sent_rat_2g) + sum(gtpu_gpdu_bytes_sent_rat_3g) + sum(gtpu_gpdu_bytes_sent_lte) + sum(gtpu_gpdu_bytes_sent_rat_unkn) + nvl(sum(gtpu_gpdu_bytes_sent_rat_wlan),0) + nvl(sum(gtpu_gpdu_bytes_sent_rat_virt),0)))) / ((15*60*1048576)) , 2) GTPU_THROUGHPUT_ALL",
             "SUM(GTPU_ECHO_RESPONSE_SENT) GTPU_ECHO_RESPONSE_SENT",
             "SUM(GTPU_ECHO_REQUEST_RECEIVED) GTPU_ECHO_REQUEST_RECEIVED",
             "round(decode( ((sum(gtpu_echo_request_received))),0,NULL, ((sum(gtpu_echo_response_sent))) / ((sum(gtpu_echo_request_received)))),4)*100"
@@ -816,6 +827,7 @@ saegw_api_sql_function = {
             "round(sum(GTPU_UPLINK_THROUGHPUT)/4,4) GTPU_UPLINK_THROUGHPUT",
             "round(sum(GTPU_DOWNLINK_THROUGHPUT)/4,4) GTPU_DOWNLINK_THROUGHPUT",
             "round((sum(GTPU_GPDU_BYTES_RECV_LTE)+sum(GTPU_GPDU_BYTES_SENT_LTE))*8/3774873600,2)  GTPU_THROUGHPUT_LTE",
+            "round(((8*(sum(gtpu_gpdu_bytes_recv_rat_2g) + sum(gtpu_gpdu_bytes_recv_rat_3g) + sum(gtpu_gpdu_bytes_recv_lte) + sum(gtpu_gpdu_bytes_recv_rat_unkn) + nvl(sum(gtpu_gpdu_bytes_recv_rat_wlan),0) + nvl(sum(gtpu_gpdu_bytes_recv_rat_virt),0) + sum(gtpu_gpdu_bytes_sent_rat_2g) + sum(gtpu_gpdu_bytes_sent_rat_3g) + sum(gtpu_gpdu_bytes_sent_lte) + sum(gtpu_gpdu_bytes_sent_rat_unkn) + nvl(sum(gtpu_gpdu_bytes_sent_rat_wlan),0) + nvl(sum(gtpu_gpdu_bytes_sent_rat_virt),0)))) / ((60*60*1048576)) ,2) GTPU_THROUGHPUT_ALL",
             "SUM(GTPU_ECHO_RESPONSE_SENT) GTPU_ECHO_RESPONSE_SENT",
             "SUM(GTPU_ECHO_REQUEST_RECEIVED) GTPU_ECHO_REQUEST_RECEIVED",
             "round(decode( ((sum(gtpu_echo_request_received))),0,NULL, ((sum(gtpu_echo_response_sent))) / ((sum(gtpu_echo_request_received)))),4)*100"

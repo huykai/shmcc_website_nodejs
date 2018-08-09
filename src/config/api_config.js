@@ -97,7 +97,15 @@ var apiconfig = [
         api_string: '/api/getExcel',
         mode: 'exec',
         program: 'python ',
-        script: 'scripts/PM_excelfill.py test ',
+        script: 'scripts/PM_excelfill.py test KPI_Excel_Cutover.json ',
+        method_type: 'POST',
+        return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getThroughputExcel',
+        mode: 'exec',
+        program: 'python ',
+        script: 'scripts/PM_excelfill.py test Throughput_Excel.json ',
         method_type: 'POST',
         return_type: 'text/json'
     }

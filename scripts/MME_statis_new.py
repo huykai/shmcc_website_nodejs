@@ -426,6 +426,15 @@ def mme_4g_esrvcc(kpi_title,cursor,param):
         errorMessage = "Error mme_4g_esrvcc: " + str(e)
         return (['error', errorMessage], None)	
 
+def mmedb_conn(runmode):
+    try:
+        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "mmedb")
+        db = cx_Oracle.connect(dbuser, dbpasswd, dburl)
+        dbcursor=db.cursor()
+        return dbcursor
+    except Exception as e:
+        return None
+
 mme_api_sql_function = {
     'GSM-ATTACH'     : {
         'func'         : mme_2g_attach,

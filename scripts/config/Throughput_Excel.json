@@ -1,0 +1,362 @@
+{
+    "EXCEL_MODEL": "./scripts/EPCThroughputTemplate.xlsx",
+    "EXCEL_FILENAME": "副本LTE核心网用户面负荷日报",
+    "EXCEL_DOWNLOAD_URL": "../downloads/",
+    "EXCEL_PARAMS": [
+        
+    ],
+    "SHEETS": [
+        {
+            "SHEETNAME": "21-00",
+            "RTM_KPI": [
+                {
+                    "item": "date",
+                    "values": [
+                        {
+                            "datasource": "params",    
+                            "datavalue": "year"
+                        },
+                        {
+                            "datasource": "params",    
+                            "datavalue": "month"
+                        },
+                        {
+                            "datasource": "params",    
+                            "datavalue": "day"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "string",
+                            "value": "统计日期："
+                        },
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "年"
+                        },
+                        {
+                            "type": "data",
+                            "value": "2"
+                        },
+                        {
+                            "type": "string",
+                            "value": "月"
+                        },
+                        {
+                            "type": "data",
+                            "value": "3"
+                        },
+                        {
+                            "type": "string",
+                            "value": "日"
+                        }
+                    ],
+                    "outputlocation": "A2"
+                },
+                {
+                    "item": "fwuplinkport",
+                    "values": [
+                        {
+                            "datasource": "rtm",
+                            "host": "SHFW06",    
+                            "itemname": "extFW_VOL_RATE_RETH0_Input_Bps",
+                            "valueindex": "max"
+                        },
+                        {
+                            "datasource": "rtm",
+                            "host": "SHFW06",    
+                            "itemname": "extFW_VOL_RATE_RETH0_Output_Bps",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%/"
+                        },
+                        {
+                            "type": "data",
+                            "value": "2"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D8"
+                },
+                {
+                    "item": "fwdownlinkport",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHFW06",    
+                            "itemname": "下联7613 SGI 端口利用率 RETH5&6_Input_Bps",
+                            "valueindex": "max"
+                        },
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHFW06",    
+                            "itemname": "下联7613 SGI 端口利用率 RETH5&6_Output_Bps",
+                            "valueindex": "max"
+                        },
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHFW06",    
+                            "itemname": "下联7613 Gn端口利用率_RETH7_Input_Bps",
+                            "valueindex": "max"
+                        },
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHFW06",    
+                            "itemname": "下联7613 Gn端口利用率_RETH7_Output_Bps",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "string",
+                            "value": "SGI:"
+                        },
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%/"
+                        },
+                        {
+                            "type": "data",
+                            "value": "2"
+                        },
+                        {
+                            "type": "string",
+                            "value": "% Gn: "
+                        },
+                        {
+                            "type": "data",
+                            "value": "3"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%/"
+                        },
+                        {
+                            "type": "data",
+                            "value": "4"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D9"
+                },
+                {
+                    "item": "gws1u_plane1",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHSAEGW03BNK",    
+                            "itemname": "SAE03-S1U_L1_ZTE_Tx_VOL_RATE",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D19"
+                },
+                {
+                    "item": "gws1u_plane2_zte",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHSAEGW03BNK",    
+                            "itemname": "SAE03-S1U_L2_ZTE_Tx_VOL_RATE",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D20"
+                },
+                {
+                    "item": "gws1u_plane2_hw",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHSAEGW03BNK",    
+                            "itemname": "SAE03-S1U_L2_HW_Tx_VOL_RATE",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D21"
+                },
+                {
+                    "item": "gwsgiusage",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHSAEGW03BNK",    
+                            "itemname": "SAE03-Sgi_Rx_VOL_RATE",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D22"
+                },
+                {
+                    "item": "gwgnusage",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHSAEGW03BNK",    
+                            "itemname": "SAE03-S5_S8_Gn_Rx_VOL_RATE",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "D23"
+                },
+                {
+                    "item": "gwcpu",
+                    "values": [
+                        {
+                            "datasource": "rtm",    
+                            "host": "SHSAEGW03BNK",    
+                            "itemname": "extCpuLoad_Avg_AS3_0",
+                            "valueindex": "max"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "1"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "B25"
+                }
+            ],
+            "SAEGW_KPI": [
+                {
+                    "item": "systemload",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "sql_function": "LTE-SGW",
+                            "sql_selectitem_index": "20"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "sql_function": "LTE-PGW",
+                            "sql_selectitem_index": "27"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "100 * (${1} + ${2}) / 2000000"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "3"
+                        },
+                        {
+                            "type": "string",
+                            "value": "%"
+                        }
+                    ],
+                    "outputlocation": "C25"
+                },
+                {
+                    "item": "4guserthroughput",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "sql_function": "LTE-PGW",
+                            "sql_selectitem_index": "22"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "sql_function": "LTE-SGW",
+                            "sql_selectitem_index": "20"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "sql_function": "LTE-GTPU-THROUGH",
+                            "sql_selectitem_index": "25"
+                        },
+                        {
+                            "datasource": "evaldata",    
+                            "value": "1024 * ${3}/(${1}+${2}) "
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "4"
+                        }
+                    ],
+                    "outputlocation": "D25"
+                }
+            ]
+        }
+    ]
+}

@@ -1,36 +1,358 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import cx_Oracle
-import time
-import datetime
-#import smtplib 
-import cgi
-#import xlsxwriter,xlrd
-import MySQLdb as mysql
-
 import os
 import io
 import json
 import logging
+import time
+import datetime
 import re
 
+import cx_Oracle as oracle
+import MySQLdb as mysql
+import pyzabbix
 import openpyxl
 
-logging.basicConfig(filename='pm_excel_logger.log', level=logging.INFO)
-
-reload(sys)
-sys.setdefaultencoding("utf-8")
-
-
-#from MME_statis_mysql import *
 from MME_statis_new import *
 from SAEGW_statis_new import *
+from RTM_statis_new import *
+
+class PM_ExcelFill:
+
+    mmedb = None
+    saegwdb = None
+    mmedbcursor = None
+    saegwcursor = None
+    ExcelConfigFileName = None
+    Excel_Config = None
+    Excel_Result = {}
+    SaveFileName = ''
+    rtm_statis = None
+    workbook = None
+
+    logging.basicConfig(filename='pm_excel_logger.log', level=logging.INFO)
+
+    def __init__(self, param, runmode, excelconfig):
+        self.param = param
+        self.runmode = runmode
+        self.filepath = os.path.split(os.path.realpath(__file__))[0]
+        print('filepath: ', __file__, self.filepath)
+        if (self.runmode == 'test'):
+            self.ExcelConfigFileName = self.filepath + '/config/' + excelconfig
+        else:
+            self.ExcelConfigFileName = self.filepath + '/config/' + runmode + '/' + excelconfig
+        logging.info('Excel_Config_filename : ' + self.ExcelConfigFileName)
+        print('Excel Config File: ', self.ExcelConfigFileName)
+
+    def init(self):
+        try:
+            if hasattr(self.param, 'selectmmesgsn') and len(self.param.selectmmesgsn) != 0:
+                (dbuser,dbpasswd,dburl,dburlport,db_dbname) = getdbconfig(self.runmode, "mmedb")
+                self.mmedb = oracle.connect(dbuser, dbpasswd, dburl)
+                self.mmedbcursor=self.mmedb.cursor()
+            if hasattr(self.param, 'selectsaegwggsn') and len(self.param.selectsaegwggsn) != 0:
+                (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "saegwdb")
+                self.saegwdb = oracle.connect(dbuser, dbpasswd, dburl)
+                self.saegwdbcursor=self.saegwdb.cursor()
+            if hasattr(self.param, 'selectrtm') and self.param.selectrtm:
+                (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "rtmdb")
+                self.rtm_statis = RTM_Statis()
+                result = self.rtm_statis.rtm_conn(dburl, dbuser, dbpasswd)
+                if (result['resultcode'] == 0):
+                    print('self.rtm_statis init failed ', result['result'])
+                    raise Exception('initiate zabbix failed: %s' % result['result'])
+            with open(self.ExcelConfigFileName, 'r') as load_f:
+                self.Excel_Config = json.load(load_f)
+                #print(load_dict)
+            logging.info('Excel_Config json parse finished')
+            logging.info('Excel_Config EXCEL MODEL NAME: ' + self.Excel_Config['EXCEL_MODEL'])
+            self.SaveFileName = self.Excel_Config['EXCEL_FILENAME']
+            logging.info('Excel_Config EXCEL_FILENAME : ' + self.SaveFileName)
+            self.workbook = openpyxl.load_workbook(self.Excel_Config['EXCEL_MODEL'])
+            logging.info('openpyxl load workbook finished')
+            return self.make_return(1, 'init ok')
+        except Exception as e:
+            logging.info('PM_ExcelFill initialize failed : %s' % e)
+            return self.make_return(0, e)
+
+    def make_return(self, resultcode, result):
+        return {'resultcode': resultcode, 'result': result}
+
+    def excel_fill(self):
+        try:        
+            for sheet in self.Excel_Config['SHEETS']:
+                print('excel_fill sheet begin: ', sheet['SHEETNAME'])
+                ws = self.workbook[sheet['SHEETNAME']]
+                self.saveExcelSheet(ws, sheet)
+                print('excel_fill sheet over: ', sheet['SHEETNAME'])
+                
+            if (self.runmode == 'test'):
+                site_config_filename = self.filepath + '/config/api_options.json'
+            else:
+                site_config_filename = self.filepath + '/config/' + runmode + '/api_options.json' 
+            logging.info('site_config_filename  : ' + site_config_filename)
+            site_config = json.load(open(site_config_filename, 'r'))
+            
+            nowtime = datetime.datetime.now() 
+            self.SaveFileName = self.SaveFileName + '_' + nowtime.strftime("%Y%m%d") + nowtime.strftime("%H%M%S") + '.xlsx'
+            realfilename = site_config['download_dir'] + self.SaveFileName 
+            self.workbook.save(realfilename)
+            return self.make_return(1, self.Excel_Config['EXCEL_DOWNLOAD_URL'] + self.SaveFileName)
+        except Exception as e:
+            logging.error("Error PM_Excelfill: %s" % e)
+            return self.make_return(0, "Error PM_Excelfill: %s" % e)
+        
+    def closeAll(self):
+        if (self.mmedb != None):
+            self.mmedb.close
+        if (self.saegwdb != None):
+            self.saegwdb.close
+
+    def prn_obj(self, obj):
+        return '\n'.join(['%s:%s' % item for item in obj.__dict__.items()])
 
 
+    def avg_cacul(self, algo, rows, algoindex):
+        sum = 0
+        for row in rows:
+            sum += float(row[int(algoindex)-1])
+        if(len(rows)>0):
+            return str(sum/len(rows))
+        return 0
+
+    def max_cacul(self, algo, rows, algoindex):
+        max = 0
+        for row in rows:
+            if(float(row[int(algoindex)-1]) > max):
+                max = float(row[int(algoindex)-1])
+        return str(max)
+
+    def min_cacul(self, algo, rows, algoindex):
+        min = 0
+        for row in rows:
+            if(float(row[int(algoindex)-1]) < min):
+                min = float(row[int(algoindex)-1])
+        return str(min)
+
+    def sum_cacul(self, algo, rows, algoindex):
+        sum = 0
+        for row in rows:
+            sum += float(row[int(algoindex)-1])
+        return str(sum)
 
 
-def getforminfo(params,formparams):
+    def algo_cacul(self, algo, rows, algoindex):
+        ret = '0'
+        if (algo == 'avg'):
+            ret = self.avg_cacul(algo, rows, algoindex)
+        elif (algo == 'max'):
+            ret = self.max_cacul(alog, rows, algoindex)
+        elif (algo == 'min'):
+            ret = self.min_cacul(alog, rows, algoindex)
+        elif (algo == 'sum'):
+            ret = self.sum_cacul(alog, rows, algoindex)
+        
+        return ret
+
+    def caculate(self, rows, sqlextrastruct):
+        tmprow = []
+        if (sqlextrastruct.has_key('valuefilter')):
+            itemindex = sqlextrastruct['valuefilter']['filter_index']
+            filter = sqlextrastruct['valuefilter']['filter_regex']
+            for row in rows:
+                #print('caculate filter row: ', str(row))
+                if(re.match(filter, row[int(itemindex)-1])):
+                    tmprow.append(row)
+        else:
+            tmprow = rows
+        #print('caculate after filter: %d' % len(tmprow))
+        if (sqlextrastruct.has_key('valuealgo')):
+            algoindex = sqlextrastruct['valuealgo']['algo_index']
+            algo = sqlextrastruct['valuealgo']['algo']
+            ret = self.algo_cacul(algo, tmprow, algoindex)
+            #print('caculate after algo: ' + str(ret))
+            return ret
+        else:
+            return ''
+
+    def getsqlinfo(self, dbcursor, valuestruct, api_sql_function, kpi_report_result):
+        #try:
+        sqlfunc = valuestruct['sql_function']
+        #print('getsqlinfo : ', sqlfunc)
+        sqlitemindex = valuestruct['sql_selectitem_index']
+        #print('getsqlinfo : ', sqlitemindex)
+        kpi_function = api_sql_function[sqlfunc]['func']
+        #print('getsqlinfo : ', kpi_function)
+        if (kpi_report_result.has_key(sqlfunc)):
+            if (valuestruct.has_key("sql_extra")):
+                #print('getsqlinfo valuestruct has key sql_extra')
+                return self.caculate(kpi_report_result[sqlfunc], valuestruct["sql_extra"])
+            else:    
+                return kpi_report_result[sqlfunc][0][int(sqlitemindex) - 1]
+        else:
+            title,row=kpi_function(sqlfunc, dbcursor, self.param)
+            if title[0]!='error' and len(row)>0:
+                #print('getsqlinfo ' + sqlfunc + ' ' + str(row[0]))
+                kpi_report_result[sqlfunc] = row
+                #print('getsqlinfo valuestruct has key sql_extra ? ', valuestruct.has_key("sql_extra"))
+                if (valuestruct.has_key("sql_extra")):
+                    #print('getsqlinfo valuestruct has key sql_extra')
+                    return self.caculate(row, valuestruct["sql_extra"])
+                
+                return str(row[0][int(sqlitemindex) - 1])
+            else:
+                logging.error("getsqlinfo %s with Error : %s" % (sqlfunc, title[1]))
+                return ''
+
+        #except Exception, e:
+        #    print('Exception : ', str(e))
+        #    return str(e)
+
+    def getData(self, outputformat, dbcursor, values, api_sql_function, kpi_report_result):
+        print('getData...')
+        if (outputformat['type'] == "string"):
+            return outputformat['value']
+        elif(outputformat['type'] == "data"):
+            if (values[int(outputformat['value']) - 1] != None):
+                datasource = values[int(outputformat['value']) - 1]['datasource']
+                if (datasource == 'params'):
+                    datavalue = values[int(outputformat['value']) - 1]['datavalue']
+                    return param[datavalue]
+                elif(datasource == "sql"):
+                    datainfo = self.getsqlinfo(dbcursor, values[int(outputformat['value'])-1], api_sql_function, kpi_report_result)
+                    print('sql datainfo: %s' % datainfo)
+                    return str(datainfo)
+                elif(datasource == 'evaldata'):
+                    evalstring = values[int(outputformat['value']) - 1]['value']
+                    print('evalstring begin: ', evalstring)
+                    evalsubitems = re.findall('\$\{\d+\}', evalstring)
+                    print('evalsubitems : ', evalsubitems)
+                    if (len(evalsubitems) > 0):
+                        for evalsubitem in evalsubitems:
+                            evalsubitem_match = re.search('(\d+)', evalsubitem)
+                            print('evalsubitem_match : ', evalsubitem_match.group())
+                            if(evalsubitem_match):
+                                evalsubitem_index = int(evalsubitem_match.group())
+                                newoutputformat = {
+                                    "type": "data",
+                                    "value": evalsubitem_index
+                                }
+                                result = self.getData(newoutputformat, dbcursor, values, api_sql_function, kpi_report_result)
+                                print('result: ', result)
+                                evalstring = evalstring.replace(evalsubitem, result)
+                    try:
+                        print('evalstring over: ', evalstring)
+                        return str(round(eval(evalstring), 2))
+                    except Exception as e:
+                        print('evalstring over Error: ', str(e))
+                        return str(e)
+
+
+    def saveInExcel(self,datastr, KPI, ws):
+        ws[KPI['outputlocation']] = datastr
+
+    def saveExcelSheet(self, ws, sheet):
+        if 'RTM_KPI' in sheet.keys():
+            self.saveExcelSheetRTMKPI(ws, sheet['RTM_KPI'])
+        if 'MME_KPI' in sheet.keys():
+            if self.param.selectmmesgsn != '':
+                self.saveExcelSheetMMEKPI(ws, self.mmedbcursor, sheet['MME_KPI'])
+        if 'SAEGW_KPI' in sheet.keys():
+            if self.param.selectsaegwggsn != '':
+                self.saveExcelSheetSAEGWKPI(ws, self.saegwdbcursor, sheet['SAEGW_KPI'])
+    
+    def saveExcelSheetRTMKPI(self, ws, kpiconfig):
+        kpi_list = kpiconfig
+        kpi_report_result = {}
+        self.runRTMKPI(ws, kpi_list)
+        
+    def runRTMKPI(self, ws, kpi_list):    
+        for kpi in kpi_list:
+            values = kpi['values']
+            outputformats = kpi['outputformats']
+            outputstring = ''
+            for outputformat in outputformats:
+                if (outputformat['type'] == 'string'):
+                    outputstring += outputformat['value']
+                elif values[int(outputformat['value']) - 1]['datasource'] == 'params':
+                    datavalue = values[int(outputformat['value']) - 1]['datavalue']
+                    if (hasattr(self.param, datavalue)):
+                        outputstring += self.param[datavalue]
+                    elif (datavalue in self.param['extraparams'].keys()):
+                        outputstring += self.param['extraparams'][datavalue]
+                elif values[int(outputformat['value']) - 1]['datasource'] == 'rtm':
+                    valuesindex = int(outputformat['value']) - 1
+                    result = self.getRTMKPI(values, valuesindex)
+                    outputstring += result
+                elif values[int(outputformat['value']) - 1]['datasource'] == 'evaldata':
+                    evalstring = values[int(outputformat['value']) - 1]['value']
+                    print('evalstring begin: ', evalstring)
+                    evalsubitems = re.findall('\$\{\d+\}', evalstring)
+                    print('evalsubitems : ', evalsubitems)
+                    if (len(evalsubitems) > 0):
+                        for evalsubitem in evalsubitems:
+                            evalsubitem_match = re.search('(\d+)', evalsubitem)
+                            print('evalsubitem_match : ', evalsubitem_match.group())
+                            if(evalsubitem_match):
+                                evalsubitem_index = int(evalsubitem_match.group()) - 1
+                                result = self.getRTMKPI(values, evalsubitem_index)
+                                print('result: ', result)
+                                evalstring = evalstring.replace(evalsubitem, result)
+                    try:
+                        print('evalstring over: ', evalstring)
+                        outputstring += str(round(eval(evalstring), 2))
+                    except Exception as e:
+                        outputstring = outputstring + evalstring + str(e)
+            self.saveInExcel(outputstring, kpi, ws)
+
+    def getRTMKPI(self, values, valuesindex):
+        hostname = values[valuesindex]['host']
+        itemname = values[valuesindex]['itemname']
+        valueindex = values[valuesindex]['valueindex']
+        resultvalues = self.rtm_statis.rtm_get_value(hostname, itemname, self.param.startdatetime, self.param.stopdatetime)
+        print('rtm resultvalues: ', resultvalues)
+        result = ''
+        if (resultvalues['resultcode'] == 1 ):
+            if (valueindex == 'min'):
+                result += str(round(float(resultvalues['result'][0]['value_min']),2))
+            if (valueindex == 'avg'):
+                result += str(round(float(resultvalues['result'][0]['value_avg']),2))
+            else:
+                result += str(round(float(resultvalues['result'][0]['value_max']),2))
+        else:
+            result += ' '
+        return result
+
+    def saveExcelSheetSAEGWKPI(self, ws, dbcursor, kpiconfig):
+        print('saveExcelSheetSAEGWKPI...')
+        api_sql_function = saegw_api_sql_function
+        kpi_list = kpiconfig
+        kpi_report_result = {}
+        self.runOSSKPI(ws, kpi_list, dbcursor, api_sql_function, kpi_report_result)
+
+    def saveExcelSheetMMEKPI(self, ws, dbcursor, kpiconfig):
+        api_sql_function = mme_api_sql_function
+        kpi_list = kpiconfig
+        kpi_report_result = {}
+        self.runOSSKPI(ws, kpi_list, dbcursor, api_sql_function, kpi_report_result)
+        
+    def runOSSKPI(self, ws, kpi_list, dbcursor, api_sql_function, kpi_report_result):    
+        for kpi in kpi_list:
+            #logging.info('kpi : ' + kpi)
+            print('runOSSKPI: ', kpi)
+            values = kpi['values']
+            outputformats = kpi['outputformats']
+            outputstring = ''
+            for outputformat in outputformats:
+                if (outputformat['type'] == 'string'):
+                    outputstring += outputformat['value']
+                else:
+                    outputstring += self.getData(outputformat, dbcursor, values, api_sql_function, kpi_report_result)
+            
+            self.saveInExcel(outputstring, kpi, ws)
+
+def getforminfo(params, formparams):
     # Get data from formparams
     configs = json.loads(formparams)
     logging.info("formparams : " + formparams)
@@ -38,23 +360,11 @@ def getforminfo(params,formparams):
     for key, item in configs.items():
         #print key," : ",item
         params.__dict__[key] = item
-    
-    if (configs['netype'] == 'mme'):
-        params.isMME = True
-    else:
-        params.isMME = False
     if (not configs.has_key('selectperiod')):
         params.selectperiod = '60'
     if (params.selectperiodtype == None):
         params.selectperiodtype = 'continue'
-    if (params.isMME):
-        params.selectmmesgsn = configs['ne'] 
-        if (params.selectmmeelement == None):
-            params.selectmmeelement = 'MME'
-    else :
-        params.selectsaegwggsn = configs['ne'] 
-        if (params.selectsaegwelement == None):
-            params.selectsaegwelement = 'SAEGW'
+    
     
 def paramsdate_fix():
     # adjust per environment in test or prod
@@ -76,170 +386,43 @@ def paramsdate_fix():
     param.stoptime=curtime
     param.startdate=startdate
     param.stopdate=stopdate
-    
-def prn_obj(obj):
-    return '\n'.join(['%s:%s' % item for item in obj.__dict__.items()])
-
-def run_kpi(kpi_title, kpi_function, cursor, param):
-    
-    writexmltablebegin(kpi_title)
-
-    title,row=kpi_function(kpi_title, cursor, param)
-    if title[0]!='error' and len(row)>0:
-        #title[0]='tt'+form.getvalue('starttime')
-        writetabname(kpi_title)
-        writetitle(title)
-        writedata(row)
-        #pass
-    writexmltableend(kpi_title)
-
-def avg_cacul(algo, rows, algoindex):
-    sum = 0
-    for row in rows:
-        sum += float(row[int(algoindex)-1])
-    if(len(rows)>0):
-        return str(sum/len(rows))
-    return 0
-
-def max_cacul(algo, rows, algoindex):
-    max = 0
-    for row in rows:
-        if(float(row[int(algoindex)-1]) > max):
-            max = float(row[int(algoindex)-1])
-    return str(max)
-
-def min_cacul(algo, rows, algoindex):
-    min = 0
-    for row in rows:
-        if(float(row[int(algoindex)-1]) < min):
-            min = float(row[int(algoindex)-1])
-    return str(min)
-
-def sum_cacul(algo, rows, algoindex):
-    sum = 0
-    for row in rows:
-        sum += float(row[int(algoindex)-1])
-    return str(sum)
-
-
-def algo_cacul(algo, rows, algoindex):
-    ret = '0'
-    if (algo == 'avg'):
-        ret = avg_cacul(algo, rows, algoindex)
-    elif (algo == 'max'):
-        ret = max_cacul(alog, rows, algoindex)
-    elif (algo == 'min'):
-        ret = min_cacul(alog, rows, algoindex)
-    elif (algo == 'sum'):
-        ret = sum_cacul(alog, rows, algoindex)
-    
-    return ret
-
-def caculate(rows, sqlextrastruct):
-    tmprow = []
-    if (sqlextrastruct.has_key('valuefilter')):
-        itemindex = sqlextrastruct['valuefilter']['filter_index']
-        filter = sqlextrastruct['valuefilter']['filter_regex']
-        for row in rows:
-            #print('caculate filter row: ', str(row))
-            if(re.match(filter, row[int(itemindex)-1])):
-                tmprow.append(row)
-    else:
-        tmprow = rows
-    #print('caculate after filter: %d' % len(tmprow))
-    if (sqlextrastruct.has_key('valuealgo')):
-        algoindex = sqlextrastruct['valuealgo']['algo_index']
-        algo = sqlextrastruct['valuealgo']['algo']
-        ret = algo_cacul(algo, tmprow, algoindex)
-        #print('caculate after algo: ' + str(ret))
-        return ret
-    else:
-        return ''
-
-    
-
-def getsqlinfo(valuestruct):
-    #try:
-    sqlfunc = valuestruct['sql_function']
-    #print('getsqlinfo : ', sqlfunc)
-    sqlitemindex = valuestruct['sql_selectitem_index']
-    #print('getsqlinfo : ', sqlitemindex)
-    kpi_function = api_sql_function[sqlfunc]['func']
-    #print('getsqlinfo : ', kpi_function)
-    if (kpi_report_result.has_key(sqlfunc)):
-        if (valuestruct.has_key("sql_extra")):
-            #print('getsqlinfo valuestruct has key sql_extra')
-            return caculate(kpi_report_result[sqlfunc], valuestruct["sql_extra"])
-        else:    
-            return kpi_report_result[sqlfunc][0][int(sqlitemindex) - 1]
-    else:
-        title,row=kpi_function(sqlfunc, dbcursor, param)
-        if title[0]!='error' and len(row)>0:
-            #print('getsqlinfo ' + sqlfunc + ' ' + str(row[0]))
-            kpi_report_result[sqlfunc] = row
-            #print('getsqlinfo valuestruct has key sql_extra ? ', valuestruct.has_key("sql_extra"))
-            if (valuestruct.has_key("sql_extra")):
-                #print('getsqlinfo valuestruct has key sql_extra')
-                return caculate(row, valuestruct["sql_extra"])
-            
-            return str(row[0][int(sqlitemindex) - 1])
-        else:
-            logging.error("getsqlinfo %s with Error : %s" % (sqlfunc, title[1]))
-            return ''
-
-    #except Exception, e:
-    #    print('Exception : ', str(e))
-    #    return str(e)
-
-def getData(outputformat, values):
-    if (outputformat['type'] == "string"):
-        return outputformat['value']
-    elif(outputformat['type'] == "data"):
-        if (values[int(outputformat['value']) - 1] != None):
-            datasource = values[int(outputformat['value']) - 1]['datasource']
-            if (datasource == 'params'):
-                datavalue = values[int(outputformat['value']) - 1]['datavalue']
-                return param[datavalue]
-            elif(datasource == "sql"):
-                datainfo = getsqlinfo(values[int(outputformat['value'])-1])
-                #print('sql datainfo: %s' % datainfo)
-                return str(datainfo)
-
-def saveInExcel(datastr, KPI, ws):
-    ws[KPI['outputlocation']] = datastr
-
+        
 if __name__ == '__main__':
 
     logging.info('query time : ' + time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time())))
-
-    #print('{"result":"Ok", "data":"Whatever"}')
-    #exit(0)
+    
     formparams = None
     runmode = 'test'
     if ( len(sys.argv) ) > 2 :
-        logging.info("\t run mode : " + str(sys.argv[1])) 
-        logging.info("\t params : " + str(sys.argv[2])) 
-        #print("\t run mode : " + str(sys.argv[1])) 
-        #print("\t params : " + str(sys.argv[2])) 
+        logging.info("\t run mode : " + str(sys.argv[1]))
+        logging.info("\t excel config : " + str(sys.argv[2]))
+        logging.info("\t params : " + str(sys.argv[3])) 
         runmode = sys.argv[1]
-        formparams = sys.argv[2]
+        excelconfig = sys.argv[2]
+        formparams = sys.argv[3]
+        print("\t run mode : " + runmode) 
+        print("\t excel config : " + excelconfig) 
+        print("\t formparams : " + formparams) 
+        
        
     param = PmSqlParam()
 
-    if (not formparams is None):
+    if (not formparams == None):
         try:
             getforminfo(param, formparams)
             logging.info('\tparams info : ' + prn_obj(param))
-            #print('\tparams info : ' + prn_obj(param))
-        except Exception, e:
-            logging.error('error in param get.' )
+            print('\tparams info : ' + prn_obj(param))
+        except Exception as e:
+            logging.error('error in param get: %s' % e )
     else:
         logging.info('form params is None.')
-    #sys.exit()
+    
     # for excel , in these param
     # we need netype(mme or saegw), ne(SHMME03BNK), time(2018-06-30T13:03:51.155Z)
 
     #currtime = datetime.datetime.strptime(param.time, "%Y-%m-%dT%H:%M:%S.%fZ")
+    if not hasattr(param, 'time') or param['time'] == None:
+        param['time'] = time.time()
     timeArray = time.localtime(float(param.time))
     param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
     currtime = datetime.datetime.strptime(param_time, "%Y-%m-%d %H:%M:%S")
@@ -252,109 +435,30 @@ if __name__ == '__main__':
     param.starttime = pretime.strftime("%H:%M")
     param.stoptime = currtime.strftime("%H:%M")
 
-    #print('\tparams info : ' + prn_obj(param))
-    # for test
-    #paramsdate_fix()
+    print('param: \n%s' % param)
 
-    # connect to mysql
-    #(mmedbuser,mmedbpasswd,mmedburl,mmedburlport,mmedb_dbname)=getdbconfig("mmedb_mysql")
-    # connect to oracle
-    if (param.netype == "mme"):
-        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "mmedb")
-    else:
-        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "saegwdb")
-    
-    #print 'mmeuser:', mmedbuser, mmedbpasswd, mmedburl
-	#mmedb = cx_Oracle.connect('omc', 'omc', '127.0.0.1:51063/oss')
-    con = None
     result = {
         'resultcode': '0',
         'resultdetail': ''
     }
 
     filepath = os.path.split(os.path.realpath(__file__))[0]
-    if (runmode == 'test'):
-        KPI_Excel_Cutover_filename = filepath + '/config/KPI_Excel_Cutover.json'
-    else:
-        KPI_Excel_Cutover_filename = filepath + '/config/' + runmode + '/KPI_Excel_Cutover.json'
-    KPI_Excel_Cutover_Result = {}
-    logging.info('KPI_Excel_Cutover_filename : ' + KPI_Excel_Cutover_filename)
+    print('main filepath: ', filepath)
+    pm_excelfill = PM_ExcelFill(param, runmode, excelconfig)
 
-    try:
-        # mysql
-        #con = mysql.connect(host=mmedburl, port=int(mmedburlport), user=mmedbuser, passwd=mmedbpasswd, db=mmedb_dbname)
-        #mmecursor=con.cursor()
-        # oracle
-        logging.info('dbuser, dbpasswd, dburl : %s, %s, %s' % (dbuser, dbpasswd, dburl))
-	    #mmedb = cx_Oracle.connect('omc', 'omc','10.221.255.4:1521/oss') 
-
-        with open(KPI_Excel_Cutover_filename, 'r') as load_f:
-            KPI_Excel_Cutover = json.load(load_f)
-            #print(load_dict)
-        logging.info('KPI_Excel_Cutover json parse finished')
-        logging.info('KPI_Excel_Cutover EXCEL MODEL NAME: ' + KPI_Excel_Cutover['EXCEL_MODEL'])
-        filename = KPI_Excel_Cutover['EXCEL_FILENAME']
-        logging.info('KPI_Excel_Cutover EXCEL_FILENAME : ' + filename)
-        wb = openpyxl.load_workbook(KPI_Excel_Cutover['EXCEL_MODEL'])
-        logging.info('openpyxl load workbook finished')
-        db = cx_Oracle.connect(dbuser, dbpasswd, dburl)
-        dbcursor=db.cursor()
+    init_result = pm_excelfill.init()
+    if init_result['resultcode'] == 0:
+        print('PM_ExcelFill initialize failed : %s', init_result['result'])
+        sys.exit(1)
     
-        #print "kpilist: ", param.kpilist
-        if (param.netype == "mme"):
-            #print("param.isMME : " + param.isMME)
-            ws = wb[KPI_Excel_Cutover['MME_SHEET']]
-            api_sql_function = mme_api_sql_function
-            kpi_list = KPI_Excel_Cutover['MME_KPI']
-        else:
-            ws = wb[KPI_Excel_Cutover['SAEGW_SHEET']]
-            api_sql_function = saegw_api_sql_function
-            kpi_list = KPI_Excel_Cutover['SAEGW_KPI']
+    fill_result = pm_excelfill.excel_fill()
+    if fill_result['resultcode'] == 0:
+        print('PM_ExcelFill fill failed : %s', fill_result['result'])
+        sys.exit(1)
+    
+    pm_excelfill.closeAll()
+    print(json.dumps(fill_result['result']))
 
-        kpi_report_result = {}
-        
-        for kpi in kpi_list:
-            #logging.info('kpi : ' + kpi)
-            #print 'kpi : ' + kpi
-            values = kpi['values']
-            outputformats = kpi['outputformats']
-            outputstring = ''
-            for outputformat in outputformats:
-                if (outputformat['type'] == 'string'):
-                    outputstring += outputformat['value']
-                else:
-                    outputstring += getData(outputformat, values)
-            
-            saveInExcel(outputstring, kpi, ws)
-
-            #kpi_function = api_sql_function[kpi]['func']
-            #run_kpi(kpi, kpi_function, dbcursor, param)
-
-        if (runmode == 'test'):
-            site_config_filename = filepath + '/config/api_options.json'
-        else:
-            site_config_filename = filepath + '/config/' + runmode + '/api_options.json' 
-        logging.info('site_config_filename  : ' + site_config_filename)
-        site_config = json.load(open(site_config_filename, 'r'))
-
-        nowtime = datetime.datetime.now() 
-        filename = filename + param.ne + nowtime.strftime("%Y%m%d") + nowtime.strftime("%H%M%S") + '.xlsx'
-        realfilename = site_config['download_dir'] + filename 
-        wb.save(realfilename)
-        
-        result['resultcode'] = 1
-        result['resultdetail'] = KPI_Excel_Cutover['EXCEL_DOWNLOAD_URL'] + filename
-
-    except Exception as e:
-        logging.error("Error PM_Excelfill: %s" % str(e))
-        result['resultcode'] = 0
-        result['resultdetail'] = "Error PM_Excelfill: %s" % str(e)
-        
-    finally:
-        if con:
-            con.close()
-    print(json.dumps(result))
-    #if (logfile):
-    #    logfile.close()
-	
+# test script
+# python scripts\RTM_statis_new.py
 	
