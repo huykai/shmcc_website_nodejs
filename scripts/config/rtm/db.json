@@ -14,5 +14,13 @@
 		"dburl": "10.221.255.4:1521/oss",
 		"dburlport": "1521",
 		"dbname": "oss"
+	},
+	{
+		"dbmodelname": "rtmdb",
+		"userid": "Admin",
+		"password": "NokiaRtm",
+		"dburl": "http://10.221.30.101/api_jsonrpc.php",
+		"dburlport": "80",
+		"dbname": "zabbix"
 	}
 ]

@@ -15,7 +15,7 @@
 		"dburlport": "1521",
 		"dbname": "oss"
 	},
-  {
+    {
 		"dbmodelname": "saegwdb",
 		"userid": "omc",
 		"password": "omc",
@@ -24,11 +24,11 @@
 		"dbname": "oss"
 	},
 	{
-	"dbmodelname": "rtmdb",
-	"userid": "Admin",
-	"password": "NokiaRtm",
-	"dburl": "http://localhost:51081/api_jsonrpc.php",
-	"dburlport": "51081",
-	"dbname": "zabbix"
-}
+		"dbmodelname": "rtmdb",
+		"userid": "Admin",
+		"password": "NokiaRtm",
+		"dburl": "http://localhost:51081/api_jsonrpc.php",
+		"dburlport": "51081",
+		"dbname": "zabbix"
+	}
 ]
