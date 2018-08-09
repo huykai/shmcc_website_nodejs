@@ -21,4 +21,12 @@
 		<dburlport>51063</dburlport>
 		<dbname>OSS</dbname>
 	</dbmodelname>
+	<dbmodelname id="rtmdb">
+		<userid>Admin</userid>
+		<password>NokiaRtm</password>
+		<dburl2>10.221.30.101:1521/zabbix</dburl2>
+		<dburl>http://localhost:51081/api_jsonrpc.php</dburl>
+		<dburlport>51081</dburlport>
+		<dbname>zabbix</dbname>
+	</dbmodelname>
 </root>
