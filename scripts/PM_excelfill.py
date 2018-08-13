@@ -82,13 +82,31 @@ class PM_ExcelFill:
     def make_return(self, resultcode, result):
         return {'resultcode': resultcode, 'result': result}
 
+    def namewithparam(self, name):
+        print('namewithparam origin name: ', name)
+        nameparams = re.findall('\$\{[\w\d]+\}', name)
+        if (len(nameparams) > 0):
+            for nameparam in nameparams:
+                nameparamitem = re.search('([\w\d]+)', nameparam).group()
+                nameparamstr = ''
+                if (hasattr(self.param, nameparamitem)):
+                    nameparamstr = self.param[nameparamitem]
+                elif (nameparamitem in self.param['extraparams'].keys()):
+                    nameparamstr = self.param['extraparams'][nameparamitem]
+                name = name.replace(nameparam, nameparamstr)
+        print('namewithparam after name: ', name)
+        return name
+
     def excel_fill(self):
         try:        
             for sheet in self.Excel_Config['SHEETS']:
-                print('excel_fill sheet begin: ', sheet['SHEETNAME'])
-                ws = self.workbook[sheet['SHEETNAME']]
+                print('excel_fill sheet begin: ', sheet['SHEET_ORIGIN_NAME'])
+                sheetname = self.namewithparam(sheet['SHEET_AFTER_NAME'])
+                print('sheetname after param modify is: ', sheetname)
+                ws = self.workbook[sheet['SHEET_ORIGIN_NAME']]
+                ws.title = sheetname
                 self.saveExcelSheet(ws, sheet)
-                print('excel_fill sheet over: ', sheet['SHEETNAME'])
+                print('excel_fill sheet over: ', sheetname)
                 
             if (self.runmode == 'test'):
                 site_config_filename = self.filepath + '/config/api_options.json'
