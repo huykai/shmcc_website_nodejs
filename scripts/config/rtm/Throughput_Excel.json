@@ -7,7 +7,8 @@
     ],
     "SHEETS": [
         {
-            "SHEETNAME": "${month}-${day} ${hour}",
+            "SHEET_ORIGIN_NAME": "21-00",
+            "SHEET_AFTER_NAME": "${month}-${day} ${hour}时",
             "RTM_KPI": [
                 {
                     "item": "date",
