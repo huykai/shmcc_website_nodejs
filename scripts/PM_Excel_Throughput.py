@@ -114,6 +114,7 @@ if __name__ == '__main__':
     param['extraparams']['year'] = currtime.strftime('%Y')
     param['extraparams']['month'] = currtime.strftime('%m')
     param['extraparams']['day'] = currtime.strftime('%d')
+    param['extraparams']['hour'] = currtime.strftime('%H')
     
     param['selectrtm'] = 'true'
     
