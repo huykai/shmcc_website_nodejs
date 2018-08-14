@@ -43,13 +43,33 @@
             "outputlocation": "D2"
         },
         {
-            "item": "timelabel",
+            "item": "time",
             "values": [
+                {
+                    "datasource": "params",    
+                    "datavalue": "starttime"
+                },
+                {
+                    "datasource": "params",    
+                    "datavalue": "stoptime"
+                }
             ],
             "outputformats":[
                 {
                     "type": "string",
                     "value": "时间："
+                },
+                {
+                    "type": "data",
+                    "value": "1"
+                },
+                {
+                    "type": "string",
+                    "value": " - "
+                },
+                {
+                    "type": "data",
+                    "value": "2"
                 }
             ],
             "outputlocation": "F2"
@@ -89,34 +109,6 @@
                 }
             ],
             "outputlocation": "C9"
-        },
-        {
-            "item": "time",
-            "values": [
-                {
-                    "datasource": "params",    
-                    "datavalue": "starttime"
-                },
-                {
-                    "datasource": "params",    
-                    "datavalue": "stoptime"
-                }
-            ],
-            "outputformats":[
-                {
-                    "type": "data",
-                    "value": "1"
-                },
-                {
-                    "type": "string",
-                    "value": " - "
-                },
-                {
-                    "type": "data",
-                    "value": "2"
-                }
-            ],
-            "outputlocation": "G2"
         },
         {
             "item": "time",
@@ -1172,30 +1164,6 @@
             "outputlocation": "C3"
         },
         {
-            "item": "timelabel",
-            "values": [
-            ],
-            "outputformats":[
-                {
-                    "type": "string",
-                    "value": "时间"
-                }
-            ],
-            "outputlocation": "F3"
-        },
-        {
-            "item": "timelabel",
-            "values": [
-            ],
-            "outputformats":[
-                {
-                    "type": "string",
-                    "value": "时间"
-                }
-            ],
-            "outputlocation": "C6"
-        },
-        {
             "item": "time",
             "values": [
                 {
@@ -1209,6 +1177,10 @@
             ],
             "outputformats":[
                 {
+                    "type": "string",
+                    "value": "时间："
+                },
+                {
                     "type": "data",
                     "value": "1"
                 },
@@ -1221,7 +1193,19 @@
                     "value": "2"
                 }
             ],
-            "outputlocation": "G3"
+            "outputlocation": "F2"
+        },
+        {
+            "item": "timelabel",
+            "values": [
+            ],
+            "outputformats":[
+                {
+                    "type": "string",
+                    "value": "时间"
+                }
+            ],
+            "outputlocation": "C6"
         },
         {
             "item": "time",
