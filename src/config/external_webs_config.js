@@ -69,6 +69,42 @@ var external_webs_config = [
                 // 'dev.localhost:3000' : 'http://localhost:8000'
             }
         }
+    },
+    {
+        url_string: '/webs/ICES', 
+        options: {
+            target: 'http://localhost:51150',
+            // target: 'http://localhost:3000',
+            // changeOrigin: true,               // needed for virtual hosted sites
+            // ws: true,                         // proxy websockets
+            pathRewrite: {
+                '^/webs/ICES' : '/epc-ices/',     // rewrite path
+            //    // '^/api/remove/path' : '/path'           // remove base path
+            },
+            //router: {
+                // when request.headers.host == 'dev.localhost:3000',
+                // override target 'http://www.example.org' to 'http://localhost:8000'
+            //    '/webs/ICES' : 'http://localhost:51150/epc-ices'
+            //}
+        }
+    },
+    {
+        url_string: '/epc-ices/*', 
+        options: {
+            // target: 'http://localhost:51018',
+            target: 'http://localhost:51150',
+            changeOrigin: true,               // needed for virtual hosted sites
+            // ws: true,                         // proxy websockets
+            //pathRewrite: {
+            //    '^/epc-ices' : '/epc-ices',     // rewrite path
+                // '^/api/remove/path' : '/path'           // remove base path
+            //},
+            //router: {
+                // when request.headers.host == 'dev.localhost:3000',
+                // override target 'http://www.example.org' to 'http://localhost:8000'
+                // 'http://localhost:3000' : 'http://localhost:51150'
+            //}
+        }
     }
 ]
 

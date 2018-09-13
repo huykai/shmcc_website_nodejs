@@ -1,0 +1,14 @@
+<service>
+<id>PM2_SHMCCPS_Webserver</id>
+<name>PM2_SHMCCPS_Webserver</name>
+<description>PM2_SHMCCPS_Webserver</description>
+<executable>E:/Develop_Language/nodejs/node.exe</executable>
+<startargument>E:/DevelopTools/nvm/v8.10.0/node_modules/pm2/bin/pm2</startargument>
+<startargument>start</startargument>
+<startargument>E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/process_pm2.yml</startargument>
+<stopexecutable>E:/Develop_Language/nodejs/node.exe</stopexecutable>
+<stopargument>E:/DevelopTools/nvm/v8.10.0/node_modules/pm2/bin/pm2</stopargument>
+<stopargument>stop</stopargument>
+<stopargument>E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/process_pm2.yml</stopargument>
+<logpath>logs</logpath>
+</service>

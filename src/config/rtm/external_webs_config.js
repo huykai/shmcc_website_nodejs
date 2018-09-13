@@ -72,6 +72,24 @@ var external_webs_config = [
                 // 'dev.localhost:3000' : 'http://localhost:8000'
             }
         }
+    },
+    {
+        url_string: '/webs/ICES', 
+        options: {
+            // target: 'http://localhost:51018',
+            target: 'http://10.222.5.38:8888/epc-ices/',
+            // changeOrigin: true,               // needed for virtual hosted sites
+            // ws: true,                         // proxy websockets
+            pathRewrite: {
+                // '^/FMANS17/' : '/FMANS17/',     // rewrite path
+                // '^/api/remove/path' : '/path'           // remove base path
+            },
+            router: {
+                // when request.headers.host == 'dev.localhost:3000',
+                // override target 'http://www.example.org' to 'http://localhost:8000'
+                // 'dev.localhost:3000' : 'http://localhost:8000'
+            }
+        }
     }
 ]
 

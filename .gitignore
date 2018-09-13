@@ -11,8 +11,12 @@
 *.tgz
 *.pyc
 *.xlsx
+*.exe
 scripts/*.pyc
 result/
+src/sslcert/
+src/public/
+src/views/
 .DS_Store
 .idea
 .project

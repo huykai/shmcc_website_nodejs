@@ -37,8 +37,11 @@ var ejs = require('ejs');
 var ioserver = require('socket.io');
 
 
-var privateKey  = fs.readFileSync(__dirname + '/sslcert/privatekey.pem', 'utf8');
-var certificate = fs.readFileSync(__dirname + '/sslcert/certificate.pem', 'utf8');
+//var privateKey  = fs.readFileSync(__dirname + '/sslcert/privatekey.pem', 'utf8');
+//var certificate = fs.readFileSync(__dirname + '/sslcert/certificate.pem', 'utf8');
+var privateKey  = fs.readFileSync(__dirname + '/sslcert/www.huykai.com.cn/3_huykai.com.cn.key', 'utf8');
+var certificate = fs.readFileSync(__dirname + '/sslcert/www.huykai.com.cn/2_huykai.com.cn.crt', 'utf8');
+
 var ssloptions = {
   key: privateKey,
   cert: certificate
@@ -62,8 +65,8 @@ var app = express();
 app.set('http_port', processOption.env.HTTP_PORT || 3000);
 app.set('https_port', processOption.env.HTTPS_PORT || 3010);
 app.set('views', __dirname + '/views');
-app.engine('.html', ejs.__express);
-app.set('view engine', 'html');
+//app.engine('.ejs', ejs.__express);
+app.set('view engine', 'ejs');
 
 //app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.static(site_config.static_dir));
@@ -144,12 +147,18 @@ app.post('/user/signin', urlencodedParser, routes.users.signin);
 //Logout
 app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout); 
 
+//ejs test
+app.get('/ejs', (req, res, next) => {
+  res.render('index', {page:'Home', menuId:'home'})
+}); 
+
 
 //app.all('/api/*', urlencodedParser, csrfProtection, routers);
 // /api/* mean routers for api
 app.all('/api/*', urlencodedParser, routers);
 // /informationbrowser/index.jsp
-app.all('/webs/*', urlencodedParser, external_webs);
+//app.all('/webs/*', urlencodedParser, external_webs);
+app.all('/*', urlencodedParser, external_webs);
 
 
 

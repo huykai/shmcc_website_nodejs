@@ -1,0 +1,14 @@
+apps:
+  - script   : src/app.js
+    instances: 1
+    exec_mode: cluster
+    watch  : true
+    log_date_format : "YYYY-MM-DD HH:mm Z"
+    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/log_file/pm2_app_out.log"
+    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/log_file/pm2_app_error.log"
+  - script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/server/server.js
+    watch  : true
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
