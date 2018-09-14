@@ -21,11 +21,13 @@ def getDocumentInfo(configType):
     global Document_Dir
     global Document_Type
 
-    DocumentConfigFile = './scripts/config/api_options.json'
+    scriptsPath = os.path.abspath(os.path.dirname(__file__))
+    
+    DocumentConfigFile = scriptsPath + '/scripts/config/api_options.json'
     if (configType == 'test'):
-        DocumentConfigFile = './scripts/config/api_options.json'
+        DocumentConfigFile = scriptsPath + '/scripts/config/api_options.json'
     elif (configType == 'rtm'):
-        DocumentConfigFile = './scripts/config/rtm/api_options.json'
+        DocumentConfigFile = scriptsPath + '/scripts/config/rtm/api_options.json'
     
     if(os.path.exists(DocumentConfigFile)):
         try:
