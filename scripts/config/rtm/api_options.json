@@ -2,6 +2,6 @@
 	"resultfile_dir" : "/root/huykai/node_webserver/angularjs_shmccps/app/",
 	"resultfile_title" : "result/traffica_result_",
 	"download_dir" : "/root/huykai/node_webserver/angularjs_shmccps/app/downloads/",
-	"document_dir" : "/root/huykai/node_webserver/angularjs_shmccps/app/documents/",
+	"document_dir" : "/root/huykai/node_webserver/angularjs_shmccps/app/Documents/",
 	"document_type" : ".pdf;"
 }
