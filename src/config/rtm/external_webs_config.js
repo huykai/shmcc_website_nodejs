@@ -76,7 +76,7 @@ var external_webs_config = [
     {
         url_string: '/webs/ICES', 
         options: {
-            target: 'http://10.222.5.35:8888',
+            target: 'http://127.0.0.1:50001',
             // target: 'http://localhost:3000',
             // changeOrigin: true,               // needed for virtual hosted sites
             // ws: true,                         // proxy websockets
@@ -95,7 +95,7 @@ var external_webs_config = [
         url_string: '/epc-ices/*', 
         options: {
             // target: 'http://localhost:51018',
-            target: 'http://10.222.5.35:8888',
+            target: 'http://127.0.0.1:50001',
             changeOrigin: true,               // needed for virtual hosted sites
             // ws: true,                         // proxy websockets
             //pathRewrite: {
