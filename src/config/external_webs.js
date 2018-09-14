@@ -13,5 +13,4 @@ for (var external_web_config of external_webs_config) {
 }
 
 
-
 module.exports = external_webs;

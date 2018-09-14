@@ -105,7 +105,7 @@ var external_webs_config = [
             //router: {
                 // when request.headers.host == 'dev.localhost:3000',
                 // override target 'http://www.example.org' to 'http://localhost:8000'
-                // 'http://localhost:3000' : 'http://localhost:51150'
+                // 'http://10.222.5.35:3000' : 'http://10.222.5.35:8888'
             //}
         }
     }
