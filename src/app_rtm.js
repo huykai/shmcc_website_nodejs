@@ -1,3 +1,5 @@
+
+
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -170,6 +172,7 @@ var server = http.createServer(app).listen(app.get('port'),function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
 server.timeout = ServerTimeout;
+// var io = require('socket.io')(server);
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
   console.log('a user connected.');

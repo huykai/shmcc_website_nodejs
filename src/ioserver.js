@@ -4,7 +4,7 @@ var ioserver = require('socket.io');
 var netelements = require('./config/netelementconfig');
 var pty = require('node-pty');
 
-var socketServer = function(server) {
+const socketServer = function(server) {
     var io = ioserver(server, {path: '/hyktty/socket.io'});
     io.on('connection', function(socket){
         console.log('io connected');

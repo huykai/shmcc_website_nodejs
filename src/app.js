@@ -176,7 +176,11 @@ app.use(function (err, req, res, next) {
   res.send('form tampered with');
 });
 
+//process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
+//let socketPort = 3100 + parseInt(process.env.NODE_APP_INSTANCE);
+
 var http_server = http.createServer(app).listen(app.get('http_port'),function() {
+//  var http_server = http.createServer(app).listen(socketPort, function() {
   console.log('Express http server listening on port ' + app.get('http_port'));
 });
 

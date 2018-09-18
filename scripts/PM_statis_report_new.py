@@ -132,6 +132,14 @@ def run_kpi(kpi_title, kpi_function, cursor, param):
         #pass
     writexmltableend(kpi_title)
 
+def makeReturn(result, info):
+    writexmlhead()
+    print u"<Error>"
+    print u"<ErrorNo>" + result + u"</ErrorNo>"
+    print u"<ErrorDetail>" + str(info) + u"</ErrorDetail>"
+    print u"</Error>"
+    writexmltail()
+
 if __name__ == '__main__':
 
     logging.info('query time : ' + time.strftime('%Y/%m/%d %H:%M:%S',time.localtime(time.time())))
@@ -200,8 +208,11 @@ if __name__ == '__main__':
         
         writexmltail()
         
-    except mysql.Error, e:
-        logging.error("Error %d: %s" % (e.args[0], e.args[1]))
+    except Exception as e:
+        #logging.error("Error %d: %s" % (e.args[0], e.args[1]))
+        logging.error("Error %s" % (e.args))
+        #print("Error %s" % (e.args))
+        makeReturn('1', e)
         sys.exit(1)
     finally:
         if con:
