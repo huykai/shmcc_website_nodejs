@@ -1,0 +1,23 @@
+apps:
+  - script   : src/app_v2.js
+    instances: 4
+    exec_mode: cluster
+    watch  : false
+    log_date_format : "YYYY-MM-DD HH:mm Z"
+    out_file : "/root/huykai/node_webserver/nodejs_shmcc_website/log_file/pm2_app_out.log"
+    error_file : "/root/huykai/node_webserver/nodejs_shmcc_website/log_file/pm2_app_error.log"
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
+  - script : /root/huykai/javascript_projects/lb_loganalysis/server/server.js
+    watch  : false
+    instances: 1
+    exec_mode: cluster
+    log_date_format : "YYYY-MM-DD HH:mm Z"
+    out_file : "/root/huykai/javascript_projects/lb_loganalysis/log_file/pm2_server_out.log"
+    error_file : "/root/huykai/javascript_projects/lb_loganalysis/log_file/log_file/pm2_server_error.log"
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
