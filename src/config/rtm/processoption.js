@@ -11,9 +11,8 @@ exports.env = {
   mode: 'rtm',
   hostname: '10.222.5.38',
   ServerTimeout: 3600000,
-  privateKeyFile: '/sslcert/www.huykai.com.cn/3_huykai.com.cn.key',
-  certificateFile: '/sslcert/www.huykai.com.cn/2_huykai.com.cn.crt',
   mongodbURL: 'mongodb://shmccps:shmccps@localhost:27017/shmccps',
   redisPort: 6379,
-  secretToken: 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx'
+  secretToken: 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx',
+  socketPort: 3100
 }

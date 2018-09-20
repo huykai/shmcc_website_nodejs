@@ -23,17 +23,8 @@ var external_webs = require(`./config/${modedir}external_webs`);
 var socketIOServer = require('./ioserver');
 
 const http = require('http');
-const https = require('https');
 const hostname = processOption.env.hostname;
 const ServerTimeout = processOption.env.ServerTimeout;
-
-var privateKey  = fs.readFileSync(__dirname + processOption.env.privateKeyFile, 'utf8');
-var certificate = fs.readFileSync(__dirname + processOption.env.certificateFile, 'utf8');
-
-var ssloptions = {
-  key: privateKey,
-  cert: certificate
-}
 
 var routes = {};
 routes.posts = require('./route/posts_v2.js');
@@ -158,36 +149,26 @@ app.use(function (err, req, res, next) {
 
 process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
 let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_INSTANCE);
-let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
+//let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
 var http_server = http.createServer(app).listen(socketPort,function() {
   console.log('Express http server listening on port ' + socketPort);
 });
 
 http_server.timeout = ServerTimeout;
 
-var https_server = https.createServer(ssloptions, app).listen(httpssocketPort,function() {
-  console.log('Express https server listening on port ' + httpssocketPort);
-});
-
-https_server.timeout = ServerTimeout;
-
 process.on('uncaughtException', function (err) {
   console.log('uncaughtException: ');
   console.error(err);
   http_server.close(); 
-  https_server.close(); 
   setTimeout(process.exit, 5000, 1);
 });
 
 console.log(`socketio server port: ${socketPort}`)
-//io = require('socket.io')(socketPort);
 const socket_httpServer = socketIOServer(http_server);
-const socket_httpsServer = socketIOServer(https_server);
 
 
 module.exports = {
   app: app,
   host: hostname,
-  http_port: processOption.env.env.HTTP_PORT,
-  https_port: processOption.env.env.HTTPS_PORT
+  http_port: processOption.env.env.HTTP_PORT
 }
