@@ -32,6 +32,7 @@ for (var api in api_config) {
     var exec_program = api_config[api].program;
     var exec_script = api_config[api].script;
     var return_type = api_config[api].return_type;
+    console.log('POST :', api_string);
     if (method_type == 'POST') {
         post_api_exec_mode[api_string]=exec_mode;
         post_api_exec_program[api_string]=exec_program
@@ -62,9 +63,9 @@ for (var api in api_config) {
                 var exec_program = post_api_exec_program[api_string];
                 var exec_script = post_api_exec_script[api_string];
                 var return_type = post_api_exec_returntype[api_string];
-                
                 if (exec_mode === "execFile" ) {
                     //cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
+                    console.log('execFile POST :', exec_program + exec_script + " '" + queryparam + "'" );
                     cp.exec(exec_program + exec_script + " '" + queryparam + "'", CP_Parameters, function (err, stdout, stderr){
                         if (err) console.error(err);
                         else {
@@ -77,7 +78,7 @@ for (var api in api_config) {
                 } else if (exec_mode === "exec") {
                     //queryparam = queryparam.replace(/"/g,'\\"');
                     queryparam = "'" + queryparam + "'";
-                    console.log('exec:',exec_program, exec_script, queryparam, ' \nOptions : ', CP_Parameters);
+                    console.log('exec POST:',exec_program, exec_script, queryparam, ' \nOptions : ', CP_Parameters);
                     cp.exec(exec_program + exec_script + queryparam, CP_Parameters, function (err, stdout, stderr){
                         if (err) console.error(err);
                         else {
@@ -123,6 +124,7 @@ for (var api in api_config) {
         get_api_exec_program[api_string]=exec_program
         get_api_exec_script[api_string]=exec_script
         get_api_exec_returntype[api_string]=return_type
+        console.log('GET :', api_string);
         router.get(api_string , function(req, res, next) {
             //console.log(req);
             console.log('exec in router : get');
@@ -141,7 +143,7 @@ for (var api in api_config) {
 
             if (exec_mode === "exec") {
                 queryparam = "'" + queryparam + "'";
-                console.log('exec:',exec_program, exec_script, queryparam);
+                console.log('exec GET: ', exec_program, exec_script, queryparam);
                 
                 cp.exec(exec_program + exec_script + queryparam , CP_Parameters, function (err, stdout, stderr){
                     if (err) console.error(err);
@@ -154,6 +156,7 @@ for (var api in api_config) {
                 });
             } else if (exec_mode === "execFile") {
                 queryparam = "'" + queryparam + "'";
+                console.log('execFile GET: ', exec_program, exec_script, queryparam);
                 cp.execFile(exec_program, [exec_script, queryparam], CP_Parameters, function (err, stdout, stderr){
                     if (err) console.error(err);
                     else {
