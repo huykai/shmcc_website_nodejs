@@ -4,6 +4,7 @@
     "EXCEL_DOWNLOAD_URL": "../downloads/",
     "SHEETS": [
         {
+            "runCondition": "isMME",
             "SHEETNAME": "MME指标统计",
             "MME_KPI": [
                 { 
@@ -507,6 +508,7 @@
             ]
         },
         {
+            "runCondition": "isSAEGW",
             "SHEETNAME": "SAEGW指标统计",
             "SAEGW_KPI": [
                 { 

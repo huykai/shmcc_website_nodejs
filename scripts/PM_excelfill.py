@@ -37,24 +37,41 @@ class PM_ExcelFill:
         self.param = param
         self.runmode = runmode
         self.filepath = os.path.split(os.path.realpath(__file__))[0]
-        print('filepath: ', __file__, self.filepath)
+        logging.info('filepath: ' + __file__ + self.filepath)
         if (self.runmode == 'test'):
             self.ExcelConfigFileName = self.filepath + '/config/' + excelconfig
         else:
             self.ExcelConfigFileName = self.filepath + '/config/' + runmode + '/' + excelconfig
         logging.info('Excel_Config_filename : ' + self.ExcelConfigFileName)
-        print('Excel Config File: ', self.ExcelConfigFileName)
+        logging.info('Excel Config File: ' + self.ExcelConfigFileName)
 
     def init(self):
         try:
-            if hasattr(self.param, 'selectmmesgsn') and len(self.param.selectmmesgsn) != 0:
-                (dbuser,dbpasswd,dburl,dburlport,db_dbname) = getdbconfig(self.runmode, "mmedb")
-                self.mmedb = oracle.connect(dbuser, dbpasswd, dburl)
-                self.mmedbcursor=self.mmedb.cursor()
-            if hasattr(self.param, 'selectsaegwggsn') and len(self.param.selectsaegwggsn) != 0:
-                (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "saegwdb")
-                self.saegwdb = oracle.connect(dbuser, dbpasswd, dburl)
-                self.saegwdbcursor=self.saegwdb.cursor()
+            with open(self.ExcelConfigFileName, 'r') as load_f:
+                self.Excel_Config = json.load(load_f)
+            self.SaveFileName = self.Excel_Config['EXCEL_FILENAME']
+            
+            # MMEDB
+            (dbuser,dbpasswd,dburl,dburlport,db_dbname) = getdbconfig(self.runmode, "mmedb")
+            self.mmedb = oracle.connect(dbuser, dbpasswd, dburl)
+            self.mmedbcursor=self.mmedb.cursor()
+            # SAEGWDB
+            (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "saegwdb")
+            self.saegwdb = oracle.connect(dbuser, dbpasswd, dburl)
+            self.saegwdbcursor=self.saegwdb.cursor()
+
+            if hasattr(self.param, 'netype') and self.param.netype == 'mme':
+                self.SaveFileName += ('_' + self.param['ne'] or 'SHMME03BNK')
+                self.param.isMME = 1
+                self.param.isSAEGW = 0
+                self.param.selectmmesgsn = self.param['ne'] or 'SHMME03BNK'
+                
+            if hasattr(self.param, 'netype') and self.param.netype == 'saegw' :
+                self.SaveFileName += ('_' + self.param['ne'] or "SHSAEGW03BNK")
+                self.param.isMME = 0
+                self.param.isSAEGW = 1
+                self.param.selectsaegwggsn = self.param['ne'] or 'SHSAEGW03BNK'
+                
             if hasattr(self.param, 'selectrtm') and self.param.selectrtm:
                 (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "rtmdb")
                 self.rtm_statis = RTM_Statis()
@@ -63,14 +80,11 @@ class PM_ExcelFill:
                 else:
                     result = self.rtm_statis.rtm_conn_linux(dburl, dbuser, dbpasswd)
                 if (result['resultcode'] == 0):
-                    print('self.rtm_statis init failed ', result['result'])
+                    logging.info('self.rtm_statis init failed ' + result['result'])
                     raise Exception('initiate zabbix failed: %s' % result['result'])
-            with open(self.ExcelConfigFileName, 'r') as load_f:
-                self.Excel_Config = json.load(load_f)
-                #print(load_dict)
+            
             logging.info('Excel_Config json parse finished')
             logging.info('Excel_Config EXCEL MODEL NAME: ' + self.Excel_Config['EXCEL_MODEL'])
-            self.SaveFileName = self.Excel_Config['EXCEL_FILENAME']
             logging.info('Excel_Config EXCEL_FILENAME : ' + self.SaveFileName)
             self.workbook = openpyxl.load_workbook(self.Excel_Config['EXCEL_MODEL'])
             logging.info('openpyxl load workbook finished')
@@ -80,10 +94,10 @@ class PM_ExcelFill:
             return self.make_return(0, e)
 
     def make_return(self, resultcode, result):
-        return {'resultcode': resultcode, 'result': result}
+        return {'resultcode': resultcode, 'resultdetail': result}
 
     def namewithparam(self, name):
-        print('namewithparam origin name: ', name)
+        logging.info('namewithparam origin name: ' + name)
         nameparams = re.findall('\$\{[\w\d]+\}', name)
         if (len(nameparams) > 0):
             for nameparam in nameparams:
@@ -94,20 +108,31 @@ class PM_ExcelFill:
                 elif (nameparamitem in self.param['extraparams'].keys()):
                     nameparamstr = self.param['extraparams'][nameparamitem]
                 name = name.replace(nameparam, nameparamstr)
-        print('namewithparam after name: ', name)
+        logging.info('namewithparam after name: ' + name)
         return name
 
     def excel_fill(self):
-        try:        
+        #try:        
             for sheet in self.Excel_Config['SHEETS']:
-                print('excel_fill sheet begin: ', sheet['SHEET_ORIGIN_NAME'])
-                sheetname = self.namewithparam(sheet['SHEET_AFTER_NAME'])
-                print('sheetname after param modify is: ', sheetname)
-                ws = self.workbook[sheet['SHEET_ORIGIN_NAME']]
+                if sheet.has_key('runCondition'):
+                    logging.info(sheet['runCondition'] + ' : ' + str(self.param[sheet['runCondition']]))
+                    logging.info('param has attr: ' + sheet['runCondition'] + ' ' + str(hasattr(self.param, sheet['runCondition'])) + ' ' + str(self.param[sheet['runCondition']]))
+                    if hasattr(self.param, sheet['runCondition']) and not(self.param[sheet['runCondition']] == 1):
+                        continue
+                oldsheetname = sheet.has_key('SHEETNAME') and sheet['SHEETNAME']
+                sheetname = oldsheetname
+                if (sheet.has_key('SHEET_ORIGIN_NAME')):
+                    logging.info('excel_fill sheet begin: ' + sheet['SHEET_ORIGIN_NAME'])
+                    oldsheetname = sheet['SHEET_ORIGIN_NAME']
+                if (sheet.has_key('SHEET_AFTER_NAME')):
+                    logging.info('excel_fill sheet after: ' + sheet['SHEET_AFTER_NAME'])
+                    sheetname = sheet['SHEET_AFTER_NAME']
+                sheetname = self.namewithparam(sheetname)
+                logging.info('sheetname after param modify is: ' + sheetname)
+                ws = self.workbook[oldsheetname]
                 ws.title = sheetname
                 self.saveExcelSheet(ws, sheet)
-                print('excel_fill sheet over: ', sheetname)
-                
+                logging.info('excel_fill sheet over: ' + sheetname) 
             if (self.runmode == 'test'):
                 site_config_filename = self.filepath + '/config/api_options.json'
             else:
@@ -120,9 +145,9 @@ class PM_ExcelFill:
             realfilename = site_config['download_dir'] + self.SaveFileName 
             self.workbook.save(realfilename)
             return self.make_return(1, self.Excel_Config['EXCEL_DOWNLOAD_URL'] + self.SaveFileName)
-        except Exception as e:
-            logging.error("Error PM_Excelfill: %s" % e)
-            return self.make_return(0, "Error PM_Excelfill: %s" % e)
+        #except Exception as e:
+        #    logging.error("Error PM_Excelfill: %s" % e)
+        #    return self.make_return(0, "Error PM_Excelfill: %s" % e)
         
     def closeAll(self):
         if (self.mmedb != None):
@@ -198,40 +223,40 @@ class PM_ExcelFill:
             return ''
 
     def getsqlinfo(self, dbcursor, valuestruct, api_sql_function, kpi_report_result):
-        #try:
-        sqlfunc = valuestruct['sql_function']
-        #print('getsqlinfo : ', sqlfunc)
-        sqlitemindex = valuestruct['sql_selectitem_index']
-        #print('getsqlinfo : ', sqlitemindex)
-        kpi_function = api_sql_function[sqlfunc]['func']
-        #print('getsqlinfo : ', kpi_function)
-        if (kpi_report_result.has_key(sqlfunc)):
-            if (valuestruct.has_key("sql_extra")):
-                #print('getsqlinfo valuestruct has key sql_extra')
-                return self.caculate(kpi_report_result[sqlfunc], valuestruct["sql_extra"])
-            else:    
-                return kpi_report_result[sqlfunc][0][int(sqlitemindex) - 1]
-        else:
-            title,row=kpi_function(sqlfunc, dbcursor, self.param)
-            if title[0]!='error' and len(row)>0:
-                #print('getsqlinfo ' + sqlfunc + ' ' + str(row[0]))
-                kpi_report_result[sqlfunc] = row
-                #print('getsqlinfo valuestruct has key sql_extra ? ', valuestruct.has_key("sql_extra"))
+        try:
+            sqlfunc = valuestruct['sql_function']
+            #print('getsqlinfo : ', sqlfunc)
+            sqlitemindex = valuestruct['sql_selectitem_index']
+            #print('getsqlinfo : ', sqlitemindex)
+            kpi_function = api_sql_function[sqlfunc]['func']
+            #print('getsqlinfo : ', kpi_function)
+            if (kpi_report_result.has_key(sqlfunc)):
                 if (valuestruct.has_key("sql_extra")):
                     #print('getsqlinfo valuestruct has key sql_extra')
-                    return self.caculate(row, valuestruct["sql_extra"])
-                
-                return str(row[0][int(sqlitemindex) - 1])
+                    return self.caculate(kpi_report_result[sqlfunc], valuestruct["sql_extra"])
+                else:    
+                    return kpi_report_result[sqlfunc][0][int(sqlitemindex) - 1]
             else:
-                logging.error("getsqlinfo %s with Error : %s" % (sqlfunc, title[1]))
-                return ''
+                title,row=kpi_function(sqlfunc, dbcursor, self.param)
+                if title[0]!='error' and len(row)>0:
+                    #print('getsqlinfo ' + sqlfunc + ' ' + str(row[0]))
+                    kpi_report_result[sqlfunc] = row
+                    #print('getsqlinfo valuestruct has key sql_extra ? ', valuestruct.has_key("sql_extra"))
+                    if (valuestruct.has_key("sql_extra")):
+                        #print('getsqlinfo valuestruct has key sql_extra')
+                        return self.caculate(row, valuestruct["sql_extra"])
+                    
+                    return str(row[0][int(sqlitemindex) - 1])
+                else:
+                    logging.error("getsqlinfo %s with Error : %s" % (sqlfunc, title[1]))
+                    return "getsqlinfo %s with Error : %s" % (sqlfunc, title[1])
 
-        #except Exception, e:
-        #    print('Exception : ', str(e))
-        #    return str(e)
+        except Exception, e:
+            logging.error('Exception : ', str(e))
+            return "getsqlinfo Exception: %s" % str(e)
 
     def getData(self, outputformat, dbcursor, values, api_sql_function, kpi_report_result):
-        print('getData...')
+        logging.info('getData...')
         if (outputformat['type'] == "string"):
             return outputformat['value']
         elif(outputformat['type'] == "data"):
@@ -242,17 +267,17 @@ class PM_ExcelFill:
                     return param[datavalue]
                 elif(datasource == "sql"):
                     datainfo = self.getsqlinfo(dbcursor, values[int(outputformat['value'])-1], api_sql_function, kpi_report_result)
-                    print('sql datainfo: %s' % datainfo)
+                    logging.info('sql datainfo: %s' % datainfo)
                     return str(datainfo)
                 elif(datasource == 'evaldata'):
                     evalstring = values[int(outputformat['value']) - 1]['value']
-                    print('evalstring begin: ', evalstring)
+                    logging.info('evalstring begin: ' + evalstring)
                     evalsubitems = re.findall('\$\{\d+\}', evalstring)
-                    print('evalsubitems : ', evalsubitems)
+                    logging.info('evalsubitems : ' + str(evalsubitems))
                     if (len(evalsubitems) > 0):
                         for evalsubitem in evalsubitems:
                             evalsubitem_match = re.search('(\d+)', evalsubitem)
-                            print('evalsubitem_match : ', evalsubitem_match.group())
+                            logging.info('evalsubitem_match : ' + evalsubitem_match.group())
                             if(evalsubitem_match):
                                 evalsubitem_index = int(evalsubitem_match.group())
                                 newoutputformat = {
@@ -260,13 +285,13 @@ class PM_ExcelFill:
                                     "value": evalsubitem_index
                                 }
                                 result = self.getData(newoutputformat, dbcursor, values, api_sql_function, kpi_report_result)
-                                print('result: ', result)
+                                logging.info('result: ' + result)
                                 evalstring = evalstring.replace(evalsubitem, result)
                     try:
-                        print('evalstring over: ', evalstring)
+                        logging.info('evalstring over: ' + evalstring)
                         return str(round(eval(evalstring), 2))
                     except Exception as e:
-                        print('evalstring over Error: ', str(e))
+                        logging.info('evalstring over Error: ' + str(e))
                         return str(e)
 
 
@@ -308,20 +333,20 @@ class PM_ExcelFill:
                     outputstring += result
                 elif values[int(outputformat['value']) - 1]['datasource'] == 'evaldata':
                     evalstring = values[int(outputformat['value']) - 1]['value']
-                    print('evalstring begin: ', evalstring)
+                    logging.info('evalstring begin: ' + evalstring)
                     evalsubitems = re.findall('\$\{\d+\}', evalstring)
-                    print('evalsubitems : ', evalsubitems)
+                    logging.info('evalsubitems : %s' % evalsubitems)
                     if (len(evalsubitems) > 0):
                         for evalsubitem in evalsubitems:
                             evalsubitem_match = re.search('(\d+)', evalsubitem)
-                            print('evalsubitem_match : ', evalsubitem_match.group())
+                            logging.info('evalsubitem_match : ' + evalsubitem_match.group())
                             if(evalsubitem_match):
                                 evalsubitem_index = int(evalsubitem_match.group()) - 1
                                 result = self.getRTMKPI(values, evalsubitem_index)
-                                print('result: ', result)
+                                logging.info('result: %s' % result)
                                 evalstring = evalstring.replace(evalsubitem, result)
                     try:
-                        print('evalstring over: ', evalstring)
+                        logging.info('evalstring over: ' + evalstring)
                         outputstring += str(round(eval(evalstring), 2))
                     except Exception as e:
                         outputstring = outputstring + evalstring + str(e)
@@ -332,7 +357,7 @@ class PM_ExcelFill:
         itemname = values[valuesindex]['itemname']
         valueindex = values[valuesindex]['valueindex']
         resultvalues = self.rtm_statis.rtm_get_value(hostname, itemname, self.param.startdatetime, self.param.stopdatetime)
-        print('rtm resultvalues: ', resultvalues)
+        logging.info('rtm resultvalues: ' + str(resultvalues))
         result = ''
         if (resultvalues['resultcode'] == 1 ):
             if (valueindex == 'min'):
@@ -346,7 +371,7 @@ class PM_ExcelFill:
         return result
 
     def saveExcelSheetSAEGWKPI(self, ws, dbcursor, kpiconfig):
-        print('saveExcelSheetSAEGWKPI...')
+        logging.info('saveExcelSheetSAEGWKPI...')
         api_sql_function = saegw_api_sql_function
         kpi_list = kpiconfig
         kpi_report_result = {}
@@ -361,7 +386,7 @@ class PM_ExcelFill:
     def runOSSKPI(self, ws, kpi_list, dbcursor, api_sql_function, kpi_report_result):    
         for kpi in kpi_list:
             #logging.info('kpi : ' + kpi)
-            print('runOSSKPI: ', kpi)
+            logging.info('runOSSKPI: ' + json.dumps(kpi))
             values = kpi['values']
             outputformats = kpi['outputformats']
             outputstring = ''
@@ -421,9 +446,9 @@ if __name__ == '__main__':
         runmode = sys.argv[1]
         excelconfig = sys.argv[2]
         formparams = sys.argv[3]
-        print("\t run mode : " + runmode) 
-        print("\t excel config : " + excelconfig) 
-        print("\t formparams : " + formparams) 
+        logging.info("\t run mode : " + runmode) 
+        logging.info("\t excel config : " + excelconfig) 
+        logging.info("\t formparams : " + formparams) 
         
        
     param = PmSqlParam()
@@ -432,7 +457,6 @@ if __name__ == '__main__':
         try:
             getforminfo(param, formparams)
             logging.info('\tparams info : ' + prn_obj(param))
-            print('\tparams info : ' + prn_obj(param))
         except Exception as e:
             logging.error('error in param get: %s' % e )
     else:
@@ -456,29 +480,25 @@ if __name__ == '__main__':
     param.starttime = pretime.strftime("%H:%M")
     param.stoptime = currtime.strftime("%H:%M")
 
-    print('param: \n%s' % param)
-
-    result = {
-        'resultcode': '0',
-        'resultdetail': ''
-    }
+    logging.info('param: \n%s' % param)
 
     filepath = os.path.split(os.path.realpath(__file__))[0]
-    print('main filepath: ', filepath)
+    logging.info('main filepath: ' + filepath)
     pm_excelfill = PM_ExcelFill(param, runmode, excelconfig)
 
     init_result = pm_excelfill.init()
     if init_result['resultcode'] == 0:
-        print('PM_ExcelFill initialize failed : %s', init_result['result'])
+        logging.info('PM_ExcelFill initialize failed : %s' % init_result['resultdetail'])
         sys.exit(1)
     
     fill_result = pm_excelfill.excel_fill()
     if fill_result['resultcode'] == 0:
-        print('PM_ExcelFill fill failed : %s', fill_result['result'])
+        logging.info('PM_ExcelFill fill failed : %s' % fill_result['resultdetail'])
         sys.exit(1)
     
     pm_excelfill.closeAll()
-    print(json.dumps(fill_result['result']))
+    #print(json.dumps(fill_result['result']))
+    print(json.dumps(fill_result))
 
 # test script
 # python scripts\RTM_statis_new.py

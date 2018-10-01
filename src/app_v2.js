@@ -144,7 +144,7 @@ app.use(function (err, req, res, next) {
   res.status(403);
   //console.log('req is: ',req.headers);
   //console.log('res is: ',res.headers);
-  res.send('form tampered with');
+  res.send('EBADCSRFTOKEN');
 });
 
 process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"

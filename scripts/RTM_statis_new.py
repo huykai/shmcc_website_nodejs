@@ -7,6 +7,8 @@ from pyzabbix import ZabbixAPI
 from GetConfig import *
 
 # zapi = ZabbixAPI(url='http://localhost:51081/api_jsonrpc.php', user='Admin', password='NokiaRtm') 
+import logging
+logging.basicConfig(filename='pm_excel_logger.log', level=logging.INFO)
 
 class RTM_Statis(object):
     zapi = None
@@ -110,8 +112,8 @@ class RTM_Statis(object):
         if type(itemnames) != list:
             itemnames = [itemnames]
 
-        print('starttime: ', starttime)
-        print('stoptime: ', stoptime)
+        logging.info('starttime: ' + str(starttime))
+        logging.info('stoptime: ' + str(stoptime))
                 
         return_result = []
         for hostname in hostnames: 
@@ -119,17 +121,17 @@ class RTM_Statis(object):
             if (host_result['resultcode'] == 0):
                 return self.make_result(0, 'hostname %s can not be found : %s' % (hostname, host_result['result']))
             hostid = host_result['result']
-            print('hostid find: ', hostid)
+            logging.info('hostid find: ' + hostid)
 
             for itemname in itemnames:
                 item_result = self.rtm_get_item(itemname, hostid)
                 if (item_result['resultcode'] == 0):
                     return self.make_result(0, 'itemname %s can not be found : %s' % (itemname, item_result['result']))
                 itemid = item_result['result']
-                print('itemid find: ', itemid)
+                logging.info('itemid find: ' + itemid)
                 
                 trend_result = self.rtm_get_trend(itemid, starttime, stoptime)
-                print('trend_result: ', trend_result)
+                logging.info('trend_result: ' + str(trend_result))
                 if trend_result['resultcode'] != 0:
                     for trend_result_item in trend_result['result']:
                         trend_result_item['hostname'] = hostname
@@ -157,16 +159,16 @@ if __name__ == '__main__':
     rtm_statis = RTM_Statis()
     api_result = rtm_statis.rtm_conn(url=url, user=user, password=password)
     if (api_result['resultcode'] == 0):
-        print('Zabbix API init failed: %s' % api_result['result'])
+        logging.info('Zabbix API init failed: %s' % api_result['result'])
         exit(1)
     else:
         zapi = api_result['result']
 
     value_result = rtm_statis.rtm_get_value(['SHMME03BNK','SHMME04BNK'], ['calEPS_DEF_BEARER_ACT_VOLTE_SUCC_Rate', 'calEPS_DEF_BEARER_ACT_SUCC_Rate'], starttime, stoptime)
     if (value_result['resultcode'] == 1):
-        print('RTM result: ', value_result['result'])
+        logging.info('RTM result: ' + value_result['result'])
     else:
-        print('RTM query failed: ', value_result['result'])
+        logging.info('RTM query failed: ' + value_result['result'])
 
 
 # test script

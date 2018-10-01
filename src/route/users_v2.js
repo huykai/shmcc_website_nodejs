@@ -15,25 +15,25 @@ exports.signin = function(req, res) {
 	//console.log('signin User Cookies: ', req.cookies);
     //console.log('signin Signed Cookies: ', req.signedCookies);
 	//console.log('req:',req);
-	console.log('user:',username);
-	console.log('pwd:',password);
+	//console.log('user:',username);
+	//console.log('pwd:',password);
 	//console.log('url:',req.url);
 	if (username == '' || password == '') {
-                console.log("User loging user: null.");
+        console.log("User loging user: null.");
 		return res.send(401); 
 	}
 
 	db.userModel.findOne({username: username}, function (err, user) {
 		if (err) {
-                        console.log("User loging err: ", err);
+            console.log("User loging err: ", err);
 			return res.send(401);
 		}
 
 		if (user == undefined) {
-                        console.log("User loging user: undefined.");
+        	console.log("User loging user: undefined.");
 			return res.send(401);
 		}
-		
+		//console.log(`findOne user: ${user}`)
 		user.comparePassword(password, function(isMatch) {
 			if (!isMatch) {
 				console.log("Attempt failed to login with " + user.username);
@@ -48,7 +48,10 @@ exports.signin = function(req, res) {
 			//res.set();
 			//res.type('application/json');
 			//return res.status(200);
-			return res.status(200).json({token:token});
+			return res.status(200).json({
+				token: token, 
+				is_admin: user.is_admin
+			});
 		});
 
 	});
@@ -80,7 +83,7 @@ exports.register = function(req, res) {
 	var user = new db.userModel();
 	user.username = username;
 	user.password = password;
-	//console.log(user);
+	console.log(`register: user ${user.username}`);
 	user.save(function(err) {
 		if (err) {
 			console.log(err);

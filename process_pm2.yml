@@ -1,6 +1,6 @@
 apps:
   - script   : src/app_v2.js
-    instances: 4
+    instances: 1
     exec_mode: cluster
     watch  : false
     log_date_format : "YYYY-MM-DD HH:mm Z"
