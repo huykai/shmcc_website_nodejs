@@ -134,16 +134,16 @@ if __name__ == '__main__':
 
     init_result = pm_excelfill.init()
     if init_result['resultcode'] == 0:
-        print('PM_ExcelFill initialize failed : %s', init_result['result'])
+        print('PM_ExcelFill initialize failed : %s', init_result['resultdetail'])
         sys.exit(1)
     
     fill_result = pm_excelfill.excel_fill()
     if fill_result['resultcode'] == 0:
-        print('PM_ExcelFill fill failed : %s', fill_result['result'])
+        print('PM_ExcelFill fill failed : %s', fill_result['resultdetail'])
         sys.exit(1)
     
     pm_excelfill.closeAll()
-    print(json.dumps(fill_result['result']))
+    print(json.dumps(fill_result['resultdetail']))
 
 # run script
 # python scripts\PM_Excel_Throughput.py test Throughput_Excel.json {\"selectsaegwggsn\":\ "SHSAEGW03BNK\",\"selectrtm\":\"true\",\"time\":\"2018/08/08-19:00:00\"}

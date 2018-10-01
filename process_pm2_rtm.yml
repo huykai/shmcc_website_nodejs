@@ -1,7 +1,9 @@
 apps:
-  - script   : src/app_v2.js
+  - script   : /root/huykai/node_webserver/nodejs_shmcc_website/src/app_v2.js
+    name     : "app_v2"
     instances: 4
     exec_mode: cluster
+    args     : "rtm" 
     watch  : false
     log_date_format : "YYYY-MM-DD HH:mm Z"
     out_file : "/root/huykai/node_webserver/nodejs_shmcc_website/log_file/pm2_app_out.log"
@@ -11,6 +13,7 @@ apps:
     env_production:
       NODE_ENV: production
   - script : /root/huykai/javascript_projects/lb_loganalysis/server/server.js
+    name     : "server"
     watch  : false
     instances: 1
     exec_mode: cluster
