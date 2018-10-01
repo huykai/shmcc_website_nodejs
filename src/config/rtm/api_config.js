@@ -103,7 +103,15 @@ var apiconfig = [
         api_string: '/api/getExcel',
         mode: 'exec',
         program: 'python2.7 ',
-        script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/PM_excelfill.py rtm ',
+        script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/PM_excelfill.py rtm KPI_Excel_Cutover.json ',
+        method_type: 'POST',
+        return_type: 'text/json'
+    },
+    {
+        api_string: '/api/getThroughputExcel',
+        mode: 'exec',
+        program: 'python2.7 ',
+        script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/PM_excelfill.py rtm Throughput_Excel.json ',
         method_type: 'POST',
         return_type: 'text/json'
     }
