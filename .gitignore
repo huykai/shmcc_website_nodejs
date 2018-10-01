@@ -13,6 +13,8 @@
 *.xlsx
 *.exe
 scripts/*.pyc
+scripts/build
+scripts/dist
 result/
 src/sslcert/
 src/public/
