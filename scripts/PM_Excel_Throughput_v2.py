@@ -93,7 +93,7 @@ if __name__ == '__main__':
     if not hasattr(param, 'time') or param['time'] == None:
         param['time'] = time.time()
     
-    timeArray = time.localtime(float(param.time))
+    timeArray = time.localtime(float(param['time']))
     param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
     currtime = datetime.datetime.strptime(param_time, "%Y-%m-%d %H:%M:%S")
     currtime = datetime.datetime(currtime.year, currtime.month, currtime.day, currtime.hour, 0)
