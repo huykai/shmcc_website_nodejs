@@ -108,7 +108,9 @@ if __name__ == '__main__':
     
     param['startdatetime'] = time.mktime(pretime.timetuple())
     param['stopdatetime'] = time.mktime(currtime.timetuple())
-
+    nowtime = datetime.datetime.now() 
+    param['maketime'] = nowtime.strftime("%Y%m%d%H%M%S")
+            
     paramsdate_fix(param)
 
     param['extraparams']['year'] = currtime.strftime('%Y')
