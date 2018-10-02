@@ -97,7 +97,7 @@ if __name__ == '__main__':
     param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
     currtime = datetime.datetime.strptime(param_time, "%Y-%m-%d %H:%M:%S")
     currtime = datetime.datetime(currtime.year, currtime.month, currtime.day, currtime.hour, 0)
-    currtime = currtime + datetime.timedelta(hours=-1)
+    #currtime = currtime + datetime.timedelta(hours=-1)
     pretime = currtime + datetime.timedelta(hours=-1)
 
     
