@@ -93,10 +93,10 @@ if __name__ == '__main__':
     #currtime = datetime.datetime.strptime(param.time, "%Y-%m-%dT%H:%M:%S.%fZ")
     if not hasattr(param, 'time') or param['time'] == None:
         param['time'] = time.time()
-    else:
-        timestr = param['time']
-        inputdatetime = datetime.datetime.strptime(timestr, '%Y/%m/%d-%H:%M:%S')
-        param['time'] = time.mktime(inputdatetime.timetuple())
+    #else:
+    #    timestr = param['time']
+    #    inputdatetime = datetime.datetime.strptime(timestr, '%Y/%m/%d-%H:%M:%S')
+    #    param['time'] = time.mktime(inputdatetime.timetuple())
 
     timeArray = time.localtime(float(param.time))
     param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
