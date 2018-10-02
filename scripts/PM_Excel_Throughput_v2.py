@@ -92,16 +92,12 @@ if __name__ == '__main__':
     #currtime = datetime.datetime.strptime(param.time, "%Y-%m-%dT%H:%M:%S.%fZ")
     if not hasattr(param, 'time') or param['time'] == None:
         param['time'] = time.time()
-    else:
-        timestr = param['time']
-        inputdatetime = datetime.datetime.strptime(timestr, '%Y/%m/%d-%H:%M:%S')
-        param['time'] = time.mktime(inputdatetime.timetuple())
-
+    
     timeArray = time.localtime(float(param.time))
     param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
     currtime = datetime.datetime.strptime(param_time, "%Y-%m-%d %H:%M:%S")
     currtime = datetime.datetime(currtime.year, currtime.month, currtime.day, currtime.hour, 0)
-    #currtime = currtime + datetime.timedelta（hours=-1)
+    currtime = currtime + datetime.timedelta(hours=-1)
     pretime = currtime + datetime.timedelta(hours=-1)
 
     
@@ -131,18 +127,18 @@ if __name__ == '__main__':
     logging.info('main filepath: ' + filepath)
     pm_excelfill = PM_ExcelFill(param, runmode, excelconfig)
 
-    init_result = pm_excelfill.init()
-    if init_result['resultcode'] == 0:
-        logging.error('PM_ExcelFill initialize failed : %s' % init_result['resultdetail'])
-        sys.exit(1)
-    
-    fill_result = pm_excelfill.excel_fill()
+    fill_result = pm_excelfill.init()
     if fill_result['resultcode'] == 0:
-        logging.info('PM_ExcelFill fill failed : %s' % fill_result['resultdetail'])
-        sys.exit(1)
+        logging.error('PM_ExcelFill initialize failed : %s' % fill_result['resultdetail'])
+        #sys.exit(1)
+    else:
+        fill_result = pm_excelfill.excel_fill()
+        if fill_result['resultcode'] == 0:
+            logging.info('PM_ExcelFill fill failed : %s' % fill_result['resultdetail'])
+            #sys.exit(1)
     
     pm_excelfill.closeAll()
-    print(json.dumps(fill_result['resultdetail']))
+    print(json.dumps(fill_result))
 
 # run script
 # python scripts\PM_Excel_Throughput.py test Throughput_Excel.json {\"selectsaegwggsn\":\ "SHSAEGW03BNK\",\"selectrtm\":\"true\",\"time\":\"2018/08/08-19:00:00\"}

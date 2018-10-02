@@ -105,7 +105,7 @@ var apiconfig = [
         api_string: '/api/getThroughputExcel',
         mode: 'exec',
         program: 'python ',
-        script: 'scripts/PM_excelfill.py test Throughput_Excel.json ',
+        script: 'scripts/PM_Excel_Throughput_v2.py test Throughput_Excel.json ',
         method_type: 'POST',
         return_type: 'text/json'
     }

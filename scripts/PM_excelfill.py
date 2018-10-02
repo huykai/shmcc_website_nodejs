@@ -91,7 +91,7 @@ class PM_ExcelFill:
             return self.make_return(1, 'init ok')
         except Exception as e:
             logging.info('PM_ExcelFill initialize failed : %s' % e)
-            return self.make_return(0, e)
+            return self.make_return(0, 'PM_ExcelFill initialize failed : %s' % e)
 
     def make_return(self, resultcode, result):
         return {'resultcode': resultcode, 'resultdetail': result}
@@ -112,7 +112,7 @@ class PM_ExcelFill:
         return name
 
     def excel_fill(self):
-        #try:        
+        try:        
             for sheet in self.Excel_Config['SHEETS']:
                 if sheet.has_key('runCondition'):
                     logging.info(sheet['runCondition'] + ' : ' + str(self.param[sheet['runCondition']]))
@@ -145,9 +145,9 @@ class PM_ExcelFill:
             realfilename = site_config['download_dir'] + self.SaveFileName 
             self.workbook.save(realfilename)
             return self.make_return(1, self.Excel_Config['EXCEL_DOWNLOAD_URL'] + self.SaveFileName)
-        #except Exception as e:
-        #    logging.error("Error PM_Excelfill: %s" % e)
-        #    return self.make_return(0, "Error PM_Excelfill: %s" % e)
+        except Exception as e:
+            logging.error("Error PM_Excelfill: %s" % e)
+            return self.make_return(0, "Error PM_Excelfill: %s" % e)
         
     def closeAll(self):
         if (self.mmedb != None):
@@ -486,15 +486,15 @@ if __name__ == '__main__':
     logging.info('main filepath: ' + filepath)
     pm_excelfill = PM_ExcelFill(param, runmode, excelconfig)
 
-    init_result = pm_excelfill.init()
-    if init_result['resultcode'] == 0:
-        logging.info('PM_ExcelFill initialize failed : %s' % init_result['resultdetail'])
-        sys.exit(1)
-    
-    fill_result = pm_excelfill.excel_fill()
+    fill_result = pm_excelfill.init()
     if fill_result['resultcode'] == 0:
-        logging.info('PM_ExcelFill fill failed : %s' % fill_result['resultdetail'])
-        sys.exit(1)
+        logging.info('PM_ExcelFill initialize failed : %s' % fill_result['resultdetail'])
+        #sys.exit(1)
+    else:
+        fill_result = pm_excelfill.excel_fill()
+        if fill_result['resultcode'] == 0:
+            logging.info('PM_ExcelFill fill failed : %s' % fill_result['resultdetail'])
+            #sys.exit(1)
     
     pm_excelfill.closeAll()
     #print(json.dumps(fill_result['result']))
