@@ -121,7 +121,7 @@ if __name__ == '__main__':
     param['selectrtm'] = 'true'
     
     if param['selectsaegwggsn'] == '':
-        param['selectsaegwggsn'] == 'SHSAEGW03BNK'
+        param['selectsaegwggsn'] = 'SHSAEGW03BNK'
 
     print('param: \n%s' % param)
 
