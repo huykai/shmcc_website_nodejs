@@ -111,7 +111,7 @@ var apiconfig = [
         api_string: '/api/getThroughputExcel',
         mode: 'exec',
         program: 'python2.7 ',
-        script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/PM_excelfill.py rtm Throughput_Excel.json ',
+        script: '/root/huykai/node_webserver/nodejs_shmcc_website/scripts/PM_Excel_Throughput_v2.py rtm Throughput_Excel.json ',
         method_type: 'POST',
         return_type: 'text/json'
     }

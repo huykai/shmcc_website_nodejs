@@ -140,8 +140,9 @@ class PM_ExcelFill:
             logging.info('site_config_filename  : ' + site_config_filename)
             site_config = json.load(open(site_config_filename, 'r'))
             
-            nowtime = datetime.datetime.now() 
-            self.SaveFileName = self.SaveFileName + '_' + nowtime.strftime("%Y%m%d") + nowtime.strftime("%H%M%S") + '.xlsx'
+            #nowtime = datetime.datetime.now() 
+            #self.SaveFileName = self.SaveFileName + '_' + nowtime.strftime("%Y%m%d") + nowtime.strftime("%H%M%S") + '.xlsx'
+            self.SaveFileName = self.SaveFileName + '_' + self.maketime
             realfilename = site_config['download_dir'] + self.SaveFileName 
             self.workbook.save(realfilename)
             return self.make_return(1, self.Excel_Config['EXCEL_DOWNLOAD_URL'] + self.SaveFileName)
@@ -479,6 +480,7 @@ if __name__ == '__main__':
     param.stopdate = currtime.strftime("%Y/%m/%d")
     param.starttime = pretime.strftime("%H:%M")
     param.stoptime = currtime.strftime("%H:%M")
+    param.maketime = time.strftime("%Y%m%d%H%M%S", timeArray)
 
     logging.info('param: \n%s' % param)
 
