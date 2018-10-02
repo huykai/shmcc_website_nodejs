@@ -142,7 +142,7 @@ class PM_ExcelFill:
             
             #nowtime = datetime.datetime.now() 
             #self.SaveFileName = self.SaveFileName + '_' + nowtime.strftime("%Y%m%d") + nowtime.strftime("%H%M%S") + '.xlsx'
-            self.SaveFileName = self.SaveFileName + '_' + self.maketime
+            self.SaveFileName = self.SaveFileName + '_' + self.param.maketime
             realfilename = site_config['download_dir'] + self.SaveFileName 
             self.workbook.save(realfilename)
             return self.make_return(1, self.Excel_Config['EXCEL_DOWNLOAD_URL'] + self.SaveFileName)
