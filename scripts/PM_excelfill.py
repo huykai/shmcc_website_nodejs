@@ -54,11 +54,13 @@ class PM_ExcelFill:
             
             # MMEDB
             (dbuser,dbpasswd,dburl,dburlport,db_dbname) = getdbconfig(self.runmode, "mmedb")
+            #print("mmedb parameter: ",dbuser,dbpasswd,dburl,dburlport,db_dbname)
             self.mmedb = oracle.connect(dbuser, dbpasswd, dburl)
             self.mmedbcursor=self.mmedb.cursor()
             # SAEGWDB
             (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "saegwdb")
-            self.saegwdb = oracle.connect(dbuser, dbpasswd, dburl)
+            #print "saegwdb parameter: ", dbuser,dbpasswd,dburl,dburlport,db_dbname
+	    self.saegwdb = oracle.connect(dbuser, dbpasswd, dburl)
             self.saegwdbcursor=self.saegwdb.cursor()
             # CMGDB
             (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "cmgdb")

@@ -103,6 +103,7 @@ def getdbconfig(runmode, dbmodelname):
     """
     from db.xml get the db's params
     """
+    #print('getdbcofig : ' + runmode + " " + dbmodelname)
     try:
         path = os.path.split(os.path.realpath(__file__))[0]
         #print 'db.xml path: ' + path + "/config/db.xml"
