@@ -424,6 +424,7 @@ saegw_api_sql_function = {
                         u'PGW 2g session',
                         u'PGW 3g session',
                         u'PGW 4g session',
+                        u'PGW 234g session',
                         u'PGW Session数',
                         u'SAEGW Session'
         ],
@@ -454,6 +455,7 @@ saegw_api_sql_function = {
             "sum(SM_NBR_ACT_SESS_RAT_2G) twogsession",
             "SUM(SM_NBR_ACT_SESS_RAT_3G) threegsession",
             "SUM(SM_NBR_ACT_SESS_RAT_4G) fourgSESSION",
+            "SUM(SM_NBR_ACT_SESS_RAT_2G)+SUM(SM_NBR_ACT_SESS_RAT_3G)+SUM(SM_NBR_ACT_SESS_RAT_4G) ttfSESSION",
             "sum(SM_NBR_ACT_SESS_P_GW) allpgwsession",
             "sum(SM_NBR_ACT_SESS_SAE_GW) allsaegwsession"
 	      ],
@@ -483,6 +485,7 @@ saegw_api_sql_function = {
             "round(sum(SM_NBR_ACT_SESS_RAT_2G)/4,0) twogsession",
             "round(SUM(SM_NBR_ACT_SESS_RAT_3G)/4,0) threegsession",
             "round(SUM(SM_NBR_ACT_SESS_RAT_4G)/4,0) fourgSESSION",
+            "round((SUM(SM_NBR_ACT_SESS_RAT_2G)+SUM(SM_NBR_ACT_SESS_RAT_3G)+SUM(SM_NBR_ACT_SESS_RAT_4G))/4,0) ttfSESSION",
             "round(sum(SM_NBR_ACT_SESS_P_GW)/4,0) allpgwsession",
             "round(sum(SM_NBR_ACT_SESS_SAE_GW)/4,0) allsaegwsession"
            ],
@@ -512,6 +515,7 @@ saegw_api_sql_function = {
             "sum(SM_NBR_ACT_SESS_RAT_2G) twogsession",
             "SUM(SM_NBR_ACT_SESS_RAT_3G) threegsession",
             "SUM(SM_NBR_ACT_SESS_RAT_4G) fourgSESSION",
+            "SUM(SM_NBR_ACT_SESS_RAT_2G)+SUM(SM_NBR_ACT_SESS_RAT_3G)+SUM(SM_NBR_ACT_SESS_RAT_4G) ttfSESSION",
             "sum(SM_NBR_ACT_SESS_P_GW) allpgwsession",
             "sum(SM_NBR_ACT_SESS_SAE_GW) allsaegwsession"
 	      ],
@@ -541,6 +545,7 @@ saegw_api_sql_function = {
             "round(sum(SM_NBR_ACT_SESS_RAT_2G)/4,0) twogsession",
             "round(SUM(SM_NBR_ACT_SESS_RAT_3G)/4,0) threegsession",
             "round(SUM(SM_NBR_ACT_SESS_RAT_4G)/4,0) fourgSESSION",
+            "round((SUM(SM_NBR_ACT_SESS_RAT_2G)+SUM(SM_NBR_ACT_SESS_RAT_3G)+SUM(SM_NBR_ACT_SESS_RAT_4G))/4,0) ttfSESSION",
             "round(sum(SM_NBR_ACT_SESS_P_GW)/4,0) allpgwsession",
             "round(sum(SM_NBR_ACT_SESS_SAE_GW)/4,0) allsaegwsession"
           ]
@@ -573,6 +578,7 @@ saegw_api_sql_function = {
                         u'SGW 2g 接入数',
                         u'SGW 3g 接入数',
                         u'SGW 4g 接入数',
+                        u'SGW 2/3/4g 接入数',
                         u'SGW 4g UE',
                         u'SGW 4g BEARER',
                         u'SGW 4g 激活session'
@@ -596,6 +602,7 @@ saegw_api_sql_function = {
             "sum(SM_NBR_ACT_SGW_RAT_2G) SGW2G",
             "sum(SM_NBR_ACT_SGW_RAT_3G) SGW3G",
             "sum(SM_NBR_ACT_SGW_RAT_4G) SGW4G",
+            "sum(SM_NBR_ACT_SGW_RAT_2G)+sum(SM_NBR_ACT_SGW_RAT_3G)+sum(SM_NBR_ACT_SGW_RAT_4G) SGW234G",
             "sum(SM_AVE_NBR_ACT_S_GW_UE) SGWUE",
             "sum(SM_NBR_ACT_SGW_BEAR) SGWBEAR",
             "sum(SM_NBR_ACT_SGW_SESS) SGWSESSION"           
@@ -618,6 +625,7 @@ saegw_api_sql_function = {
             "round(sum(SM_NBR_ACT_SGW_RAT_2G)/4,0) SGW2G",
             "round(sum(SM_NBR_ACT_SGW_RAT_3G)/4,0) SGW3G",
             "round(SUM(SM_NBR_ACT_SGW_RAT_4G)/4,0) SGW4G",
+            "round((sum(SM_NBR_ACT_SGW_RAT_2G)+sum(SM_NBR_ACT_SGW_RAT_3G)+sum(SM_NBR_ACT_SGW_RAT_4G))/4,0) SGW234G",
             "round(SUM(SM_AVE_NBR_ACT_S_GW_UE)/4,0) SGWUE",
             "round(sum(SM_NBR_ACT_SGW_BEAR)/4,0) SGWBEAR",
             "round(SUM(SM_NBR_ACT_SGW_SESS)/4,0) SGWSESSION"
@@ -1784,7 +1792,8 @@ nvl(SUM(GRE_TUN_PMIP_IPV6_PACKETS_RX),0)))),4)*100 a"""
                         u'设备名称',
                         u'日期',
                         u'时间',
-                        u'SB板卡CPU负荷'
+                        u'SB板卡CPU负荷',
+                        u'IB板卡CPU负荷'
         ],
         'sql_items'      : {
           'sql_items_15_SAEGW' : [
@@ -1792,14 +1801,16 @@ nvl(SUM(GRE_TUN_PMIP_IPV6_PACKETS_RX),0)))),4)*100 a"""
             "CO_NAME",
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')	REPDATE",
             "to_char(PERIOD_START_TIME,'hh24:mi')	BH",
-            "AVG(CASE WHEN FNODE_ID LIKE 'AS%_%' THEN (OLC_LOAD_LEVEL_AVE) ELSE NULL END) AVG_SB_CPU_USAGE"
+            "round(AVG(CASE WHEN FNODE_ID LIKE 'AS%_%' THEN (OLC_LOAD_LEVEL_AVE) ELSE NULL END), 1) AVG_SB_CPU_USAGE",
+            "round(AVG(CASE WHEN FNODE_ID LIKE 'IB%_%' THEN (OLC_LOAD_LEVEL_AVE) ELSE NULL END), 1) AVG_IB_CPU_USAGE"
     	  ],
           'sql_items_60_SAEGW' : [
             "FING_ID",
             "CO_NAME",
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')	REPDATE",
             "to_char(PERIOD_START_TIME,'hh24')		    BH",
-            "AVG(CASE WHEN FNODE_ID LIKE 'AS%_%' THEN (OLC_LOAD_LEVEL_AVE) ELSE NULL END) AVG_SB_CPU_USAGE"
+            "round(AVG(CASE WHEN FNODE_ID LIKE 'AS%_%' THEN (OLC_LOAD_LEVEL_AVE) ELSE NULL END), 1) AVG_SB_CPU_USAGE",
+            "round(AVG(CASE WHEN FNODE_ID LIKE 'IB%_%' THEN (OLC_LOAD_LEVEL_AVE) ELSE NULL END), 1) AVG_IB_CPU_USAGE"
           ]
         },
         'sql_tables' : [
@@ -1825,14 +1836,14 @@ nvl(SUM(GRE_TUN_PMIP_IPV6_PACKETS_RX),0)))),4)*100 a"""
             "CO_NAME",
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')	REPDATE",
             "to_char(PERIOD_START_TIME,'hh24:mi')	BH",
-            "round(AVG(CASE WHEN FNODE_ID LIKE 'SAB%_%' THEN UP_AVG_FASTPATH_CPU_LOAD ELSE NULL END),2) UP_AVG_FASTPATH_CPU_LOAD_SAB"
+            "round(AVG(CASE WHEN FNODE_ID LIKE 'SAB%_%' THEN UP_AVG_FASTPATH_CPU_LOAD ELSE NULL END),1) UP_AVG_FASTPATH_CPU_LOAD_SAB"
     	  ],
           'sql_items_60_SAEGW' : [
             "FING_ID",
             "CO_NAME",
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')	REPDATE",
             "to_char(PERIOD_START_TIME,'hh24')		    BH",
-            "round(AVG(CASE WHEN FNODE_ID LIKE 'SAB%_%' THEN UP_AVG_FASTPATH_CPU_LOAD ELSE NULL END),2) UP_AVG_FASTPATH_CPU_LOAD_SAB"
+            "round(AVG(CASE WHEN FNODE_ID LIKE 'SAB%_%' THEN UP_AVG_FASTPATH_CPU_LOAD ELSE NULL END),1) UP_AVG_FASTPATH_CPU_LOAD_SAB"
           ]
         },
         'sql_tables' : [

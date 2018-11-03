@@ -1,8 +1,11 @@
 apps:
-  - script   : src/app_v2.js
+  - name     : "shmccps_web"
+    script   : src/app_v2.js
     instances: 1
+    instance_var: "INSTANCE_ID"
     exec_mode: cluster
-    watch  : false
+    watch  : ["src"]
+    ignore_watch: ["node_modules", "logs", "log_file"]
     log_date_format : "YYYY-MM-DD HH:mm Z"
     out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/log_file/pm2_app_out.log"
     error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/log_file/pm2_app_error.log"
@@ -10,10 +13,12 @@ apps:
       NODE_ENV: development
     env_production:
       NODE_ENV: production
-  - script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/server/server.js
+  - name     : "loopback"
+    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/server/server.js
     watch  : false
     instances: 1
     exec_mode: cluster
+    instance_var: "INSTANCE_ID"
     log_date_format : "YYYY-MM-DD HH:mm Z"
     out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/log_file/pm2_server_out.log"
     error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/log_file/pm2_server_error.log"

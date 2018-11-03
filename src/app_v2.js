@@ -1,10 +1,10 @@
 // argument should include 
 // runmode: 'rtm' for run in rtm environment
 // runmode: 'test' for run in test(development) environment
-
-const mode = process.argv[2] || 'test'; //'rtm' or 'test'
-console.log('Run Mode: ', mode);
-let modedir = mode === 'test' ? '':'rtm/'
+// use process.env will be a better way
+//const mode = process.argv[2] || 'test'; //'rtm' or 'test'
+console.log('Run Mode: ', process.env.shmccpsmode);
+let modedir = process.env.shmccpsmode === 'test' ? '':process.env.shmccpsmode + '/'
 var processOption = require(`./config/${modedir}processoption`)
 //console.log(`processOption.env: ${JSON.stringify(processOption.env)}`)
 process.shmccpsenv = processOption;
@@ -164,7 +164,10 @@ process.on('uncaughtException', function (err) {
 });
 
 console.log(`socketio server port: ${socketPort}`)
-const socket_httpServer = socketIOServer(http_server);
+let ttypath = '/hyktty/socket.io';
+const tty_socket_httpServer = socketIOServer(http_server, ttypath);
+let inspectorpath = '/inspector/socket.io';
+const inspector_socket_httpServer = socketIOServer(http_server, inspectorpath);
 
 
 module.exports = {

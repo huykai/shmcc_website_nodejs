@@ -17,6 +17,7 @@ import openpyxl
 from MME_statis_new import *
 from SAEGW_statis_new import *
 from RTM_statis_new import *
+from CMG_statis_new import *
 
 class PM_ExcelFill:
 
@@ -59,19 +60,34 @@ class PM_ExcelFill:
             (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "saegwdb")
             self.saegwdb = oracle.connect(dbuser, dbpasswd, dburl)
             self.saegwdbcursor=self.saegwdb.cursor()
+            # CMGDB
+            (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "cmgdb")
+            #print "cmgdb parameter: ", dbuser,dbpasswd,dburl,dburlport,db_dbname
+            self.cmgdb = oracle.connect(dbuser, dbpasswd, dburl)
+            self.cmgdbcursor=self.cmgdb.cursor()
 
             if hasattr(self.param, 'netype') and self.param.netype == 'mme':
                 self.SaveFileName += ('_' + self.param['ne'] or 'SHMME03BNK')
                 self.param.isMME = 1
                 self.param.isSAEGW = 0
+                self.param.isCMG = 0
                 self.param.selectmmesgsn = self.param['ne'] or 'SHMME03BNK'
                 
             if hasattr(self.param, 'netype') and self.param.netype == 'saegw' :
                 self.SaveFileName += ('_' + self.param['ne'] or "SHSAEGW03BNK")
                 self.param.isMME = 0
                 self.param.isSAEGW = 1
+                self.param.isCMG = 0
                 self.param.selectsaegwggsn = self.param['ne'] or 'SHSAEGW03BNK'
-                
+            
+            if hasattr(self.param, 'netype') and self.param.netype == 'cmg' :
+                self.SaveFileName += ('_' + self.param['ne'] or "SHSAEGW37BNK")
+                self.param.isMME = 0
+                self.param.isSAEGW = 0
+                self.param.isCMG = 1
+                self.param.selectcmg = self.param['ne'] or 'SHSAEGW37BNK'
+            
+
             if hasattr(self.param, 'selectrtm') and self.param.selectrtm:
                 (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(self.runmode, "rtmdb")
                 self.rtm_statis = RTM_Statis()
@@ -155,6 +171,8 @@ class PM_ExcelFill:
             self.mmedb.close
         if (self.saegwdb != None):
             self.saegwdb.close
+        if (self.cmgdb != None):
+            self.cmgdb.close
 
     def prn_obj(self, obj):
         return '\n'.join(['%s:%s' % item for item in obj.__dict__.items()])
@@ -231,17 +249,23 @@ class PM_ExcelFill:
             #print('getsqlinfo : ', sqlitemindex)
             kpi_function = api_sql_function[sqlfunc]['func']
             #print('getsqlinfo : ', kpi_function)
-            if (kpi_report_result.has_key(sqlfunc)):
+            if (valuestruct.has_key('netelement')):
+                sqlnetelement = valuestruct['netelement'].split(':')
+                sqlnetype = sqlnetelement[0]
+                sqlnename = sqlnetelement[1]
+                self.param[sqlnetype] = sqlnename
+            if (kpi_report_result.has_key(sqlfunc+json.dumps(valuestruct))):
                 if (valuestruct.has_key("sql_extra")):
                     #print('getsqlinfo valuestruct has key sql_extra')
-                    return self.caculate(kpi_report_result[sqlfunc], valuestruct["sql_extra"])
+                    return self.caculate(kpi_report_result[sqlfunc+json.dumps(valuestruct)], valuestruct["sql_extra"])
                 else:    
-                    return kpi_report_result[sqlfunc][0][int(sqlitemindex) - 1]
+                    return kpi_report_result[sqlfunc+json.dumps(valuestruct)][0][int(sqlitemindex) - 1]
             else:
                 title,row=kpi_function(sqlfunc, dbcursor, self.param)
+                #print 'kpi_function param: ', self.param
                 if title[0]!='error' and len(row)>0:
                     #print('getsqlinfo ' + sqlfunc + ' ' + str(row[0]))
-                    kpi_report_result[sqlfunc] = row
+                    kpi_report_result[sqlfunc + json.dumps(valuestruct)] = row
                     #print('getsqlinfo valuestruct has key sql_extra ? ', valuestruct.has_key("sql_extra"))
                     if (valuestruct.has_key("sql_extra")):
                         #print('getsqlinfo valuestruct has key sql_extra')
@@ -253,7 +277,7 @@ class PM_ExcelFill:
                     return "getsqlinfo %s with Error : %s" % (sqlfunc, title[1])
 
         except Exception, e:
-            logging.error('Exception : ', str(e))
+            logging.error('Exception : ' + str(e))
             return "getsqlinfo Exception: %s" % str(e)
 
     def getData(self, outputformat, dbcursor, values, api_sql_function, kpi_report_result):
@@ -290,7 +314,7 @@ class PM_ExcelFill:
                                 evalstring = evalstring.replace(evalsubitem, result)
                     try:
                         logging.info('evalstring over: ' + evalstring)
-                        return str(round(eval(evalstring), 2))
+                        return str(eval(evalstring))
                     except Exception as e:
                         logging.info('evalstring over Error: ' + str(e))
                         return str(e)
@@ -303,12 +327,12 @@ class PM_ExcelFill:
         if 'RTM_KPI' in sheet.keys():
             self.saveExcelSheetRTMKPI(ws, sheet['RTM_KPI'])
         if 'MME_KPI' in sheet.keys():
-            if self.param.selectmmesgsn != '':
-                self.saveExcelSheetMMEKPI(ws, self.mmedbcursor, sheet['MME_KPI'])
+            self.saveExcelSheetMMEKPI(ws, self.mmedbcursor, sheet['MME_KPI'])
         if 'SAEGW_KPI' in sheet.keys():
-            if self.param.selectsaegwggsn != '':
-                self.saveExcelSheetSAEGWKPI(ws, self.saegwdbcursor, sheet['SAEGW_KPI'])
-    
+            self.saveExcelSheetSAEGWKPI(ws, self.saegwdbcursor, sheet['SAEGW_KPI'])
+        if 'CMG_KPI' in sheet.keys():
+            self.saveExcelSheetCMGKPI(ws, self.cmgdbcursor, sheet['CMG_KPI'])
+
     def saveExcelSheetRTMKPI(self, ws, kpiconfig):
         kpi_list = kpiconfig
         kpi_report_result = {}
@@ -383,6 +407,12 @@ class PM_ExcelFill:
         kpi_list = kpiconfig
         kpi_report_result = {}
         self.runOSSKPI(ws, kpi_list, dbcursor, api_sql_function, kpi_report_result)
+
+    def saveExcelSheetCMGKPI(self, ws, dbcursor, kpiconfig):
+        api_sql_function = cmg_api_sql_function
+        kpi_list = kpiconfig
+        kpi_report_result = {}
+        self.runOSSKPI(ws, kpi_list, dbcursor, api_sql_function, kpi_report_result)
         
     def runOSSKPI(self, ws, kpi_list, dbcursor, api_sql_function, kpi_report_result):    
         for kpi in kpi_list:
@@ -394,6 +424,12 @@ class PM_ExcelFill:
             for outputformat in outputformats:
                 if (outputformat['type'] == 'string'):
                     outputstring += outputformat['value']
+                elif values[int(outputformat['value']) - 1]['datasource'] == 'params':
+                    datavalue = values[int(outputformat['value']) - 1]['datavalue']
+                    if (hasattr(self.param, datavalue)):
+                        outputstring += self.param[datavalue]
+                    elif (datavalue in self.param['extraparams'].keys()):
+                        outputstring += self.param['extraparams'][datavalue]
                 else:
                     outputstring += self.getData(outputformat, dbcursor, values, api_sql_function, kpi_report_result)
             
@@ -481,7 +517,11 @@ if __name__ == '__main__':
     param.starttime = pretime.strftime("%H:%M")
     param.stoptime = currtime.strftime("%H:%M")
     param.maketime = time.strftime("%Y%m%d%H%M%S", timeArray)
-
+    param['extraparams']['year'] = currtime.strftime('%Y')
+    param['extraparams']['month'] = currtime.strftime('%m')
+    param['extraparams']['day'] = currtime.strftime('%d')
+    param['extraparams']['hour'] = currtime.strftime('%H')
+    param['extraparams']['minute'] = currtime.strftime('%M')
     logging.info('param: \n%s' % param)
 
     filepath = os.path.split(os.path.realpath(__file__))[0]

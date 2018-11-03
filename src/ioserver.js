@@ -1,13 +1,36 @@
 'use strict';
 
 var ioserver = require('socket.io');
-var netelements = require('./config/netelementconfig');
+
+let modedir = '';
+if (process.env.shmccpsmode !== "test"){
+    modedir = process.env.shmccpsmode + "/"
+}
+console.log('ioserver mode : ', process.env.shmccpsmode)
+var netelements = require('./config/'+ modedir + 'netelementconfig');
 var pty = require('node-pty');
 
-const socketServer = function(server) {
-    var io = ioserver(server, {path: '/hyktty/socket.io'});
+const socketServer = function(server, path) {
+    let ioServer = null;
+    switch (path) {
+        case '/hyktty/socket.io':
+            ioServer = createTTYIOServer(server, path);            
+            break;
+        case '/inspector/socket.io':
+            ioServer = createInspectIOServer(server, path);            
+            break;
+        default:
+            ioServer = createIOServer(server, path);            
+            break;
+    }
+    return ioServer
+}
+
+const createTTYIOServer = function(server, path){
+    var io = ioserver(server, {path: path, ws:true});
     io.on('connection', function(socket){
-        console.log('io connected');
+        io['TTYIOSocket'] == socket;
+        console.log('hyktty io connected');
         socket.on('login', function(loginparam){
             console.log('io login param:', JSON.stringify(loginparam));
             let netelement = findNetElement(loginparam['name'], netelements);
@@ -103,6 +126,57 @@ const socketServer = function(server) {
             //    console.log('interval 10000');
             //    socket.emit("message", "message from server");
             //}, 10000);
+        });
+    });
+    return io;
+}
+
+const createInspectIOServer = function(server, path){
+    var io = ioserver(server, {path: path, ws:true});
+    io.on('connection', function(socket){
+        console.log('Inspector io connected');
+        socket.on('login', function(loginparam){
+            console.log('io login param:', JSON.stringify(loginparam));
+        });
+        socket.on('register', (message) => {
+            console.log(`client ${message['id']} register`);
+            let id = message['id']
+            io[id] = socket
+            socket['socket_id'] = id
+            if (message['role'] === 'backend'){
+                console.log(`backend socket id: ${id}`)
+                io['backend' ] = id;
+            }
+        });
+        socket.on('front_message', (info) => {
+            info['source_id'] = socket['socket_id']
+            console.log(`Front to End:  ${JSON.stringify(info)} `);
+            console.log(`End:  ${io['backend']} ${JSON.stringify(info)} `);
+            if(io[io['backend']]){
+                io[io['backend']].emit('message', info)
+            }
+        });
+        socket.on('end_message', (info) => {
+            console.log(`End to Front:  ${JSON.stringify(info)} `);
+            if (info['source_id']) {
+                if (io[info['source_id']])
+                    io[info['source_id']].emit('message', info)
+            } 
+        });
+    });
+    return io;
+}
+
+const createIOServer = function(server, path){
+    var io = ioserver(server, {path: path});
+    io.on('connection', function(socket){
+        io['IOSocket'] == socket;
+        console.log('io connected');
+        socket.on('login', function(loginparam){
+            console.log('io login param:', JSON.stringify(loginparam));
+        });
+        socket.on('register', (hostparam) => {
+            console.log(`client ${hostparam} register`);
         });
     });
     return io;

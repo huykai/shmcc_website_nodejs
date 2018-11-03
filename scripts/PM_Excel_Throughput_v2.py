@@ -91,11 +91,12 @@ if __name__ == '__main__':
     # for excel , we need input hour 
     #currtime = datetime.datetime.strptime(param.time, "%Y-%m-%dT%H:%M:%S.%fZ")
     if not hasattr(param, 'time') or param['time'] == None:
-        param['time'] = time.time()
+        param['time'] = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
     
-    timeArray = time.localtime(float(param['time']))
-    param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
-    currtime = datetime.datetime.strptime(param_time, "%Y-%m-%d %H:%M:%S")
+    #timeArray = time.localtime(param['time'])
+    #param_time = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+    currtime = datetime.datetime.strptime(param['time'], "%Y%m%d%H%M")
+    #timeArray = time.mktime(currtime.timetuple())
     currtime = datetime.datetime(currtime.year, currtime.month, currtime.day, currtime.hour, 0)
     #currtime = currtime + datetime.timedelta(hours=-1)
     pretime = currtime + datetime.timedelta(hours=-1)
@@ -103,7 +104,7 @@ if __name__ == '__main__':
     
     param['startdatetime'] = time.mktime(pretime.timetuple())
     param['stopdatetime'] = time.mktime(currtime.timetuple())
-    param['maketime'] = time.strftime("%Y%m%d%H%M%S", timeArray)
+    param['maketime'] = param['time']
     paramsdate_fix(param)
 
     param['extraparams']['year'] = currtime.strftime('%Y')

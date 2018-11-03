@@ -23,6 +23,14 @@
 		"dburlport": "1521",
 		"dbname": "oss"
 	},
+    {
+		"dbmodelname": "cmgdb",
+		"userid": "richardhu",
+		"password": "Qazwsx1!",
+		"dburl": "127.0.0.1:52724/oss",
+		"dburlport": "1521",
+		"dbname": "oss"
+	},
 	{
 		"dbmodelname": "rtmdb",
 		"userid": "Admin",
