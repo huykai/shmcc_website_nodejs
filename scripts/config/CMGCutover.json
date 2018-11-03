@@ -1628,8 +1628,8 @@
                     ],
                     "outputformats":[
                         {
-                            "type": "data",
-                            "value": "1"
+                            "datasource": "evaldata",
+                            "value": "0"
                         }
                     ],
                     "outputlocation": "B16"
@@ -1646,8 +1646,8 @@
                     ],
                     "outputformats":[
                         {
-                            "type": "data",
-                            "value": "1"
+                            "datasource": "evaldata",
+                            "value": "0"
                         }
                     ],
                     "outputlocation": "C16"
