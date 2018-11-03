@@ -1624,12 +1624,16 @@
                             "netelement": "selectcmg:SHSAEGW37BNK",  
                             "sql_function": "LTE-S1U-THROUGH",
                             "sql_selectitem_index": "5"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "0"
                         }
                     ],
                     "outputformats":[
                         {
-                            "datasource": "evaldata",
-                            "value": "0"
+                            "type": "data",
+                            "value": "2"
                         }
                     ],
                     "outputlocation": "B16"
@@ -1642,12 +1646,16 @@
                             "netelement": "selectcmg:SHSAEGW37BNK",  
                             "sql_function": "LTE-S1U-THROUGH",
                             "sql_selectitem_index": "6"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "0"
                         }
                     ],
                     "outputformats":[
                         {
-                            "datasource": "evaldata",
-                            "value": "0"
+                            "type": "data",
+                            "value": "2"
                         }
                     ],
                     "outputlocation": "C16"
