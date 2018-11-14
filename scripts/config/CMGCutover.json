@@ -1749,6 +1749,274 @@
                         }
                     ],
                     "outputlocation": "F16"
+                },
+                {
+                    "item": "lbcpu",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-S1U-THROUGH",
+                            "sql_selectitem_index": "5"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "0"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "2"
+                        }
+                    ],
+                    "outputlocation": "B17"
+                },
+                {
+                    "item": "MGCPU",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-S1U-THROUGH",
+                            "sql_selectitem_index": "6"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "0"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "2"
+                        }
+                    ],
+                    "outputlocation": "C17"
+                },
+                {
+                    "item": "S1UTP",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-S1U-THROUGH",
+                            "sql_selectitem_index": "9"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-SGI-THROUGH",
+                            "sql_selectitem_index": "7"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-SGI-THROUGH",
+                            "sql_selectitem_index": "12"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "round(float(${1}+${2}+${3})*8/(1024*1024*1024*60*60),2)"    
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "4"
+                        }
+                    ],
+                    "outputlocation": "D17"
+                },
+                {
+                    "item": "SGITP",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-SGI-THROUGH",
+                            "sql_selectitem_index": "15"
+                        },
+                        {
+                            "datasource": "evaldata",    
+                            "value": "round(float(${1})*8/(1024*1024*1024*60*60), 2)"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "2"
+                        }
+                    ],
+                    "outputlocation": "E17"
+                },
+                {
+                    "item": "CMGUSERS",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-PDN",
+                            "sql_selectitem_index": "5"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-PDN",
+                            "sql_selectitem_index": "6"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW36BNK",  
+                            "sql_function": "LTE-PDN",
+                            "sql_selectitem_index": "7"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "${1}+${2}+${3}"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "4"
+                        }
+                    ],
+                    "outputlocation": "F17"
+                },
+                {
+                    "item": "lbcpu",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-S1U-THROUGH",
+                            "sql_selectitem_index": "5"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "0"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "2"
+                        }
+                    ],
+                    "outputlocation": "B18"
+                },
+                {
+                    "item": "MGCPU",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-S1U-THROUGH",
+                            "sql_selectitem_index": "6"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "0"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "2"
+                        }
+                    ],
+                    "outputlocation": "C18"
+                },
+                {
+                    "item": "S1UTP",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-S1U-THROUGH",
+                            "sql_selectitem_index": "9"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-SGI-THROUGH",
+                            "sql_selectitem_index": "7"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-SGI-THROUGH",
+                            "sql_selectitem_index": "12"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "round(float(${1}+${2}+${3})*8/(1024*1024*1024*60*60),2)"    
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "4"
+                        }
+                    ],
+                    "outputlocation": "D18"
+                },
+                {
+                    "item": "SGITP",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-SGI-THROUGH",
+                            "sql_selectitem_index": "15"
+                        },
+                        {
+                            "datasource": "evaldata",    
+                            "value": "round(float(${1})*8/(1024*1024*1024*60*60), 2)"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "2"
+                        }
+                    ],
+                    "outputlocation": "E18"
+                },
+                {
+                    "item": "CMGUSERS",
+                    "values": [
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-PDN",
+                            "sql_selectitem_index": "5"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-PDN",
+                            "sql_selectitem_index": "6"
+                        },
+                        {
+                            "datasource": "sql",    
+                            "netelement": "selectcmg:SHSAEGW35BNK",  
+                            "sql_function": "LTE-PDN",
+                            "sql_selectitem_index": "7"
+                        },
+                        {
+                            "datasource": "evaldata",
+                            "value": "${1}+${2}+${3}"
+                        }
+                    ],
+                    "outputformats":[
+                        {
+                            "type": "data",
+                            "value": "4"
+                        }
+                    ],
+                    "outputlocation": "F18"
                 }
             ]
         }

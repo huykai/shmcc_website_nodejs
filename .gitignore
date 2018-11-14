@@ -10,12 +10,12 @@
 *.swp
 *.tgz
 *.pyc
-*.xlsx
 *.exe
 scripts/*.pyc
 scripts/build
 scripts/dist
 result/
+tmp/
 src/sslcert/
 src/public/
 src/views/
