@@ -4,7 +4,8 @@
 // use process.env will be a better way
 //const mode = process.argv[2] || 'test'; //'rtm' or 'test'
 console.log('Run Mode: ', process.env.shmccpsmode);
-let modedir = process.env.shmccpsmode === 'test' ? '':process.env.shmccpsmode + '/'
+let modedir = (!process.env.shmccpsmode || process.env.shmccpsmode === 'test') ? '':process.env.shmccpsmode + '/'
+console.log(`modedir: ${modedir}`)
 var processOption = require(`./config/${modedir}processoption`)
 //console.log(`processOption.env: ${JSON.stringify(processOption.env)}`)
 process.shmccpsenv = processOption;

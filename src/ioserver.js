@@ -3,7 +3,7 @@
 var ioserver = require('socket.io');
 
 let modedir = '';
-if (process.env.shmccpsmode !== "test"){
+if (process.env.shmccpsmode && process.env.shmccpsmode !== "test"){
     modedir = process.env.shmccpsmode + "/"
 }
 console.log('ioserver mode : ', process.env.shmccpsmode)
@@ -160,7 +160,7 @@ const createInspectIOServer = function(server, path){
             console.log(`End to Front:  ${JSON.stringify(info)} `);
             if (info['source_id']) {
                 if (io[info['source_id']])
-                    io[info['source_id']].emit('message', info)
+                    io[info['source_id']].emit('message_'+info['cmd'], info)
             } 
         });
     });
