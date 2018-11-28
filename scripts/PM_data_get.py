@@ -20,6 +20,9 @@ from SAEGW_statis_new import *
 from RTM_statis_new import *
 from CMG_statis_new import *
 
+resultPath_test = 'E:\\PersonalProject\\Code_Projects\\Javascripts\\AngularJS_Demo\\shmcc\\app\\'
+resultPath_rtm = '/root/huykai/node_webserver/angularjs_shmccps/app/'
+
 class PM_Data_Get:
 
     mmedb = None
@@ -41,6 +44,11 @@ class PM_Data_Get:
             'rtm': self.init_rtm,
             'traffica': self.init_traffica
         }
+        if (self.runmode == 'test'):
+            self.resultPath = resultPath_test
+        elif (self.runmode == 'rtm'):
+            self.resultPath = resultPath_rtm
+
         self.kpi_report_result = {}
         
     def init(self):
@@ -225,19 +233,19 @@ class PM_Data_Get:
             shell=True,
             stdout=subprocess.PIPE)
             output, errors = p.communicate()
-            print('subprocess command: ', ["java","-jar",
+            logging.info('subprocess command: ' + ' '.join(["java","-jar",
                 "e:\\eclipse_projects\\eclipse_projects\\TrafficaDBAPI\\target\\TrafficaDBAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar",
-                json.dumps(trafficaQueryParam)])
-            print('subprocess stdout: ', output)
-            print('subprocess error: ', errors)
+                json.dumps(trafficaQueryParam)]))
+            logging.info('subprocess stdout: ' + str(output))
+            logging.info('subprocess error: ' + str(errors))
 
             outputdata = json.loads(output)
             if (outputdata.has_key('MME_TRAFFICA')):
-                mme_traffica_file = open(__dirname + '/../' + outputdata['MME_TRAFFICA'], 'r')
-                print json.load(mme_traffica_file)
+                mme_traffica_file = open(self.resultPath + outputdata['MME_TRAFFICA'], 'r')
+                return self.make_return(0, json.load(mme_traffica_file))
             if (outputdata.has_key('SGSN_TRAFFICA')):
-                sgsn_traffica_file = open(__dirname + '/../' + outputdata['SGSN_TRAFFICA'], 'r')
-                print json.load(sgsn_traffica_file)
+                sgsn_traffica_file = open(self.resultPath + outputdata['SGSN_TRAFFICA'], 'r')
+                return self.make_return(0, json.load(sgsn_traffica_file))
         except Exception as e:
             print('getTrafficaData catch Exception: ', str(e))
         
@@ -285,7 +293,7 @@ if __name__ == '__main__':
         logging.info("\t QueryConfig : " + queryconfig) 
         
     param = PmSqlParam()
-    print 'new param %s' % param
+    #print 'new param %s' % param
     if (not param == None):
         try:
             getforminfo(param, promptparams)
@@ -324,12 +332,12 @@ if __name__ == '__main__':
     paramsdate_fix(param)
     logging.info('param: \n%s' % param)
 
-    print promptparams
-    print param
+    #print promptparams
+    #print param
     pm_data_get = PM_Data_Get(param, runmode, queryconfig)
 
     init_result = pm_data_get.init()
-    print('init_result: ' + json.dumps(init_result))
+    #print('init_result: ' + json.dumps(init_result))
     data_result = init_result
     if init_result['resultcode'] == 0:
         logging.info('PM_Data_Get initialize failed : %s' % init_result['resultdetail'])
