@@ -63,13 +63,13 @@
                     "values": [
                         {
                             "datasource": "rtm",
-                            "host": "SHFW06",    
+                            "host": "SHFW08",    
                             "itemname": "extFW_VOL_RATE_RETH0_Input_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",
-                            "host": "SHFW06",    
+                            "host": "SHFW08",    
                             "itemname": "extFW_VOL_RATE_RETH0_Output_Bps",
                             "valueindex": "max"
                         }
@@ -99,25 +99,25 @@
                     "values": [
                         {
                             "datasource": "rtm",    
-                            "host": "SHFW06",    
+                            "host": "SHFW08",    
                             "itemname": "下联7613 SGI 端口利用率 RETH5&6_Input_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",    
-                            "host": "SHFW06",    
+                            "host": "SHFW08",    
                             "itemname": "下联7613 SGI 端口利用率 RETH5&6_Output_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",    
-                            "host": "SHFW06",    
+                            "host": "SHFW08",    
                             "itemname": "下联7613 Gn端口利用率_RETH7_Input_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",    
-                            "host": "SHFW06",    
+                            "host": "SHFW08",    
                             "itemname": "下联7613 Gn端口利用率_RETH7_Output_Bps",
                             "valueindex": "max"
                         }
