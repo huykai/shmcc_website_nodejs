@@ -100,25 +100,25 @@
                         {
                             "datasource": "rtm",    
                             "host": "SHFW08",    
-                            "itemname": "下联7613 SGI 端口利用率 RETH5&6_Input_Bps",
+                            "itemname": "下联7613 SGI 端口利用率 RETH1&2_Input_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",    
                             "host": "SHFW08",    
-                            "itemname": "下联7613 SGI 端口利用率 RETH5&6_Output_Bps",
+                            "itemname": "下联7613 SGI 端口利用率 RETH1&2_Output_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",    
                             "host": "SHFW08",    
-                            "itemname": "下联7613 Gn端口利用率_RETH7_Input_Bps",
+                            "itemname": "下联7613 Gn端口利用率_RETH3_Input_Bps",
                             "valueindex": "max"
                         },
                         {
                             "datasource": "rtm",    
                             "host": "SHFW08",    
-                            "itemname": "下联7613 Gn端口利用率_RETH7_Output_Bps",
+                            "itemname": "下联7613 Gn端口利用率_RETH3_Output_Bps",
                             "valueindex": "max"
                         }
                     ],
