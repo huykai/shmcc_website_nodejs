@@ -346,7 +346,7 @@
                         },
                         {
                             "datasource": "evaldata",    
-                            "value": "1024 * round(${3}/(${1}+${2), 2) "
+                            "value": "1024 * round(${3}/(${1}+${2}), 2) "
                         }
                     ],
                     "outputformats":[
