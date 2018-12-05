@@ -27,14 +27,14 @@ apps:
     env_production:
       NODE_ENV: production
   - name     : "Inspect"
-    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntellignetInspection/InspectWorker.js
-    watch  : ['E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntellignetInspection/*.js']
+    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/InspectWorker.js
+    watch  : ['E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/*.js']
     instances: 1
     exec_mode: cluster
     instance_var: "INSTANCE_ID"
     log_date_format : "YYYY-MM-DD HH:mm Z"
-    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntellignetInspection/log_file/pm2_inspectserver_out.log"
-    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntellignetInspection/log_file/pm2_inspectserver_error.log"
+    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/log_file/pm2_inspectserver_out.log"
+    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/log_file/pm2_inspectserver_error.log"
     env    :
       NODE_ENV: development
     env_production:
