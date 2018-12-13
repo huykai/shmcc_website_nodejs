@@ -156,6 +156,7 @@ app.use(function (err, req, res, next) {
 var http_server = http.createServer(app).listen(socketPort,function() {
   console.log('Express http server listening on port ' + socketPort);
 });
+http_server['ServerPort'] = socketPort;
 http_server.timeout = ServerTimeout;
 
 process.on('uncaughtException', function (err) {
