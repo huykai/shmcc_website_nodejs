@@ -134,7 +134,7 @@ const createTTYIOServer = function(server, path){
 const createInspectIOServer = function(server, path){
     var io = ioserver(server, {path: path, ws:true});
     io.on('connection', function(socket){
-        console.log(`Inspector io connected port: ${socket} ${server['ServerPort']}`);
+        console.log(`Inspector io connected port: ${JSON.stringify(socket)} ${server['ServerPort']}`);
         socket.on('login', function(loginparam){
             console.log('io login param:', JSON.stringify(loginparam));
         });
