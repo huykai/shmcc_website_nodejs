@@ -38,6 +38,10 @@ var jsonParser = bodyParser.json();
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
+let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_INSTANCE);
+//let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
+
 var app = express();
 //app.set('http_port', processOption.env.env.HTTP_PORT || 3000);
 //app.set('https_port', processOption.env.env.HTTPS_PORT || 3010);
@@ -80,6 +84,7 @@ app.all('*', function(req, res, next) {
 
 app.get('/', csrfProtection, function (req, res, next) {
   console.log('/ Cookies: ', req.cookies);
+  console.log(`Server with port: ${socketPort}`)
   //console.log('Signed Cookies: ', req.signedCookies);
   var fileName = processOption.env.site_config.static_dir + site_config.home_page;
   console.log(fileName);
@@ -148,13 +153,9 @@ app.use(function (err, req, res, next) {
   res.send('EBADCSRFTOKEN');
 });
 
-process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
-let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_INSTANCE);
-//let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
 var http_server = http.createServer(app).listen(socketPort,function() {
   console.log('Express http server listening on port ' + socketPort);
 });
-
 http_server.timeout = ServerTimeout;
 
 process.on('uncaughtException', function (err) {
