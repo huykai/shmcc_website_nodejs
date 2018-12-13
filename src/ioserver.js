@@ -139,7 +139,7 @@ const createInspectIOServer = function(server, path){
             console.log('io login param:', JSON.stringify(loginparam));
         });
         socket.on('register', (message) => {
-            console.log(`client ${message['id']} register`);
+            console.log(`client ${message['id']} ${message['role']} register`);
             let id = message['id']
             io[id] = socket
             socket['socket_id'] = id

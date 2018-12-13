@@ -25,12 +25,12 @@ exports.signin = function(req, res) {
 
 	db.userModel.findOne({username: username}, function (err, user) {
 		if (err) {
-            console.log("User loging err: ", err);
+            console.log("User login err: ", err);
 			return res.send(401);
 		}
 
 		if (user == undefined) {
-        	console.log("User loging user: undefined.");
+        	console.log("User login user: undefined.");
 			return res.send(401);
 		}
 		//console.log(`findOne user: ${user}`)
