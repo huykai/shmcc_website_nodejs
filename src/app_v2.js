@@ -64,7 +64,7 @@ app.use(function(req, res, next) {
 app.all('*', function(req, res, next) {
   console.log('app.all req is: ',req.url,req.method);
   //console.log('res is: ',res.headers);
-  //console.log('all * Cookies: ', req.cookies);
+  console.log('all * Cookies: ', req.cookies);
   //console.log('Signed Cookies: ', req.signedCookies);
   res.set('Access-Control-Allow-Origin', '*');
   //res.set('Access-Control-Allow-Origin', 'http://192.168.1.126:3000');
