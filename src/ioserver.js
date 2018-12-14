@@ -64,7 +64,7 @@ const createTTYIOServer = function(server, path){
     var io = ioserver(server, {path: path, ws:true});
     io.on('connection', function(socket){
         io['TTYIOSocket'] == socket;
-        console.log('hyktty io connected');
+        console.log(`hyktty io connected with id: #{socket.io}`);
         socket.on('login', function(loginparam){
             console.log('io login param:', JSON.stringify(loginparam));
             let netelement = findNetElement(loginparam['name'], netelements);
@@ -160,6 +160,9 @@ const createTTYIOServer = function(server, path){
             //    console.log('interval 10000');
             //    socket.emit("message", "message from server");
             //}, 10000);
+        });
+        socket.on('disconnect', (hostparam) => {
+            console.log(`hyktty io disconnected with ${socket.id}`);
         });
     });
     return io;
