@@ -35,7 +35,7 @@ const socketServer = function(server, path, processOption) {
     }
     return ioServer
 }
-const createInspectClient(server, path, inspectClient){
+const createInspectClient = function(server, path, inspectClient){
     let inspectScript = null
     let inspectScriptArgs = []
     if (inspectClient && inspectClient['script']) {
@@ -48,7 +48,8 @@ const createInspectClient(server, path, inspectClient){
         options: {
             server: {
                 address: {
-                    port: server['ServerPort']
+                    port: server['ServerPort'],
+                    path: path
                 }
             }
         }
