@@ -170,8 +170,7 @@ console.log(`socketio server port: ${socketPort}`)
 let ttypath = '/hyktty/socket.io';
 const tty_socket_httpServer = socketIOServer(http_server, ttypath);
 let inspectorpath = '/inspector/socket.io';
-const inspector_socket_httpServer = socketIOServer(http_server, inspectorpath);
-
+const inspector_socket_httpServer = socketIOServer(http_server, inspectorpath, processOption);
 
 module.exports = {
   app: app,

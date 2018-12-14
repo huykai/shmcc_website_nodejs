@@ -1,6 +1,7 @@
 'use strict';
 
 var ioserver = require('socket.io');
+const cp = require('child_process');
 
 let modedir = '';
 if (process.env.shmccpsmode && process.env.shmccpsmode !== "test"){
@@ -10,14 +11,23 @@ console.log('ioserver mode : ', process.env.shmccpsmode)
 var netelements = require('./config/'+ modedir + 'netelementconfig');
 var pty = require('node-pty');
 
-const socketServer = function(server, path) {
+
+const socketServer = function(server, path, processOption) {
     let ioServer = null;
     switch (path) {
         case '/hyktty/socket.io':
             ioServer = createTTYIOServer(server, path);            
             break;
         case '/inspector/socket.io':
-            ioServer = createInspectIOServer(server, path);            
+            ioServer = createInspectIOServer(server, path);
+            if (processOption['inspectClient']){
+                let client = createInspectClient(server, path, processOption['inspectClient']);        
+                if (!client){
+                    LogFile.error(`Inspect Client create failed`)
+                } else {
+                    LogFile.error(`Inspect Client create successfully`)
+                }
+            };
             break;
         default:
             ioServer = createIOServer(server, path);            
@@ -25,7 +35,30 @@ const socketServer = function(server, path) {
     }
     return ioServer
 }
-
+const createInspectClient(server, path, inspectClient){
+    let inspectScript = null
+    let inspectScriptArgs = []
+    if (inspectClient && inspectClient['script']) {
+        inspectScript = inspectClient['script']
+    }
+    if (inspectClient && inspectClient['args'] && inspectClient['args'] instanceof Array) {
+        inspectScriptArgs = inspectClient['args']
+    }
+    let inspectScriptOptions = {
+        options: {
+            server: {
+                address: {
+                    port: server['ServerPort']
+                }
+            }
+        }
+    }
+    inspectScriptArgs.push(JSON.stringify(inspectScriptOptions))
+    if (!inspectScript) return null
+    const child = cp.fork(inspectScript, inspectScriptArgs, {silent: true});
+    LogFile.info(`runInspect: ${inspectScript} ${inspectScriptArgs}`);
+    return child
+}
 const createTTYIOServer = function(server, path){
     var io = ioserver(server, {path: path, ws:true});
     io.on('connection', function(socket){

@@ -14,5 +14,11 @@ exports.env = {
   mongodbURL: 'mongodb://shmccps:shmccps@localhost:27017/shmccps',
   redisPort: 6379,
   secretToken: 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx',
-  socketPort: 3100
+  socketPort: 3100,
+  inspectClient: {
+    script: '/root/huykai/javascript_projects/IntelligentInspection',
+    args: [
+      'yml/WorkerConfig.yml'
+    ]
+  }
 }
