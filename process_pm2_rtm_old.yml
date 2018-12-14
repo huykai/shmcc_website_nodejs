@@ -28,3 +28,16 @@ apps:
       NODE_ENV: development
     env_production:
       NODE_ENV: production
+  - name     : "Inspect"
+    script : /root/huykai/javascript_projects/IntelligentInspection/InspectWorker.js
+    watch  : ['/root/huykai/javascript_projects/IntelligentInspection/*.js']
+    instances: 1
+    exec_mode: cluster
+    instance_var: "INSTANCE_ID"
+    log_date_format : "YYYY-MM-DD HH:mm Z"
+    out_file : "/root/huykai/javascript_projects/IntelligentInspection/log_file/pm2_rtm_inspectserver_out.log"
+    error_file : "/root/huykai/javascript_projects/IntelligentInspection/log_file/pm2_rtm_inspectserver_error.log"
+    env    :
+      InspectWorkerConfig: "yml/WorkerConfigRtm.yml"
+    env_production:
+      NODE_ENV: production
