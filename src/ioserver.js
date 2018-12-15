@@ -8,7 +8,7 @@ if (process.env.shmccpsmode && process.env.shmccpsmode !== "test"){
     modedir = process.env.shmccpsmode + "/"
 }
 console.log('ioserver mode : ', process.env.shmccpsmode)
-ttyConfig = {
+const ttyConfig = {
     'test': {
         'telnet': {
             'script': 'telnet.exe',
