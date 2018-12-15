@@ -20,12 +20,14 @@ const socketServer = function(server, path, processOption) {
             break;
         case '/inspector/socket.io':
             ioServer = createInspectIOServer(server, path);
-            if (processOption['inspectClient']){
-                let client = createInspectClient(server, path, processOption['inspectClient']);        
+            console.log(`Inspect Client create with : ${JSON.stringify(processOption.env['inspectClient'])}`)
+            if (processOption.env['inspectClient']){
+                console.log(`Inspect Client create : ${JSON.stringify(processOption.env['inspectClient'])}`)
+                let client = createInspectClient(server, path, processOption.env['inspectClient']);        
                 if (!client){
                     LogFile.error(`Inspect Client create failed`)
                 } else {
-                    LogFile.error(`Inspect Client create successfully`)
+                    console.log(`Inspect Client create successfully`)
                 }
             };
             break;
@@ -34,6 +36,23 @@ const socketServer = function(server, path, processOption) {
             break;
     }
     return ioServer
+}
+
+const createInspectClientInstance = function(inspectScript, inspectScriptArgs){
+    let child = cp.fork(inspectScript, inspectScriptArgs, {silent: true});
+    child.on('error', (error) => {
+        LogFile.error(`inspectChild get Error: ${error}`);
+        child = createInspectClientInstance(inspectScript, inspectScriptArgs);
+    });
+    child.on('data', (data) => {
+        LogFile.error(`inspectChild get data: ${data}`);
+    });
+    child.on('close', (code, signal) => {
+        console.log('inspectChild close: code = ', code);
+        child = createInspectClientInstance(inspectScript, inspectScriptArgs);
+    });
+    console.log(`createInspectClientInstance: ${inspectScript} ${inspectScriptArgs}`);
+    return child
 }
 const createInspectClient = function(server, path, inspectClient){
     let inspectScript = null
@@ -45,26 +64,26 @@ const createInspectClient = function(server, path, inspectClient){
         inspectScriptArgs = inspectClient['args']
     }
     let inspectScriptOptions = {
-        options: {
-            server: {
-                address: {
-                    port: server['ServerPort'],
-                    path: path
-                }
-            }
-        }
+        protocol: 'http://',
+        ip: "127.0.0.1",
+        port: server['ServerPort'],
+        path: path,
+        identity: "InspectWorker"
     }
     inspectScriptArgs.push(JSON.stringify(inspectScriptOptions))
-    if (!inspectScript) return null
-    const child = cp.fork(inspectScript, inspectScriptArgs, {silent: true});
-    LogFile.info(`runInspect: ${inspectScript} ${inspectScriptArgs}`);
+    let child = null
+    if (!inspectScript) {
+        console.log(`createInspectClient inspectScript: ${inspectScript}`)
+    } else {
+        child = createInspectClientInstance(inspectScript, inspectScriptArgs)    
+    }
     return child
 }
 const createTTYIOServer = function(server, path){
     var io = ioserver(server, {path: path, ws:true});
     io.on('connection', function(socket){
         io['TTYIOSocket'] == socket;
-        console.log(`hyktty io connected with id: #{socket.io}`);
+        console.log(`hyktty io connected with id: ${socket.id}`);
         socket.on('login', function(loginparam){
             console.log('io login param:', JSON.stringify(loginparam));
             let netelement = findNetElement(loginparam['name'], netelements);

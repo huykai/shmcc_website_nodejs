@@ -16,7 +16,7 @@ exports.env = {
   secretToken: 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx',
   socketPort: 3100,
   inspectClient: {
-    script: '/root/huykai/javascript_projects/IntelligentInspection',
+    script: 'E:\\PersonalProject\\Code_Projects\\Javascripts\\NodeJS_Demo\\IntelligentInspection\\InspectWorker.js',
     args: [
       'yml/WorkerConfig.yml'
     ]

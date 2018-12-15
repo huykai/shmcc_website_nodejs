@@ -2,7 +2,7 @@ apps:
   - script   : /root/huykai/node_webserver/nodejs_shmcc_website/src/app_v2.js
     name     : "app_v2"
     instances: 4
-    instance_var: "INSTANCE_ID"
+    instance_id_env: "INSTANCE_ID"
     exec_mode: cluster
     watch  : false
     log_date_format : "YYYY-MM-DD HH:mm Z"

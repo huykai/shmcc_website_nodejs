@@ -7,7 +7,7 @@ console.log('Run Mode: ', process.env.shmccpsmode);
 let modedir = (!process.env.shmccpsmode || process.env.shmccpsmode === 'test') ? '':process.env.shmccpsmode + '/'
 console.log(`modedir: ${modedir}`)
 var processOption = require(`./config/${modedir}processoption`)
-//console.log(`processOption.env: ${JSON.stringify(processOption.env)}`)
+console.log(`processOption.env: ${JSON.stringify(processOption.env)}`)
 process.shmccpsenv = processOption;
 var express = require('express');
 var bodyParser = require('body-parser');

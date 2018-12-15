@@ -2,7 +2,7 @@ apps:
   - name     : "shmccps_web"
     script   : src/app_v2.js
     instances: 4
-    instance_var: "INSTANCE_ID"
+    instance_id_env: "INSTANCE_ID"
     exec_mode: cluster
     watch  : ["src"]
     ignore_watch: ["node_modules", "logs", "log_file"]
@@ -22,19 +22,6 @@ apps:
     log_date_format : "YYYY-MM-DD HH:mm Z"
     out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/log_file/pm2_server_out.log"
     error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/log_file/pm2_server_error.log"
-    env    :
-      NODE_ENV: development
-    env_production:
-      NODE_ENV: production
-  - name     : "Inspect"
-    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/InspectWorker.js
-    watch  : ['E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/*.js']
-    instances: 1
-    exec_mode: cluster
-    instance_var: "INSTANCE_ID"
-    log_date_format : "YYYY-MM-DD HH:mm Z"
-    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/log_file/pm2_inspectserver_out.log"
-    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/log_file/pm2_inspectserver_error.log"
     env    :
       NODE_ENV: development
     env_production:
