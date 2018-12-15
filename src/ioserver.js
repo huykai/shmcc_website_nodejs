@@ -108,16 +108,16 @@ const createTTYIOServer = function(server, path){
             //console.log('login : ', JSON.stringify(loginparam));
             var term;
             if (loginhost === 'localhost') {
-            console.log('host : localhost');
-            term = pty.spawn('/usr/bin/env', ['login'], {
-                name: 'xterm-256color',
-                cols: 80,
-                rows: 30
-            });
+                console.log('host : localhost');
+                term = pty.spawn('/usr/bin/env', ['login'], {
+                    name: 'xterm-256color',
+                    cols: 80,
+                    rows: 30
+                });
             } else {
             console.log('host : ', loginhost);
             if (logintype === 'ssh') {
-                term = pty.spawn('E:\\DevelopTools\\Git\\usr\\bin\\ssh.exe ', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
+                term = pty.spawn('ssh ', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
                 name: 'xterm-256color',
                 cols: 80,
                 rows: 30
