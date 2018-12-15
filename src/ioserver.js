@@ -8,6 +8,36 @@ if (process.env.shmccpsmode && process.env.shmccpsmode !== "test"){
     modedir = process.env.shmccpsmode + "/"
 }
 console.log('ioserver mode : ', process.env.shmccpsmode)
+ttyConfig = {
+    'test': {
+        'telnet': {
+            'script': 'telnet.exe',
+            'args': []
+        },
+        'ssh': {
+            'script': 'ssh.exe',
+            'args': []
+        },
+        'login': {
+            'script': 'cmd.exe',
+            'args': []
+        }
+    },
+    'rtm': {
+        'telnet': {
+            'script': 'telnet',
+            'args': []
+        },
+        'ssh': {
+            'script': 'ssh',
+            'args': []
+        },
+        'login': {
+            'script': 'bash',
+            'args': []
+        }
+    }
+}
 var netelements = require('./config/'+ modedir + 'netelementconfig');
 var pty = require('node-pty');
 
@@ -80,6 +110,7 @@ const createInspectClient = function(server, path, inspectClient){
     return child
 }
 const createTTYIOServer = function(server, path){
+    let ttymode = process.env.shmccpsmode || 'test'
     var io = ioserver(server, {path: path, ws:true});
     io.on('connection', function(socket){
         io['TTYIOSocket'] == socket;
@@ -91,44 +122,39 @@ const createTTYIOServer = function(server, path){
                 console.log('netelement ', loginparam['name'], ' not found!');
                 return;
             }
-
             var logintype = netelement.type || 'ssh';
             var loginuser = netelement.user || 'root' + '@';
             var loginhost = netelement.host || 'localhost';
             var loginport = netelement.port || '22';
             var loginauth = netelement.auth || 'password,keyboard-interactive';
             var loginauto = netelement.login ? Object.assign([],netelement.login) : [];
-            // var request = socket.request;
-            // console.log((new Date()) + ' Connection accepted.');
-            // if (match = request.headers.referer.match('/wetty/ssh/.+$')) {
-            //    sshuser = match[0].replace('/wetty/ssh/', '') + '@';
-            // } else if (globalsshuser) {
-            //    sshuser = globalsshuser + '@';
-            // }
-            //console.log('login : ', JSON.stringify(loginparam));
             var term;
             if (loginhost === 'localhost') {
                 console.log('host : localhost');
-                term = pty.spawn('/usr/bin/env', ['login'], {
+                term = pty.spawn(ttyConfig['login']['script'], ttyConfig['login']['args'], {
                     name: 'xterm-256color',
                     cols: 80,
                     rows: 30
                 });
             } else {
-            console.log('host : ', loginhost);
-            if (logintype === 'ssh') {
-                term = pty.spawn('ssh ', [loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth], {
-                name: 'xterm-256color',
-                cols: 80,
-                rows: 30
-                });
-            } else if (logintype === 'telnet'){
-                term = pty.spawn('telnet.exe ', [loginhost, loginport], {
-                name: 'xterm-256color',
-                cols: 80,
-                rows: 30
-                });
-            }
+                console.log('host : ', loginhost);
+                if (logintype === 'ssh') {
+                    let script = ttyConfig[ttymode]['ssh']['script']
+                    let args = [...ttyConfig[ttymode]['ssh']['args'], loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth]
+                    term = pty.spawn(script, args, {
+                    name: 'xterm-256color',
+                    cols: 80,
+                    rows: 30
+                    });
+                } else if (logintype === 'telnet'){
+                    let script = ttyConfig[ttymode]['telnet']['script']
+                    let args = [...ttyConfig[ttymode]['telnet']['args'], loginhost, loginport]
+                    term = pty.spawn(script, args, {
+                    name: 'xterm-256color',
+                    cols: 80,
+                    rows: 30
+                    });
+                }
             }
             
             console.log((new Date()) + " PID=" + term.pid + " STARTED on behalf of user=" + loginuser)
