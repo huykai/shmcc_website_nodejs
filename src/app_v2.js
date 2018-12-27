@@ -37,7 +37,7 @@ var csrfProtection = csurf({ cookie: true });
 var jsonParser = bodyParser.json();
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
-
+console.log(`app_v2 process.env.NODE_APP_INSTANCE: ${process.env.NODE_APP_INSTANCE}`)
 process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
 let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_INSTANCE);
 //let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);

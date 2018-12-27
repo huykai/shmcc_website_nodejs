@@ -50,16 +50,16 @@ const socketServer = function(server, path, processOption) {
             break;
         case '/inspector/socket.io':
             ioServer = createInspectIOServer(server, path);
-            console.log(`Inspect Client create with : ${JSON.stringify(processOption.env['inspectClient'])}`)
-            if (processOption.env['inspectClient']){
-                console.log(`Inspect Client create : ${JSON.stringify(processOption.env['inspectClient'])}`)
-                let client = createInspectClient(server, path, processOption.env['inspectClient']);        
-                if (!client){
-                    LogFile.error(`Inspect Client create failed`)
-                } else {
-                    console.log(`Inspect Client create successfully`)
-                }
-            };
+            //console.log(`Inspect Client create with : ${JSON.stringify(processOption.env['inspectClient'])}`)
+            //if (processOption.env['inspectClient']){
+            //    console.log(`Inspect Client create : ${JSON.stringify(processOption.env['inspectClient'])}`)
+            //    let client = createInspectClient(server, path, processOption.env['inspectClient']);        
+            //    if (!client){
+            //        LogFile.error(`Inspect Client create failed`)
+            //    } else {
+            //        console.log(`Inspect Client create successfully`)
+            //    }
+            //};
             break;
         default:
             ioServer = createIOServer(server, path);            

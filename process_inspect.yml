@@ -1,0 +1,13 @@
+apps:
+  - name     : "Inspector"
+    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/InspectWorker.js
+    watch  : ['E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/*.js']
+    instances: 1
+    exec_mode: cluster
+    log_date_format : "YYYY-MM-DD HH:mm Z"
+    out_file : "pm2_inspector_out.log"
+    error_file : "pm2_inspector_error.log"
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
