@@ -239,7 +239,7 @@ const createInspectIOServer = function(server, path){
             }
         });
         socket.on('end_message', (info) => {
-            console.log(`End to Front:  ${JSON.stringify(info)} `);
+            console.log(`End to Front:  ${JSON.stringify(info['cmd'])} `);
             if (info['source_id']) {
                 if (io[info['source_id']])
                     io[info['source_id']].emit('message_'+info['cmd'], info)

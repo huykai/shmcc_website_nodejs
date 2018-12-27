@@ -2,6 +2,7 @@ apps:
   - name     : "shmccps_web"
     script   : src/app_v2.js
     instances: 4
+    exec_mode: "cluster"
     watch  : ["src"]
     ignore_watch: ["node_modules", "logs", "log_file"]
     log_date_format : "YYYY-MM-DD HH:mm Z"
@@ -13,6 +14,7 @@ apps:
       NODE_ENV: production
   - name     : "loopback"
     script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/server/server.js
+    exec_mode: "cluster"
     watch  : false
     instances: 1
     log_date_format : "YYYY-MM-DD HH:mm Z"
@@ -25,6 +27,7 @@ apps:
   - name     : "Inspector"
     script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/InspectWorker.js
     watch  : ['E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/*.js']
+    exec_mode: "cluster"
     instances: 4
     instance_var: "INSTANCE_ID"
     log_date_format : "YYYY-MM-DD HH:mm Z"
