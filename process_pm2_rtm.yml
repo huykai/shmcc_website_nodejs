@@ -38,5 +38,6 @@ apps:
     error_file : "/root/huykai/javascript_projects/IntelligentInspection/log_file/pm2_inspector_error.log"
     env    :
       NODE_ENV: development
+      InspectWorkerConfig: yml/WorkerConfigRtm.yml
     env_production:
       NODE_ENV: production
