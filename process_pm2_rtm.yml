@@ -28,3 +28,15 @@ apps:
       NODE_ENV: development
     env_production:
       NODE_ENV: production
+  - name     : "Inspector"
+    script : /root/huykai/javascript_projects/IntelligentInspection/InspectWorker.js
+    watch  : ['/root/huykai/javascript_projects/IntelligentInspection/*.js']
+    instances: 4
+    instance_var: "INSTANCE_ID"
+    log_date_format : "YYYY-MM-DD HH:mm Z"
+    out_file : "/root/huykai/javascript_projects/IntelligentInspection/log_file/pm2_inspector_out.log"
+    error_file : "/root/huykai/javascript_projects/IntelligentInspection/log_file/pm2_inspector_error.log"
+    env    :
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
