@@ -3,7 +3,6 @@ apps:
     name     : "app_v2"
     instances: 4
     instance_id_env: "INSTANCE_ID"
-    exec_mode: cluster
     watch  : false
     log_date_format : "YYYY-MM-DD HH:mm Z"
     out_file : "/root/huykai/node_webserver/nodejs_shmcc_website/log_file/pm2_rtm_app_out.log"
@@ -20,7 +19,6 @@ apps:
     name     : "server"
     watch  : false
     instances: 1
-    exec_mode: cluster
     log_date_format : "YYYY-MM-DD HH:mm Z"
     out_file : "/root/huykai/javascript_projects/lb_loganalysis/log_file/pm2_rtm_server_out.log"
     error_file : "/root/huykai/javascript_projects/lb_loganalysis/log_file/log_file/pm2_rtm_server_error.log"
