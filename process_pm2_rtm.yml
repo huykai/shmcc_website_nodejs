@@ -9,10 +9,10 @@ apps:
     error_file : "/root/huykai/node_webserver/nodejs_shmcc_website/log_file/pm2_rtm_app_error.log"
     env    :
       NODE_ENV: production
-      shmccpsmode: rtm
-      SHMCCPSDownloadPath: /root/huykai/node_webserver/angularjs_shmccps/app/downloads/
-      SHMCCElasticHost: https://127.0.0.1:9200/
-      SHMCCMongoDBHost: http://127.0.0.1:3301/
+      shmccpsmode: "rtm"
+      SHMCCPSDownloadPath: "/root/huykai/node_webserver/angularjs_shmccps/app/downloads/"
+      SHMCCElasticHost: "https://127.0.0.1:9200/"
+      SHMCCMongoDBHost: "http://127.0.0.1:3301/"
     env_production:
       NODE_ENV: production
   - script : /root/huykai/javascript_projects/lb_loganalysis/server/server.js
@@ -36,7 +36,7 @@ apps:
     error_file : "/root/huykai/javascript_projects/IntelligentInspection/log_file/pm2_inspector_error.log"
     env    :
       NODE_ENV: development
-      SHMCCPSDownloadPath: /root/huykai/node_webserver/angularjs_shmccps/app/downloads/
-      InspectWorkerConfig: yml/WorkerConfigRtm.yml
+      SHMCCPSDownloadPath: "/root/huykai/node_webserver/angularjs_shmccps/app/downloads"
+      InspectWorkerConfig: "yml/WorkerConfigRtm.yml"
     env_production:
       NODE_ENV: production
