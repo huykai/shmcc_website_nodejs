@@ -276,7 +276,7 @@ class PM_ExcelFill:
                     return str(row[0][int(sqlitemindex) - 1])
                 else:
                     logging.error("getsqlinfo %s with Error : %s" % (sqlfunc, title[1]))
-                    return "getsqlinfo %s with Error : %s" % (sqlfunc, title[1])
+                    return " "
 
         except Exception, e:
             logging.error('Exception : ' + str(e))
