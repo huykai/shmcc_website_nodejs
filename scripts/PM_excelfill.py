@@ -10,7 +10,7 @@ import datetime
 import re
 
 import cx_Oracle as oracle
-import MySQLdb as mysql
+#import MySQLdb as mysql
 import pyzabbix
 import openpyxl
 
@@ -23,8 +23,10 @@ class PM_ExcelFill:
 
     mmedb = None
     saegwdb = None
+    cmgdb = None
     mmedbcursor = None
     saegwcursor = None
+    cmgdbcursor = None
     ExcelConfigFileName = None
     Excel_Config = None
     Excel_Result = {}

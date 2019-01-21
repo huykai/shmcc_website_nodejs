@@ -83,8 +83,8 @@ app.all('*', function(req, res, next) {
 });
 
 app.get('/', csrfProtection, function (req, res, next) {
-  console.log('/ Cookies: ', req.cookies);
-  console.log(`Server with port: ${socketPort}`)
+  //console.log('/ Cookies: ', req.cookies);
+  //console.log(`Server with port: ${socketPort}`)
   //console.log('Signed Cookies: ', req.signedCookies);
   var fileName = processOption.env.site_config.static_dir + site_config.home_page;
   console.log(fileName);

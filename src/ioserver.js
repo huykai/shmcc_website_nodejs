@@ -116,7 +116,7 @@ const createTTYIOServer = function(server, path){
         io['TTYIOSocket'] == socket;
         console.log(`hyktty io connected with id: ${socket.id}`);
         socket.on('login', function(loginparam){
-            console.log('io login param:', JSON.stringify(loginparam));
+            //console.log('io login param:', JSON.stringify(loginparam));
             let netelement = findNetElement(loginparam['name'], netelements);
             if (netelement == null) {
                 console.log('netelement ', loginparam['name'], ' not found!');
@@ -164,7 +164,7 @@ const createTTYIOServer = function(server, path){
             if (loginauto && loginauto.length > 0){
                 let loginautoitem = loginauto[0];
                 if (data.indexOf(loginautoitem['prompt']) >= 0) {
-                console.log('login prompt: ',loginautoitem['prompt']);
+                //console.log('login prompt: ',loginautoitem['prompt']);
                 loginauto.splice(0,1);
                 term.write(loginautoitem['answer']);
                 
@@ -176,7 +176,7 @@ const createTTYIOServer = function(server, path){
                 console.log((new Date()) + " PID=" + term.pid + " ENDED")
             });
             socket.on('resize', function(data) {
-                console.log('socket.on resize resize: ', data);
+                //console.log('socket.on resize resize: ', data);
                 term.resize(data.col, data.row);
             });
             socket.on('input', function(data) {
@@ -214,7 +214,13 @@ const createTTYIOServer = function(server, path){
 }
 
 const createInspectIOServer = function(server, path){
-    var io = ioserver(server, {path: path, ws:true});
+    var io = ioserver(server, {
+        path: path, 
+        //ws:true,
+        forceNode: false, 
+        timeout: 15000
+    });
+    var socketList = {}
     io.on('connection', function(socket){
         console.log(`Inspector io connected port: ${server['ServerPort']}`);
         socket.on('login', function(loginparam){
@@ -223,26 +229,39 @@ const createInspectIOServer = function(server, path){
         socket.on('register', (message) => {
             console.log(`client ${message['id']} ${message['role']} register`);
             let id = message['id']
-            io[id] = socket
+            //io[id] = socket
             socket['socket_id'] = id
+            //if (!socketList[id]){
+            socketList[id] = socket
+            //}
             if (message['role'] === 'backend'){
                 console.log(`backend socket id: ${id}`)
-                io['backend' ] = id;
+                //io['backend' ] = id;
+                socketList['backend'] = socket
             }
         });
         socket.on('front_message', (info) => {
             info['source_id'] = socket['socket_id']
             console.log(`Front to End:  ${JSON.stringify(info)} `);
-            console.log(`End:  ${io['backend']} ${JSON.stringify(info)} `);
-            if(io[io['backend']]){
-                io[io['backend']].emit('message', info)
+            //console.log(`End:  ${io['backend']} ${JSON.stringify(info)} `);
+            if(socketList['backend']){
+                socketList['backend'].emit('message', info)
             }
+            //console.log(`front_message socket: `, socket['io']['uri'])
+            //if(io[io['backend']]){
+            //    io[io['backend']].emit('message', info)
+            //}
         });
         socket.on('end_message', (info) => {
-            console.log(`End to Front:  ${JSON.stringify(info['cmd'])} `);
+            console.log(`End to Front:  ${JSON.stringify(info)} `);
             if (info['source_id']) {
-                if (io[info['source_id']])
-                    io[info['source_id']].emit('message_'+info['cmd'], info)
+                //console.log('end_message io status: ', socketList[info['source_id']])
+                //if (io[info['source_id']])
+                if (socketList[info['source_id']]){
+                    console.log(`End to Front Send to :  ${info['source_id']} ${'message_'+info['cmd']}`);
+                //    io[info['source_id']].emit('message_'+info['cmd'], info)
+                    socketList[info['source_id']].emit('message_'+info['cmd'], info)
+                }
             } 
         });
     });

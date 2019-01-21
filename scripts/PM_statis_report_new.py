@@ -6,7 +6,7 @@ import time
 #import smtplib 
 import cgi
 #import xlsxwriter,xlrd
-import MySQLdb as mysql
+#import MySQLdb as mysql
 
 import os
 import json
@@ -21,6 +21,7 @@ sys.setdefaultencoding("utf-8")
 #from MME_statis_mysql import *
 from MME_statis_new import *
 from SAEGW_statis_new import *
+from CMG_statis_new import *
 
 
 
@@ -173,11 +174,12 @@ if __name__ == '__main__':
     # connect to oracle
     if (param.isMME == "true"):
         (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "mmedb")
-    else:
+    elif (param.isSAEGW == 'true'):
         (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "saegwdb")
+    elif (param.isCMG == 'true'):
+        (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "cmgdb")
     
-    #print 'mmeuser:', mmedbuser, mmedbpasswd, mmedburl
-	#mmedb = cx_Oracle.connect('omc', 'omc', '127.0.0.1:51063/oss')
+    logging.info('Database parameter: dbuser: ' + dbuser + ' dbpasswd: ' + dbpasswd + ' dburl: ' + dburl)
     con = None
 
     try:
@@ -194,10 +196,11 @@ if __name__ == '__main__':
         writexmlhead()
         #print "kpilist: ", param.kpilist
         if (param.isMME == "true"):
-            #print("param.isMME : " + param.isMME)
             api_sql_function = mme_api_sql_function
-        else:
+        elif (param.isSAEGW == "true"):
             api_sql_function = saegw_api_sql_function
+        elif (param.isCMG == "true"):
+            api_sql_function = cmg_api_sql_function
 
         for kpi in param.kpilist.split(','):
             logging.info('kpi : ' + kpi)

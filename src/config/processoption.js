@@ -4,7 +4,7 @@ exports.env = {
     HTTPS_PORT : 3010
   },
   site_config: {
-    static_dir : "E:\\PersonalProject\\Code_Projects\\Javascripts\\AngularJS_Demo\\shmcc\\app\\",
+    static_dir : "E:\\Personal_Projects\\Code_Projects\\javascript\\AngularJS\\shmccps_angularjs\\app\\",
     home_page : "index_v2.html",
     orig_home_page : "shmccps_main_v1_2.html"
   },
@@ -16,7 +16,7 @@ exports.env = {
   secretToken: 'aMdoeb5ed87zorRdkD6greDML81DcnrzeSD648ferFejmplx',
   socketPort: 3100,
   inspectClient: {
-    script: 'E:\\PersonalProject\\Code_Projects\\Javascripts\\NodeJS_Demo\\IntelligentInspection\\InspectWorker.js',
+    script: 'E:\\Personal_Projects\\Code_Projects\\javascript\\NodeJS\\intelligentinspection\\InspectWorker.js',
     args: [
       'yml/WorkerConfig.yml'
     ]

@@ -4,7 +4,7 @@ var apiconfig = [
     {
         api_string: '/api/mme_query', 
         mode: 'exec',
-        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        program: 'D:\\Develop_Languages\\Python27\\python.exe ',
         script: 'scripts/PM_statis_report_new.py test ',
         method_type: 'POST',
         return_type: 'text/xml'
@@ -12,7 +12,7 @@ var apiconfig = [
     {
         api_string: '/api/saegw_query',
         mode: 'exec',
-        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        program: 'D:\\Develop_Languages\\Python27\\python.exe ',
         //script: 'scripts/SAEGW_statis_mysql.py',
         script: ' scripts/PM_statis_report_new.py test ',
         method_type: 'POST',
@@ -21,7 +21,7 @@ var apiconfig = [
     {
         api_string: '/api/mme_query_alarm', 
         mode: 'exec',
-        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        program: 'D:\\Develop_Languages\\Python27\\python.exe ',
         script: 'scripts/HistoryAlarmList.py test ',
         method_type: 'POST',
         return_type: 'text/xml'
@@ -29,7 +29,7 @@ var apiconfig = [
     {
         api_string: '/api/saegw_query_alarm',
         mode: 'exec',
-        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        program: 'D:\\Develop_Languages\\Python27\\python.exe ',
         //script: 'scripts/SAEGW_statis_mysql.py',
         script: ' scripts/HistoryAlarmList.py test ',
         method_type: 'POST',
@@ -54,7 +54,7 @@ var apiconfig = [
     {
         api_string: '/api/getTrafficaRecord',
         mode: 'exec',
-        program: 'e:\\Java\\jdk1.8.0_152\\bin\\java.exe -jar e:\\eclipse_projects\\eclipse_projects\\TrafficaDBAPI\\target\\TrafficaDBAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar test ',
+        program: 'D:\\Develop_Tools\\Java\\jdk1.8.0_192\\bin\\java.exe -jar e:/Personal_Projects/Code_Projects/javascript/NodeJS/shmcc_website_nodejs/TrafficaDBAPI-0.0.1-SNAPSHOT-jar-with-dependencies.jar test ',
         //mode: 'file',
         //program: './reactjs/data/data_tmp.json',
         script: "",
@@ -80,7 +80,7 @@ var apiconfig = [
     {
         api_string: '/api/getDocumentList',
         mode: 'exec',
-        program: 'e:\\Develop_Language\\Python27\\python.exe ',
+        program: 'D:\\Develop_Languages\\Python27\\python.exe ',
         script: 'scripts/getDocumentList.py test ',
         method_type: 'GET',
         return_type: 'text/json'

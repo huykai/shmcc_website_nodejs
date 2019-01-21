@@ -1,39 +1,49 @@
 apps:
-  - name     : "shmccps_web"
-    script   : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/src/app_v2.js"
-    instances: 4
+  - name     : "shmcc_web"
+    script   : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/shmcc_website_nodejs/src/app_v2.js"
+    instances: 1
     exec_mode: "cluster"
-    watch  : ["E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/src/"]
+    watch  : ["E:/Personal_Projects/Code_Projects/javascript/NodeJS/shmcc_website_nodejs/src/"]
     ignore_watch: ["node_modules", "logs", "log_file"]
     log_date_format : "YYYY-MM-DD HH:mm Z"
-    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/log_file/pm2_app_out.log"
-    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/shmccps/log_file/pm2_app_error.log"
+    out_file : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/shmcc_website_nodejs/log_file/pm2_app_out.log"
+    error_file : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/shmcc_website_nodejs/log_file/pm2_app_error.log"
     env    :
-      NODE_ENV: development
+      NODE_ENV: production
+      shmccpsmode: "test"
+      SHMCCPSDownloadPath: "E:\\Personal_Projects\\Code_Projects\\javascript\\AngularJS\\shmccps_angularjs\\app\\downloads\\"
+      SHMCCElasticHost: "https://127.0.0.1:9200/"
+      SHMCCMongoDBHost: "http://127.0.0.1:3301/"
     env_production:
       NODE_ENV: production
-  - name     : "loopback"
-    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/server/server.js
-    exec_mode: "cluster"
-    watch  : false
-    instances: 1
-    log_date_format : "YYYY-MM-DD HH:mm Z"
-    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/log_file/pm2_server_out.log"
-    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/lb_loganalysis/log_file/pm2_server_error.log"
-    env    :
-      NODE_ENV: development
-    env_production:
-      NODE_ENV: production
+#  - name     : "loopback"
+#    script : E:/Personal_Projects/Code_Projects/javascript/NodeJS/lb_loganalysis/server/server.js
+#    exec_mode: "cluster"
+#    watch  : false
+#    instances: 1
+#    log_date_format : "YYYY-MM-DD HH:mm Z"
+#    out_file : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/lb_loganalysis/log_file/pm2_server_out.log"
+#    error_file : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/lb_loganalysis/log_file/pm2_server_error.log"
+#    env    :
+#      NODE_ENV: development
+#    env_production:
+#      NODE_ENV: production
   - name     : "Inspector"
-    script : E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/InspectWorker.js
-    watch  : ['E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/*.js']
+    script : E:/Personal_Projects/Code_Projects/javascript/NodeJS/intelligentinspection/InspectWorker.js
+    watch  : ['E:/Personal_Projects/Code_Projects/javascript/NodeJS/intelligentinspection/*.js']
     exec_mode: "cluster"
-    instances: 4
+    instances: 1
     instance_var: "INSTANCE_ID"
     log_date_format : "YYYY-MM-DD HH:mm Z"
-    out_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/log_file/pm2_inspector_out.log"
-    error_file : "E:/PersonalProject/Code_Projects/Javascripts/NodeJS_Demo/IntelligentInspection/log_file/pm2_inspector_error.log"
+    out_file : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/intelligentinspection/log_file/pm2_inspector_out.log"
+    error_file : "E:/Personal_Projects/Code_Projects/javascript/NodeJS/intelligentinspection/log_file/pm2_inspector_error.log"
     env    :
       NODE_ENV: development
+      shmccpsmode: "test"
+      RUNMODE: "develop"
+      SHMCCPSDownloadPath: "E:\\Personal_Projects\\Code_Projects\\javascript\\AngularJS\\shmccps_angularjs\\app\\"
+      InspectWorkerConfig: "yml/WorkerConfig.yml"
     env_production:
       NODE_ENV: production
+
+
