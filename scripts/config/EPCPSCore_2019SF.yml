@@ -898,7 +898,7 @@ SQLCUSTOM:
     "CMGUsers": 
       "temp_table": 
         - "jf_M11_2347546033"
-        - "jf_ALLTABLES_2322955188"
+        - "jf_ALLTABLES_2322955288"
       "create_temptable": 
         - >
             create global temporary table jf_M11_2347546033 on commit preserve rows as
@@ -967,7 +967,7 @@ SQLCUSTOM:
                     a.cmg_gid
 
         - >
-            create global temporary table jf_ALLTABLES_2322955188 on commit preserve rows as
+            create global temporary table jf_ALLTABLES_2322955288 on commit preserve rows as
               select
               period_start_time,
               cmg_gid
@@ -993,7 +993,7 @@ SQLCUSTOM:
               utp_common_objects "sam",
               utp_common_objects "cmg"
               ,
-            jf_ALLTABLES_2322955188 ALLTABLES,
+            jf_ALLTABLES_2322955288 ALLTABLES,
             jf_M11_2347546033 M11
             where
               "cmg".co_parent_gid = "sam".co_gid and
