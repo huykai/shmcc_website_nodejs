@@ -26,10 +26,10 @@ class RTM_Statis(object):
             self.url = url
             self.user = user
             self.password = password
-            self.zapi = ZabbixAPI(url=url, user=user, password=password)
+            #self.zapi = ZabbixAPI(url=url, user=user, password=password)
             #print('rtm_conn: ', url, user, password)
-            #self.zapi = ZabbixAPI(url)
-            #self.zapi.login(user, password)
+            self.zapi = ZabbixAPI(url)
+            self.zapi.login(user, password)
             return self.make_result(1, "zabbix initialize successfully")
         except Exception as e:
             return self.make_result(0, e)
@@ -131,13 +131,13 @@ class RTM_Statis(object):
                 logging.info('itemid find: ' + itemid)
                 
                 trend_result = self.rtm_get_trend(itemid, starttime, stoptime)
-                logging.info('trend_result: ' + str(trend_result))
-                if trend_result['resultcode'] != 0:
+                logging.info('trend_result: ' , trend_result)
+                if trend_result['resultcode'] != 0 and type(trend_result['result']) == list:
                     for trend_result_item in trend_result['result']:
                         trend_result_item['hostname'] = hostname
                         trend_result_item['itemname'] = itemname
                         return_result.append(trend_result_item)
-                
+        logging.info('rtm_get_value run over')        
         if len(return_result)>0:
             return self.make_result(1, return_result)
         else:

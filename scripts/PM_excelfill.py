@@ -516,6 +516,9 @@ if __name__ == '__main__':
     currtime = currtime + datetime.timedelta(minutes=-1)
     pretime = currtime + datetime.timedelta(minutes=-1*59)
     
+    param['startdatetime'] = time.mktime(pretime.timetuple())
+    param['stopdatetime'] = time.mktime(currtime.timetuple())
+    
     param.startdate = pretime.strftime("%Y/%m/%d")
     param.stopdate = currtime.strftime("%Y/%m/%d")
     param.starttime = pretime.strftime("%H:%M")

@@ -11,13 +11,15 @@ import re
 
 import cx_Oracle as oracle
 from CMG_statis_new import *
+import reportsuite_sql
 
 runmode = "test"
 (dbuser,dbpasswd,dburl,dburlport,db_dbname)=getdbconfig(runmode, "cmgdb")
-#print "cmgdb parameter: ", dbuser,dbpasswd,dburl,dburlport,db_dbname
+print "cmgdb parameter: ", dbuser,dbpasswd,dburl,dburlport,db_dbname
 cmgdb = oracle.connect(dbuser, dbpasswd, dburl)
 cmgdbcursor=cmgdb.cursor()
 
+    
 createtable_sqlstring = """
 create global temporary table jf_M11_2097590963 on commit preserve rows as
   select
@@ -218,10 +220,26 @@ truncate table jf_M11_2097590963 drop storage
 droptable_sqlstring = """
 drop table jf_M11_2097590963
 """
-#print sqlstring
-cmgdbcursor.execute(createtable_sqlstring)
-cmgdbcursor.execute(select_sqlstring)
-row=cmgdbcursor.fetchall()
-print row
-cmgdbcursor.execute(trunctable_sqlstring)
-cmgdbcursor.execute(droptable_sqlstring)
+
+if __name__ == "__main__":
+    print 'begin getconfig'
+    if len(sys.argv) > 2:
+        print sys.argv[1]
+        print sys.argv[2]
+    else:
+        print 'please input your command parameter for runmode and database model name.'
+        sys.exit()
+    (username, passwd, url, urlport, db_name) = getdbconfig(sys.argv[1], sys.argv[2])
+    print username
+    print passwd
+    print url
+    print urlport
+    print db_name
+
+    #print sqlstring
+    cmgdbcursor.execute(createtable_sqlstring)
+    cmgdbcursor.execute(select_sqlstring)
+    row=cmgdbcursor.fetchall()
+    print row
+    cmgdbcursor.execute(trunctable_sqlstring)
+    cmgdbcursor.execute(droptable_sqlstring)

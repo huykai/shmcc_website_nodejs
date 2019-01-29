@@ -12,6 +12,7 @@
 #		self.selectmmesgsn="all"
 
 from GetConfig import *
+from ReportSuite_SQL import *
 
 def getMMESQL_other_oracle(sqlstring, param):
     if (not param.selectmmesgsn == 'all'):
@@ -96,6 +97,44 @@ def getMMESQL_main(api_sql_info, param):
     sqlstring = sqlstring + 'from ' + ','.join(api_sql_info['sql_tables']) + '\n'
     sqlstring = sqlstring + 'where ' + ' and '.join(api_sql_info['sql_where']) + '\n'
     return sqlstring
+
+# RUN Script get from report suite
+def mme_reportsuite(kpi_title, cursor, param):
+    sqlstring = []
+    
+    try:
+        sqlstring = create_reportsuite_sql(param)
+        api_sql_info = mme_api_sql_function[kpi_title]
+        #print('mme_reportsuite sqlstring: ' , sqlstring)
+        droptemptable_sqlstrings = sqlstring['droptemptable']
+        createtemptable_sqlstrings = sqlstring['createtemptable']
+        selecttemptable_sqlstring = sqlstring['selecttemptable'][0] 
+        #print "droptemptable_sqlstrings: " + droptemptable_sqlstrings
+        for drop_command in droptemptable_sqlstrings:
+            print "drop_command: " , drop_command
+            try:
+                cursor.execute(drop_command)
+            except Exception as e:
+                print 'mme_reportsuite droptable catch Error: ' + str(e)    
+        print "after execute droptemptable" 
+        #print "createtemptable_sqlstring: " + createtemptable_sqlstrings
+        for create_command in createtemptable_sqlstrings:
+            print "create_command: " , create_command
+            try:
+                cursor.execute(create_command)
+            except Exception as e:
+                print 'mme_reportsuite createtable catch Error: ' + str(e)    
+        print "after execute createtemptable"
+        print "selecttemptable_sqlstring: " + selecttemptable_sqlstring
+        cursor.execute(selecttemptable_sqlstring)
+        print "after execute selecttemptable"
+        row=cursor.fetchall()
+        print 'mme_reportsuite: ', row
+        return ([kpi_title],row)
+    except Exception as e:
+        print 'mme_reportsuite catch Error: ' + str(e)
+        errorMessage = "Error mme_reportsuite: " + str(e)
+        return (['error', errorMessage], None)
 
 # Attach 2G
 def mme_2g_attach(kpi_title, cursor, param):
@@ -436,6 +475,9 @@ def mmedb_conn(runmode):
         return None
 
 mme_api_sql_function = {
+    'MME-REPORTSUITE'     : {
+        'func'         : mme_reportsuite,
+    },
     'GSM-ATTACH'     : {
         'func'         : mme_2g_attach,
         'title'        : [

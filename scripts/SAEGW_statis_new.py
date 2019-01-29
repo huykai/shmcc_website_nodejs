@@ -1,6 +1,7 @@
 #coding=utf-8
 
 from GetConfig import *
+from ReportSuite_SQL import *
 
 def getSAEGWSQL_other_oracle(sqlstring, param, groupitem = ""):
     if (not param.selectsaegwggsn == 'all'):
@@ -79,6 +80,45 @@ def getSAEGWSQL_main(api_sql_info, param):
     sqlstring = sqlstring + 'from ' + ','.join(generateTableStr(api_sql_info['sql_tables'], param)) + '\n'
     sqlstring = sqlstring + 'where ' + ' and '.join(api_sql_info['sql_where']) + '\n'
     return sqlstring
+
+# RUN Script get from report suite
+def saegw_reportsuite(kpi_title, cursor, param):
+    sqlstring = []
+    
+    try:
+        sqlstring = create_reportsuite_sql(param)
+        api_sql_info = saegw_api_sql_function[kpi_title]
+        #print('saegw_reportsuite sqlstring: ' , sqlstring)
+        droptemptable_sqlstrings = sqlstring['droptemptable']
+        createtemptable_sqlstrings = sqlstring['createtemptable']
+        selecttemptable_sqlstring = sqlstring['selecttemptable'][0] 
+        #print "droptemptable_sqlstrings: " + droptemptable_sqlstrings
+        for drop_command in droptemptable_sqlstrings:
+            print "drop_command: " , drop_command
+            try:
+                cursor.execute(drop_command)
+            except Exception as e:
+                print 'saegw_reportsuite droptable catch Error: ' + str(e)    
+        print "after execute droptemptable" 
+        #print "createtemptable_sqlstring: " + createtemptable_sqlstrings
+        for create_command in createtemptable_sqlstrings:
+            print "create_command: " , create_command
+            try:
+                cursor.execute(create_command)
+            except Exception as e:
+                print 'saegw_reportsuite createtable catch Error: ' + str(e)    
+        print "after execute createtemptable"
+        print "selecttemptable_sqlstring: " + selecttemptable_sqlstring
+        cursor.execute(selecttemptable_sqlstring)
+        print "after execute selecttemptable"
+        row=cursor.fetchall()
+        print 'saegw_reportsuite: ', row
+        return ([kpi_title],row)
+    except Exception as e:
+        print 'saegw_reportsuite catch Error: ' + str(e)
+        errorMessage = "Error saegw_reportsuite: " + str(e)
+        return (['error', errorMessage], None)
+
 
 # SAEGW PGW
 def saegw_4g_pgw(kpi_title, cursor, param):
@@ -396,6 +436,9 @@ def saegwdb_conn(runmode):
         return None
 
 saegw_api_sql_function = {
+    'SAEGW-REPORTSUITE'     : {
+        'func'         : saegw_reportsuite,
+    },
     'LTE-PGW'     : {
         'func'         : saegw_4g_pgw,
         'title'        : [
@@ -403,10 +446,12 @@ saegw_api_sql_function = {
                         u'日期',
                         u'时间',
                         u'Session',
+                        u'SAEGW承载容量值',
                         u'PGW承载容量峰值',
                         u'PGW承载容量峰值利用率',
                         u'PGW承载容量平均值',
                         u'PGW承载容量平均利用率',
+                        u'PGW专用承载峰值',
                         u'PGW专用承载建立成功次数',
                         u'PGW专用承载建立次数',
                         u'PGW专用承载建立成功率',
@@ -434,10 +479,12 @@ saegw_api_sql_function = {
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24:mi')                  BH",
             "'ALL' ",
-            "SUM(SM_MAX_NBR_ACT_BEAR_P_GW) SM_MAX_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW)/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
-            "SUM(SM_AVE_NBR_ACT_BEAR_P_GW) SM_AVE_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_AVE_NBR_ACT_BEAR_P_GW)/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "SUM(SM_NBR_ACT_BEAR_SAE_GW) SM_NBR_ACT_BEAR_SAE_GW",
+            "SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW) SM_MAX_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
+            "SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW) SM_AVE_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "SUM(SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW) SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW",
             "sum(SM_SUCC_BEARER_ACT) SM_SUCC_BEARER_ACT",
             "sum(SM_ATT_BEARER_ACT) SM_ATT_BEARER_ACT",
             "decode(nvl((sum(SM_ATT_BEARER_ACT)),0),0,0,(round((sum(SM_SUCC_BEARER_ACT)/(sum(SM_ATT_BEARER_ACT))),4)*100)) PdpSR",
@@ -464,10 +511,12 @@ saegw_api_sql_function = {
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24')                  BH",
             "'ALL' ",
-            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW)/4,0) SM_MAX_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW)/4/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
-            "round(SUM(SM_AVE_NBR_ACT_BEAR_P_GW)/4,0) SM_AVE_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_AVE_NBR_ACT_BEAR_P_GW)/4/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "round(SUM(SM_NBR_ACT_BEAR_SAE_GW)/4,0) SM_NBR_ACT_BEAR_SAE_GW",
+            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4,0) SM_MAX_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
+            "round(SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4,0) SM_AVE_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "round(SUM(SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW)/4,0) SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW",
             "sum(SM_SUCC_BEARER_ACT) SM_SUCC_BEARER_ACT", 
             "sum(SM_ATT_BEARER_ACT) SM_ATT_BEARER_ACT", 
             "decode(nvl((sum(SM_ATT_BEARER_ACT)),0),0,0,(round((sum(SM_SUCC_BEARER_ACT)/(sum(SM_ATT_BEARER_ACT))),4)*100)) PdpSR",
@@ -494,10 +543,12 @@ saegw_api_sql_function = {
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24:mi')                  BH",
             "SSPROF_ID SSPROF",
-            "SUM(SM_MAX_NBR_ACT_BEAR_P_GW) SM_MAX_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW)/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
-            "SUM(SM_AVE_NBR_ACT_BEAR_P_GW) SM_AVE_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_AVE_NBR_ACT_BEAR_P_GW)/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "SUM(SM_NBR_ACT_BEAR_SAE_GW) SM_NBR_ACT_BEAR_SAE_GW",
+            "SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW) SM_MAX_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
+            "SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW) SM_AVE_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "SUM(SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW) SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW",
             "sum(SM_SUCC_BEARER_ACT) SM_SUCC_BEARER_ACT", 
             "sum(SM_ATT_BEARER_ACT) SM_ATT_BEARER_ACT", 
             "decode(nvl((sum(SM_ATT_BEARER_ACT)),0),0,0,(round((sum(SM_SUCC_BEARER_ACT)/(sum(SM_ATT_BEARER_ACT))),4)*100)) PdpSR",
@@ -524,10 +575,12 @@ saegw_api_sql_function = {
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24')                  BH",
             "SSPROF_ID SSPROF",
-            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW)/4,0) SM_MAX_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW)/4/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
-            "round(SUM(SM_AVE_NBR_ACT_BEAR_P_GW)/4,0) SM_AVE_NBR_ACT_BEAR_P_GW",
-            "round(SUM(SM_AVE_NBR_ACT_BEAR_P_GW)/4/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "round(SUM(SM_NBR_ACT_BEAR_SAE_GW)/4,0) SM_NBR_ACT_BEAR_SAE_GW",
+            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4,0) SM_MAX_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_MAX_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4/1280000*100,2) SM_MAX_NBR_ACT_BEAR_P_GW_R",
+            "round(SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4,0) SM_AVE_NBR_ACT_BEAR_P_GW",
+            "round(SUM(SM_NBR_ACT_BEAR_P_GW+SM_NBR_ACT_BEAR_SAE_GW)/4/1280000*100,2) SM_AVE_NBR_ACT_BEAR_P_GW_R",
+            "round(SUM(SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW)/4,0) SM_MAX_NBR_ACT_DEDIC_BEAR_P_GW",
             "sum(SM_SUCC_BEARER_ACT) SM_SUCC_BEARER_ACT", 
             "sum(SM_ATT_BEARER_ACT) SM_ATT_BEARER_ACT", 
             "decode(nvl((sum(SM_ATT_BEARER_ACT)),0),0,0,(round((sum(SM_SUCC_BEARER_ACT)/(sum(SM_ATT_BEARER_ACT))),4)*100)) PdpSR",

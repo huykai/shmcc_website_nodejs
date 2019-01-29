@@ -49,6 +49,8 @@
 
 import logging
 from GetConfig import *
+from ReportSuite_SQL import *
+
 logging.basicConfig(filename='pm_logger.log', level=logging.INFO)
 def getCMGSQL_other_oracle(sqlstring, param, groupitem = ""):
     if (not param.selectcmg == 'all'):
@@ -104,6 +106,45 @@ def getCMGSQL_main(api_sql_info, param):
     sqlstring = sqlstring + 'from ' + ','.join(generateTableStr(api_sql_info['sql_tables'], param)) + '\n'
     sqlstring = sqlstring + 'where ' + ' and '.join(api_sql_info['sql_where']) + '\n'
     return sqlstring
+
+# RUN Script get from report suite
+def cmg_reportsuite(kpi_title, cursor, param):
+    sqlstring = []
+    
+    try:
+        sqlstring = create_reportsuite_sql(param)
+        api_sql_info = cmg_api_sql_function[kpi_title]
+        #print('cmg_reportsuite sqlstring: ' , sqlstring)
+        droptemptable_sqlstrings = sqlstring['droptemptable']
+        createtemptable_sqlstrings = sqlstring['createtemptable']
+        selecttemptable_sqlstring = sqlstring['selecttemptable'][0] 
+        #print "droptemptable_sqlstrings: " + droptemptable_sqlstrings
+        for drop_command in droptemptable_sqlstrings:
+            print "drop_command: " , drop_command
+            try:
+                cursor.execute(drop_command)
+            except Exception as e:
+                print 'cmg_reportsuite droptable catch Error: ' + str(e)    
+        print "after execute droptemptable" 
+        #print "createtemptable_sqlstring: " + createtemptable_sqlstrings
+        for create_command in createtemptable_sqlstrings:
+            print "create_command: " , create_command
+            try:
+                cursor.execute(create_command)
+            except Exception as e:
+                print 'cmg_reportsuite createtable catch Error: ' + str(e)    
+        print "after execute createtemptable"
+        print "selecttemptable_sqlstring: " + selecttemptable_sqlstring
+        cursor.execute(selecttemptable_sqlstring)
+        print "after execute selecttemptable"
+        row=cursor.fetchall()
+        print 'cmg_reportsuite: ', row
+        return ([kpi_title],row)
+    except Exception as e:
+        print 'cmg_reportsuite catch Error: ' + str(e)
+        errorMessage = "Error cmg_reportsuite: " + str(e)
+        return (['error', errorMessage], None)
+
 
 # CMG PGW
 def cmg_4g_pgw(kpi_title, cursor, param):
@@ -423,6 +464,9 @@ def cmgdb_conn(runmode):
         return None
 
 cmg_api_sql_function = {
+    'CMG-REPORTSUITE'     : {
+        'func'         : cmg_reportsuite,
+    },
     'LTE-PGW'     : {
         'func'         : cmg_4g_pgw,
         'title'        : [
@@ -434,8 +478,10 @@ cmg_api_sql_function = {
                         u'PGW承载容量峰值利用率',
                         u'PGW承载容量平均值',
                         u'PGW承载容量平均利用率',
-                        u'PGW专用承载峰值',
+                        u'SAEGW承载容量平均值',
+                        u'SAEGW承载容量峰值',
                         u'PGW专用承载平均值',
+                        u'PGW专用承载峰值',
                         u'PGW 全部session',
                         u'PGW 2/3g session',
                         u'PGW 4g session',
@@ -451,9 +497,11 @@ cmg_api_sql_function = {
             "SUM(MAXNUMBEROFBEARERS+MAXNUMBEROFSGWPGWCMBBEARERS) MAXNUMBEROFBEARERS",
             "round(SUM(MAXNUMBEROFBEARERS+MAXNUMBEROFSGWPGWCMBBEARERS)/1280000*100,2) MAXNUMBEROFBEARERS_RATE",
             "SUM(AVGNUMBEROFBEARERS+AVGNUMBEROFSGWPGWCMBBEARERS) AVGNUMBEROFBEARERS",
-            "round(SUM(AVGNUMBEROFBEARERS+AVGNUMBEROFSGWPGWCMBBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_RATE",
-            "sum(MAXNUMBEROFDEDICATEDBEARERS) MAXNUMBEROFDEDICATEDBEARERS",
-            "sum(AVGNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
+            "round(SUM(AVGNUMBEROFBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_RATE",
+            "SUM(AVGNUMBEROFSGWPGWCMBBEARERS) AVGNUMBEROFSAEGWBEARERS",
+            "SUM(MAXNUMBEROFSGWPGWCMBBEARERS) MAXNUMBEROFSAEGWBEARERS",
+            "sum(AVGNUMBEROFDEDICATEDBEARERS+AVGNUMBOFSGWPGWCMBDEDIBEAR) MAXNUMBEROFDEDICATEDBEARERS",
+            "sum(MAXNUMBOFSGWPGWCMBDEDIBEAR+MAXNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
             "sum(NUMBEROFPDNSESSIONS+NUMBEROFSGWPGWCMBPDNSESSIONS) allsession",
             "sum(NUMBEROF2G3GSESSIONS) NUMBEROF2G3GSESSIONS",
             "SUM(NUMBEROFPDNSESSIONS) NUMBEROFPDNSESSIONS",
@@ -464,28 +512,32 @@ cmg_api_sql_function = {
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24')                  BH",
             "'ALL' ",
-            "SUM(MAXNUMBEROFBEARERS) MAXNUMBEROFBEARERS",
+            "round(SUM(MAXNUMBEROFBEARERS+MAXNUMBEROFSGWPGWCMBBEARERS)/4,0) MAXNUMBEROFBEARERS",
             "round(SUM(MAXNUMBEROFBEARERS)/1280000*100,2) MAXNUMBEROFBEARERS_RATE",
-            "SUM(AVGNUMBEROFBEARERS) AVGNUMBEROFBEARERS",
+            "round(SUM(AVGNUMBEROFBEARERS+AVGNUMBEROFSGWPGWCMBBEARERS)/4,0) AVGNUMBEROFBEARERS",
             "round(SUM(AVGNUMBEROFBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_RATE",
-            "sum(MAXNUMBEROFDEDICATEDBEARERS) MAXNUMBEROFDEDICATEDBEARERS",
-            "sum(AVGNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
-            "sum(NUMBEROFPDNSESSIONS+NUMBEROFSGWPGWCMBPDNSESSIONS) allsession",
-            "sum(NUMBEROF2G3GSESSIONS) NUMBEROF2G3GSESSIONS",
-            "SUM(NUMBEROFPDNSESSIONS) NUMBEROFPDNSESSIONS",
-            "sum(NUMBOFSGWPGWCMBDEFABEAR) NUMBOFSGWPGWCMBDEFABEAR"
+            "ROUND(SUM(AVGNUMBEROFSGWPGWCMBBEARERS)/4,0) AVGNUMBEROFSAEGWBEARERS",
+            "ROUND(SUM(MAXNUMBEROFSGWPGWCMBBEARERS)/4,0) MAXNUMBEROFSAEGWBEARERS",
+            "ROUND(sum(AVGNUMBEROFDEDICATEDBEARERS+AVGNUMBOFSGWPGWCMBDEDIBEAR)/4,0) MAXNUMBEROFDEDICATEDBEARERS",
+            "ROUND(sum(MAXNUMBOFSGWPGWCMBDEDIBEAR+MAXNUMBEROFDEDICATEDBEARERS)/4,0) AVGNUMBEROFDEDICATEDBEARERS",
+            "ROUND(sum(NUMBEROFPDNSESSIONS+NUMBEROFSGWPGWCMBPDNSESSIONS)/4,0) allsession",
+            "ROUND(sum(NUMBEROF2G3GSESSIONS)/4,0) NUMBEROF2G3GSESSIONS",
+            "ROUND(SUM(NUMBEROFPDNSESSIONS)/4,0) NUMBEROFPDNSESSIONS",
+            "ROUND(sum(NUMBOFSGWPGWCMBDEFABEAR)/4,0) NUMBOFSGWPGWCMBDEFABEAR"
            ],
            'sql_items_15_SESSION' : [
             "CO_NAME",
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24:mi')                  BH",
             "'ALL' ",
-            "SUM(MAXNUMBEROFBEARERS) MAXNUMBEROFBEARERS",
+            "SUM(MAXNUMBEROFBEARERS+MAXNUMBEROFSGWPGWCMBBEARERS) MAXNUMBEROFBEARERS",
             "round(SUM(MAXNUMBEROFBEARERS)/1280000*100,2) MAXNUMBEROFBEARERS_RATE",
-            "SUM(AVGNUMBEROFBEARERS) AVGNUMBEROFBEARERS",
+            "SUM(AVGNUMBEROFBEARERS+AVGNUMBEROFSGWPGWCMBBEARERS) AVGNUMBEROFBEARERS",
             "round(SUM(AVGNUMBEROFBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_RATE",
-            "sum(MAXNUMBEROFDEDICATEDBEARERS) MAXNUMBEROFDEDICATEDBEARERS",
-            "sum(AVGNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
+            "SUM(AVGNUMBEROFSGWPGWCMBBEARERS) AVGNUMBEROFSAEGWBEARERS",
+            "SUM(MAXNUMBEROFSGWPGWCMBBEARERS) MAXNUMBEROFSAEGWBEARERS",
+            "sum(AVGNUMBEROFDEDICATEDBEARERS+AVGNUMBOFSGWPGWCMBDEDIBEAR) MAXNUMBEROFDEDICATEDBEARERS",
+            "sum(MAXNUMBOFSGWPGWCMBDEDIBEAR+MAXNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
             "sum(NUMBEROFPDNSESSIONS+NUMBEROFSGWPGWCMBPDNSESSIONS) allsession",
             "sum(NUMBEROF2G3GSESSIONS) NUMBEROF2G3GSESSIONS",
             "SUM(NUMBEROFPDNSESSIONS) NUMBEROFPDNSESSIONS",
@@ -496,16 +548,18 @@ cmg_api_sql_function = {
             "to_char(PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(PERIOD_START_TIME,'hh24')                  BH",
             "'ALL' ",
-            "SUM(MAXNUMBEROFBEARERS) MAXNUMBEROFBEARERS",
+            "ROUND(SUM(MAXNUMBEROFBEARERS+MAXNUMBEROFSGWPGWCMBBEARERS)/4,0) MAXNUMBEROFBEARERS",
             "round(SUM(MAXNUMBEROFBEARERS)/1280000*100,2) MAXNUMBEROFBEARERS_RATE",
-            "SUM(AVGNUMBEROFBEARERS) AVGNUMBEROFBEARERS",
+            "ROUND(SUM(AVGNUMBEROFBEARERS+AVGNUMBEROFSGWPGWCMBBEARERS)/4,0) AVGNUMBEROFBEARERS",
             "round(SUM(AVGNUMBEROFBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_RATE",
-            "sum(MAXNUMBEROFDEDICATEDBEARERS) MAXNUMBEROFDEDICATEDBEARERS",
-            "sum(AVGNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
-            "sum(NUMBEROFPDNSESSIONS+NUMBEROFSGWPGWCMBPDNSESSIONS) allsession",
-            "sum(NUMBEROF2G3GSESSIONS) NUMBEROF2G3GSESSIONS",
-            "SUM(NUMBEROFPDNSESSIONS) NUMBEROFPDNSESSIONS",
-            "sum(NUMBOFSGWPGWCMBDEFABEAR) NUMBOFSGWPGWCMBDEFABEAR"
+            "round(SUM(AVGNUMBEROFSGWPGWCMBBEARERS)/4,0) AVGNUMBEROFSAEGWBEARERS",
+            "round(SUM(MAXNUMBEROFSGWPGWCMBBEARERS)/4,0) MAXNUMBEROFSAEGWBEARERS",
+            "round(sum(AVGNUMBEROFDEDICATEDBEARERS+AVGNUMBOFSGWPGWCMBDEDIBEAR)/4,0) MAXNUMBEROFDEDICATEDBEARERS",
+            "round(sum(MAXNUMBOFSGWPGWCMBDEDIBEAR+MAXNUMBEROFDEDICATEDBEARERS)/4,0) AVGNUMBEROFDEDICATEDBEARERS",
+            "round(sum(NUMBEROFPDNSESSIONS+NUMBEROFSGWPGWCMBPDNSESSIONS)/4,0) allsession",
+            "round(sum(NUMBEROF2G3GSESSIONS)/4,0) NUMBEROF2G3GSESSIONS",
+            "round(SUM(NUMBEROFPDNSESSIONS)/4,0) NUMBEROFPDNSESSIONS",
+            "round(sum(NUMBOFSGWPGWCMBDEFABEAR)/4,0) NUMBOFSGWPGWCMBDEFABEAR"
           ]
         },
         'sql_tables' : [
@@ -527,6 +581,8 @@ cmg_api_sql_function = {
                         u'SGW承载容量平均利用率',
                         u'SGW承载容量峰值',
                         u'SGW承载容量峰值利用率',
+                        u'SGW专有承载平均值',
+                        u'SGW专有承载峰值',
                         u'SGW 会话数',
                         u'SGW 用户数',
                         u'SGW 空闲用户数',
@@ -544,6 +600,8 @@ cmg_api_sql_function = {
             "round(SUM(AVGNUMBEROFBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_R",
             "SUM(MAXNUMBEROFBEARERS) MAXNUMBEROFBEARERS",
             "round(SUM(MAXNUMBEROFBEARERS)/1280000*100,2) MAXNUMBEROFBEARERS_R",
+            "sum(AVGNUMBEROFDEDICATEDBEARERS) AVGNUMBEROFDEDICATEDBEARERS",
+            "sum(MAXNUMBEROFDEDICATEDBEARERS) MAXNUMBEROFDEDICATEDBEARERS",
             "sum(NUMBEROFPDNSESSIONS) NUMBEROFPDNSESSIONS",
             "sum(NUMBEROFUSERS) NUMBEROFUSERS",
             "sum(NUMBEROFIDLEUSERS) NUMBEROFIDLEUSERS",
@@ -556,13 +614,15 @@ cmg_api_sql_function = {
             "CO_NAME",
             "to_char(cmg.PERIOD_START_TIME,'yyyy/mm/dd')        REPDATE",
             "to_char(cmg.PERIOD_START_TIME,'hh24')                  BH",
-            "SUM(AVGNUMBEROFBEARERS) AVGNUMBEROFBEARERS",
+            "ROUND(SUM(AVGNUMBEROFBEARERS)/4,0) AVGNUMBEROFBEARERS",
             "round(SUM(AVGNUMBEROFBEARERS)/1280000*100,2) AVGNUMBEROFBEARERS_R",
-            "SUM(MAXNUMBEROFBEARERS) MAXNUMBEROFBEARERS",
+            "ROUND(SUM(MAXNUMBEROFBEARERS)/4,0) MAXNUMBEROFBEARERS",
             "round(SUM(MAXNUMBEROFBEARERS)/1280000*100,2) MAXNUMBEROFBEARERS_R",
-            "sum(NUMBEROFPDNSESSIONS) NUMBEROFPDNSESSIONS",
-            "sum(NUMBEROFUSERS) NUMBEROFUSERS",
-            "sum(NUMBEROFIDLEUSERS) NUMBEROFIDLEUSERS",
+            "ROUND(sum(AVGNUMBEROFDEDICATEDBEARERS)/4,0) AVGNUMBEROFDEDICATEDBEARERS",
+            "ROUND(sum(MAXNUMBEROFDEDICATEDBEARERS)/4,0) MAXNUMBEROFDEDICATEDBEARERS",
+            "ROUND(sum(NUMBEROFPDNSESSIONS)/4,0) NUMBEROFPDNSESSIONS",
+            "ROUND(sum(NUMBEROFUSERS)/4,0) NUMBEROFUSERS",
+            "ROUND(sum(NUMBEROFIDLEUSERS)/4,0) NUMBEROFIDLEUSERS",
             "round(avg(NUMBEROFMMES),0) NUMBEROFMMES",
             "round(avg(NUMBEROFPGWS),0) NUMBEROFPGWS",
             "round(avg(NUMBEROFENBS),0) NUMBEROFENBS"  
@@ -676,17 +736,17 @@ cmg_api_sql_function = {
                 u'设备名称',
                 u'日期',
                 u'时间',
-                u'SGi Gn 下行字节',
-                u'SGi Gp 下行字节',
-                u'SGi S1u 下行字节',
-                u'SGi S5u 下行字节',
-                u'SGi S8u 下行字节',
-                u'Gn SGi 下行字节',
-                u'Gp SGi 下行字节',
-                u'S1u SGi 下行字节',
-                u'S5u SGi 下行字节',
-                u'S8u SGi 下行字节',
-                u'SGi 总流量'
+                u'SGi Gn 下行字节(GB)',
+                u'SGi Gp 下行字节(GB)',
+                u'SGi S1u 下行字节(GB)',
+                u'SGi S5u 下行字节(GB)',
+                u'SGi S8u 下行字节(GB)',
+                u'Gn SGi 上行行字节(GB)',
+                u'Gp SGi 上行字节(GB)',
+                u'S1u SGi 上行字节(GB)',
+                u'S5u SGi 上行字节(GB)',
+                u'S8u SGi 上行字节(GB)',
+                u'SGi 总流量(GB)'
         ],
         'sql_items'      : {
           'sql_items_15_CMG' : [
@@ -694,34 +754,34 @@ cmg_api_sql_function = {
             "CO_NAME",
             "to_char(cmg.PERIOD_START_TIME,'yyyy/mm/dd') REPDATE",
             "to_char(cmg.PERIOD_START_TIME,'hh24:mi') BH",
-            "SUM(giGnDlBytes) giGnDlBytes",
-            "SUM(giGpDlBytes) giGpDlBytes",
-            "SUM(giS1uDlBytes) giS1uDlBytes",
-            "SUM(giS5uDlBytes) giS5uDlBytes",
-            "SUM(giS8uDlBytes) giS8uDlBytes",
-            "SUM(gnGiUlBytes) gnGiUlBytes",
-            "SUM(gpGiUlBytes) gpGiUlBytes",
-            "SUM(s1uGiUlBytes) s1uGiUlBytes",
-            "SUM(s5uGiUlBytes) s5uGiUlBytes",
-            "SUM(s8uGiUlBytes) s8uGiUlBytes",
-            "SUM(giGnDlBytes)+SUM(giGpDlBytes)+SUM(giS1uDlBytes)+SUM(giS5uDlBytes)+SUM(giS8uDlBytes)+SUM(gnGiUlBytes)+SUM(gpGiUlBytes)+SUM(s1uGiUlBytes)+SUM(s5uGiUlBytes)+SUM(s8uGiUlBytes) SGiBytes"
+            "ROUND(SUM(giGnDlBytes)/1024/1024/1024,2) giGnDlBytes",
+            "ROUND(SUM(giGpDlBytes)/1024/1024/1024,0) giGpDlBytes",
+            "ROUND(SUM(giS1uDlBytes)/1024/1024/1024,2) giS1uDlBytes",
+            "ROUND(SUM(giS5uDlBytes)/1024/1024/1024,2) giS5uDlBytes",
+            "ROUND(SUM(giS8uDlBytes)/1024/1024/1024,2) giS8uDlBytes",
+            "ROUND(SUM(gnGiUlBytes)/1024/1024/1024,2) gnGiUlBytes",
+            "ROUND(SUM(gpGiUlBytes)/1024/1024/1024,2) gpGiUlBytes",
+            "ROUND(SUM(s1uGiUlBytes)/1024/1024/1024,2) s1uGiUlBytes",
+            "ROUND(SUM(s5uGiUlBytes)/1024/1024/1024,2) s5uGiUlBytes",
+            "ROUND(SUM(s8uGiUlBytes)/1024/1024/1024,2) s8uGiUlBytes",
+            "ROUND(SUM(giGnDlBytes+giGpDlBytes+giS1uDlBytes+giS5uDlBytes+giS8uDlBytes+gnGiUlBytes+gpGiUlBytes+s1uGiUlBytes+s5uGiUlBytes+s8uGiUlBytes)/1024/1024/1024,2) SGiBytes"
     	  ],
           'sql_items_60_CMG' : [
             "CMG_ID",
             "CO_NAME",
             "to_char(cmg.PERIOD_START_TIME,'yyyy/mm/dd') REPDATE",
             "to_char(cmg.PERIOD_START_TIME,'hh24') BH",
-            "SUM(giGnDlBytes) giGnDlBytes",
-            "SUM(giGpDlBytes) giGpDlBytes",
-            "SUM(giS1uDlBytes) giS1uDlBytes",
-            "SUM(giS5uDlBytes) giS5uDlBytes",
-            "SUM(giS8uDlBytes) giS8uDlBytes",
-            "SUM(gnGiUlBytes) gnGiUlBytes",
-            "SUM(gpGiUlBytes) gpGiUlBytes",
-            "SUM(s1uGiUlBytes) s1uGiUlBytes",
-            "SUM(s5uGiUlBytes) s5uGiUlBytes",
-            "SUM(s8uGiUlBytes) s8uGiUlBytes",
-            "SUM(giGnDlBytes)+SUM(giGpDlBytes)+SUM(giS1uDlBytes)+SUM(giS5uDlBytes)+SUM(giS8uDlBytes)+SUM(gnGiUlBytes)+SUM(gpGiUlBytes)+SUM(s1uGiUlBytes)+SUM(s5uGiUlBytes)+SUM(s8uGiUlBytes) SGiBytes"
+            "ROUND(SUM(giGnDlBytes)/1024/1024/1024,2) giGnDlBytes",
+            "ROUND(SUM(giGpDlBytes)/1024/1024/1024,2) giGpDlBytes",
+            "ROUND(SUM(giS1uDlBytes)/1024/1024/1024,2) giS1uDlBytes",
+            "ROUND(SUM(giS5uDlBytes)/1024/1024/1024,2) giS5uDlBytes",
+            "ROUND(SUM(giS8uDlBytes)/1024/1024/1024,2) giS8uDlBytes",
+            "ROUND(SUM(gnGiUlBytes)/1024/1024/1024,2) gnGiUlBytes",
+            "ROUND(SUM(gpGiUlBytes)/1024/1024/1024,2) gpGiUlBytes",
+            "ROUND(SUM(s1uGiUlBytes)/1024/1024/1024,2) s1uGiUlBytes",
+            "ROUND(SUM(s5uGiUlBytes)/1024/1024/1024,2) s5uGiUlBytes",
+            "ROUND(SUM(s8uGiUlBytes)/1024/1024/1024,2) s8uGiUlBytes",
+            "ROUND(SUM(giGnDlBytes+giGpDlBytes+giS1uDlBytes+giS5uDlBytes+giS8uDlBytes+gnGiUlBytes+gpGiUlBytes+s1uGiUlBytes+s5uGiUlBytes+s8uGiUlBytes)/1024/1024/1024,2) SGiBytes"
           ]
         },
         'sql_tables' : [
