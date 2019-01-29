@@ -111,25 +111,25 @@ def mme_reportsuite(kpi_title, cursor, param):
         selecttemptable_sqlstring = sqlstring['selecttemptable'][0] 
         #print "droptemptable_sqlstrings: " + droptemptable_sqlstrings
         for drop_command in droptemptable_sqlstrings:
-            print "drop_command: " , drop_command
+            #print "drop_command: " , drop_command
             try:
                 cursor.execute(drop_command)
             except Exception as e:
                 print 'mme_reportsuite droptable catch Error: ' + str(e)    
-        print "after execute droptemptable" 
+        #print "after execute droptemptable" 
         #print "createtemptable_sqlstring: " + createtemptable_sqlstrings
         for create_command in createtemptable_sqlstrings:
-            print "create_command: " , create_command
+            #print "create_command: " , create_command
             try:
                 cursor.execute(create_command)
             except Exception as e:
                 print 'mme_reportsuite createtable catch Error: ' + str(e)    
-        print "after execute createtemptable"
-        print "selecttemptable_sqlstring: " + selecttemptable_sqlstring
+        #print "after execute createtemptable"
+        #print "selecttemptable_sqlstring: " + selecttemptable_sqlstring
         cursor.execute(selecttemptable_sqlstring)
-        print "after execute selecttemptable"
+        #print "after execute selecttemptable"
         row=cursor.fetchall()
-        print 'mme_reportsuite: ', row
+        #print 'mme_reportsuite: ', row
         return ([kpi_title],row)
     except Exception as e:
         print 'mme_reportsuite catch Error: ' + str(e)
