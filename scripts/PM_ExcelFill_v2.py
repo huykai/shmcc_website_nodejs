@@ -241,7 +241,7 @@ class PM_ExcelFill:
             filter = sqlextrastruct['valuefilter']['filter_regex']
             #print 'caculate filter: ', filter
             for row in rows:
-                print('caculate filter row: ', str(row))
+                #print('caculate filter row: ', str(row))
                 if(re.match(filter, row[int(itemindex)-1])):
                     tmprow.append(row)
         else:
@@ -284,7 +284,7 @@ class PM_ExcelFill:
 
             if (kpi_report_result.has_key(self.sqlkeypart(sqlfunc, valuestruct))):
                 if (valuestruct.has_key("sql_extra")):
-                    print('getsqlinfo valuestruct has key sql_extra')
+                    #print('getsqlinfo valuestruct has key sql_extra')
                     result = []
                     kpiresult = self.caculate(kpi_report_result[self.sqlkeypart(sqlfunc, valuestruct)], valuestruct["sql_extra"])
                     for kpiresultitem in kpiresult:
@@ -367,7 +367,7 @@ class PM_ExcelFill:
                                         evalstrings.append(tmpevalstring)
                                     i = i + 1
                     try:
-                        print ('evalstring over: ' , evalstrings)
+                        #print ('evalstring over: ' , evalstrings)
                         afterevalstrings = []
                         for evalstring in evalstrings:
                             #logging.info('evalstring: ', str(evalstring))
@@ -405,7 +405,7 @@ class PM_ExcelFill:
         
     def runRTMKPI(self, ws, kpi_list):    
         for kpi in kpi_list:
-            print 'runRTMKPI: ', kpi
+            #print 'runRTMKPI: ', kpi
             values = kpi['values']
             outputformats = kpi['outputformats']
             outputstring = ''
@@ -446,7 +446,7 @@ class PM_ExcelFill:
                                         evalstrings.append(tmpevalstring)
                                     i = i + 1
                     try:
-                        print ('evalstring over: ' , evalstrings)
+                        #print ('evalstring over: ' , evalstrings)
                         afterevalstrings = []
                         for evalstring in evalstrings:
                             #logging.info('evalstring: ', str(evalstring))
@@ -512,7 +512,7 @@ class PM_ExcelFill:
                         outputstring += self.param['extraparams'][datavalue]
                 else:
                     outputstring += ','.join(self.getData(outputformat, dbcursor, values, api_sql_function, kpi_report_result))
-            print "runOSSKPI outputstring: ", outputstring
+            #print "runOSSKPI outputstring: ", outputstring
             self.saveInExcel(outputstring, kpi, ws)
 
 def getforminfo(params, formparams):
