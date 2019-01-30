@@ -716,7 +716,7 @@ SQLCUSTOM:
                       
                         utp_common_objects "plmn",
                         utp_common_objects "fing",
-                      pcofng_ps_sgwp_fing_hour p
+                      pcofng_ps_sgwp_sgwp_raw p
                     where
                       "plmn".co_gid in ( '100000' ) 
                       and period_start_time >= to_date('2019/01/22 15:36:00', 'yyyy/mm/dd hh24:mi:ss')
@@ -743,7 +743,7 @@ SQLCUSTOM:
                     
                       utp_common_objects "plmn",
                       utp_common_objects "fing",
-                    pcofng_ps_ovld_ovld_hour p
+                    pcofng_ps_ovld_ovld_raw p
                   where
                     "plmn".co_gid in ( '100000' ) 
                     and period_start_time >= to_date('2019/01/22 15:36:00', 'yyyy/mm/dd hh24:mi:ss')
@@ -777,7 +777,7 @@ SQLCUSTOM:
                       
                         utp_common_objects "plmn",
                         utp_common_objects "fing",
-                      pcofng_ps_ssprof_fing_hour p
+                      PCOFNG_PS_SSPROF_SSPROF_RAW p
                     where
                       "plmn".co_gid in ( '100000' ) 
                       and period_start_time >= to_date('2019/01/22 15:36:00', 'yyyy/mm/dd hh24:mi:ss')
@@ -804,7 +804,7 @@ SQLCUSTOM:
                     
                       utp_common_objects "plmn",
                       utp_common_objects "fing",
-                    pcofng_ps_urpl_usrplane_hour p
+                    pcofng_ps_urpl_usrplane_raw p
                   where
                     "plmn".co_gid in ( '100000' ) 
                     and period_start_time >= to_date('2019/01/22 15:36:00', 'yyyy/mm/dd hh24:mi:ss')
