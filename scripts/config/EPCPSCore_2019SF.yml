@@ -182,7 +182,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "16"
+              sql_selectitem_index: "13"
           outputformats:
             - type: "data"
               value: "1"
@@ -201,7 +201,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "8"
+              sql_selectitem_index: "7"
           outputformats:
             - type: "data"
               value: "1"
@@ -225,7 +225,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "10"
+              sql_selectitem_index: "8"
           outputformats:
             - type: "data"
               value: "1"
@@ -245,7 +245,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "12"
+              sql_selectitem_index: "9"
           outputformats:
             - type: "data"
               value: "1"
@@ -255,7 +255,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "13"
+              sql_selectitem_index: "10"
           outputformats:
             - type: "data"
               value: "1"
@@ -265,7 +265,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "14"
+              sql_selectitem_index: "11"
           outputformats:
             - type: "data"
               value: "1"
@@ -275,7 +275,7 @@ SHEETS:
             - datasource: "sql"    
               sql_function: "SAEGW-REPORTSUITE"
               sql_template: "SAEGWBearers"
-              sql_selectitem_index: "15"
+              sql_selectitem_index: "12"
           outputformats:
             - type: "data"
               value: "1"
@@ -642,18 +642,14 @@ SQLCUSTOM:
             a.period_start_time,
                     a.fing_gid,
             SUM(GTPU_UPLINK_THROUGHPUT) GTPU_UPLINK_THROUGHPUT,
-                    SUM(GTPU_DOWNLINK_THROUGHPUT) GTPU_DOWNLINK_THROUGHPUT,
-                    SUM(GTPU_UPLINK_THROUGHPUT_MAX) GTPU_UPLINK_THROUGHPUT_MAX,
-                    SUM(GTPU_DOWNLINK_THROUGHPUT_MAX) GTPU_DOWNLINK_THROUGHPUT_MAX
+                    SUM(GTPU_DOWNLINK_THROUGHPUT) GTPU_DOWNLINK_THROUGHPUT
             from
                     (
             select
                       trunc( p.period_start_time, 'hh24' ) period_start_time,
                     "fing".co_gid fing_gid,
                       AVG(GTPU_UPLINK_THROUGHPUT) GTPU_UPLINK_THROUGHPUT,
-                    AVG(GTPU_DOWNLINK_THROUGHPUT) GTPU_DOWNLINK_THROUGHPUT,
-                    MAX(GTPU_UPLINK_THROUGHPUT) GTPU_UPLINK_THROUGHPUT_MAX,
-                    MAX(GTPU_DOWNLINK_THROUGHPUT) GTPU_DOWNLINK_THROUGHPUT_MAX
+                    AVG(GTPU_DOWNLINK_THROUGHPUT) GTPU_DOWNLINK_THROUGHPUT
                     from
                       
                         utp_common_objects "plmn",
@@ -863,7 +859,6 @@ SQLCUSTOM:
                 round(((ssprof.sm_nbr_act_bear_p_gw + ssprof.sm_nbr_act_bear_sae_gw)),0) flng_5032b,
                 round(to_number((nvl(sgwp.sm_nbr_act_sgw_bear,0) + nvl(ssprof.sm_nbr_act_bear_sae_gw,0))),0) flng_5031b,
                 round(to_number((GTPU.GTPU_UPLINK_THROUGHPUT + GTPU.GTPU_DOWNLINK_THROUGHPUT))/1024/8,2) flng_5028a,
-                round(to_number((GTPU.GTPU_UPLINK_THROUGHPUT_MAX + GTPU.GTPU_DOWNLINK_THROUGHPUT_MAX))/1024/8,2) flng_5028a1,
                 round(to_number(decode(OVLD_ext3.AVG_SB_CPU_USAGE,0,NULL,OVLD_ext3.AVG_SB_CPU_USAGE)),2) flng_769c,
                 round(to_number(decode(OVLD_ext3.AVG_SB_CPU_USAGE_MAX,0,NULL,OVLD_ext3.AVG_SB_CPU_USAGE_MAX)),2) flng_769c1,
                 round(to_number(decode(URPL_ext.UP_AVG_FASTPATH_CPU_LOAD_SAB,0,NULL,URPL_ext.UP_AVG_FASTPATH_CPU_LOAD_SAB)),2) flng_805a,
