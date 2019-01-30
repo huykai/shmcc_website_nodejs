@@ -760,8 +760,7 @@ SQLCUSTOM:
                     a.fing_gid,
             SUM(SM_NBR_ACT_BEAR_P_GW) SM_NBR_ACT_BEAR_P_GW,
                     SUM(SM_NBR_ACT_BEAR_SAE_GW) SM_NBR_ACT_BEAR_SAE_GW,
-                    SUM(SM_NBR_ACT_DEDIC_BEAR_P_GW) SM_NBR_ACT_DEDIC_BEAR_P_GW,
-                    SUM(SM_MAX_NBR_ACT_BEAR_P_GW) SM_MAX_NBR_ACT_BEAR_P_GW
+                    SUM(SM_NBR_ACT_DEDIC_BEAR_P_GW) SM_NBR_ACT_DEDIC_BEAR_P_GW
             from
                     (
             select
@@ -770,7 +769,6 @@ SQLCUSTOM:
                       SUM(SM_NBR_ACT_BEAR_P_GW) SM_NBR_ACT_BEAR_P_GW,
                     SUM(SM_NBR_ACT_BEAR_SAE_GW) SM_NBR_ACT_BEAR_SAE_GW,
                     SUM(SM_NBR_ACT_DEDIC_BEAR_P_GW) SM_NBR_ACT_DEDIC_BEAR_P_GW,
-                    SUM(SM_MAX_NBR_ACT_BEAR_P_GW) SM_MAX_NBR_ACT_BEAR_P_GW
                     from
                       
                         utp_common_objects "plmn",
@@ -863,9 +861,7 @@ SQLCUSTOM:
                 decode("fing".co_sc_name, ' pgw','P-GW', 'pgw','P-GW', ' saegw', 'SAE-GW', 'saegw', 'SAE-GW', ' sgw', 'S-GW', 'sgw', 'S-GW', 'ggsn', 'GGSN', "fing".co_sc_name) "Mode",
                 ALLTABLES.fing_gid, nvl("fing".co_ext_dn, "fing".co_dn) "DN",
                 round(((ssprof.sm_nbr_act_bear_p_gw + ssprof.sm_nbr_act_bear_sae_gw)),0) flng_5032b,
-                round(((ssprof.SM_MAX_NBR_ACT_BEAR_P_GW + ssprof.sm_nbr_act_bear_sae_gw)),0) flng_5032b1,
                 round(to_number((nvl(sgwp.sm_nbr_act_sgw_bear,0) + nvl(ssprof.sm_nbr_act_bear_sae_gw,0))),0) flng_5031b,
-                round(to_number((nvl(sgwp.SM_MAX_NBR_ACT_SGW_BEAR,0) + nvl(ssprof.sm_nbr_act_bear_sae_gw,0))),0) flng_5031b1,
                 round(to_number((GTPU.GTPU_UPLINK_THROUGHPUT + GTPU.GTPU_DOWNLINK_THROUGHPUT))/1024/8,2) flng_5028a,
                 round(to_number((GTPU.GTPU_UPLINK_THROUGHPUT_MAX + GTPU.GTPU_DOWNLINK_THROUGHPUT_MAX))/1024/8,2) flng_5028a1,
                 round(to_number(decode(OVLD_ext3.AVG_SB_CPU_USAGE,0,NULL,OVLD_ext3.AVG_SB_CPU_USAGE)),2) flng_769c,
