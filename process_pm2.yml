@@ -45,5 +45,14 @@ apps:
       InspectWorkerConfig: "yml/WorkerConfig.yml"
     env_production:
       NODE_ENV: production
+  - name: "shmcc_pmalarm"
+    script: "E:\\Personal_Projects\\Code_Projects\\Go\\src\\shmcc_pm_alarm\\config/pm_sql.yml"
+    watch  : ['E:\\Personal_Projects\\Code_Projects\\Go\\src\\shmcc_pm_alarm\\shmccpmkpi.exe']
+    instances: 1
+    exec_mode: "fork"
+    interpreter: "E:\\Personal_Projects\\Code_Projects\\Go\\src\\shmcc_pm_alarm\\shmccpmkpi.exe"
+    env: 
+      myenv: "product"
+    
 
 

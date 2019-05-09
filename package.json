@@ -17,6 +17,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.2.2",
+    "compression": "^1.7.4",
     "connect": "^3.6.0",
     "cookie-parser": "^1.1.0",
     "csurf": "^1.2.0",
@@ -37,6 +38,7 @@
     "orm": "^3.2.4",
     "orm-mysql-fts": "0.0.1",
     "redis": "^2.7.1",
+    "sails": "^1.1.0",
     "sequelize": "^4.4.2",
     "serve-favicon": "^2.0.0",
     "socket.io": "^2.0.3",

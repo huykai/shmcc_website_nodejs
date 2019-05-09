@@ -61,6 +61,9 @@ const socketServer = function(server, path, processOption) {
             //    }
             //};
             break;
+        //case '/proxy/socket.io':
+        //    ioServer = createProxyIOServer(server, path);            
+        //    break;
         default:
             ioServer = createIOServer(server, path);            
             break;
@@ -265,6 +268,30 @@ const createInspectIOServer = function(server, path){
             } 
         });
     });
+    return io;
+}
+
+const createProxyIOServer = function(server, path){
+    console.log(`createProxyIOServer begin:`)
+    var io = require('sails.io.js')( require('socket.io-client') );
+    var io = ioserver(server, {path: path});
+    console.log(`createProxyIOServer io on connection:`)
+    var options = {
+        host: 'www.huykai.com.cn',
+        port: 80,
+        path: '/index.php',
+        method: 'GET'
+    };
+    /*
+    io.sockets.request(options, function(res) {
+          console.log('STATUS: ' + res.statusCode);
+          console.log('HEADERS: ' + JSON.stringify(res.headers));
+          res.setEncoding('utf8');
+          res.on('data', function (chunk) {
+            console.log('BODY: ' + chunk);
+          });
+        });
+    */
     return io;
 }
 

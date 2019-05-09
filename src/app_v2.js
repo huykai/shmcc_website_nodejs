@@ -23,6 +23,7 @@ var external_webs = require(`./config/${modedir}external_webs`);
 //var socketIOServer = require('./socketioserver');
 var socketIOServer = require('./ioserver');
 
+const compression = require('compression');
 const http = require('http');
 const hostname = processOption.env.hostname;
 const ServerTimeout = processOption.env.ServerTimeout;
@@ -33,6 +34,7 @@ routes.users = require('./route/users_v2.js');
 
 var csrfProtection = csurf({ cookie: true });
 
+var acceptEncoding = '';
 // create application/json parser
 var jsonParser = bodyParser.json();
 // create application/x-www-form-urlencoded parser
@@ -43,6 +45,16 @@ let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_IN
 //let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
 
 var app = express();
+app.use(compression({ filter: shouldCompress }));
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
 //app.set('http_port', processOption.env.env.HTTP_PORT || 3000);
 //app.set('https_port', processOption.env.env.HTTPS_PORT || 3010);
 app.set('views', __dirname + '/views');
@@ -70,6 +82,10 @@ app.all('*', function(req, res, next) {
   //console.log('res is: ',res.headers);
   console.log('all * Cookies: ', req.cookies);
   //console.log('Signed Cookies: ', req.signedCookies);
+  acceptEncoding = req.headers['accept-encoding'];
+  if (!acceptEncoding){
+      acceptEncoding = '';
+  }
   res.set('Access-Control-Allow-Origin', '*');
   //res.set('Access-Control-Allow-Origin', 'http://192.168.1.126:3000');
   //res.set('Access-Control-Allow-Origin', '/index_traffica.html');
@@ -91,18 +107,19 @@ app.get('/', csrfProtection, function (req, res, next) {
   //res.cookie.csrfToken = req.cookies.csrfToken;
   //res.locals._csrf = req.csrfToken();
   //res.cookie('XSRF-TOKEN', req.csrfToken());
-  res.sendFile(fileName, function (err) {
-    if (err) {
-      next(err);
-    } else {
-      console.log('Sent:', fileName);
-    }
-  });
-});
-
-app.get('/orig', function (req, res, next) {
-  var fileName = site_config.static_dir + site_config.orig_home_page;
-  console.log(fileName);
+  
+//  var raw = fs.createReadStream(filename);
+//  if (acceptEncoding.match(/\bdeflate\b/)){
+//      res.write(200, {'content-encoding': 'deflate'});
+//      raw.pipe(zlib.createDeflate()).pipe(res);
+//  } else if (acceptEncoding.match(/\bgzip\b/)){
+//      res.write(200, {'content-encoding': 'gzip'});
+//      raw.pipe(zlib.createGzip()).pipe(res);
+//  } else{
+//      res.write(200, {});
+//      raw.pipe(res);
+//  }
+  
   res.sendFile(fileName, function (err) {
     if (err) {
       next(err);
@@ -155,6 +172,7 @@ app.use(function (err, req, res, next) {
 
 var http_server = http.createServer(app).listen(socketPort,function() {
   console.log('Express http server listening on port ' + socketPort);
+  
 });
 http_server['ServerPort'] = socketPort;
 http_server.timeout = ServerTimeout;
@@ -171,6 +189,9 @@ let ttypath = '/hyktty/socket.io';
 const tty_socket_httpServer = socketIOServer(http_server, ttypath);
 let inspectorpath = '/inspector/socket.io';
 const inspector_socket_httpServer = socketIOServer(http_server, inspectorpath, processOption);
+let proxypath = '/proxy/socket.io';
+console.log(`proxy io server create`)
+const proxy_socket_httpServer = socketIOServer(http_server, proxypath, processOption);
 
 module.exports = {
   app: app,

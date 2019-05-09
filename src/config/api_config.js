@@ -108,6 +108,14 @@ var apiconfig = [
         script: 'scripts/PM_Excel_Throughput_v2.py test Throughput_Excel.json ',
         method_type: 'POST',
         return_type: 'text/json'
+    },
+    {
+        api_string: '/api/downloadResultSub',
+        mode: 'execDownload',
+        program: 'D:\\Develop_Languages\\Python36\\python.exe ',
+        script: 'scripts/downloadResultSub.py test ',
+        method_type: 'GET',
+        return_type: 'application/octet-stream'
     }
 ]
 
