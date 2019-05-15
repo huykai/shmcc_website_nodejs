@@ -4,6 +4,7 @@ module.exports = {
     //home_page : "shmccps_main_v1_2.html"
     static_dir : "E:\\Personal_Projects\\Code_Projects\\javascript\\AngularJS\\shmccps_angularjs\\app\\",
     home_page : "index_v2.html",
+    environment_config_page: "environment_config_test.js",
     //home_page : "shmccps_main_v1_2.html",
     orig_home_page : "shmccps_main_v1_2.html"
 }

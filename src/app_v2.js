@@ -76,6 +76,14 @@ app.use(function(req, res, next) {
   return next();
 });
 
+// environment config 
+console.log('app set environment config')
+var fileName = processOption.env.site_config.static_dir + "static/js/" + site_config.environment_config_page;
+console.log(`origin fileName: ${fileName}`);
+var dstFileName = processOption.env.site_config.static_dir + "static/js/environment_config.js";
+console.log(`dest fileName: ${dstFileName}`);
+fs.copyFileSync(fileName, dstFileName);
+
 app.all('*', function(req, res, next) {
   console.log('app.all req is: ',req.url,req.method);
   //console.log('res is: ',res.headers);
@@ -95,7 +103,7 @@ app.all('*', function(req, res, next) {
   if ('OPTIONS' == req.method) 
     return res.send(200);
   next();
-});
+}); 
 
 app.get('/', csrfProtection, function (req, res, next) {
   //console.log('/ Cookies: ', req.cookies);
