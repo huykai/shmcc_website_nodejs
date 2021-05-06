@@ -44,7 +44,7 @@ process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
 let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_INSTANCE);
 //let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
 
-var app = express();
+var app = express(); 
 app.use(compression({ filter: shouldCompress }));
 function shouldCompress (req, res) {
   if (req.headers['x-no-compression']) {
