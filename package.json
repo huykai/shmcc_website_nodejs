@@ -41,7 +41,7 @@
     "sails": "^1.1.0",
     "sequelize": "^4.4.2",
     "serve-favicon": "^2.0.0",
-    "socket.io": "^2.0.3",
+    "socket.io": "^2.4.0",
     "websocket": "^1.0.24",
     "xlsx": "^0.13.0"
   },
