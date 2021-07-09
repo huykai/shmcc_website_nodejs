@@ -144,6 +144,7 @@ const createTTYIOServer = function(server, path){
                 if (logintype === 'ssh') {
                     let script = ttyConfig[ttymode]['ssh']['script']
                     let args = [...ttyConfig[ttymode]['ssh']['args'], loginuser + '@' + loginhost, '-p', loginport, '-o', 'PreferredAuthentications=' + loginauth]
+                    console.log("login: ", script, args);
                     term = pty.spawn(script, args, {
                     name: 'xterm-256color',
                     cols: 80,
@@ -152,6 +153,7 @@ const createTTYIOServer = function(server, path){
                 } else if (logintype === 'telnet'){
                     let script = ttyConfig[ttymode]['telnet']['script']
                     let args = [...ttyConfig[ttymode]['telnet']['args'], loginhost, loginport]
+                    console.log("login: ", script, args);
                     term = pty.spawn(script, args, {
                     name: 'xterm-256color',
                     cols: 80,
@@ -225,7 +227,7 @@ const createInspectIOServer = function(server, path){
     });
     var socketList = {}
     io.on('connection', function(socket){
-        console.log(`Inspector io connected port: ${server['ServerPort']}`);
+        //console.log(`Inspector io connected port: ${server['ServerPort']} ${path} `, socket, `  at `, new Date() );
         socket.on('login', function(loginparam){
             console.log('io login param:', JSON.stringify(loginparam));
         });

@@ -4,10 +4,14 @@ exports.env = {
     HTTPS_PORT : 3010
   },
   site_config: {
-    static_dir : "E:\\Personal_Projects\\Code_Projects\\javascript\\AngularJS\\shmccps_angularjs\\app\\",
-    home_page : "index_v2.html",
+    //static_dir : "E:\\Personal_Projects\\Code_Projects\\javascript\\AngularJS\\shmccps_angularjs\\app\\",
+    //home_page : "index_v2.html",
+    static_dir : "E:\\Personal_Projects\\Code_Projects\\javascript\\vanilla\\webEtrance\\dist\\",
+    login_page : "index.html",
+    home_page : "index_main.html",
+    environment_config_page: "environment_config.js",
     orig_home_page : "shmccps_main_v1_2.html"
-  },
+  }, 
   mode: 'test',
   hostname: '127.0.0.1',
   ServerTimeout: 3600000,

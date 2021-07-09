@@ -46,11 +46,11 @@ apps:
     env_production:
       NODE_ENV: production
   - name: "shmcc_pmalarm"
-    script: "E:\\Personal_Projects\\Code_Projects\\Go\\src\\shmcc_pm_alarm\\config/pm_sql.yml"
-    watch  : ['E:\\Personal_Projects\\Code_Projects\\Go\\src\\shmcc_pm_alarm\\shmccpmkpi.exe']
+    script: "E:\\Personal_Projects\\Code_Projects\\go\\shmcc_pm_alarm\\config\\pm_sql.yml"
+    watch  : ['E:\\Personal_Projects\\Code_Projects\\go\\shmcc_pm_alarm\\shmcc_pm_alarm.exe']
     instances: 1
     exec_mode: "fork"
-    interpreter: "E:\\Personal_Projects\\Code_Projects\\Go\\src\\shmcc_pm_alarm\\shmccpmkpi.exe"
+    interpreter: "E:\\Personal_Projects\\Code_Projects\\go\\shmcc_pm_alarm\\shmcc_pm_alarm.exe"
     env: 
       myenv: "product"
     

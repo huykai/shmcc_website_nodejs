@@ -8,6 +8,13 @@ var secret = process.shmccpsenv.env;
 var TOKEN_EXPIRATION = 480;
 var TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 60;
 
+let modedir = (!process.env.shmccpsmode || process.env.shmccpsmode === 'test') ? '':process.env.shmccpsmode + '/'
+var processOption = require(`../config/${modedir}processoption`)
+var loginFileName = processOption.env.site_config.login_page;
+console.log("user login page: ", loginFileName);
+var homeFileName = processOption.env.site_config.home_page;
+console.log("user home page: ", homeFileName);
+
 exports.signin = function(req, res) {
 	var username = req.body.username || '';
 	var password = req.body.password || '';
@@ -15,9 +22,9 @@ exports.signin = function(req, res) {
 	//console.log('signin User Cookies: ', req.cookies);
     //console.log('signin Signed Cookies: ', req.signedCookies);
 	//console.log('req:',req);
-	//console.log('user:',username);
-	//console.log('pwd:',password);
-	//console.log('url:',req.url);
+	console.log('user:',username);
+	console.log('pwd:',password);
+	console.log('url:',req.url);
 	if (username == '' || password == '') {
         console.log("User loging user: null.");
 		return res.send(401); 
@@ -39,9 +46,13 @@ exports.signin = function(req, res) {
 				console.log("Attempt failed to login with " + user.username);
 				return res.sendStatus(401);
             }
-			console.log("user password matched.")
+			console.log("user password matched.");
 			//var token = jwt.sign({id: user._id}, secret.secretToken, { expiresInMinutes: tokenManager.TOKEN_EXPIRATION });
-			var token = jwt.sign({id: user._id}, secret.secretToken, { expiresIn: tokenManager.TOKEN_EXPIRATION_SEC });
+			var token = jwt.sign(
+				{id: user._id}, 
+				secret.secretToken, 
+				{ expiresIn: tokenManager.TOKEN_EXPIRATION_SEC }
+			);
 			
 			tokenManager.setTokenExpire(token, tokenManager.TOKEN_EXPIRATION_SEC);
 			//console.log("signin: token get:",token)
@@ -50,7 +61,9 @@ exports.signin = function(req, res) {
 			//return res.status(200);
 			return res.status(200).json({
 				token: token, 
-				is_admin: user.is_admin
+				userid: user._id,
+				is_admin: user.is_admin,
+				homeFile: homeFileName
 			});
 		});
 
@@ -112,4 +125,26 @@ exports.register = function(req, res) {
 			}
 		});
 	});
+}
+
+exports.tokenVerify = function(userid, token) {
+	try {
+		var decoded = jwt.verify(token, secret.secretToken);
+		if (!decoded.id || decoded.id != userid){
+			console.log("decode id: ", decoded.id, " userid: ", userid);
+			return {
+				result: "NOK",
+				info: "token userid not correct."
+			}
+		}
+		return {
+			result: "OK",
+			info: ""
+		}
+	} catch(err) {
+		return {
+			result: "NOK",
+			info: err,
+		}
+	}
 }

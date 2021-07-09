@@ -9,6 +9,7 @@ console.log(`modedir: ${modedir}`)
 var processOption = require(`./config/${modedir}processoption`)
 console.log(`processOption.env: ${JSON.stringify(processOption.env)}`)
 process.shmccpsenv = processOption;
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -18,13 +19,12 @@ var routers = require(`./config/${modedir}route_api`);
 var jwt = require('express-jwt');
 var secret = require(`./config/${modedir}secret`);
 var fs = require('fs');
-
 var external_webs = require(`./config/${modedir}external_webs`);
 //var socketIOServer = require('./socketioserver');
 var socketIOServer = require('./ioserver');
-
 const compression = require('compression');
 const http = require('http');
+
 const hostname = processOption.env.hostname;
 const ServerTimeout = processOption.env.ServerTimeout;
 
@@ -32,7 +32,11 @@ var routes = {};
 routes.posts = require('./route/posts_v2.js');
 routes.users = require('./route/users_v2.js');
 
-var csrfProtection = csurf({ cookie: true });
+
+var csrfProtection = csurf({ 
+  cookie: true,
+  ignoreMethods: ['GET', 'HEAD', 'OPTIONS'] 
+});
 
 var acceptEncoding = '';
 // create application/json parser
@@ -43,6 +47,12 @@ console.log(`app_v2 process.env.NODE_APP_INSTANCE: ${process.env.NODE_APP_INSTAN
 process.env.NODE_APP_INSTANCE = process.env.NODE_APP_INSTANCE  || "1"
 let socketPort = processOption.env.socketPort + parseInt(process.env.NODE_APP_INSTANCE);
 //let httpssocketPort = processOption.env.httpssocketPort + parseInt(process.env.NODE_APP_INSTANCE);
+
+var loginFileName = processOption.env.site_config.static_dir + processOption.env.site_config.login_page;
+console.log("login page: ", loginFileName);
+var homeFileName = processOption.env.site_config.static_dir + processOption.env.site_config.home_page;
+console.log("home page: ", homeFileName);
+
 
 var app = express(); 
 app.use(compression({ filter: shouldCompress }));
@@ -68,6 +78,16 @@ app.use(urlencodedParser);
 app.use(cookieParser('secret'));
 //app.use(session({ secret: 'secret' }));
 //app.use(methodOverride());
+
+//Create a new user
+app.post('/user/register', urlencodedParser, routes.users.register); 
+
+//Login
+app.post('/user/signin', urlencodedParser, routes.users.signin); 
+
+//Logout
+app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout); 
+
 app.use(csurf({ cookie: true }));
 
 app.use(function(req, res, next) {
@@ -78,21 +98,19 @@ app.use(function(req, res, next) {
 
 // environment config 
 console.log('app set environment config')
-var fileName = processOption.env.site_config.static_dir + "static/js/" + site_config.environment_config_page;
-console.log(`origin fileName: ${fileName}`);
-var dstFileName = processOption.env.site_config.static_dir + "static/js/environment_config.js";
-console.log(`dest fileName: ${dstFileName}`);
-fs.copyFileSync(fileName, dstFileName);
+//var fileName = processOption.env.site_config.static_dir + "static/js/" + processOption.env.site_config.environment_config_page;
+var configFileName = "config/" + process.env.shmccpsmode + "/" + processOption.env.site_config.environment_config_page;
+//console.log(`origin fileName: ${fileName}`);
+//var dstFileName = processOption.env.site_config.static_dir + "static/js/environment_config.js";
+//console.log(`dest fileName: ${dstFileName}`);
+//fs.copyFileSync(fileName, dstFileName);
 
 app.all('*', function(req, res, next) {
-  console.log('app.all req is: ',req.url,req.method);
-  //console.log('res is: ',res.headers);
+  console.log('app.all req is: ', req.url, req.method);
+  //console.log('res is: ',req.headers);
+  console.log('req is: ', req.body);
   console.log('all * Cookies: ', req.cookies);
   //console.log('Signed Cookies: ', req.signedCookies);
-  acceptEncoding = req.headers['accept-encoding'];
-  if (!acceptEncoding){
-      acceptEncoding = '';
-  }
   res.set('Access-Control-Allow-Origin', '*');
   //res.set('Access-Control-Allow-Origin', 'http://192.168.1.126:3000');
   //res.set('Access-Control-Allow-Origin', '/index_traffica.html');
@@ -102,31 +120,49 @@ app.all('*', function(req, res, next) {
   res.cookie('XSRF-TOKEN', req.csrfToken());
   if ('OPTIONS' == req.method) 
     return res.send(200);
+  if (!req.body.token && !(req.url === "/user/signin")) {
+    res.sendFile(loginFileName, function (err) {
+      if (err) {
+        next(err);
+      } else {
+        console.log('Sent:', loginFileName);
+      }
+    });
+    return;
+  }
+  acceptEncoding = req.headers['accept-encoding'];
+  if (!acceptEncoding){
+    acceptEncoding = '';
+  }
+    
   next();
 }); 
 
 app.get('/', csrfProtection, function (req, res, next) {
-  //console.log('/ Cookies: ', req.cookies);
+  console.log('req Cookies: ', req.cookies);
+  console.log('req body: ', req.body);
   //console.log(`Server with port: ${socketPort}`)
   //console.log('Signed Cookies: ', req.signedCookies);
-  var fileName = processOption.env.site_config.static_dir + site_config.home_page;
-  console.log(fileName);
   //res.cookie.csrfToken = req.cookies.csrfToken;
   //res.locals._csrf = req.csrfToken();
   //res.cookie('XSRF-TOKEN', req.csrfToken());
   
-//  var raw = fs.createReadStream(filename);
-//  if (acceptEncoding.match(/\bdeflate\b/)){
-//      res.write(200, {'content-encoding': 'deflate'});
-//      raw.pipe(zlib.createDeflate()).pipe(res);
-//  } else if (acceptEncoding.match(/\bgzip\b/)){
-//      res.write(200, {'content-encoding': 'gzip'});
-//      raw.pipe(zlib.createGzip()).pipe(res);
-//  } else{
-//      res.write(200, {});
-//      raw.pipe(res);
-//  }
-  
+  //  var raw = fs.createReadStream(filename);
+  //  if (acceptEncoding.match(/\bdeflate\b/)){
+  //      res.write(200, {'content-encoding': 'deflate'});
+  //      raw.pipe(zlib.createDeflate()).pipe(res);
+  //  } else if (acceptEncoding.match(/\bgzip\b/)){
+  //      res.write(200, {'content-encoding': 'gzip'});
+  //      raw.pipe(zlib.createGzip()).pipe(res);
+  //  } else{
+  //      res.write(200, {});
+  //      raw.pipe(res);
+  //  }
+  let fileName = homeFileName;
+  if (!req.body.token || ! ("OK" === routes.users.tokenVerify(req.body.userid, req.body.token).result)) {
+    console.log("")
+    fileName = loginFileName;
+  }
   res.sendFile(fileName, function (err) {
     if (err) {
       next(err);
@@ -138,14 +174,6 @@ app.get('/', csrfProtection, function (req, res, next) {
 
 //app.use(bodyParser());
 
-//Create a new user
-app.post('/user/register', urlencodedParser, routes.users.register); 
-
-//Login
-app.post('/user/signin', urlencodedParser, routes.users.signin); 
-
-//Logout
-app.get('/user/logout', jwt({secret: secret.secretToken}), routes.users.logout); 
 
 //ejs test
 app.get('/ejs', (req, res, next) => {
@@ -166,14 +194,18 @@ app.all('/*', urlencodedParser, external_webs);
 // error handler
 app.use(function (err, req, res, next) {
   console.log("error code:",err.code);
-  console.log("app req.cookies:",req.cookies);
-  console.log("app req.headers:",req.headers);
+  console.log("app req.cookies: ",req.cookies);
+  console.log("app req.body: ",req.body);
+  console.log("app req.headers: ",req.headers);
   if (err.code !== 'EBADCSRFTOKEN') return next(err);
   //res.cookie('XSRF-TOKEN', req.csrfToken());
   // handle CSRF token errors here
   res.status(403);
   //console.log('req is: ',req.headers);
   //console.log('res is: ',res.headers);
+  if (req.url === "/user/signin") {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+  }
   res.send('EBADCSRFTOKEN');
 });
 

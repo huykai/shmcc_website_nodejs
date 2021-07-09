@@ -156,7 +156,7 @@ class cdr_config:
                 'regex' : r'-->accessPointNameNI.*value: (.*)$',
                 'regmode' : re.M|re.I
             },
-            'causeForRecClosing' : {
+            'cForRecClosing' : {
                 'regex' : r'-->causeForRecClosing.*value: (\w*).*$',
                 'regmode' : re.M|re.I
             },
