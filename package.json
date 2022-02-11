@@ -65,7 +65,7 @@
     "heapdump": "^0.3.9",
     "html-file-cov": "^1.0.0",
     "jshint": "^2.9.4",
-    "karma": "^1.7.0",
+    "karma": "^6.3.14",
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.3",
