@@ -28,7 +28,7 @@
     "feed": "^1.0.2",
     "http-proxy-middleware": "^0.18.0",
     "json": "^9.0.6",
-    "jsonwebtoken": "^7.3.0",
+    "jsonwebtoken": "^9.0.0",
     "method-override": "^1.0.2",
     "mongoose": "^4.9.3",
     "morgan": "^1.8.1",
